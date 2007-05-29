@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>OWL 1.1 Web Ontology Language: Overview</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="css/owl.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-Member-SUBM">
+  <link href="images/owl-icon.png" rel="shortcut icon">
+</head>
+<body>
+
+<div class="head">
+<h1 class="mainTitle"><img style="float: right; height: 200px;" alt="owl" src="images/owl.png">OWL 1.1 Web Ontology Language<br>
+Overview</h1>
+<h2><a id="editordraft" name="editordraft"></a>Editor's Draft of 23 May 2007</h2>
+<dl>
+  <dt>This version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/overview.html">http://www.webont.com/owl1.1/overview.html</a></dd>
+  <dt>Latest version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/overview.html">http://www.webont.com/owl1.1/overview.html</a></dd>
+  <dt>Authors:</dt>
+  <dd><a href="http://www.bell-labs.com/user/pfps/">Peter F. Patel-Schneider</a>, Bell Labs Research, Lucent Technologies</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~horrocks/">Ian Horrocks</a>, The University of Manchester</dd>
+  <dt>Contributors:</dt>
+  <dd><a href="http://www.cs.man.ac.uk/~bcg">Bernardo Cuenca Grau</a>, The University of Manchester</dd>
+</dl>
+<p class="copyright">Copyright &copy; 2006-2007 by the Authors. 
+This document is available under the
+<a href="http://www.w3.org/Consortium/Legal/copyright-documents" shape="rect">W3C Document License</a>.
+See the <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" shape="rect">W3C Intellectual Rights Notice and Legal Disclaimers</a>
+for additional information.</p>
+</div>
+
+<hr>
+<div class="abstract">
+<h2 class="notoc"><a id="abstract" name="abstract">Abstract</a></h2>
+<p>OWL 1.1 extends the W3C OWL Web Ontology Language with a small but useful set
+of features that have been requested by users, for which effective reasoning
+algorithms are now available, and that OWL tool developers are willing to support.
+The new features include extra syntactic sugar, additional property and qualified
+cardinality constructors, extended datatype support, simple metamodelling, and
+extended annotations. This document provides a high-level overview of these features.</p>
+</div>
+
+<div class="status">
+<h2 class="notoc"><a id="status" name="status">Status of this Document</a></h2>
+<p><strong>This is an editor's draft, for comment by the OWL community.</strong></p>
+<p>This document is an evolution of the 
+<a href="http://www.w3.org/Submission/2006/SUBM-owl11-overview-20061219/">OWL 1.1 Web Ontology Language: Overview</a> document that forms part of the 
+<a href="http://www.w3.org/Submission/2006/10/">OWL 1.1 Web Ontology Language W3C Member Submission</a>.
+Comments are welcome. Please send feedback to <a href="mailto:public-owl-dev@w3.org">public-owl-dev@w3.org</a>,
+which has a <a href="http://lists.w3.org/Archives/Public/public-owl-dev/">public archive</a>. Bug reports
+can be directed there. Please check the <a href="http://code.google.com/p/owl1-1/issues/list">issues list</a>
+first.</p></div>
+
+<hr>
+
+<div class="toc">
+<h2 class="notoc"><a id="toc" name="toc">Table of Contents</a></h2>
+
+<ul class="toc">
+  <li class="tocline1"><a href="#1">1 Overview</a></li>
+  <li class="tocline1"><a href="#2">2 Features</a>
+    <ul class="toc">
+      <li class="tocline2"><a href="#2.1">2.1 Syntactic Sugar</a></li>
+      <li class="tocline2"><a href="#2.2">2.2 <i>SROIQ</i></a></li>
+      <li class="tocline2"><a href="#2.2">2.3 Datatypes</a></li>
+      <li class="tocline2"><a href="#2.2">2.4 Metamodeling</a></li>
+    </ul>
+  </li>
+  <li class="tocline1"><a href="#references">References</a></li>
+</ul>
+</div>
+
+<hr>
+
+
+
+<h2><a name="1"></a>1 Overview</h2>
+
+<p>The initial design of the W3C OWL Web Ontology Language (OWL) was conservative in
+several ways. Constructs that did not have considerable support from within the
+<a href="http://www.w3.org/2001/sw/WebOnt/">W3C Web Ontology Working Group</a>
+were not included. Constructs for which effective reasoning methods were not
+known or expected to be known in future were also not included.</p>
+
+<p>Usage of OWL, particularly the OWL DL species of OWL, has identified
+several constructs that are of considerable utility and that fit well
+within the representation philosophy of OWL DL. Advances in the theory
+of Description Logics have provided a basis for reasoning with constructs
+that are not part of OWL, or not part of OWL DL.</p>
+
+<p>For both these reasons, it was decided at the first
+<a href="http://www.mindswap.org/2005/OWLWorkshop/">OWL: Experiences and Directions workshop</a>
+to design an extension to the OWL DL species of OWL. The extension
+is designed to provide simple extensions to OWL DL that</p>
+
+<ol>
+  <li>have been requested by major users of OWL DL;</li>
+  <li>have effective reasoning methods, as evidenced by theoretical results; and</li>
+  <li>are expected to be implemented by the developers of OWL DL reasoners.</li>
+</ol>
+
+<p>This document provides a high-level overview of OWL 1.1. The OWL 1.1 syntax document
+[<cite><a  href="#ref-owl-1.1-specification">OWL 1.1 Syntax</a></cite>]
+defines the normal syntax for OWL 1.1 and give
+some informal information on the semantics of the new constructs. There
+will be an OWL 1.1 semantics document that formally defines the
+semantics of all of OWL 1.1, but the general intent is that the
+semantics of OWL 1.1 is the same as that of
+[<cite><a href="#ref-sroiq">SROIQ</a></cite>].
+with a simple datatype theory.</p>
+
+
+<h2><a name="2"></a>2 Features</h2>
+
+<p>The features added in OWL 1.1 fall into four main categories:</p>
+
+<ol>
+  <li>syntactic sugar to make some commonly-stated things easier to say;</li>
+  <li>new Description Logic constructs;</li>
+  <li>expanded datatype expressiveness; and</li>
+  <li>metamodeling constructs.</li>
+</ol>
+
+
+<h3><a name="2.1"></a>2.1. Syntactic Sugar</h3>
+
+<p>OWL 1.1 provides two constructs that are simply syntactic sugar, to
+make some common idioms easier to write.</p>
+
+<p>The first syntactic sugar construct, <span class="name">DisjointUnion</span>,
+defines one description as the disjoint union of a set of descriptions.
+It is simply a combination of a <span class="name">DisjointClasses</span>
+axiom and an <span class="name">EquivalentClasses</span> axiom of
+the first description as the union of the rest.</p>
+
+<p>The second syntactic sugar construct is negative property membership
+assertions <span class="name">NegativeObjectPropertyAssertion</span>
+and <span class="name">NegativeDataPropertyAssertion</span>.</p>
+
+
+<h3><a name="2.2"></a>2.2. <i>SROIQ</i></h3>
+
+<p>OWL 1.1 provides extra Description Logic expressive power, moving
+from the <i>SHOIN</i> Description Logic that underlies OWL DL to the <i>SROIQ</i>
+Description Logic. The additions are:</p>
+
+<dl>
+  <dt>qualified cardinality restrictions</dt>
+  <dd>such as <span class="name">ObjectMinCardinality(2 friendOf hacker)</span>;</dd>
+
+  <dt>local reflexivity restrictions</dt>
+  <dd>on noncomplex properties only, such as <span class="name">ObjectExistsSelf(likes)</span> for narcissists;</dd>
+
+  <dt>reflexive, irreflexive, symmetric, and asymmetric properties</dt>
+  <dd>for noncomplex properties only, such as <span class="name">ReflexiveObjectProperty(knows)</span> and <span class="name">IrreflexiveObjectProperty(husbandOf)</span>;</dd>
+
+  <dt>disjoint properties</dt>
+  <dd>for non-complex properties only, such as <span class="name">DisjointObjectProperties(childOf spouseOf)</span>; and </dd>
+
+  <dt>property chain inclusion axioms</dt>
+  <dd>such as <span class="name">SubObjectPropertyOf(SubObjectPropertyChain(owns part) owns)</span>, provided that there are no cyclic inclusions.</dd>
+
+</dl>
+
+<h3><a name="2.3"></a>2.3. Datatypes</h3>
+
+<p>OWL 1.1 allows user-defined datatypes, using a mechanism similar to
+that in Protege. User-defined datatypes can use most of the well-behaved
+datatype facets available from
+[<cite><a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a></cite>].</p>
+
+<p>This facility can be used in defining new datatypes that can be used in the ontology, as in
+<span class="name">SubClassOf(Adult DataSomeValuesFrom(age DatatypeRestriction(xsd:integer minInclusive "18"^^xsd:integer))</span>.</p>
+
+<p>Simple relationships between values of functional data-valued
+properties can be used as restrictions, as in
+<span class="name">DataSomeValuesFrom(shoeSize IQ greaterThan)</span>.
+The underlying theory of datatypes used in these restrictions is taken from
+[<cite><a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a></cite>].</p>
+
+<h3><a name="2.4"></a>2.4. Metamodeling and annotations</h3>
+
+<p>In OWL 1.1 a name (such as <span class="name">Person</span>) can be
+used as <em>any or all of</em> an individual, a class, or a property.
+The computational problems that would arise if this were treated as in
+RDF are avoided by ensuring that no aspect of the use of the name as an
+individual has any effect on the meaning of the name as a class. Such
+a treatment of metamodeling is often called <em>punning</em>.</p>
+
+
+<hr>
+
+<h2><a name="references"></a>References</h2>
+
+<dl>
+
+  <dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
+  <dd>
+    <cite><a href="owl_specification.html">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
+    Peter F. Patel-Schneider, Ian Horrocks, and Boris Motik, eds., 2006.
+  </dd>
+
+  <dt><a id="ref-sroiq">[SROIQ]</a></dt>
+  <dd>
+    <cite><a href="http://www.cs.man.ac.uk/~sattler/publications/sroiq-tr.pdf">The Even More Irresistible SROIQ</a></cite>.
+    Ian Horrocks, Oliver Kutz, and Uli Sattler.
+    In Proc. of the 10th Int. Conf. on Principles of Knowledge Representation and Reasoning (KR 2006). AAAI Press, 2006.
+  </dd>
+
+  <dt><a id="ref-xml-schema-datatypes">[XML Schema Datatypes]</a></dt>
+  <dd>
+    <cite><a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></cite>.
+    Paul V. Biron and Ashok Malhotra, eds.
+    W3C Recommendation 28 October 2004.
+  </dd>
+
+</dl>
+<hr>
+
+</body>
+</html>

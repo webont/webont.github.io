@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>OWL 1.1 Web Ontology Language: XML Syntax</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="css/owl.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-Member-SUBM">
+  <link href="images/owl-icon.png" rel="shortcut icon">
+</head>
+<body>
+
+<div class="head">
+<h1 class="mainTitle"><img style="float: right; height: 200px;" alt="owl" src="images/owl.png">OWL 1.1 Web Ontology Language<br>
+XML Syntax</h1>
+<h2><a id="editordraft" name="editordraft"></a>Editor's Draft of 23 May 2007</h2>
+<dl>
+  <dt>This version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/xml_syntax.html">http://www.webont.com/owl1.1/xml_syntax.html</a></dd>
+  <dt>Latest version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/xml_syntax.html">http://www.webont.com/owl1.1/xml_syntax.html</a></dd>
+  <dt>Authors:</dt>
+  <dd><a href="http://www.cs.man.ac.uk/~bcg">Bernardo Cuenca Grau</a>, The University of Manchester</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~bmotik">Boris Motik</a>, The University of Manchester</dd>
+  <dd><a href="http://www-db.research.bell-labs.com/user/pfps/">Peter Patel-Schneider</a>, Bell Labs Research</dd>
+  <dt>Contributors:</dt>
+  <dd><a href="http://www.cs.man.ac.uk/~seanb/">Sean Bechhofer</a>, The University of Manchester</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~horrocks/">Ian Horrocks</a>, The University of Manchester</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~bparsia/">Bijan Parsia</a>, The University of Manchester</dd>
+</dl>
+<p class="copyright">Copyright &copy; 2006-2007 by the Authors. 
+This document is available under the
+<a href="http://www.w3.org/Consortium/Legal/copyright-documents" shape="rect">W3C Document License</a>.
+See the <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" shape="rect">W3C Intellectual Rights Notice and Legal Disclaimers</a>
+for additional information.</p>
+</div>
+
+<hr>
+
+<div class="abstract">
+<h2 class="notoc"><a id="abstract" name="abstract">Abstract</a></h2>
+<p>OWL 1.1 extends the W3C OWL Web Ontology Language with a small but useful set of features 
+that have been requested by users, for which effective reasoning algorithms are now available, 
+and that OWL tool developers are willing to support. The new features include extra syntactic 
+sugar, additional property and qualified cardinality constructors, extended datatype support, 
+simple metamodelling, and extended annotations. 
+This document specifies an XML exchange syntax for OWL 1.1.</p>
+</div>
+
+<div class="status">
+<h2 class="notoc"><a id="status" name="status">Status of this Document</a></h2>
+<p><strong>This is an editor's draft, for comment by the OWL community.</strong></p>
+<p>This document is an evolution of the 
+<a href="http://www.w3.org/Submission/2006/SUBM-owl11-xml_syntax-20061219/">OWL 1.1 Web Ontology Language: XML Syntax </a> document that forms part of the 
+<a href="http://www.w3.org/Submission/2006/10/">OWL 1.1 Web Ontology Language W3C Member Submission</a>.
+Comments are welcome. Please send feedback to <a href="mailto:public-owl-dev@w3.org">public-owl-dev@w3.org</a>,
+which has a <a href="http://lists.w3.org/Archives/Public/public-owl-dev/">public archive</a>. Bug reports
+can be directed there. Please check the <a href="http://code.google.com/p/owl1-1/issues/list">issues list</a>
+first.</p></div>
+<hr>
+
+<div class="toc">
+<h2 class="notoc"><a id="toc" name="toc">Table of Contents</a></h2>
+
+<ul class="toc">
+  <li class="tocline1">1 <a class="tocxref" href="#1">Overview</a></li>
+  <li class="tocline">2 <a class="tocxref" href="#2">Examples</a></li>
+  <li class="tocline2"><a class="tocxref" href="#References">References</a></li>
+</ul>
+</div>
+
+<hr>
+
+<h2>1 <a name="1">Overview</a></h2>
+
+<p>The Web Ontology Language (OWL) 1.1 specification
+[<cite><a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a></cite>] defines a
+functional style syntax whose intention is to be readable by humans.
+However, it is widely recognized that a syntax is needed that can be
+easily implemented. This document presents such a syntax that is
+based on XML.</p>
+
+<p>It is expected that this syntax will be used in the Description Logics
+Implementors Group (DIG) 2.0 [<cite><a href="#ref-dig-2.0">DIG 2.0</a></cite>]
+release of the interface to DL reasoners.
+By relying on this common syntax, OWL is completely aligned with DIG, thus
+reducing implementation effort and preventing potential discrepancies.</p>
+
+<p>The syntax is defined in the XML Schema language
+[<cite><a href="#ref-xml-schema">XML Schema</a></cite>]
+and can be downloaded from
+<a href="schema/owl1.1.xsd">here</a>.
+It has been obtained by a straightforward translation of the structural
+specification from [<cite><a href="#ref-dig-2.0">DIG 2.0</a></cite>] in the following way:</p>
+
+<ul>
+  <li>Each concrete class (i.e., a class that is intended to be instantiated)
+  is mapped to a global element.</li>
+
+  <li>Each abstract class (i.e., a class that is not intended to be instantiated,
+  but is used to define a class hierarchy) is mapped to a global element group.</li>
+</ul>
+
+<p>All URIs in an ontology are assuming to be relative to the
+<span class="name">xml:base</span> of the ontology document. During parsing, all URIs
+should be resolved as specified in the XML Base specification
+[<cite><a href="#ref-xml-base">XML Base</a></cite>].</p>
+
+<p>The root element of any OWL 1.1 ontology file written in this syntax should be
+<span class="name">owl11xml:Ontology</span>. However, other specifications are free to
+reuse other elements from the schema. For example, the DIG 2.0 specification
+[<cite><a href="#ref-dig-2.0">DIG 2.0</a></cite>] can reuse the elements and
+element groups corresponding to axioms, descriptions, and entities.</p>
+
+<p>The XML schema presented in this document covers the entire OWL 1.1 language.
+In [<cite><a href="#ref-owl-tractable">OWL 1.1 Tractable Fragments</a></cite>]
+several tractable fragments of OWL 1.1 have been defined. There are no separate
+schemata for these fragments; ontologies that can be expressed by the fragment
+languages should be written using the most general schema. Validating whether an
+ontology belongs to a particular fragment is not intended to be performed using
+XML schema mechanisms; this is to be done using other means whose specification
+is beyond the scope of this document.<p>
+
+
+
+<h2><a name="2"></a>2 Examples</h2>
+
+<p>This section presents the XML syntax for OWL 1.1 by means
+of several examples.<p>
+
+<p>The root element of each OWL 1.1 ontology file encoded using XML syntax
+must be <span class="name">owl11xml:Ontology</span>. This element may
+contain a number of annotations followed by a sequence of axioms.
+Each ontology must be assigned a unique URI. Also,
+it is a good practice to include an <span style="name">xml:base</span>
+specification to enable correct URI resolution.
+</p>
+
+<p><span class="caption">Example:</span></p>
+
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;?oxygen RNGSchema="owl1.1.xsd" type="xsd"?&gt;
+&lt;owl11xml:Ontology xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.w3.org/2006/12/owl11-xml/owl1.1.xsd"
+  xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+  xml:base="http://my.domain.com/myOntology"
+  owl11xml:ontologyURI="http://my.domain.com/myOntology"&gt;
+  &lt;owl11xml:Imports&gt;http://my.domain.com/someOtherOntology&lt;/owl11xml:Imports&gt;
+
+  &lt;!-- The ontology axioms go here --&gt;
+&lt;/owl11xml:Ontology&gt;
+</pre>
+
+<p>It is good practice to declare all elements in an ontology
+so that an ontology can be checked for structural consistency.
+This helps preventing errors caused to typos. We next show how
+to declare several different entities:</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:Declaration&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#animal"/&gt;
+  &lt;/owl11xml:Declaration&gt;
+  &lt;owl11xml:Declaration&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#eats"/&gt;
+  &lt;/owl11xml:Declaration&gt;
+</pre>
+
+<p>Here are a couple of basic axioms about properties.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:EquivalentObjectProperties&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#eats"/&gt;
+    &lt;owl11xml:InverseObjectProperty&gt;
+      &lt;owl11xml:ObjectProperty owl11xml:URI="#eaten_by"/&gt;
+    &lt;/owl11xml:InverseObjectProperty&gt;
+  &lt;/owl11xml:EquivalentObjectProperties&gt;
+  &lt;owl11xml:SubObjectPropertyOf&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#has_father"/&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#has_parent"/&gt;
+  &lt;/owl11xml:SubObjectPropertyOf&gt;
+  &lt;owl11xml:ObjectPropertyDomain&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#eats"/&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#animal"/&gt;
+  &lt;/owl11xml:ObjectPropertyDomain&gt;
+</pre>
+
+<p>Object property inclusion axioms of OWL 1.1 allow the construction
+of quite complex axioms regarding object properties. For example, it is possible
+to state that, if somebody owns an object, then they also own
+all parts of the object.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:SubObjectPropertyOf&gt;
+    &lt;owl11xml:SubObjectPropertyChain&gt;
+      &lt;owl11xml:ObjectProperty owl11xml:URI="#owns"/&gt;
+      &lt;owl11xml:ObjectProperty owl11xml:URI="#has_part"/&gt;
+    &lt;/owl11xml:SubObjectPropertyChain&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#owns"/&gt;
+  &lt;/owl11xml:SubObjectPropertyOf&gt;
+</pre>
+
+<p>Properties can be made disjoint, and one can assert properties
+to be reflexive, irreflexive, symmetric, or asymmetric. For example,
+the <span class="name">mother_of</span> property should be irreflexive,
+because nobody can be their own mother.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:DisjointObjectProperties&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#mother_of"/&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#sister_of"/&gt;
+  &lt;/owl11xml:DisjointObjectProperties&gt;
+  &lt;owl11xml:IrreflexiveObjectProperty&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#mother_of"/&gt;
+  &lt;/owl11xml:IrreflexiveObjectProperty&gt;
+</pre>
+
+<p>OWL 1.1 provides a rich set of primitives for writing classes
+and axioms about them.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:SubClassOf&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#bicycle"/&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#vehicle"/&gt;
+  &lt;/owl11xml:SubClassOf&gt;
+  &lt;owl11xml:EquivalentClasses&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#bus_driver"/&gt;
+    &lt;owl11xml:ObjectIntersectionOf&gt;
+      &lt;owl11xml:OWLClass owl11xml:URI="#person"/&gt;
+      &lt;owl11xml:ObjectSomeValuesFrom&gt;
+        &lt;owl11xml:ObjectProperty owl11xml:URI="#drives"/&gt;
+        &lt;owl11xml:OWLClass owl11xml:URI="#bus"/&gt;
+      &lt;/owl11xml:ObjectSomeValuesFrom&gt;
+    &lt;/owl11xml:ObjectIntersectionOf&gt;
+  &lt;/owl11xml:EquivalentClasses&gt;
+  &lt;owl11xml:SubClassOf&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#white_van_man"/&gt;
+    &lt;owl11xml:ObjectAllValuesFrom&gt;
+      &lt;owl11xml:ObjectProperty owl11xml:URI="#reads"/&gt;
+      &lt;owl11xml:OWLClass owl11xml:URI="#tabloid"/&gt;
+    &lt;/owl11xml:ObjectAllValuesFrom&gt;
+  &lt;/owl11xml:SubClassOf&gt;
+</pre>
+
+<p>Qualified cardinality restrictions can be used to assert that
+a dog lover is a person who owns al least three dogs.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:EquivalentClasses&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#dog_lover"/&gt;
+    &lt;owl11xml:ObjectIntersectionOf&gt;
+      &lt;owl11xml:OWLClass owl11xml:URI="#person"/&gt;
+      &lt;owl11xml:ObjectMinCardinality owl11xml:cardinality="3"&gt;
+        &lt;owl11xml:ObjectProperty owl11xml:URI="#has_pet"/&gt;
+        &lt;owl11xml:OWLClass owl11xml:URI="#dog"/&gt;
+      &lt;/owl11xml:ObjectMinCardinality&gt;
+    &lt;/owl11xml:ObjectIntersectionOf&gt;
+  &lt;/owl11xml:EquivalentClasses&gt;
+</pre>
+
+<p>OWL 1.1 provides axioms that state positive and negative facts about individuals.</p>
+
+<p><span class="caption">Example:</span></p>
+<pre>
+  &lt;owl11xml:ClassAssertion&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#newespaper"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#Daily_Mirror"/&gt;
+  &lt;/owl11xml:ClassAssertion&gt;
+  &lt;owl11xml:ClassAssertion&gt;
+    &lt;owl11xml:OWLClass owl11xml:URI="#Fred"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#person"/&gt;
+  &lt;/owl11xml:ClassAssertion&gt;
+  &lt;owl11xml:ObjectPropertyAssertion&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#has_pet"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#Fred"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#Tibbs"/&gt;
+  &lt;/owl11xml:ObjectPropertyAssertion&gt;
+  &lt;owl11xml:NegativeObjectPropertyAssertion&gt;
+    &lt;owl11xml:ObjectProperty owl11xml:URI="#brother_of"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#Fred"/&gt;
+    &lt;owl11xml:Individual owl11xml:URI="#Alice"/&gt;
+  &lt;/owl11xml:NegativeObjectPropertyAssertion&gt;
+</pre>
+
+
+<hr>
+
+<h2><a id="References" name="References">References</a></h2>
+
+<dl>
+
+  <dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
+  <dd>
+    <cite><a href="owl_specification.html">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
+    Peter F. Patel-Schneider, Ian Horrocks, and Boris Motik, eds., 2006.
+  </dd>
+
+  <dt><a id="ref-owl-tractable">[OWL 1.1 Tractable Fragments]</a></dt>
+  <dd>
+    <cite><a href="tractable.html">OWL 1.1 Web Ontology Language: Tractable Fragments</a></cite>.
+    Bernardo Cuenca Grau, ed., 2006.
+  </dd>
+
+  <dt><a id="ref-xml-base">[XML Base]</a></dt>
+  <dd>
+    <cite><a href="http://www.w3.org/TR/xmlbase/">XML Base</a></cite>.
+    Jonathan Marsh, ed.
+    W3C Recommendation 27 June 2001.
+  </dd>
+
+  <dt><a id="ref-xml-schema">[XML Schema]</a></dt>
+  <dd>
+    <cite><a href="http://www.w3.org/TR/xmlschema-1/">XML Schema Part 1: Structures Second Edition</a></cite>.
+    Henry S. Thompson, David Beech, Murray Maloney, Noah Mendelsohn, eds.
+    W3C Recommendation 28 October 2004.
+  </dd>
+
+  <dt><a id="ref-dig-2.0">[DIG 2.0]</a></dt>
+  <dd>
+    <cite><a href="http://dig.cs.manchester.ac.uk/">DIG 2.0: The DIG Description Logic Interface: Document Index</a></cite>.
+    Sean Bechhofer, ed.,
+    DIG Working Group Note, September 2006.
+  </dd>
+
+</dl>
+
+</body>
+</html>

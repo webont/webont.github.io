@@ -1,0 +1,539 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>OWL 1.1 Web Ontology Language: Model-Theoretic Semantics</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link href="css/owl.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-Member-SUBM">
+  <link href="images/owl-icon.png" rel="shortcut icon">
+<body>
+
+<div class="head">
+<h1 class="mainTitle"><img style="float: right; height: 200px;" alt="owl" src="images/owl.png">OWL 1.1 Web Ontology Language<br>
+Model-Theoretic Semantics</h1>
+<h2><a id="editordraft" name="editordraft"></a>Editor's Draft of 6 April 2007</h2>
+<dl>
+<dt>This version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/semantics.html">http://www.webont.com/owl1.1/semantics.html</a></dd>
+  <dt>Latest version:</dt>
+  <dd><a href="http://www.webont.com/owl1.1/semantics.html">http://www.webont.com/owl1.1/semantics.html</a></dd>
+  <dt>Authors:</dt>
+  <dd><a href="http://www.cs.man.ac.uk/~bcg">Bernardo Cuenca Grau</a>, The University of Manchester</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~bmotik">Boris Motik</a>, The University of Manchester</dd>
+  <dt>Contributors:</dt>
+  <dd><a href="http://www.cs.man.ac.uk/~horrocks">Ian Horrocks</a>, The University of Manchester</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~bparsia">Bijan Parsia</a>, The University of Manchester</dd>
+  <dd><a href="http://www.bell-labs.com/user/pfps/">Peter F. Patel-Schneider</a>, Bell Labs Research, Lucent Technologies</dd>
+  <dd><a href="http://www.cs.man.ac.uk/~sattler">Ulrike Sattler</a>, The University of Manchester</dd>
+</dl>
+<p class="copyright">Copyright &copy; 2006-2007 by the Authors. 
+This document is available under the
+<a href="http://www.w3.org/Consortium/Legal/copyright-documents" shape="rect">W3C Document License</a>.
+See the <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" shape="rect">W3C Intellectual Rights Notice and Legal Disclaimers</a>
+for additional information.</p>
+</div>
+
+<hr>
+
+<div class="abstract">
+<h2 class="notoc"><a id="abstract" name="abstract">Abstract</a></h2>
+<p>OWL 1.1 extends the W3C OWL Web Ontology Language with a small but useful set of features that have been requested by users, for which effective reasoning algorithms are now available, and that OWL tool developers are willing to support. The new features include extra syntactic sugar, additional property and qualified cardinality constructors, extended datatype support, simple metamodeling, and extended annotations. This document provides a model-theoretic semantics for OWL 1.1.</p>
+</div>
+
+<div class="status">
+<h2 class="notoc"><a id="status" name="status">Status of this Document</a></h2>
+<p><strong>This is an editor's draft, for comment by the OWL community.</strong></p>
+<p>This document is an evolution of the 
+<a href="http://www.w3.org/Submission/2006/SUBM-owl11-semantics-20061219/">OWL 1.1 Web Ontology Language: Model-Theoretic Semantics</a> document that forms part of the 
+<a href="http://www.w3.org/Submission/2006/10/">OWL 1.1 Web Ontology Language W3C Member Submission</a>.
+Comments are welcome. Please send feedback to <a href="mailto:public-owl-dev@w3.org">public-owl-dev@w3.org</a>,
+which has a <a href="http://lists.w3.org/Archives/Public/public-owl-dev/">public archive</a>. Bug reports
+can be directed there. Please check the <a href="http://code.google.com/p/owl1-1/issues/list">issues list</a>
+first.</p>
+</div>
+<hr>
+
+
+<div class="toc">
+<h2 class="notoc"><a id="toc" name="toc">Table of Contents</a></h2>
+
+<ul class="toc">
+  <li class="tocline1"><a href="#1">1 Introduction</a></li>
+  <li class="tocline1"><a href="#2">2 Model-Theoretic Semantics for OWL 1.1</a></li>
+  <li class="tocline1"><a href="#references">References</a></li>
+</ul>
+</div>
+
+<hr>
+
+
+
+<h2><a name="1"></a>1 Introduction</h2>
+
+<p>This document defines the formal semantics of OWL 1.1. The semantics given here
+follows the principles for defining the semantics of description logics
+[<cite><a href="#ref-description-logics">Description Logics</a></cite>] and is
+compatible with the description logic <i>SROIQ</i> presented in
+[<cite><a href="#ref-sroiq">SROIQ</a></cite>]. Unfortunately, the definition of
+<i>SROIQ</i> given in [<cite><a href="#ref-sroiq">SROIQ</a></cite>] does not provide
+for datatypes and metamodeling. Therefore, the semantics of OWL 1.1 is defined in a direct
+model-theoretic way, by interpreting the constructs of the functional-style syntax from
+[<cite><a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a></cite>].
+For the constructs available in <i>SROIQ</i>, the semantics of <i>SROIQ</i>
+trivially corresponds to the one defined in this document.</p>
+
+<p>OWL 1.1 does not have an RDF-compatible semantics. Ontologies expressed in OWL RDF
+are given semantics by converting then into the functional-style syntax and interpreting
+the result as specified in this document.</p>
+
+<p>OWL 1.1 allows for annotations of ontologies and ontology axioms. Annotations,
+however, have no semantic meaning in OWL 1.1 and are ignored in this document.</p>
+
+<p>Since OWL 1.1 is an extension of OWL DL, this document also provides a formal semantics 
+for OWL Lite and OWL DL and it is equivalent to the definition given in
+[<cite><a href="#ref-owl-abstract-syntax-and-semantics">OWL Abstract Syntax and Semantics</a></cite>].</p>
+
+
+
+<h2><a name="2"></a>2 Model-Theoretic Semantics for OWL 1.1</h2>
+
+<p>A <i>vocabulary</i> (or <i>signature</i>)
+<i>V = ( N<sub>C</sub> , N<sub>Po</sub> , N<sub>Pd</sub> , N<sub>I</sub> , N<sub>D</sub> , N<sub>V</sub> )</i>
+is a 6-tuple where</p>
+
+<ul>
+
+  <li><i>N<sub>C</sub></i> is a set of <i>OWL classes</i>,</li>
+
+  <li><i>N<sub>Po</sub></i> is a set of <i>object properties</i>,</li>
+
+  <li><i>N<sub>Pd</sub></i> is a set of <i>data properties</i>,</li>
+
+  <li><i>N<sub>I</sub></i> is a set of <i>individuals</i>, and</li>
+
+  <li><i>N<sub>D</sub></i> is a set of <i>datatypes</i> each associated with a positive integer <i>datatype arity</i>,</li>
+
+  <li><i>N<sub>V</sub></i> is a set of well-formed <i>constants</i>.</li>
+
+</ul>
+
+<p>Since OWL 1.1 allows <i>punning</i> [<cite><a href="#ref-metamodeling">Metamodeling</a></cite>]
+in the signature, we do not require the sets N<sub>C</sub> , N<sub>Po</sub> , N<sub>Pd</sub> ,
+N<sub>I</sub> , N<sub>D</sub> , and N<sub>V</sub> to be pair-wise disjoint. Thus,
+the same name can be used in an ontology to denote a class, a datatype,
+a property (object or data), an individual, and a constant. The set <i>N<sub>D</sub></i>
+is defined as it is because a datatype is defined by its name and the arity, and such a
+definition allows one to reuse the same name with different arities.</p>
+
+<p>The semantics of OWL 1.1 is defined with respect to a <i>concrete domain</i>,
+which is a tuple <i>D = ( &Delta;<sub>D</sub> , .<sup>D</sup> )</i> where</p>
+
+<ul>
+
+  <li><i>&Delta;<sub>D</sub></i> is a fixed set called the <i>data domain</i>,
+
+  <li><i>.<sup>D</sup></i> assigns to each constant <i>v &isin; N<sub>V</sub></i> an element <i>v<sup>D</sup></i> of <i>&Delta;<sub>D</sub></i>, and
+
+  <li><i>.<sup>D</sup></i> assigns to each datatype <i>d &isin; N<sub>D</sub></i> with arity <i>n</i> an <i>n</i>-ary relation <i>d<sup>D</sup></i> over <i>&Delta;<sub>D</sub></i>.
+
+</ul>
+
+<p>The set of datatypes <i>N<sub>D</sub></I> in each OWL 1.1 vocabulary
+must include a unary datatype <i>rdfs:Literal</i> interpreted as <i>&Delta;<sub>D</sub></i>;
+furthermore, it must also include the following unary datatypes:
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#string"><i>xsd:string</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#boolean"><i>xsd:boolean</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#decimal"><i>xsd:decimal</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#float"><i>xsd:float</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#double"><i>xsd:double</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#dateTime"><i>xsd:dateTime</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#time"><i>xsd:time</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#date"><i>xsd:date</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#gYearMonth"><i>xsd:gYearMonth</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#gYear"><i>xsd:gYear</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#gMonthDay"><i>xsd:gMonthDay</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#gDay"><i>xsd:gDay</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#gMonth"><i>xsd:gMonth</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#hexBinary"><i>xsd:hexBinary</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#base64Binary"><i>xsd:base64Binary</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#anyURI"><i>xsd:anyURI</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#normalizedString"><i>xsd:normalizedString</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#token"><i>xsd:token</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#language"><i>xsd:language</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#NMTOKEN"><i>xsd:NMTOKEN</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#Name"><i>xsd:Name</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#NCName"><i>xsd:NCName</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#integer"><i>xsd:integer</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#nonPositiveInteger"><i>xsd:nonPositiveInteger</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#negativeInteger"><i>xsd:negativeInteger</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#long"><i>xsd:long</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#int"><i>xsd:int</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#short"><i>xsd:short</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#byte"><i>xsd:byte</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#nonNegativeInteger"><i>xsd:nonNegativeInteger</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#unsignedLong"><i>xsd:unsignedLong</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#unsignedInt"><i>xsd:unsignedInt</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#unsignedShort"><i>xsd:unsignedShort</i></a>,
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#unsignedByte"><i>xsd:unsignedByte</i></a>, and
+<a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#positiveInteger"><i>xsd:positiveInteger</i></a>.
+These datatypes, as well as the well-formed constants from <i>N<sub>V</sub></i>, are interpreted as specified in
+[<cite><a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a></cite>].</p>
+
+<p>The set <i>&Delta;<sub>D</sub></i> is a fixed set that must be <i>large enough</i>; that is,
+it must contain the extension of each datatype from <i>N<sub>D</sub></i> and, apart from that, an
+infinite number of other objects. Such a definition is ambiguous, as it does not uniquely single
+out a particular set <i>&Delta;<sub>D</sub></i>; however, the choice of the actual set is not
+actually relevant for the definition of the semantics, as long as it contains the interpretations
+of all datatypes that one can "reasonably think of." This allows the implementations to
+support datatypes other than the ones mentioned in the previous paragraphs without affecting
+the semantics.</p>
+
+<p>Given a vocabulary <i>V</i> and a concrete domain <i>D</i>, an interpretation
+<i>I = ( &Delta;<sub>I</sub> , .<sup>Ic</sup> , .<sup>Ipo</sup> , .<sup>Ipd</sup> , .<sup>Ii</sup> )</i> is a 5-tuple where</p>
+
+<ul>
+
+  <li><i>&Delta;<sub>I</sub></i> is a nonempty set disjoint with <i>&Delta;<sub>D</sub></i>, called the <i>object domain</i>;</li>
+
+  <li><i>.<sup>Ic</sup></i> is the <i>class interpretation</i> function that assigns to each OWL class <i>A &isin; N<sub>Ic</sub></i> a subset <i>A<sup>Ic</sup></i> of <i>&Delta;<sub>I</sub></i> ;</li>
+
+  <li><i>.<sup>Ipo</sup></i> is the <i>object property interpretation</i> function that assigns to each object property <i>R &isin; N<sub>Po</sub></i> a subset <i>R<sup>Ipo</sup></i> of <i>&Delta;<sub>I</sub> x &Delta;<sub>I</sub></i> ;</li>
+
+  <li><i>.<sup>Ipd</sup></i> is the <i>data property interpretation</i> function that assigns to each data property <i>U &isin; N<sub>Pd</sub></i> a subset <i>U<sup>Ipd</sup></i> of <i>&Delta;<sub>I</sub> x &Delta;<sub>D</sub></i> ;</li>
+
+  <li><i>.<sup>Ii</sup></i> is the <i>individual interpretation</i> function that assigns to each individual <i>a &isin; N<sub>I</sub></i> an element <i>a<sup>Ii</sup></i> from <i>&Delta;<sub>I</sub></i>.</li>
+
+</ul>
+
+
+<p>We extend the object interpretation function <i>.<sup>Ipo</sup></i> to object property expressions as shown in Table 1.</p>
+
+<div style="text-align: center">
+<table  border="2" cellpadding="5">
+<caption><span class="caption">Table 1.</span> Interpreting Property Expressions</caption>
+<tr>
+  <th>Property</th>
+  <th>Interpretation</th>
+</tr>
+<tr>
+  <td class="name">InverseObjectProperty(R)</td>
+  <td>{ <i>( x , y )</i> | <i>( y , x )</i> &isin; <i>R<sup>Ipo</sup></i> }</td>
+</tr>
+</table>
+</div>
+
+<p>We extend the interpretation function <i>.<sup>D</sup></i> to data ranges as shown in Table 2.</p>
+
+<div style="text-align: center">
+<table  border="2" cellpadding="5">
+<caption><span class="caption">Table 2.</span> Interpreting Data Ranges</caption>
+<tr>
+  <th>Data Range</th>
+  <th>Interpretation</th>
+</tr>
+<tr>
+  <td class="name">DataOneOf(v<sub>1</sub> ... v<sub>n</sub>)</td>
+  <td>{ <i>v<sub>1</sub><sup>D</sup></i> , ... , <i>v<sub>n</sub><sup>D</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">DataComplementOf(DR)</td>
+  <td><i>( &Delta;<sub>D</sub> )<sup>n</sup></i> \ <i>DR<sup>D</sup></i> where <i>n</i> is the arity of <i>DR</i></td>
+</tr>
+<tr>
+  <td class="name">DatatypeRestriction(DR f v)</td>
+  <td>the <i>n</i>-ary relation over <i>&Delta;<sub>D</sub></i> obtained by applying the facet <i>f</i> with value <i>v</i><br>
+  to the data range <i>DR</i> as specified in [<cite><a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a></cite>]</td>
+</tr>
+</table>
+</div>
+
+<p>We extend the class interpretation function <i>.<sup>Ic</sup></i> to classes as shown in Table 3.
+With <i>#S</i> we denote the number of elements in a set <i>S</i>.</p>
+
+<div style="text-align: center">
+<table  border="2" cellpadding="5">
+<caption><span class="caption">Table 3.</span> Interpreting Classes</caption>
+<tr>
+  <th>Class</th>
+  <th>Interpretation</th>
+</tr>
+<tr>
+  <td class="name">owl:Thing</td>
+  <td><i>&Delta;<sub>I</sub></i></td>
+</tr>
+<tr>
+  <td class="name">owl:Nothing</td>
+  <td>empty set</td>
+</tr>
+<tr>
+  <td class="name">ObjectComplementOf(C)</td>
+  <td><i>&Delta;<sub>I</sub></i> \ <i>C<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">ObjectIntersectionOf(C<sub>1</sub> ... C<sub>n</sub>)</td>
+  <td><i>C<sub>1</sub><sup>Ic</sup></i> &cap; ... &cap; <i>C<sub>n</sub><sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">ObjectUnionOf(C<sub>1</sub> ... C<sub>n</sub>)</td>
+  <td><i>C<sub>1</sub><sup>Ic</sup></i> &cup; ... &cup; <i>C<sub>n</sub><sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">ObjectOneOf(a<sub>1</sub> ... a<sub>n</sub>)</td>
+  <td>{ <i>a<sub>1</sub><sup>Ii</sup></i> , ... , <i>a<sub>n</sub><sup>Ii</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">ObjectSomeValuesFrom(R C)</td>
+  <td>{ <i>x</i> | &exist; <i>y</i> : <i>( x, y )</i> &isin; <i>R<sup>Ipo</sup></i> and <i>y</i> &isin; <i>C<sup>Ic</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">ObjectAllValuesFrom(R C)</td>
+  <td>{ <i>x</i> | &forall; <i>y</i> : <i>( x, y )</i> &isin; <i>R<sup>Ipo</sup></i> implies <i>y</i> &isin; <i>C<sup>Ic</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">ObjectHasValue(R a)</td>
+  <td>{ <i>x</i> | <i>( x, a<sup>Ii</sup> )</i> &isin; <i>R<sup>Ipo</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">ObjectExistsSelf(R)</td>
+  <td>{ <i>x</i> | <i>( x, x )</i> &isin; <i>R<sup>Ipo</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">ObjectMinCardinality(n R C)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>R<sup>Ipo</sup></i> and <i>y</i> &isin; <i>C<sup>Ic</sup></i> } &ge; n }</td>
+</tr>
+<tr>
+  <td class="name">ObjectMaxCardinality(n R C)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>R<sup>Ipo</sup></i> and <i>y</i> &isin; <i>C<sup>Ic</sup></i> } &le; n }</td>
+</tr>
+<tr>
+  <td class="name">ObjectExactCardinality(n R C)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>R<sup>Ipo</sup></i> and <i>y</i> &isin; <i>C<sup>Ic</sup></i> } = n }</td>
+</tr>
+<tr>
+  <td class="name">DatatSomeValuesFrom(U<sub>1</sub> ... U<sub>n</sub> DR)</td>
+  <td>{ <i>x</i> | &exist; <i>y<sub>1</sub></i>, ..., <i>y<sub>n</sub></i> : <i>( x, y<sub>k</sub> )</i> &isin; <i>U<sub>k</sub><sup>Ipd</sup></i> for each 1 &le; <i>k</i> &le; <i>n</i> and <i>( y<sub>1</sub>, ..., y<sub>n</sub> )</i> &isin; <i>DR<sup>D</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">DatatAllValuesFrom(U<sub>1</sub> ... U<sub>n</sub> DR)</td>
+  <td>{ <i>x</i> | &forall; <i>y<sub>1</sub></i>, ..., <i>y<sub>n</sub></i> : <i>( x, y<sub>k</sub> )</i> &isin; <i>U<sub>k</sub><sup>Ipd</sup></i> for each 1 &le; <i>k</i> &le; <i>n</i> implies <i>( y<sub>1</sub>, ..., y<sub>n</sub> )</i> &isin; <i>DR<sup>D</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">DataHasValue(U v)</td>
+  <td>{ <i>x</i> | <i>( x, v<sup>D</sup> )</i> &isin; <i>U<sup>Ipd</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">DataMinCardinality(n U DR)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>U<sup>Ipd</sup></i> and <i>y</i> &isin; <i>DR<sup>D</sup></i> } &ge; n }</td>
+</tr>
+<tr>
+  <td class="name">DataMaxnCardinality(n U DR)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>U<sup>Ipd</sup></i> and <i>y</i> &isin; <i>DR<sup>D</sup></i> } &le; n }</td>
+</tr>
+<tr>
+  <td class="name">DataExactCardinality(n U DR)</td>
+  <td>{ <i>x</i> | #{ <i>y</i> | <i>( x, y )</i> &isin; <i>U<sup>Ipd</sup></i> and <i>y</i> &isin; <i>DR<sup>D</sup></i> } = n }</td>
+</tr>
+</table>
+</div>
+
+<p>Satisfaction of OWL 1.1 axioms in an interpretation <i>I</i> is defined as shown in Table 4.
+With <i>o</i> we denote the composition of binary relations.</p>
+
+<div style="text-align: center">
+<table  border="2" cellpadding="5">
+<caption><span class="caption">Table 4.</span> Satisfaction of Axioms in an Interpretation</caption>
+<tr>
+  <th>Axiom</th>
+  <th>Condition</th>
+</tr>
+<tr>
+  <td class="name">SubClassOf(C D)</td>
+  <td><i>C<sup>Ic</sup></i> &sube; <i>D<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">EquivalentClasses(C<sub>1</sub> ... C<sub>n</sub>)</td>
+  <td><i>C<sub>j</sub><sup>Ic</sup></i> = <i>C<sub>k</sub><sup>Ic</sup></i> for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i></td>
+</tr>
+<tr>
+  <td class="name">DisjointClasses(C<sub>1</sub> ... C<sub>n</sub>)</td>
+  <td><i>C<sub>j</sub><sup>Ic</sup></i> &cap; <i>C<sub>k</sub><sup>Ic</sup></i> is empty for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i> and <i>j</i> &ne; <i>k</i></td>
+</tr>
+<tr>
+  <td class="name">DisjointUnion(A C<sub>1</sub> ... C<sub>n</sub>)</td>
+  <td><i>A<sup>Ic</sup></i> = <i>C<sub>1</sub><sup>Ic</sup></i> &cup; ... &cup; <i>C<sub>n</sub><sup>Ic</sup></i> and <i>C<sub>j</sub><sup>Ic</sup></i> &cap; <i>C<sub>k</sub><sup>Ic</sup></i> is empty for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i> and <i>j</i> &ne; <i>k</i></td>
+</tr>
+<tr>
+  <td class="name">SubObjectPropertyOf(R S)</td>
+  <td><i>R<sup>Ipo</sup></i> &sube; <i>S<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">SubObjectPropertyOf(SubObjectPropertyChain(R<sub>1</sub> ... R<sub>n</sub>) S)</td>
+  <td><i>R<sub>1</sub><sup>Ipo</sup></i> o ... o <i>R<sub>n</sub><sup>Ipo</sup></i> &sube; <i>S<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">EquivalentObjectProperties(R<sub>1</sub> ... R<sub>n</sub>)</td>
+  <td><i>R<sub>j</sub><sup>Ipo</sup></i> = <i>R<sub>k</sub><sup>Ipo</sup></i> for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i></td>
+</tr>
+<tr>
+  <td class="name">DisjointObjectProperties(R<sub>1</sub> ... R<sub>n</sub>)</td>
+  <td><i>R<sub>j</sub><sup>Ipo</sup></i> &cap; <i>R<sub>k</sub><sup>Ipo</sup></i> is empty for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i> and <i>j</i> &ne; <i>k</i></td>
+</tr>
+<tr>
+  <td class="name">ObjectPropertyDomain(R C)</td>
+  <td>{ <i>x</i> | &exist; y : <i>(x , y )</i> &isin; <i>R<sup>Ipo</sup></i> } &sube; <i>C<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">ObjectPropertyRange(R C)</td>
+  <td>{ <i>y</i> | &exist; x : <i>(x , y )</i> &isin; <i>R<sup>Ipo</sup></i> } &sube; <i>C<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">InverseObjectProperties(R S)</td>
+  <td><i>R<sup>Ipo</sup></i> = { <i>( x , y )</i> | <i>( y , x )</i> &isin; <i>S<sup>Ipo</sup></i> }</td>
+</tr>
+<tr>
+  <td class="name">FunctionalObjectProperty(R)</td>
+  <td><i>( x , y<sub>1</sub> ) &isin; R<sup>Ipo</sup></i> and <i>( x , y<sub>2</sub> ) &isin; R<sup>Ipo</sup></i> imply <i>y<sub>1</sub> = y<sub>2</sub></i></td>
+</tr>
+<tr>
+  <td class="name">InverseFunctionalObjectProperty(R)</td>
+  <td><i>( x<sub>1</sub> , y ) &isin; R<sup>Ipo</sup></i> and <i>( x<sub>2</sub> , y ) &isin; R<sup>Ipo</sup></i> imply <i>x<sub>1</sub> = x<sub>2</sub></i></td>
+</tr>
+<tr>
+  <td class="name">ReflexiveObjectProperty(R)</td>
+  <td><i>x &isin; &Delta;<sub>I</sub></i> implies <i>( x , x ) &isin; R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">IrreflexiveObjectProperty(R)</td>
+  <td><i>x &isin; &Delta;<sub>I</sub></i> implies <i>( x , x )</i> is not in <i>R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">SymmetricObjectProperty(R)</td>
+  <td><i>( x , y ) &isin; R<sup>Ipo</sup></i> implies <i>( y , x ) &isin; R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">AntisymmetricObjectProperty(R)</td>
+  <td><i>( x , y ) &isin; R<sup>Ipo</sup></i> implies <i>( y , x )</i> is not in <i>R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">TransitiveObjectProperty(R)</td>
+  <td><i>R<sup>Ipo</sup> o R<sup>Ipo</sup> &sube; R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">SubDataPropertyOf(U V)</td>
+  <td><i>U<sup>Ipd</sup></i> &sube; <i>V<sup>Ipd</sup></i></td>
+</tr>
+<tr>
+  <td class="name">EquivalentDataProperties(U<sub>1</sub> ... U<sub>n</sub>)</td>
+  <td><i>U<sub>j</sub><sup>Ipd</sup></i> = <i>U<sub>k</sub><sup>Ipd</sup></i> for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i></td>
+</tr>
+<tr>
+  <td class="name">DisjointDataProperties(U<sub>1</sub> ... U<sub>n</sub>)</td>
+  <td><i>U<sub>j</sub><sup>Ipd</sup></i> &cap; <i>U<sub>k</sub><sup>Ipd</sup></i> is empty for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i> and <i>j</i> &ne; <i>k</i></td>
+</tr>
+<tr>
+  <td class="name">DataPropertyDomain(U C)</td>
+  <td>{ <i>x</i> | &exist; y : <i>(x , y )</i> &isin; <i>U<sup>Ipd</sup></i> } &sube; <i>C<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">DataPropertyRange(U DR)</td>
+  <td>{ <i>y</i> | &exist; x : <i>(x , y )</i> &isin; <i>U<sup>Ipd</sup></i> } &sube; <i>DR<sup>D</sup></i></td>
+</tr>
+<tr>
+  <td class="name">FunctionalDataProperty(U)</td>
+  <td><i>( x , y<sub>1</sub> ) &isin; U<sup>Ipd</sup></i> and <i>( x , y<sub>2</sub> ) &isin; U<sup>Ipd</sup></i> imply <i>y<sub>1</sub> = y<sub>2</sub></i></td>
+</tr>
+<tr>
+  <td class="name">SameIndividual(a<sub>1</sub> ... a<sub>n</sub>)</td>
+  <td><i>a<sub>j</sub><sup>Ii</sup></i> = <i>a<sub>k</sub><sup>Ii</sup></i> for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i></td>
+</tr>
+<tr>
+  <td class="name">DifferentIndividuals(a<sub>1</sub> ... a<sub>n</sub>)</td>
+  <td><i>a<sub>j</sub><sup>Ii</sup></i> &ne; <i>a<sub>k</sub><sup>Ii</sup></i> for each 1 &le; <i>j</i> , <i>k</i> &le; <i>n</i> and <i>j</i> &ne; <i>k</i></td>
+</tr>
+<tr>
+  <td class="name">ClassAssertion(a C)</td>
+  <td><i>a<sup>Ii</sup></i> &isin; <i>C<sup>Ic</sup></i></td>
+</tr>
+<tr>
+  <td class="name">ObjectPropertyAssertion(R a b)</td>
+  <td><i>( a<sup>Ii</sup> , b<sup>Ii</sup> )</i> &isin; <i>R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">NegativeObjectPropertyAssertion(R a b)</td>
+  <td><i>( a<sup>Ii</sup> , b<sup>Ii</sup> )</i> is not in <i>R<sup>Ipo</sup></i></td>
+</tr>
+<tr>
+  <td class="name">DataPropertyAssertion(U a v)</td>
+  <td><i>( a<sup>Ii</sup> , v<sup>D</sup> )</i> &isin; <i>U<sup>Ipd</sup></i></td>
+</tr>
+<tr>
+  <td class="name">NegativeDataPropertyAssertion(U a v)</td>
+  <td><i>( a<sup>Ii</sup> , v<sup>D</sup> )</i> is not in <i>U<sup>Ipd</sup></i></td>
+</tr>
+</table>
+</div>
+
+<p>Let <i>O</i> be an OWL 1.1 ontology with vocabulary <i>V</i>.
+<i>O</i> is <i>consistent</i> if an interpretation <i>I</i> exists that satisfies all the axioms of the
+axiom closure of <i>O</i> (the axiom closure of <i>O</i> is defined in
+[<cite><a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a></cite>]);
+such <i>I</i> is then called a <i>model</i> of <i>O</i>.
+A class <i>C</i> is satisfiable w.r.t. <i>O</i> if there is a model <i>I</i> of 
+<i>O</i> such that <i>C<sup>Ic</sup></i> is not empty. <i>O</i>
+<i>entails</i> an OWL 1.1 ontology <i>O'</i> with vocabulary <i>V</i> if every model
+of <i>O</i> is also a model of <i>O'</i>; furthermore, <i>O</i> and <i>O'</i> are
+<i>equivalent</i> if <i>O</i> entails <i>O'</i> and <i>O'</i> entails <i>O</i>.</p>
+
+
+
+
+
+<hr>
+
+<h2><a name="references"></a>References</h2>
+
+<dl>
+
+  <dt><a name="ref-description-logics">[Description Logics]</a></dt>
+  <dd>
+    <a href="http://books.cambridge.org/0521781760.htm"><cite>The Description Logic Handbook</cite></a>.
+    Franz Baader, Diego Calvanese, Deborah McGuinness, Daniele Nardi, Peter Patel-Schneider, editors.
+    Cambridge University Press, 2003; and <A href="http://dl.kr.org/"><cite>Description Logics Home Page</cite></a>.
+  </dd>
+
+  <dt><a name="ref-metamodeling">[Metamodeling]</A>
+  <dd>
+    <cite>On the Properties of Metamodeling in OWL</cite>.
+    Boris Motik. In Proceedings of ISWC-2005
+  </dd>
+
+  <dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
+  <dd>
+    <cite><a href="owl_specification.html">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
+    Peter F. Patel-Schneider, Ian Horrocks, and Boris Motik, eds., 2006.
+  </dd>
+
+  <dt><a name="ref-owl-abstract-syntax-and-semantics">[OWL Abstract Syntax and Semantics]</a></dt>
+  <dd>
+    <cite><a href="http://www.w3.org/TR/owl-semantics/">OWL Web Ontology Language: Semantics and Abstract Syntax</A></cite>.
+    Peter F. Patel-Schneider, Pat Hayes, and Ian Horrocks, Editors, W3C Recommendation, 10  February 2004.
+  </dd>
+
+  <dt><a id="ref-sroiq">[SROIQ]</a></dt>
+  <dd>
+    <cite><a href="http://www.cs.man.ac.uk/~sattler/publications/sroiq-tr.pdf">The Even More Irresistible SROIQ</a></cite>.
+    Ian Horrocks, Oliver Kutz, and Uli Sattler.
+    In Proc. of the 10th Int. Conf. on Principles of Knowledge Representation and Reasoning (KR 2006). AAAI Press, 2006.
+  </dd>
+
+  <dt><a id="ref-xml-schema-datatypes">[XML Schema Datatypes]</a></dt>
+  <dd>
+    <cite><a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></cite>.
+    Paul V. Biron and Ashok Malhotra, eds.
+    W3C Recommendation 28 October 2004.
+  </dd>
+
+</dl>
+
+</body>
+</html>
