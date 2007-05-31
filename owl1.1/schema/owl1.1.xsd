@@ -441,7 +441,7 @@
     <xsd:complexType>
       <xsd:sequence>
         <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
-        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Description"/>
         <xsd:element name="UnionOf">
           <xsd:complexType>
             <xsd:sequence>
