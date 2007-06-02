@@ -38,8 +38,7 @@ adoption by new user communities.</li>
 with
 other languages/paradigms) should be excluded if they are not currently
 well enough understood or lack community consensus.</li>
-<li>The WG should be tightly focused and of short duration; the
-charter should facilitate this without being too restrictive.</li>
+<li>The WG activity will have 2 phases. The first phase should be tightly focused and of short duration, focussing on achieving recommendation status for an extension of OWL based on the "OWL 1.1" member submission; the second phase will allow more time and leeway for the WG to address newer or more contentious features.</li>
 </ul>
 <p>This draft was written by <a href="mailto:horrocks@cs.man.ac.uk">Ian Horrocks</a>
 and <a href="mailto:bparsia@cs.man.ac.uk">Bijan Parsia</a>
@@ -50,6 +49,10 @@ and the W3C's <a href="http://www.w3.org/2001/sw/CG/">Semantic
 Web Coordination Group</a>.</p>
 <p>Change log:</p>
 <ul>
+<li>Responding to concerns expressed by W3C Team Members at <a href="http://www.w3.org/Member/Meeting/2007ac/May/Overview.html">Banff AC Meeting</a>:
+<ul>
+<li>02-06-2007 Schedule extended and divided into two phases. Minor wording changes to reflect new schedule. --IRH</li>
+</ul></li>
 <li>Responding to concerns raised by the <a href="http://www.w3.org/2001/sw/CG/">SWCG</a>:
 <ul>
 <li>26-03-2007 Added new deliverable (Full style semantics)
@@ -96,6 +99,7 @@ F2Fs ("up to" in the sense of 0-3; 0 is still possible) -- BJP</li>
 <p>Versions:</p>
 <ul>
 <li>This is the current version.</li>
+<li><a href="http://www.webont.org/owl1.1/26-03-2007NextOntProposedCharter.html">26-03-2007</a></li>
 <li><a href="http://www.cs.man.ac.uk/%7Ebparsia/2007/temp/17-01-2007NextOntProposedCharter.html">17-01-2007</a></li>
 <li><a href="http://www.cs.man.ac.uk/%7Ebparsia/2007/temp/15-01-2007NextOntProposedCharter.html">15-01-2007</a></li>
 <li><a href="http://www.cs.man.ac.uk/%7Ebparsia/2007/temp/11-01-2007NextOntProposedCharter.html">11-01-2007</a></li>
@@ -116,7 +120,7 @@ Member Submission</a>; it will address implementation experience
 and
 interoperability feedback (from the OWL 1.1 Member Submission),
 maximize
-compatibility with existing OWL ontologies, and produce a test suite
+compatibility with existing OWL ontologies and implementations, and produce a test suite
 and suitable outreach material.</p>
 <p>OWL 1.1 grew out of the <a href="http://www.mindswap.org/2005/OWLWorkshop/">first</a>
 OWL: Experiences and Directions
@@ -137,20 +141,26 @@ specification of the abstract syntax of OWL so as to better support
 APIs, and to allow for a deterministic and round-tripable mapping from
 the abstract syntax to RDF graphs.
 </p>
-<p>This Working Group shall be schedule-driven and OWL 1.1 shall
-remain compatible, to the extent possible, with existing
-implementations and
-uses. This charter features an aggressive schedule and a tightly
+<p>The activity of the Working Group will have two phases. The first phase will be tightly focused and of short duration, the objective being to achieve recommendation status for an extension of OWL based on the core components of the "OWL 1.1" member submission. In the second phase, the Working Group will address more peripheral and/or (potentially) contentious components of the member submission.	This charter features an aggressive schedule and a tightly
 constrained scope designed to ensure that the [NextWebOnt] will
 meet its schedule. This charter is intended to carry OWL consensus and
 interoperability forward, as outlined in <a href="http://www.w3.org/2002/05/rec-tips">Tips for Getting
 to Recommendation Faster</a>.</p>
 <table class="summary-table" border="1">
 <tbody>
-<tr id="Duration">
-<th rowspan="1" colspan="1">End date</th>
+<tr id="Start">
+<th rowspan="1" colspan="1">Start date</th>
+<td rowspan="1" colspan="1">?? 3rd quarter of 2007 ??</td>
+</tr>
+<tr id="Phase1">
+<th rowspan="1" colspan="1">End of phase 1</th>
 <td rowspan="1" colspan="1">1 year after
-start (Sometime 2007-2008?)</td>
+start</td>
+</tr>
+<tr id="Phase1">
+<th rowspan="1" colspan="1">End of phase 2</th>
+<td rowspan="1" colspan="1">2 years after
+start</td>
 </tr>
 <tr>
 <th rowspan="1" colspan="1">Confidentiality</th>
@@ -244,7 +254,7 @@ and differences, if any, with the existing language.</p>
 
 <h2>Out of Scope</h2>
 <ul>
-<li>Query languages (see the DAWG for SPARQL/DL)</li>
+<!-- <li>Query languages (see the DAWG for SPARQL/DL)</li> -->
 <li>Rules (see RIF)</li>
 </ul>
 <h2>Dependancies</h2>
@@ -255,8 +265,8 @@ these Working Groups will, however, clearly be mutually beneficial.</p>
 <h2><a name="meetings">Meetings</a></h2>
 <p>The [NextWebOnt] intends to rely on distributed meetings;
 however, if the Working Group determines it is necessary, it may
-schedule 0 to 3 face-to-face meetings (that is, it is not required to
-have any F2F meetings, but it may have as many as 3).</p>
+schedule between 0 and 3 face-to-face meetings per year (that is, it is not required to
+have any F2F meetings, but it may have as many as 3 per year).</p>
 <p>At least up until the Last Call period ends, a two-hour
 Working Group
 distributed meeting will be held every week; thereafter, a one and half
@@ -273,9 +283,9 @@ and schedule of this charter are achieved.
 <ul>
 <li>Functional-style Syntax (FS)</li>
 <li>Core Semantics (CS)</li>
-<li>Full Semantics (FuS)</li>
 <li>Mapping to RDF (RS)</li>
 <li>XML Syntax (XS)</li>
+<li>Full Semantics (FuS)</li>
 <li>Tractable Fragments/Rational Species (RaS)</li>
 <li>Outreach
 material (e.g., <a href="http://www.w3.org/TR/owl-features/">overview</a>,
@@ -294,16 +304,14 @@ submission
 and keep them separate. Similarly, the publication status of each
 document (Recommendation or Submission) is likewise up to the group.</p>
 <h2>Schedule</h2>
-<p>This schedule is aggressive but contains built-in "slop". For
-example, the first working drafts of most of the documents occur
-"sometime" in months 2-4. Furthermore, there are already a number of
+<p>This schedule is aggressive but contains built-in "slop". Moreover, significant there are already a number of
 implementations of OWL 1.1 (see the <a href="http://owl1_1.cs.manchester.ac.uk/">OWL 1.1 page</a>
 for a list), thus we could make the CR period for the core language
 rather short.</p>
 <table style="width: 445px; height: 210px;" class="summary-table" border="1">
 <tbody>
 <tr>
-<th rowspan="1" colspan="1">@Week 6</th>
+<th rowspan="1" colspan="1">@Week 8</th>
 <td rowspan="1" colspan="1">Got to know each
 other, <br />
 verified scope of language, <br />
@@ -313,24 +321,48 @@ made plans for the work </td>
 <tr>
 <th rowspan="1" colspan="1">@Month 2-4 </th>
 <td rowspan="1" colspan="1">First Working
-Drafts of FS, S, RS, XS, RaS </td>
+Drafts of FS, S, RS, XS</td>
 </tr>
 <tr>
 <th rowspan="1" colspan="1">@Month
 4-6</th>
 <td rowspan="1" colspan="1">Last Call WDs
 of FS, S, RS, XS<br />
-FWDs of FuS, outreach material, &amp; test suite</td>
+FWDs of test suite</td>
 </tr>
 <tr>
-<th rowspan="1" colspan="1">@Month 7-9 </th>
+<th rowspan="1" colspan="1">@Month 6-9 </th>
 <td rowspan="1" colspan="1">Test Suite "ready
 to support CR"<br />
-CRs of FS, S, RS, XS<br />
-LC WDs of FuS, outreach material &amp; RaS</td>
+CRs of FS, S, RS, XS</td>
 </tr>
 <tr>
 <th rowspan="1" colspan="1">@Month 9-12</th>
+<td rowspan="1" colspan="1">Recommendation
+status for all Rec track docs<br />
+</td>
+</tr>
+<tr>
+<th rowspan="1" colspan="1">@Month
+12-15</th>
+<td rowspan="1" colspan="1">First WDs of FuS, RaS,<br />
+outreach material &amp; extended Test Suite</td>
+</tr>
+<tr>
+<th rowspan="1" colspan="1">@Month
+15-18</th>
+<td rowspan="1" colspan="1">Last Call WDs
+of FuS, RaS,<br />
+outreach material &amp; extended Test Suite</td>
+</tr>
+<tr>
+<th rowspan="1" colspan="1">@Month 18-21 </th>
+<td rowspan="1" colspan="1">Extended Test Suite "ready
+to support CR"<br />
+CRs of FuS, RaS &amp; outreach material</td>
+</tr>
+<tr>
+<th rowspan="1" colspan="1">@Month 21-24</th>
 <td rowspan="1" colspan="1">Recommendation
 status for all Rec track docs<br />
 </td>
