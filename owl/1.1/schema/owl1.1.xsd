@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+    targetNamespace="http://www.w3.org/2006/12/owl11-xml#"
+    elementFormDefault="qualified" attributeFormDefault="qualified">
+
+  <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+  <!-- Annotations  -->
+
+  <xsd:element name="Annotation">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute name="annotationURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
+          <xsd:attribute name="datatypeURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
+          <xsd:attributeGroup ref="xml:specialAttrs"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Imports">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:anyURI">
+          <xsd:attributeGroup ref="xml:specialAttrs"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Label">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attributeGroup ref="xml:specialAttrs"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Comment">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attributeGroup ref="xml:specialAttrs"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="Annotation">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:Annotation"/>
+      <xsd:element ref="owl11xml:Label"/>
+      <xsd:element ref="owl11xml:Comment"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <!-- The ontology -->
+
+  <xsd:element name="Ontology">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="owl11xml:Imports" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Axiom" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="ontologyURI" type="xsd:anyURI" use="required"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- Entities -->
+
+  <xsd:element name="Datatype">
+    <xsd:complexType>
+      <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+      <xsd:attribute name="arity" type="xsd:positiveInteger" use="optional" default="1"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="OWLClass">
+    <xsd:complexType>
+      <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectProperty">
+    <xsd:complexType>
+      <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataProperty">
+    <xsd:complexType>
+      <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Individual">
+    <xsd:complexType>
+      <xsd:attribute name="URI" type="xsd:anyURI" use="required"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="OWLEntity">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:Datatype"/>
+      <xsd:element ref="owl11xml:OWLClass"/>
+      <xsd:element ref="owl11xml:ObjectProperty"/>
+      <xsd:element ref="owl11xml:DataProperty"/>
+      <xsd:element ref="owl11xml:Individual"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:element name="Constant">
+    <xsd:complexType>
+      <xsd:simpleContent>
+        <xsd:extension base="xsd:string">
+          <xsd:attribute name="datatypeURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
+          <xsd:attributeGroup ref="xml:specialAttrs"/>
+        </xsd:extension>
+      </xsd:simpleContent>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- Entity annotations -->
+
+  <xsd:element name="EntityAnnotation">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/> <!-- This is the annotation for the axiom -->
+        <xsd:group ref="owl11xml:OWLEntity"/>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/> <!-- This is the annotation for the entity -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- Property expressions -->
+
+  <xsd:group name="ObjectPropertyExpression">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:ObjectProperty"/>
+      <xsd:element ref="owl11xml:InverseObjectProperty"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:element name="InverseObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+  
+  <xsd:group name="DataPropertyExpression">
+    <xsd:sequence>
+      <xsd:element ref="owl11xml:DataProperty"/>
+    </xsd:sequence>
+  </xsd:group>
+
+  <!-- Data ranges -->
+
+  <xsd:element name="DataComplementOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataRange"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataOneOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="owl11xml:Constant" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DatatypeRestriction">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="owl11xml:Datatype"/>
+        <xsd:element ref="owl11xml:Constant"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="DataRange">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:Datatype"/>
+      <xsd:element ref="owl11xml:DataComplementOf"/>
+      <xsd:element ref="owl11xml:DataOneOf"/>
+      <xsd:element ref="owl11xml:DatatypeRestriction"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <!-- Descriptions -->
+
+  <xsd:element name="ObjectIntersectionOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectUnionOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectComplementOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectOneOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="owl11xml:Individual" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectSomeValuesFrom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectAllValuesFrom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectExistsSelf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectHasValue">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:element ref="owl11xml:Individual"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectMinCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectMaxCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectExactCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataSomeValuesFrom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataRange"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataAllValuesFrom">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression" minOccurs="1" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataRange"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataHasValue">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:element ref="owl11xml:Constant"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataMinCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:group ref="owl11xml:DataRange" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataMaxCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:group ref="owl11xml:DataRange" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataExactCardinality">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:group ref="owl11xml:DataRange" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+      <xsd:attribute name="cardinality" type="xsd:nonNegativeInteger"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="Description">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:OWLClass"/>
+      <xsd:element ref="owl11xml:ObjectIntersectionOf"/>
+      <xsd:element ref="owl11xml:ObjectUnionOf"/>
+      <xsd:element ref="owl11xml:ObjectComplementOf"/>
+      <xsd:element ref="owl11xml:ObjectOneOf"/>
+      <xsd:element ref="owl11xml:ObjectSomeValuesFrom"/>
+      <xsd:element ref="owl11xml:ObjectAllValuesFrom"/>
+      <xsd:element ref="owl11xml:ObjectExistsSelf"/>
+      <xsd:element ref="owl11xml:ObjectHasValue"/>
+      <xsd:element ref="owl11xml:ObjectMinCardinality"/>
+      <xsd:element ref="owl11xml:ObjectMaxCardinality"/>
+      <xsd:element ref="owl11xml:ObjectExactCardinality"/>
+      <xsd:element ref="owl11xml:DataSomeValuesFrom"/>
+      <xsd:element ref="owl11xml:DataAllValuesFrom"/>
+      <xsd:element ref="owl11xml:DataHasValue"/>
+      <xsd:element ref="owl11xml:DataMinCardinality"/>
+      <xsd:element ref="owl11xml:DataMaxCardinality"/>
+      <xsd:element ref="owl11xml:DataExactCardinality"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <!-- Axioms -->
+
+  <xsd:element name="SubClassOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Description"/> <!-- This is the subclass -->
+        <xsd:group ref="owl11xml:Description"/>  <!-- This is the superclass -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="EquivalentClasses">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DisjointClasses">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DisjointUnion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="owl11xml:OWLClass"/>
+        <xsd:group ref="owl11xml:Description" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="SubObjectPropertyOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:choice> <!-- This is the subproperty or the property chain -->
+          <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+          <xsd:element name="SubObjectPropertyChain">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:group ref="owl11xml:ObjectPropertyExpression" minOccurs="1" maxOccurs="unbounded"/>
+              </xsd:sequence>
+              <xsd:attributeGroup ref="xml:specialAttrs"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/> <!-- This is the superproperty -->  
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="EquivalentObjectProperties">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DisjointObjectProperties">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectPropertyDomain">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectPropertyRange">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="InverseObjectProperties">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression" minOccurs="2" maxOccurs="2"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="FunctionalObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="InverseFunctionalObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="SymmetricObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="AsymmetricObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ReflexiveObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="IrreflexiveObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="TransitiveObjectProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="SubDataPropertyOf">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/> <!-- This is the subproperty -->
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>  <!-- This is the superproperty -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="EquivalentDataProperties">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DisjointDataProperties">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataPropertyDomain">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:group ref="owl11xml:Description"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataPropertyRange">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:group ref="owl11xml:DataRange"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="FunctionalDataProperty">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="SameIndividual">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="owl11xml:Individual" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DifferentIndividuals">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element ref="owl11xml:Individual" minOccurs="2" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ClassAssertion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:Description"/>
+        <xsd:element ref="owl11xml:Individual"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="ObjectPropertyAssertion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:element ref="owl11xml:Individual"/> <!-- This is the source invididual  -->
+        <xsd:element ref="owl11xml:Individual"/> <!--  This is the target individual -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="NegativeObjectPropertyAssertion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:ObjectPropertyExpression"/>
+        <xsd:element ref="owl11xml:Individual"/> <!-- This is the source invididual  -->
+        <xsd:element ref="owl11xml:Individual"/> <!--  This is the target individual -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="DataPropertyAssertion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:element ref="owl11xml:Individual"/> <!-- This is the source invididual  -->
+        <xsd:element ref="owl11xml:Constant"/> <!--  This is the target value -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="NegativeDataPropertyAssertion">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:DataPropertyExpression"/>
+        <xsd:element ref="owl11xml:Individual"/> <!-- This is the source invididual  -->
+        <xsd:element ref="owl11xml:Constant"/> <!--  This is the target value -->
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:element name="Declaration">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:group ref="owl11xml:Annotation" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:group ref="owl11xml:OWLEntity"/>
+      </xsd:sequence>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
+    </xsd:complexType>
+  </xsd:element>
+
+  <xsd:group name="Axiom">
+    <xsd:choice>
+      <xsd:element ref="owl11xml:EntityAnnotation"/>
+      <xsd:element ref="owl11xml:SubClassOf"/>
+      <xsd:element ref="owl11xml:EquivalentClasses"/>
+      <xsd:element ref="owl11xml:DisjointClasses"/>
+      <xsd:element ref="owl11xml:DisjointUnion"/>
+      <xsd:element ref="owl11xml:SubObjectPropertyOf"/>
+      <xsd:element ref="owl11xml:EquivalentObjectProperties"/>
+      <xsd:element ref="owl11xml:DisjointObjectProperties"/>
+      <xsd:element ref="owl11xml:ObjectPropertyDomain"/>
+      <xsd:element ref="owl11xml:ObjectPropertyRange"/>
+      <xsd:element ref="owl11xml:InverseObjectProperties"/>
+      <xsd:element ref="owl11xml:FunctionalObjectProperty"/>
+      <xsd:element ref="owl11xml:InverseFunctionalObjectProperty"/>
+      <xsd:element ref="owl11xml:SymmetricObjectProperty"/>
+      <xsd:element ref="owl11xml:AsymmetricObjectProperty"/>
+      <xsd:element ref="owl11xml:ReflexiveObjectProperty"/>
+      <xsd:element ref="owl11xml:IrreflexiveObjectProperty"/>
+      <xsd:element ref="owl11xml:TransitiveObjectProperty"/>
+      <xsd:element ref="owl11xml:SubDataPropertyOf"/>
+      <xsd:element ref="owl11xml:EquivalentDataProperties"/>
+      <xsd:element ref="owl11xml:DisjointDataProperties"/>
+      <xsd:element ref="owl11xml:DataPropertyDomain"/>
+      <xsd:element ref="owl11xml:DataPropertyRange"/>
+      <xsd:element ref="owl11xml:FunctionalDataProperty"/>
+      <xsd:element ref="owl11xml:SameIndividual"/>
+      <xsd:element ref="owl11xml:DifferentIndividuals"/>
+      <xsd:element ref="owl11xml:ClassAssertion"/>
+      <xsd:element ref="owl11xml:ObjectPropertyAssertion"/>
+      <xsd:element ref="owl11xml:NegativeObjectPropertyAssertion"/>
+      <xsd:element ref="owl11xml:DataPropertyAssertion"/>
+      <xsd:element ref="owl11xml:NegativeDataPropertyAssertion"/>
+      <xsd:element ref="owl11xml:Declaration"/>
+    </xsd:choice>
+  </xsd:group>
+
+</xsd:schema>

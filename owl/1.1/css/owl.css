@@ -1,0 +1,20 @@
+.nonterminal {
+    font-weight: bold;
+    font-style: italic;
+    font-family: sans-serif;
+}
+.name {
+    font-family: monospace;
+}
+.grammar {
+    font-family: monospace; padding-left: 20px; font-size: 10pt;
+}
+.image {
+    text-align: center;
+}
+.caption {
+    font-weight: bold;
+}
+table.complexity td {
+    text-align: center;
+}
