@@ -1,0 +1,16 @@
+body {font: 14px/18px Verdana, Arial, Helvetica, sans-serif;
+color: #F5F4E6; padding-left:20px; padding-right:20px;padding-top:20px; 
+padding-bottom:20px;
+}
+
+.main {border:solid #F5F4E6 10px; background: white;
+padding-left:20px; 
+padding-right:20px; padding-top:20px}
+
+
+.navBar {border:solid #910000 3px; background: #F5F4E6; color: white; 
+text-align:center; font-weight: bold; }
+
+a:link {color:blue}
+a:visited {color:#910000}
+a:hover {background: #f5f4e6; color:white; text-decoration: none}
