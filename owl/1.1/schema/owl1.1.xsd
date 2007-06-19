@@ -11,13 +11,12 @@
 
   <xsd:element name="Annotation">
     <xsd:complexType>
-      <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-          <xsd:attribute name="annotationURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
-          <xsd:attribute name="datatypeURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
-          <xsd:attributeGroup ref="xml:specialAttrs"/>
-        </xsd:extension>
-      </xsd:simpleContent>
+      <xsd:choice>
+        <xsd:element ref="owl11xml:Constant"/>
+        <xsd:element ref="owl11xml:Individual"/>
+      </xsd:choice>
+      <xsd:attribute name="annotationURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
   </xsd:element>
 
@@ -192,9 +191,10 @@
   <xsd:element name="DatatypeRestriction">
     <xsd:complexType>
       <xsd:sequence>
-        <xsd:element ref="owl11xml:Datatype"/>
+        <xsd:group ref="owl11xml:DataRange"/>
         <xsd:element ref="owl11xml:Constant"/>
       </xsd:sequence>
+      <xsd:attribute name="facet" type="xsd:string" use="required"/>
       <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
   </xsd:element>
