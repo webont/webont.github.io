@@ -1,9 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>OWLED Specifications
-and Process</title></head><body><h1>OWLED
-Specifications and Process:&nbsp;A Modest Proposal</h1><p><b>[Work
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>OWLED Specifications and Process</title></head><body><h1>OWLED
+Specifications and Process:&nbsp;A Modest Proposal</h1><p><b>[This has been superceded by <a href="taskforces">OWLED task forces.</a>
+One main difference is that the tripartite structure proved to be too
+unweildy at OWLED 2007, so basically we just ahve Mature and Everything
+Else (i.e., Specs and Reports).]<br>
+</b></p>
+<p><b>[Work
 in progress. Please send suggestions to <a href="mailto:bparsia@cs.man.ac.uk">Bijan Parsia</a>.
-This is not anything binding, but just a proposal.]</b></p><p>Given
+This is not anything binding, but just a proposal.]</b></p>
+<p>Given
 the necessarily limited time at an OWLED for discussion and informed
 decision making, it is important that we have some idea of what we can
 accomplish and how at a meeting. Much of the work on OWLED generated
@@ -72,7 +78,10 @@ restricted mixed TBox/ABox queries) is ready to request a submission
 ready spec for the next OWLED. We know how to do it. There are multiple
 implementations. SPARQL is hot and about to reach recommendation
 status. The working group is not going to take on that work (and can't,
-by its charter). And it is being <i>heavily</i> used, even on OWL and people want to use more. Even a W3C member&nbsp;submission would be enough to do a great deal of good for OWL.</p><p>DL
+by its charter). And it is being <i>heavily</i>
+used, even on OWL and people want to use more. Even a W3C
+member&nbsp;submission would be enough to do a great deal of good for
+OWL.</p><p>DL
 Safe rules are fairly well understood, but there's only one really
 robust implementation at the moment (in KAON2; there's an experimental
 implementation in Pellet). They are easy to specify (at least the core)
@@ -81,17 +90,27 @@ features that could be usefully subsumed by DL Safe rules (e.g.,
 inverse functional properties on datatypes for named individuals only).
 However, there are extra features one could add (builtins, SPARQL like
 higher order features), and some alternatives (e.g., non-monotonic
-description logic programs). So, it makes sense to request a spec for discussion at the next OWLED. (Of course, if it catches fire, we can adjust).</p><p>Temporal
+description logic programs). So, it makes sense to request a spec for
+discussion at the next OWLED. (Of course, if it catches fire, we can
+adjust).</p><p>Temporal
 features are clearly important with users increasingly requesting them
 (I've had several people request this for the OWL 2.0 space). But there
-are <i>lots</i> of possibilities and few worked out proposals and implementations (as an extension to OWL). So, it would make sense at this OWLED to solicit volunteers to generate a <i>report</i> for the next OWLED. This could consist of motivating use cases, decision trees explaining tradeoffs, solicitation of prototypes, etc.</p><h2>Thinking about features</h2><p>In a <a href="http://clarkparsia.com/weblog/2007/05/28/owled-2007-is-nigh/">blog post</a>, I described a slightly different taxonomy for features and proposals, simplifying and generalizing it a bit, we have:</p><ol><li>OWL 1.x -- small, well known, easy to implement, good wins, not a lot of reconciliation of viewpoint needed, etc.</li><li>OWL 2.0 -- things which are technically or politically (or both!) difficult to achieve in the next few years</li><li>OWL-Adjuncts
+are <i>lots</i>
+of possibilities and few worked out proposals and implementations (as
+an extension to OWL). So, it would make sense at this OWLED to solicit
+volunteers to generate a <i>report</i> for the next OWLED. This could
+consist of motivating use cases, decision trees explaining tradeoffs,
+solicitation of prototypes, etc.</p><h2>Thinking about features</h2><p>In a <a href="http://clarkparsia.com/weblog/2007/05/28/owled-2007-is-nigh/">blog post</a>, I described a slightly different taxonomy for features and proposals, simplifying and generalizing it a bit, we have:</p><ol><li>OWL 1.x -- small, well known, easy to implement, good wins, not a lot of reconciliation of viewpoint needed, etc.</li><li>OWL 2.0 -- things which are technically or politically (or both!) difficult to achieve in the next few years</li><li>OWL-Adjuncts
 -- things which are more or less language features, but can be also
 thought of as separate; query and rules come to mind, but also
 alternative syntaxes; one might put DIG and similar things here.&nbsp;</li></ol>This
 seems helpful. We can expect to thing submission for OWL 1.x stuff,
 reports on OWL 2.0 stuff, and discussion on things in between.
 OWL-Adjuncts may have different levels of maturity, but they also are a
-bit separable.<h2>Where does the between OWLED work get done?</h2><p>In order to faciliate participation and predictability, we should:</p><ol><li>Continue to use <a href="public-owl-dev@w3.org">public-owl-dev@w3.org</a> as the discussion mailing list.</li><li>Continue to use <a href="http://code.google.com/p/owl1-1/">http://code.google.com/p/owl1-1/</a> for spec development. The name is a bit historical, so we could migrate to a new project if we really cared about that.</li><li>Publish drafts and versions on the <a href="http://webont.org/">http://webont.org/</a> website.</li><ul><li>Disclosure: <a href="http://webont.org/">http://webont.org/</a> hosting is currently donated by Clark &amp; Parsia, LLC. This does not affect editorial control, as the website is generated from the Google Code SVN repository.</li></ul></ol><h2>Be relaxed</h2><p>This
+bit separable.<h2>Where does the between OWLED work get done?</h2><p>In order to faciliate participation and predictability, we should:</p><ol><li>Continue to use <a href="public-owl-dev@w3.org">public-owl-dev@w3.org</a> as the discussion mailing list.</li><li>Continue to use <a href="http://code.google.com/p/owl1-1/">http://code.google.com/p/owl1-1/</a> for spec development. The name is a bit historical, so we could migrate to a new project if we really cared about that.</li><li>Publish drafts and versions on the <a href="http://webont.org/">http://webont.org/</a> website.</li><ul><li>Disclosure: <a href="http://webont.org/">http://webont.org/</a>
+hosting is currently donated by Clark &amp; Parsia, LLC. This does not
+affect editorial control, as the website is generated from the Google
+Code SVN repository.</li></ul></ol><h2>Be relaxed</h2><p>This
 isn't
 meant to be a rigid process, but a way of organizing things. It's meant
 to help provide some predictability and even more transparency. If
