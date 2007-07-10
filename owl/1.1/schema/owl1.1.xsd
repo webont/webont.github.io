@@ -13,7 +13,7 @@
     <xsd:complexType>
       <xsd:choice>
         <xsd:element ref="owl11xml:Constant"/>
-        <xsd:element ref="owl11xml:Individual"/>
+        <xsd:group ref="owl11xml:OWLEntity"/>
       </xsd:choice>
       <xsd:attribute name="annotationURI" type="xsd:anyURI" use="optional" default="xsd:string"/>
       <xsd:attributeGroup ref="xml:specialAttrs"/>
@@ -34,7 +34,7 @@
     <xsd:complexType>
       <xsd:choice>
         <xsd:element ref="owl11xml:Constant"/>
-        <xsd:element ref="owl11xml:Individual"/>
+        <xsd:group ref="owl11xml:OWLEntity"/>
       </xsd:choice>
       <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
@@ -44,7 +44,7 @@
     <xsd:complexType>
       <xsd:choice>
         <xsd:element ref="owl11xml:Constant"/>
-        <xsd:element ref="owl11xml:Individual"/>
+        <xsd:group ref="owl11xml:OWLEntity"/>
       </xsd:choice>
       <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
