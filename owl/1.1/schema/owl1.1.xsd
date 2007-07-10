@@ -32,21 +32,21 @@
 
   <xsd:element name="Label">
     <xsd:complexType>
-      <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-          <xsd:attributeGroup ref="xml:specialAttrs"/>
-        </xsd:extension>
-      </xsd:simpleContent>
+      <xsd:choice>
+        <xsd:element ref="owl11xml:Constant"/>
+        <xsd:element ref="owl11xml:Individual"/>
+      </xsd:choice>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
   </xsd:element>
 
   <xsd:element name="Comment">
     <xsd:complexType>
-      <xsd:simpleContent>
-        <xsd:extension base="xsd:string">
-          <xsd:attributeGroup ref="xml:specialAttrs"/>
-        </xsd:extension>
-      </xsd:simpleContent>
+      <xsd:choice>
+        <xsd:element ref="owl11xml:Constant"/>
+        <xsd:element ref="owl11xml:Individual"/>
+      </xsd:choice>
+      <xsd:attributeGroup ref="xml:specialAttrs"/>
     </xsd:complexType>
   </xsd:element>
 
