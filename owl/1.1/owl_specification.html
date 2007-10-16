@@ -951,28 +951,27 @@ following two conditions hold:</p>
 
 
   <li>A strict partial order <span class="name">&lt;</span> on the object property expressions must exist
-  such that each <span class="name">SubObjectPropertyOf(SUB PE)</span> axiom in <span class="name">Ax</span>
-  fulfils the following conditions:
+  that fulfills the following conditions:
 
   <ul>
 
-    <li><span class="name">SUB</span> is of the form <span class="name">SubObjectPropertyChain(PE PE)</span>, or</li>
+    <li>If <span class="name">x &lt; y</span> holds, then <span class="name">y &rarr;<sup>*</sup> x</span> does not hold;</li>
 
-    <li><span class="name">SUB</span> is of the form <span class="name">InverseObjectProperty(PE)</span>, or</li>
+    <li>Each axiom in <span class="name">Ax</span> of the form <span class="name">SubObjectPropertyOf(SUB PE)</span> where
+    <span class="name">SUB</span> is of the form <span class="name">SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub>)</span>
+    with <span class="name">n &ge; 2</span> fulfils the following conditions:
 
-    <li><span class="name">SUB</span> is of the form
-    <span class="name">SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub>)</span> and
-    <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 &le; i &le; n, or</li>
+    <ul>
 
-    <li><span class="name">SUB</span> is of the form
-    <span class="name">SubObjectPropertyChain(PE PE<sub>1</sub> ... PE<sub>n</sub>)</span> and
-    <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 &le; i &le; n, or</li>
+      <li><span class="name">n = 2</span> and <span class="name">PE<sub>1</sub> = PE<sub>2</sub> = PE</span>, or</li>
 
-    <li><span class="name">SUB</span> is of the form
-    <span class="name">SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub> PE)</span> and
-    <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 &le; i &le; n.
+      <li><span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 &le; i &le; n, or</li>
 
-  </ul></li>
+      <li><span class="name">PE<sub>1</sub> = PE</span> and <span class="name">PE<sub>i</sub> &lt; PE</span> for each 2 &le; i &le; n, or</li>
+
+      <li><span class="name">PE<sub>n</sub> = PE</span> and <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 &le; i &le; n-1.</li>
+
+    </ul></li>
 
 </ul>
 
