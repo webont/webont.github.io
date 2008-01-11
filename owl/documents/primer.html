@@ -1,13 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html lang="en-us">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 
-<link href="primer_files/owl.css" type="text/css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="primer_files/W3C-Member-SUBM">
-<link href="http://webont.org/owl/1.1/images/owl-icon.png"
-	rel="shortcut icon">
+<link href="primer_files/owl.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="primer_files/W3C-Member-SUBM" />
+<link href="http://webont.org/owl/1.1/images/owl-icon.png" rel="shortcut icon" />
 
 <link rel="stylesheet" type="text/css" href="dl-tabbed.css" />
 <script type="text/javascript" src="dl-tabbed.js" />
@@ -20,7 +20,7 @@
 <div class="head">
 
 <h1 class="mainTitle">
-<img style="float: right; height: 200px" alt="owl" src="http://webont.org/owl/1.1/images/owl.png">
+<img style="float: right; height: 200px" alt="owl" src="http://webont.org/owl/1.1/images/owl.png" />
 OWL 1.1 Web Ontology Language<br />
 Primer</h1>
 
@@ -75,21 +75,24 @@ archive</a>.</p>
 <h2 class="notoc"><a id="toc" name="toc">Table of Contents</a></h2>
 <ul class="toc">
 <li class="tocline1"><a href="#1">1 Introduction</a></li>
-<li class="tocline1"><a href="#2">2 Orientation</a></li>
+<li class="tocline1"><a href="#2">2 Orientation</a>
 <ul>
-<li class="tocline1">Technology Perspectives</li>
+<li class="tocline1">Technology Perspectives
 <ul>
 <li class="tocline1">OWL from an XML perspective</li>
 <li class="tocline1">OWL from a RDF perspective</li>
 <li class="tocline1">OWL from a database perspective</li>
 <li class="tocline1">OOP programmer perspective</li>
 </ul>
-<li class="tocline1">Application perspectives</li>
+</li>
+<li class="tocline1">Application perspectives
 <ul>
 <li class="tocline1">HCLS/Scientific</li>
 <li class="tocline1">Information Integration</li>
 </ul>
+</li>
 </ul>
+</li>
 <li class="tocline1"><a href="#basic">3 Basic Notions</a></li>
 <li class="tocline1"><a href="#advanced">4 Advanced Notions</a></li>
 <li class="tocline1"><a href="#ontologies">5 Ontology Management</a></li>
@@ -284,10 +287,10 @@ with them. We can then proceed by writing down all this information in
 OWL.
 </p>
 <p>
-So if we have a family with parents <name>John</name> and
-<name>Mary</name> and children <name>Susan</name>
-and <name>Bill</name>
-we could write all this down, along with <name>age</name>s
+So if we have a family with parents <span class="name">John</span> and
+<span class="name">Mary</span> and children <span class="name">Susan</span>
+and <span class="name">Bill</span>
+we could write all this down, along with <span class="name">age</span>s
 as
 follows.
 </p>
@@ -341,8 +344,8 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 
 <p>We could also write down information about the sex of people
 by
-providing them with a <name>gender</name>, which is
-either <name>male</name> or <name>female</name>.
+providing them with a <span class="name">gender</span>, which is
+either <span class="name">male</span> or <span class="name">female</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -359,7 +362,6 @@ ObjectPropertyAssertion(f:Mary f:hasGender f:female) <br />
 ObjectPropertyAssertion(f:Bill f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 </dd>
-</dd>
 <dt>RDF/XML Syntax</dt>
 <dd>
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
@@ -374,11 +376,12 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
 &nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
 &lt;/rdf:Description>
+</dd>
 </dl>
 <p>However, all we have done so far is written down the basic
 facts about a
 particular family. Although OWL can be used for this purpose, it is not
-OWL's forté. OWL's main strength here, instead, involves how
+OWL's fort&eacute;. OWL's main strength here, instead, involves how
 families work in general.
 </p>
 <h3>3.2 Information about Properties</h3>
@@ -389,12 +392,12 @@ representing information about the world, certain simplifying
 assumptions must be made, and since this is a primer we are going to be
 simplifying a lot.) Well, the individuals in families are all people,
 so we should have a
-class of people, with name <name>Person</name>.
+class of people, with name <span class="name">Person</span>.
 We have already written down information about several properties.
-<name>wife</name> is a relationship between <name>Person</name>s,
-i.e., both the domain and range of <name>wife</name> is <name>Person</name>,
-as are both <name>son</name> and <name>daughter</name>.
-<name>age</name> is a relationship from a <name>Person</name>
+<span class="name">wife</span> is a relationship between <span class="name">Person</span>s,
+i.e., both the domain and range of <span class="name">wife</span> is <span class="name">Person</span>,
+as are both <span class="name">son</span> and <span class="name">daughter</span>.
+<span class="name">age</span> is a relationship from a <span class="name">Person</span>
 to an
 integer.
 </p>
@@ -441,12 +444,12 @@ DataPropertyRange(f:hasAge xsd:integer)
 </dd>
 </dl>
 
-<p>From this information we can conclude that <name>John</name>
+<p>From this information we can conclude that <span class="name">John</span>
 belongs to
-<name>Person</name>, because, for example, the domain of
-<name>wife</name> is <name>Person</name> and <name>John</name>
+<span class="name">Person</span>, because, for example, the domain of
+<span class="name">wife</span> is <span class="name">Person</span> and <span class="name">John</span>
 has a
-<name>wife</name>.
+<span class="name">wife</span>.
 We can also directly state that an individual belongs to a class.
 </p>
 <dl class="tabbed">
@@ -466,26 +469,26 @@ ClassAssertion(f:John f:Person)
 <p>There is more that can be said even about just this little
 part of
 familial relationships.
-For example, the inverse of the <name>wife</name> property
+For example, the inverse of the <span class="name">wife</span> property
 is
-<name>husband</name>.
-As well, <name>son</name> and <name>daughter</name>
+<span class="name">husband</span>.
+As well, <span class="name">son</span> and <span class="name">daughter</span>
 are specializations
-of the <name>child</name> relationship.
-Further, no individual can be both a <name>son</name> and
+of the <span class="name">child</span> relationship.
+Further, no individual can be both a <span class="name">son</span> and
 a
-<name>daughter</name>, so these properties are disjoint.
-Individuals have at most one <name>age</name>, so
-<name>age</name> is a functional data property.
-Individuals participate in at most one <name>wife</name>
+<span class="name">daughter</span>, so these properties are disjoint.
+Individuals have at most one <span class="name">age</span>, so
+<span class="name">age</span> is a functional data property.
+Individuals participate in at most one <span class="name">wife</span>
 relationship
-and no individual is its own <name>wife</name>,
-so <name>wife</name> is functional, and inverse
+and no individual is its own <span class="name">wife</span>,
+so <span class="name">wife</span> is functional, and inverse
 functional, and irreflexive.
 (It is also possible to specify that a property is reflexive, but this
 is not commonly done because the property is then reflexive for
 <em>all</em> individuals.)
-As well, <name>wife</name> is asymmetric.
+As well, <span class="name">wife</span> is asymmetric.
 Note that we have added more information about several properties. It
 is perfectly acceptable in OWL to have information about a property
 (or class, or individual) occur in several places.
@@ -508,11 +511,11 @@ AsymmetricFunctionalDataProperty: f:hasWife
 
 <p>What we have said about families and about our particular
 family has a
-number of consequences. For example, because <name>husband</name>
+number of consequences. For example, because <span class="name">husband</span>
 is the inverse of
-<name>wife</name>, <name>Mary</name>'s <name>husband</name>
+<span class="name">wife</span>, <span class="name">Mary</span>'s <span class="name">husband</span>
 is
-<name>John</name>.
+<span class="name">John</span>.
 Complete OWL reasoning tools can efficiently determine whether a
 particular consequence follows from the information available.
 </p>
@@ -524,7 +527,7 @@ are
 people.
 OWL has a rich language for defining classes.
 So we might have classes for men, women, and parents, each of which is
-a specialization of <name>Person</name>.
+a specialization of <span class="name">Person</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -540,23 +543,23 @@ information about
 what is required to belong to a class.
 (The constructs used to provide information about classes are called
 <em>descriptions</em> in OWL.)
-For example, saying that people have exactly one <name>age</name>
+For example, saying that people have exactly one <span class="name">age</span>
 and
-exactly one <name>gender</name> that is either <name>male</name>
-or <name>female</name>
+exactly one <span class="name">gender</span> that is either <span class="name">male</span>
+or <span class="name">female</span>
 provides (partial) information about people.
 Not only saying that every individual that belongs
-to <name>Man</name> also belongs to <name>Person</name>,
+to <span class="name">Man</span> also belongs to <span class="name">Person</span>,
 but also saying
-that every <name>Person</name> that has <name>gender</name>
-<name>male</name> belongs to <name>man</name>,
+that every <span class="name">Person</span> that has <span class="name">gender</span>
+<span class="name">male</span> belongs to <span class="name">man</span>,
 and similarly for
-<name>Woman</name>, provides complete information about
+<span class="name">Woman</span>, provides complete information about
 what it takes to
 belong to these two classes.
-We can also say that every <name>Person</name> that has at
-least one <name>child</name> that
-is a <name>Person</name> belongs to <name>Parent</name>.
+We can also say that every <span class="name">Person</span> that has at
+least one <span class="name">child</span> that
+is a <span class="name">Person</span> belongs to <span class="name">Parent</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -583,8 +586,8 @@ EquivalentClasses(f:Parent
 </dd>
 </dl>
 <p>Complete definitions enable many consequences in OWL. For
-example, from the above <name>John</name> belongs to
-<name>Man</name> and <name>Parent</name>. Some
+example, from the above <span class="name">John</span> belongs to
+<span class="name">Man</span> and <span class="name">Parent</span>. Some
 of the consequences can
 surprise users, so some OWL tools provide (rudimentary) facilities for
 showing how a consequence was determined.
@@ -594,8 +597,8 @@ In OWL, descriptions can be used just about anywhere a class name can
 be
 used.
 So, for example, we could provide more information about the
-<name>wife</name>,
-<name>son</name>, and <name>daughter</name>
+<span class="name">wife</span>,
+<span class="name">son</span>, and <span class="name">daughter</span>
 properties by given them more
 specific domains and ranges.
 </p>
@@ -609,19 +612,19 @@ ObjectProperty: f:hasDaughter domain: f:Parent range: Person AND
 f:hasGender f:female <br />
 </dd>
 </dl>
-<p>In this case, we could just as well have used <name>Man</name>
+<p>In this case, we could just as well have used <span class="name">Man</span>
 and
-<name>Woman</name> for the ranges of <name>son</name>
+<span class="name">Woman</span> for the ranges of <span class="name">son</span>
 and
-<name>daughter</name>. This would provide exactly the same
+<span class="name">daughter</span>. This would provide exactly the same
 information
 to OWL, and OWL reasoners can determine this.
 </p>
 <p>
-It may seem that there is a circularity in defining <name>Parent</name>
-as people with at least one <name>child</name> and also
+It may seem that there is a circularity in defining <span class="name">Parent</span>
+as people with at least one <span class="name">child</span> and also
 making it be the
-domain of <name>child</name>. In OWL, however, there is no
+domain of <span class="name">child</span>. In OWL, however, there is no
 problem.
 The two bits of information are simply different ways of saying the
 same
@@ -631,15 +634,15 @@ thing.
 <p>
 OWL can also represent information about certain groupings of data
 values, called <em>data ranges</em>.
-For example, we might have <name>Teenager</name> as those
+For example, we might have <span class="name">Teenager</span> as those
 people whose
-<name>age</name> is at least <name>13</name>
+<span class="name">age</span> is at least <span class="name">13</span>
 but less than
-<name>20</name>, <name>Adult</name> as those
+<span class="name">20</span>, <span class="name">Adult</span> as those
 people whose
-<name>age</name> is at least <name>21</name>,
-and <name>Child</name> as
-those people whose <name>age</name> is in the complement
+<span class="name">age</span> is at least <span class="name">21</span>,
+and <span class="name">Child</span> as
+those people whose <span class="name">age</span> is in the complement
 of adult ages.
 </p>
 <dl class="tabbed">
@@ -653,22 +656,22 @@ Class: Child SubClassOf: Person AND NOT ( hasAge SOME xsd:integer
 &ge; "21"^^xsd:integer )
 </dd>
 </dl>
-<p>From this, <name>Bill</name> belongs to <name>Teenager</name>,
+<p>From this, <span class="name">Bill</span> belongs to <span class="name">Teenager</span>,
 but not
-<name>Adult</name>.
-Both <name>John</name> and <name>Mary</name>
+<span class="name">Adult</span>.
+Both <span class="name">John</span> and <span class="name">Mary</span>
 belong to
-<name>Adult</name>, but not to <name>Teenage</name>.
-<name>Mary</name> belongs to neither <name>Adult</name>
+<span class="name">Adult</span>, but not to <span class="name">Teenage</span>.
+<span class="name">Mary</span> belongs to neither <span class="name">Adult</span>
 nor to
-<name>Teenage</name>. </p>
+<span class="name">Teenage</span>. </p>
 <p>
 OWL uses primitive datatypes taken from XML Schema datatypes
 [<a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a>], e.g.,
-<name>xsd:integer</name>, to construct data ranges.
+<span class="name">xsd:integer</span>, to construct data ranges.
 Other useful datatypes include 
-<name>xsd:string</name> and
-<name>xsd:decimal</name>.
+<span class="name">xsd:string</span> and
+<span class="name">xsd:decimal</span>.
 </p>
 <hr />
 
@@ -683,12 +686,12 @@ have to be understand how OWL is different.
 <h3>4.1 Incomplete Information about Data Values</h3>
 <p>
 In the example so far, we knew quite a bit of information.
-We knew, for example, that <name>John</name>'s (only) <name>age</name>
+We knew, for example, that <span class="name">John</span>'s (only) <span class="name">age</span>
 was 47.
 OWL is designed to deal with incomplete information, so it is quite
-common in OWL not to know, for example, the <name>age</name>s
+common in OWL not to know, for example, the <span class="name">age</span>s
 of all
-individuals belonging to <name>Person</name>, as just
+individuals belonging to <span class="name">Person</span>, as just
 below.
 </p>
 <dl class="tabbed">
@@ -700,23 +703,23 @@ f:Jeff f:hasChild f:Ellen <br />
 f:Jeff f:hasAge "77"^^xsd:integer <br />
 </dd>
 </dl>
-<p>It is a consequence of the above that <name>Jeff</name>
+<p>It is a consequence of the above that <span class="name">Jeff</span>
 belongs to
-<name>Adult</name> and not to <name>Teenager</name>.
-However, it cannot be determined whether <name>Emily</name>
+<span class="name">Adult</span> and not to <span class="name">Teenager</span>.
+However, it cannot be determined whether <span class="name">Emily</span>
 or
-<name>Jack</name> belong to <name>Adult</name>
-or <name>Teenager</name>,
-even though they both must have an <name>age</name>.
+<span class="name">Jack</span> belong to <span class="name">Adult</span>
+or <span class="name">Teenager</span>,
+even though they both must have an <span class="name">age</span>.
 </p>
 <p>
 It is also possible to provide partial information about values, as in
-saying that <name>Ellen</name>'s <name>age</name>
+saying that <span class="name">Ellen</span>'s <span class="name">age</span>
 is between 15 and 21, inclusive, 
-that <name>Emily</name>'s <name>age</name> is
+that <span class="name">Emily</span>'s <span class="name">age</span> is
 either 39 or 49, or even that
-<name>Jeff<name>'s age is not 53.
-</name></name></p>
+<span class="name">Jeff<span class="name">'s age is not 53.
+</span></span></p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
 <dd>
@@ -725,17 +728,17 @@ Individual: f:Emily f:hasAge VALUE { "39"^^xsd:integer "49"^^xsd:integer } <br /
 f:Jeff NOT f:hasAge "53"^^xsd:integer
 </dd>
 </dl>
-<p>From this it is possible to determine that <name>Emily</name>
-belongs to Adult<name>, even though we don't
-know her exact age, but we cannot determine that <name>Ellen</name>
-belongs to either </name>Adult<name> or
-</name>Teenager<name>.
-On the other hand, we could have a class <name>YoungChild</name>
+<p>From this it is possible to determine that <span class="name">Emily</span>
+belongs to Adult<span class="name">, even though we don't
+know her exact age, but we cannot determine that <span class="name">Ellen</span>
+belongs to either </span>Adult<span class="name"> or
+</span>Teenager<span class="name">.
+On the other hand, we could have a class <span class="name">YoungChild</span>
 that was neither
-</name>Adult<name> nor </name>Teenager<name>.
-<name>Ellen</name> would then <em>not</em>
+</span>Adult<span class="name"> nor </span>Teenager<span class="name">.
+<span class="name">Ellen</span> would then <em>not</em>
 belong to this class.
-</name></p>
+</span></p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
 <dd>
@@ -746,10 +749,10 @@ Class: f:YoungChild EquivalentTo: NOT ( f:Teenager OR f:Adult )
 <p>
 There are many sources of incompleteness in OWL, some of which may be
 surprising to those not having a logical background.
-For example, although it may seem to be the case that <name>Jeff</name>
+For example, although it may seem to be the case that <span class="name">Jeff</span>
 has exactly two children, this is <em>not</em> the case,
-nor is it the case that <name>Jeff</name> has only one
-<name>child</name> that belongs to <name>Man</name>.
+nor is it the case that <span class="name">Jeff</span> has only one
+<span class="name">child</span> that belongs to <span class="name">Man</span>.
 Formally, the following is not a consequence of the above information.
 </p>
 <dl class="tabbed">
@@ -763,18 +766,18 @@ Individual: f:Jeff f:Person AND f:hasChild MAX 1 f:Man
 <dt>RDF/XML Syntax (non-consequence)</dt>
 <dd></dd>
 </dl>
-<p>These do not follow because there is nothing saying that <name>Jack</name>
-and <name>Ellen</name> are the only children of
-<name>Jeff</name>, and OWL does not make any assumptions
+<p>These do not follow because there is nothing saying that <span class="name">Jack</span>
+and <span class="name">Ellen</span> are the only children of
+<span class="name">Jeff</span>, and OWL does not make any assumptions
 that something
 that has not been said is not true.
-It is possible to state that <name>Jeff</name> has no
+It is possible to state that <span class="name">Jeff</span> has no
 other children,
 and this can be done in a number of ways.
 One way that is often used for this purpose is to directly say that
-<name>Jeff</name> has exactly 2 children, which should
+<span class="name">Jeff</span> has exactly 2 children, which should
 certainly be
-adequate to infer that <name>Jeff</name> has exactly 2
+adequate to infer that <span class="name">Jeff</span> has exactly 2
 children
 </p>
 <dl class="tabbed">
@@ -785,10 +788,10 @@ Individual: f:Jeff f:hasChild EXACTLY 2
 </dl>
 <h3>4.3 Same and Different Individuals</h3>
 <p>
-However, even this is not adequate to infer that <name>Jeff</name>
+However, even this is not adequate to infer that <span class="name">Jeff</span>
 has only one
-<name>child</name> that belongs to <name>Man</name>.
-We have not stated that <name>Jack</name> and <name>Ellen</name>
+<span class="name">child</span> that belongs to <span class="name">Man</span>.
+We have not stated that <span class="name">Jack</span> and <span class="name">Ellen</span>
 are different people, and
 there is nothing said so far that implies that they are not the same.
 Again OWL does <em>not</em> make the assumption that
@@ -797,31 +800,31 @@ names for different individuals.
 (This "unique names assumption" is particularly dangerous in the
 Semantic Web, where names may be coined by different organizations at
 different times unknowingly referring to the same individual.)
-If <name>Jack</name> and <name>Ellen</name> <em>are</em>
+If <span class="name">Jack</span> and <span class="name">Ellen</span> <em>are</em>
 the same, then
-there could be another <name>child</name> of <name>John</name>,
+there could be another <span class="name">child</span> of <span class="name">John</span>,
 and this
-child could belong to <name>Man</name>.
+child could belong to <span class="name">Man</span>.
 </p>
 <p>
-One might think that <name>Jack</name> and <name>Ellen</name>
+One might think that <span class="name">Jack</span> and <span class="name">Ellen</span>
 are
-different because they have different <name>gender</name>s,
-and people have exactly one <name>gender</name>.
+different because they have different <span class="name">gender</span>s,
+and people have exactly one <span class="name">gender</span>.
 Unfortunately, we have
-not stated that <name>male</name> and <name>female</name>
+not stated that <span class="name">male</span> and <span class="name">female</span>
 are different.
-We could just state that <name>male</name> and <name>female</name>
+We could just state that <span class="name">male</span> and <span class="name">female</span>
 are
-different, and have this imply that <name>Jack</name> and
-<name>Ellen</name> are different, but let's add in a
+different, and have this imply that <span class="name">Jack</span> and
+<span class="name">Ellen</span> are different, but let's add in a
 reasonable
 collection of information about which names are different.
-Note that we don't really have to do this for <name>John</name>'s
+Note that we don't really have to do this for <span class="name">John</span>'s
 family as
 their different ages imply that they are all different.
 Similarly the wifes and their husbands were already known to be
-different, because we already stated that <name>wife</name>
+different, because we already stated that <span class="name">wife</span>
 is irreflexive.
 </p>
 <dl class="tabbed">
@@ -834,8 +837,8 @@ DifferentIndividuals: f:male f:female
 </dl>
 <p>It is also possible to state that two names refer to (denote)
 the same
-individual. For example, we can say that <name>John</name>
-and <name>Jack</name> are the same individual.
+individual. For example, we can say that <span class="name">John</span>
+and <span class="name">Jack</span> are the same individual.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -845,20 +848,20 @@ SameIndividual: f:John f:Jack
 </dl>
 <h3>4.4 Disjointness of Classes</h3>
 <p>
-From the above we can conclude that <name>Man</name> and <name>Woman</name>
+From the above we can conclude that <span class="name">Man</span> and <span class="name">Woman</span>
 are disjoint,
 i.e., that they can never have individuals belonging to both of them,
-because every <name>Person</name> has exactly one <name>gender</name>
-and individuals that belong to <name>Man</name> have a
-different <name>gender</name> (<name>male</name>)
-from those that belong to <name>Woman</name> (<name>female</name>).
+because every <span class="name">Person</span> has exactly one <span class="name">gender</span>
+and individuals that belong to <span class="name">Man</span> have a
+different <span class="name">gender</span> (<span class="name">male</span>)
+from those that belong to <span class="name">Woman</span> (<span class="name">female</span>).
 Hoever, we can also use OWL to state that classes are disjoint.
 This is most often done for classes that lack complete conditions for
 belonging to the class. (These classes are called <em>primitive</em>
 classes.)
-So, for example, for <name>ReligiousMarriage</name> and
-<name>CivilMarriage</name>, we have to directly state their
-disjointness, and here we also say that <name>Marriage</name> is the
+So, for example, for <span class="name">ReligiousMarriage</span> and
+<span class="name">CivilMarriage</span>, we have to directly state their
+disjointness, and here we also say that <span class="name">Marriage</span> is the
 union of the two.
 </p>
 
@@ -886,9 +889,9 @@ DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage
 <h3>4.5 More Information About Properties</h3>
 <p>
 In OWL we can have transitive properties, i.e., properties like
-<name>ancestor</name>, which also is a generalization of
+<span class="name">ancestor</span>, which also is a generalization of
 the inverse of
-the <name>child</name> property, and is also irreflexive.
+the <span class="name">child</span> property, and is also irreflexive.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -899,10 +902,10 @@ ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
 </dd>
 </dl>
 <p>From the above information,
-we can now conclude that <name>Bill</name> has <name>Jeff</name>
+we can now conclude that <span class="name">Bill</span> has <span class="name">Jeff</span>
 as an
-<name>ancestor</name>, and that <name>Bill</name>
-is not his own <name>ancestor</name>.
+<span class="name">ancestor</span>, and that <span class="name">Bill</span>
+is not his own <span class="name">ancestor</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax (consequence)</dt>
@@ -914,14 +917,13 @@ f:Bill NOT f:hasAncestor f:Bill
 <dd> </dd>
 <dt>RDF/XML Syntax (consequence)</dt>
 <dd> </dd>
-</dd>
 </dl>
 <p>There are yet other kinds of information that we say provide
 for
 properties.
-We can have a <name>spouse</name> property as a symmetric
+We can have a <span class="name">spouse</span> property as a symmetric
 and
-irreflexive generalization of <name>wife</name>.
+irreflexive generalization of <span class="name">wife</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax</dt>
@@ -932,15 +934,15 @@ ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse
 </dd>
 </dl>
 <p>Although we haven't directly so stated, we can conclude that
-<name>spouse</name> is also a generalization of <name>husband</name>,
-because <name>spouse</name> is a symmetric generalization
+<span class="name">spouse</span> is also a generalization of <span class="name">husband</span>,
+because <span class="name">spouse</span> is a symmetric generalization
 of the inverse
-of <name>husband</name>.
+of <span class="name">husband</span>.
 </p>
 <p>
-We could enrich our example to include a <name>loves</name>
+We could enrich our example to include a <span class="name">loves</span>
 property as a
-generalization of the <name>wife</name> property. (Thus
+generalization of the <span class="name">wife</span> property. (Thus
 turning our
 simplied view of familial relationships into an idealistic one as
 well.)
@@ -952,15 +954,15 @@ ObjectProperty: f:loves domain: f:Person <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:loves
 </dd>
 </dl>
-<p>Because <name>loves</name> is not symmetric, we
-cannot conclude that <name>loves</name> is a
-generalization of <name>husband</name>.
-We have also not specified whether <name>loves</name> is
+<p>Because <span class="name">loves</span> is not symmetric, we
+cannot conclude that <span class="name">loves</span> is a
+generalization of <span class="name">husband</span>.
+We have also not specified whether <span class="name">loves</span> is
 reflexive or
 not, so some people may love themselves.
-We could have <name>Narcissist</name>, those people who
+We could have <span class="name">Narcissist</span>, those people who
 love themselves,
-and add some more information about <name>loves</name>
+and add some more information about <span class="name">loves</span>
 relationships&gt;
 </p>
 <dl class="tabbed">
@@ -971,19 +973,19 @@ f:Jeff f:loves f:Jeff <br />
 Individual: f:Bill NOT f:Narcissist
 </dd>
 </dl>
-<p>From this we can conclude that <name>Jeff</name>
+<p>From this we can conclude that <span class="name">Jeff</span>
 belongs to
-<name>Narcissist</name> and that, of course, <name>Bill</name>
+<span class="name">Narcissist</span> and that, of course, <span class="name">Bill</span>
 does not.
 </p>
 
 <p>
 In OWL we can also say some things about how properties combine, using
 chains of object properties.
-For example, we can say that <name>son</name>s and
-<name>daughter</name>s are the same for both spouses, 
-i.e., the <name>son</name>s and <name>daughter</name>s of an individual
-include those of their <name>spouse</name>.
+For example, we can say that <span class="name">son</span>s and
+<span class="name">daughter</span>s are the same for both spouses, 
+i.e., the <span class="name">son</span>s and <span class="name">daughter</span>s of an individual
+include those of their <span class="name">spouse</span>.
 </p>
 
 <dl class="tabbed">
@@ -995,8 +997,8 @@ SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon
 </dl>
 
 <p>
-We can now conclude that <name>Emily</name> has the same 
-<name>son</name>s and <name>daughter</name>s as <name>Jeff</name>:
+We can now conclude that <span class="name">Emily</span> has the same 
+<span class="name">son</span>s and <span class="name">daughter</span>s as <span class="name">Jeff</span>:
 </p>
 
 <dl class="tabbed">
@@ -1009,16 +1011,15 @@ f:Emily f:hasChild f:Ellen
 <dd> </dd>
 <dt>RDF/XML Syntax (consequence)</dt>
 <dd> </dd>
-</dd>
 </dl>
 
 <h3>4.6 Conflicting Information</h3>
 <p>
 It is also possible to provide conflicting information to OWL.
-For example, we could say that <name>John</name> has no
-<name>child</name>ren who belong to <name>Woman</name>,
-which conflicts with <name>John</name> having <name>Susan</name>
-as a <name>daughter</name>.
+For example, we could say that <span class="name">John</span> has no
+<span class="name">child</span>ren who belong to <span class="name">Woman</span>,
+which conflicts with <span class="name">John</span> having <span class="name">Susan</span>
+as a <span class="name">daughter</span>.
 </p>
 <dl class="tabbed">
 <dt>Manchester Syntax (conflict)</dt>
@@ -1029,7 +1030,6 @@ Individual: f:John f:hasChild MAX 0 f:Woman
 <dd> </dd>
 <dt>RDF/XML Syntax (conflict)</dt>
 <dd> </dd>
-</dd>
 </dl>
 <p>In the presence of conflicting information, determining
 consequences in
@@ -1077,13 +1077,13 @@ reference.
 </p>
 
 <p>
-In our example ontology we have used two prefixes, <name>f</name> and
-<name>xsd</name>.   
+In our example ontology we have used two prefixes, <span class="name">f</span> and
+<span class="name">xsd</span>.   
 The latter prefix has been used in compact names for
 XML Schema datatypes, whose IRIs are fixed by the XML Schema
 recommendation.
-We thus must the standard expansion for <name>xsd</name>, which is 
-<name>http://www.w3.org/2001/XMLSchema#</name>.
+We thus must the standard expansion for <span class="name">xsd</span>, which is 
+<span class="name">http://www.w3.org/2001/XMLSchema#</span>.
 The expansion we pick for our the other prefix will affect the names of
 the classes, properties, and individuals in our ontology, as well as the
 name of the ontology itself.
@@ -1184,8 +1184,8 @@ do not fit into this example, including the following:
 <ul>
 <li>
 Some other datatype facets from XML Schema datatypes, including 
-<name>xsd:length</name>, <name>xsd:minLength</name>, <name>xsd:maxLength</name>,
-<name>xsd:totalDigits</name>, and <name>xsd:fractionDigits</name>.
+<span class="name">xsd:length</span>, <span class="name">xsd:minLength</span>, <span class="name">xsd:maxLength</span>,
+<span class="name">xsd:totalDigits</span>, and <span class="name">xsd:fractionDigits</span>.
 </li>
 <li>
 Data properties in some, all, cardinality (at least, at most, exactly), and value
@@ -1257,7 +1257,7 @@ OWL DL allows the same name to be used for any or all of a class, a
 property, and an individual.
 However, the different aspects of this name are not tied to one another,
 so that if, for example, we said, perhaps by accident that
-<name>Person</name> and <name>Man</name> were the same individual, they
+<span class="name">Person</span> and <span class="name">Man</span> were the same individual, they
 would not also be equivalent classes.
 </p>
 
