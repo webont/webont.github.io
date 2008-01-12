@@ -1,0 +1,934 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+	<head>
+		<base href="http://www.w3.org/" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="robots" content="noindex,follow" />
+		<meta name="keywords" content="Structural Reference Experiment,Semantics,Syntax,MikeSmith" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="search" type="application/opensearchdescription+xml" href="/2007/OWL/wiki/opensearch_desc.php" title="OWL (English)" />
+		<title>Structural Reference Experiment - OWL</title>
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "/2007/OWL/wiki/skins/w3cmonobook/main.css?63"; /*]]>*/</style>
+		<link rel="stylesheet" type="text/css"  href="/2007/OWL/wiki/skins/common/commonPrint.css?63" />
+		<link rel="stylesheet" type="text/css" media="handheld" href="/2007/OWL/wiki/skins/w3cmonobook/handheld.css?63" />
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/2007/OWL/wiki/skins/w3cmonobook/IE50Fixes.css?63";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/2007/OWL/wiki/skins/w3cmonobook/IE55Fixes.css?63";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/2007/OWL/wiki/skins/w3cmonobook/IE60Fixes.css?63";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/2007/OWL/wiki/skins/w3cmonobook/IE70Fixes.css?63";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/2007/OWL/wiki/skins/common/IEFixes.js?63"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<script type= "text/javascript">/*<![CDATA[*/
+var skin = "w3cmonobook";
+var stylepath = "/2007/OWL/wiki/skins";
+var wgArticlePath = "/2007/OWL/wiki/$1";
+var wgScriptPath = "/2007/OWL/wiki";
+var wgServer = "http://www.w3.org";
+var wgCanonicalNamespace = "";
+var wgCanonicalSpecialPageName = false;
+var wgNamespaceNumber = 0;
+var wgPageName = "Structural_Reference_Experiment";
+var wgTitle = "Structural Reference Experiment";
+var wgAction = "view";
+var wgArticleId = "359";
+var wgIsArticle = true;
+var wgUserName = "BijanParsia";
+var wgUserGroups = ["*", "user", "autoconfirmed", "emailconfirmed"];
+var wgUserLanguage = "en";
+var wgContentLanguage = "en";
+var wgBreakFrames = false;
+var wgCurRevisionId = "2702";
+/*]]>*/</script>
+                
+		<script type="text/javascript" src="/2007/OWL/wiki/skins/common/wikibits.js?63"><!-- wikibits js --></script>
+		<script type="text/javascript" src="/2007/OWL/wiki/index.php?title=-&amp;action=raw&amp;smaxage=0&amp;gen=js"><!-- site js --></script>
+		<style type="text/css">/*<![CDATA[*/
+@import "/2007/OWL/wiki/index.php?title=MediaWiki:Common.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/2007/OWL/wiki/index.php?title=MediaWiki:W3cmonobook.css&usemsgcache=yes&action=raw&ctype=text/css&smaxage=18000";
+@import "/2007/OWL/wiki/index.php?title=-&action=raw&gen=css&maxage=18000&smaxage=0";
+/*]]>*/</style>
+		<!-- Head Scripts -->
+		<link rel="stylesheet" type="text/css" href="/2007/OWL/wiki/index.php?title=CSS/owl.css&amp;action=raw&amp;ctype=text/css" />	</head>
+<body  class="mediawiki ns-0 ltr page-Structural_Reference_Experiment">
+	<div id="globalWrapper">
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+				<h1 class="firstHeading">Structural Reference Experiment</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From OWL</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<p><br />
+</p>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> This is an experimental version of the syntax document to make it able to serve the role of a descriptive specification, thus taking over the role of the reference and overview from OWL 1.0. If you haven't already talked with Bijan, Boris, or Peter, please check with one of them before making a radical *structural* change. Otherwise, feel free to add examples, or leave comments.</p>
+<p><br />           
+</p><p><!-- mediawiki puts this htmllet inside a paragraph, so we need to get out of it, alas creating two empty paragraphs.... -->
+</p>
+
+<script type="text/javascript">/*<![CDATA[*/
+
+function set_display_by_class(cls, newValue) {
+   var e = getElementsByClassName(document, 'p', cls);
+   if (e != null) {
+      for (var i=0; i<e.length; i++) {
+        e[i].style.display = newValue;
+      }
+   }
+}
+
+function set_display_by_id(id, newValue) {
+   var e = document.getElementById(id);
+   if (e != null) {
+     e.style.display = newValue;
+   }
+}
+/*]]>*/</script>
+<p id="hide-button"><a href="#" onclick="set_display_by_class('note', 'none'); set_display_by_id('hide-button', 'none'); set_display_by_id('show-button', 'block');">Hide Review Comments</a></p>
+<p id="show-button" style="display:none"><a href="#" onclick="set_display_by_class('note', 'block'); set_display_by_id('hide-button', 'block'); set_display_by_id('show-button', 'none');">Show Review Comments</a></p>
+<p id="hide-uml-button"><a href="#" onclick="set_display_by_class('image', 'none'); set_display_by_id('hide-uml-button', 'none'); set_display_by_id('show-button', 'block');">Hide UML</a></p>
+<p id="show-uml-button" style="display:none"><a href="#" onclick="set_display_by_class('image', 'block'); set_display_by_id('hide-uml-button', 'block'); set_display_by_id('show-uml-button', 'none');">Show UML</a></p>
+<p id="hide-grammar-button"><a href="#" onclick="set_display_by_class('image', 'none'); set_display_by_id('hide-grammar-button', 'none'); set_display_by_id('show-grammar-button', 'block');">Hide Grammar</a></p>
+<p id="show-grammar-button" style="display:none"><a href="#" onclick="set_display_by_class('image', 'block'); set_display_by_id('hide-grammar-button', 'block'); set_display_by_id('show-grammar-button', 'none');">Show Grammar</a></p>
+
+
+
+<p>
+</p>
+<dl><dt>Document title<b>:</b>
+</dt><dd><span id="full-title">OWL 1.1 Web Ontology Language<br /><span id="short-title">Structural Specification and Functional-Style Syntax</span></span>
+</dd></dl>
+<div id="docbody">
+<table id="toc" class="toc" summary="Contents"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="#Preliminaries"><span class="tocnumber">1</span> <span class="toctext">Preliminaries</span></a></li>
+<li class="toclevel-1"><a href="#Ontologies"><span class="tocnumber">2</span> <span class="toctext">Ontologies</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Syntax"><span class="tocnumber">2.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-2"><a href="#Ontology_URIs"><span class="tocnumber">2.2</span> <span class="toctext">Ontology URIs</span></a></li>
+<li class="toclevel-2"><a href="#Axioms"><span class="tocnumber">2.3</span> <span class="toctext">Axioms</span></a></li>
+<li class="toclevel-2"><a href="#Ontology_Annotations"><span class="tocnumber">2.4</span> <span class="toctext">Ontology Annotations</span></a></li>
+<li class="toclevel-2"><a href="#Imports"><span class="tocnumber">2.5</span> <span class="toctext">Imports</span></a></li>
+<li class="toclevel-2"><a href="#Example"><span class="tocnumber">2.6</span> <span class="toctext">Example</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Entities"><span class="tocnumber">3</span> <span class="toctext">Entities</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Syntax_2"><span class="tocnumber">3.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-2"><a href="#Predefined_Entities"><span class="tocnumber">3.2</span> <span class="toctext">Predefined Entities</span></a></li>
+<li class="toclevel-2"><a href="#Declarations"><span class="tocnumber">3.3</span> <span class="toctext">Declarations</span></a></li>
+<li class="toclevel-2"><a href="#Annotations"><span class="tocnumber">3.4</span> <span class="toctext">Annotations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Expressions"><span class="tocnumber">4</span> <span class="toctext">Expressions</span></a></li>
+<li class="toclevel-1"><a href="#Class_Expressions"><span class="tocnumber">5</span> <span class="toctext">Class Expressions</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Propositional_Connectives"><span class="tocnumber">5.1</span> <span class="toctext">Propositional Connectives</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Syntax_3"><span class="tocnumber">5.1.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-3"><a href="#Examples"><span class="tocnumber">5.1.2</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Object_Value_Restrictions"><span class="tocnumber">5.2</span> <span class="toctext">Object Value Restrictions</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Syntax_4"><span class="tocnumber">5.2.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-3"><a href="#Examples_2"><span class="tocnumber">5.2.2</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Object_Cardinality_Restrictions"><span class="tocnumber">5.3</span> <span class="toctext">Object Cardinality Restrictions</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Syntax_5"><span class="tocnumber">5.3.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-3"><a href="#Examples_3"><span class="tocnumber">5.3.2</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Data_Value_Restrictions"><span class="tocnumber">5.4</span> <span class="toctext">Data Value Restrictions</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Syntax_6"><span class="tocnumber">5.4.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-3"><a href="#Examples_4"><span class="tocnumber">5.4.2</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Data_Cardinallity_Restrictions"><span class="tocnumber">5.5</span> <span class="toctext">Data Cardinallity Restrictions</span></a>
+<ul>
+<li class="toclevel-3"><a href="#Syntax_7"><span class="tocnumber">5.5.1</span> <span class="toctext">Syntax</span></a></li>
+<li class="toclevel-3"><a href="#Examples_5"><span class="tocnumber">5.5.2</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2"><a href="#Summary_of_syntax"><span class="tocnumber">5.6</span> <span class="toctext">Summary of syntax</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Object_and_Data_Property_Expressions"><span class="tocnumber">6</span> <span class="toctext">Object and Data Property Expressions</span></a></li>
+<li class="toclevel-1"><a href="#Data_Range_Expressions"><span class="tocnumber">7</span> <span class="toctext">Data Range Expressions</span></a></li>
+<li class="toclevel-1"><a href="#Axioms_2"><span class="tocnumber">8</span> <span class="toctext">Axioms</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Class_Axioms"><span class="tocnumber">8.1</span> <span class="toctext">Class Axioms</span></a></li>
+<li class="toclevel-2"><a href="#Object_Property_Axioms"><span class="tocnumber">8.2</span> <span class="toctext">Object Property Axioms</span></a></li>
+<li class="toclevel-2"><a href="#Data_Property_Axioms"><span class="tocnumber">8.3</span> <span class="toctext">Data Property Axioms</span></a></li>
+<li class="toclevel-2"><a href="#Facts"><span class="tocnumber">8.4</span> <span class="toctext">Facts</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Annotations_2"><span class="tocnumber">9</span> <span class="toctext">Annotations</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Entity_Annotations"><span class="tocnumber">9.1</span> <span class="toctext">Entity Annotations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Nonstructural_Restrictions_on_Axioms"><span class="tocnumber">10</span> <span class="toctext">Nonstructural Restrictions on Axioms</span></a></li>
+<li class="toclevel-1"><a href="#Declarations_and_Structural_Consistency"><span class="tocnumber">11</span> <span class="toctext">Declarations and Structural Consistency</span></a></li>
+<li class="toclevel-1"><a href="#Appendix:_Differences_from_OWL_1.0_Abstract_Syntax"><span class="tocnumber">12</span> <span class="toctext">Appendix: Differences from OWL 1.0 Abstract Syntax</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Dropping_the_Frame-Like_Syntax"><span class="tocnumber">12.1</span> <span class="toctext">Dropping the Frame-Like Syntax</span></a></li>
+<li class="toclevel-2"><a href="#Inverse_Property_Expressions"><span class="tocnumber">12.2</span> <span class="toctext">Inverse Property Expressions</span></a></li>
+<li class="toclevel-2"><a href="#Separating_the_Vocabulary_for_Names"><span class="tocnumber">12.3</span> <span class="toctext">Separating the Vocabulary for Names</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#References"><span class="tocnumber">13</span> <span class="toctext">References</span></a></li>
+</ul>
+</td></tr></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<p><br />
+</p>
+<a name="Preliminaries"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=1" title="Edit section: Preliminaries">edit</a>]</span> <span class="mw-headline">1  Preliminaries </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> I didn't include all the namespace et al for spec experimentation reasons -- BJP</p>
+<p>In this specification, OWL ontologies are defined in ways intended to be, on the one hand, largely independant of the concrete exchange syntaxes, and yet, on the other, sufficient for the clear specification of those syntaxes. There are several reasons for this stemming from the fact that some exchange syntaxes (e.g., the canonical RDF/XML) make it difficult to relate OWL to the canonical underlying formalisms (i.e., description logics or first order logic). Defining the semantics directly in terms of such syntaxes would make it much more difficult to understand OWL by making the large literature available on the underlying formalisms more inaccessible. Similarly, in order to assure decidability (or, in some fragments, polynomial decidability), certain "non-structural" restrictions on axioms need to be imposed. It is very difficult to clearly and correctly impose these directly on triple structures. Finally, a number of OWL tools, APIs, and concrete syntaxes work at a non-triple level. Given the need to clearly map OWL into terms that make sense for these cases, and the difficulty of several specification tasks when approached from the RDF perspective, OWL is defined first in terms of non-triple structural form.
+</p><p>In order to determine the particular concrete syntax for some bit of OWL, one should consult the corresponding mapping tables in the corresponding documents. The primary structural specification is in terms of UML diagrams given in this document, with a canonical functional syntax which instantiates the UML. For reader convenient, you may choose to hide the diagrams, or the grammar, or both.
+</p>
+&lt;html&gt;<p id="hide-button">&lt;a href="#" onclick="set_display_by_class('note', 'none'); set_display_by_id('hide-button', 'none'); set_display_by_id('show-button', 'block');"&gt;Hide UML&lt;/a&gt;</p>
+<p id="show-button" style="display:none">&lt;a href="#" onclick="set_display_by_class('note', 'block'); set_display_by_id('hide-button', 'block'); set_display_by_id('show-button', 'none');"&gt;Show UML&lt;/a&gt;</p>&lt;/html&gt;
+<p>Conceptually, OWL ontologies can be broken down into the following categories of parts:
+</p>
+<ul><li> entities --- classes, properties, individuals, etc.; syntactically, these are the sorts of things which are named by URIs; they can be thought of as primitive <i>terms</i> or  names;
+</li><li> expressions ---  these are descriptive characterizations <i>of</i> entities; e.g., a class expression defines a class, typically in terms of features of its possible instances, i.e., descriptions of the sort of thing which are members of that class; obviously, expressions are parameterized by the sort of entity they characterize, thus we have class expressions, or property expressions; different sorts of expression have richer or poorer support in OWL; for example, OWL has a rather rich class expression functionality but comparatively poor property expressions;
+</li><li> axioms --- these make <i>statements</i>, i.e., true or false assertions that relate entities or expressions with other entities or expressions.
+</li></ul>
+<p>These three categories form the <i>logical</i> part of OWL ontologies. Additionally, entities, axioms, and ontologies may be <i>annotated</i>. Annotations have no effect on the logical aspects of an ontology, though they may be significant to tools or critical for applications. In many cases, the point of the logical portion of an ontology is to support the exploitation of the annotation part. The significance of annotations on tools or applications is not defined by the OWL specifications.
+</p><p>Finally, there is one non-logical construct with a pre-defined meaning, <i>owl:imports</i>, which allows distinct ontologies to be combined.
+</p><p>In concrete syntaxes, there may be additional syntactic features such as mechanisms for abbreviating URIs.
+</p>
+<a name="Ontologies"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=2" title="Edit section: Ontologies">edit</a>]</span> <span class="mw-headline">2  Ontologies </span></h2>
+<p>Ontologies are the basic structure in OWL. They primarily consist of a set of assertions about the world and may include assertions from other, imported, ontologies.
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:Ontology.gif" class="image" title="OWL Ontologies"><img alt="OWL Ontologies" longdesc="/2007/OWL/wiki/Image:Ontology.gif" src="/2007/OWL/wiki/images/9/9b/Ontology.gif" width="620" height="464" /></a><br />
+<span class="caption">Figure 1.</span> OWL Ontologies
+</p>
+</div>
+<a name="Syntax"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=3" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">2.1  Syntax </span></h3>
+<p>The syntax for OWL 1.1 ontology files is defined as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">ontologyFile</span>&nbsp;:=  <span lang="EN-GB">{ </span><span class="nonterminal">namespace</span> } <span class="nonterminal">ontology</span><br />
+<span class="nonterminal">namespace</span>&nbsp;:= 'Namespace' '(' [ <span class="nonterminal">prefix</span> ] '=' <span class="nonterminal">Full-IRI</span> ')'<br />
+<span class="nonterminal">ontology</span>&nbsp;:= 'Ontology' '(' <span class="nonterminal">ontologyURI</span> { <span class="nonterminal">importDeclaration</span> } { <span class="nonterminal">annotation</span> } { <span class="nonterminal">axiom</span> } ')'<br />
+<span class="nonterminal">ontologyURI</span>&nbsp;:= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">importDeclaration</span>&nbsp;:= 'Import' '(' <span class="nonterminal">URI</span> ')'<br />
+<span class="nonterminal">axiom</span>&nbsp;:= <span class="nonterminal">classAxiom</span> | <span class="nonterminal">objectPropertyAxiom</span> | <span class="nonterminal">dataPropertyAxiom</span> | <span class="nonterminal">fact</span> | <span class="nonterminal">declaration</span> | <span class="nonterminal">entityAnnotation</span>
+</p>
+</div>
+<p>The <span class="nonterminal">namespace</span> production defines an abbreviation for namespaces in a document. In each document, only one namespace declaration can exist for a given <span class="nonterminal">prefix</span>. These prefixes are then used to expand abbreviated IRIs as specified in <a href="#URIs.2C_Namespaces.2C_and_Integers" title="">Section 2.2</a>.
+</p>
+<a name="Ontology_URIs"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=4" title="Edit section: Ontology URIs">edit</a>]</span> <span class="mw-headline">2.2  Ontology URIs </span></h3>
+<p>The structure of OWL 1.1 ontologies is shown in Figure 1. Each ontology is uniquely identified with an ontology URI. This URI need not be equal to the physical location of the ontology file. For example, a file for an ontology with a URI <i><a href="http://www.my.domain.com/example" class="external free" title="http://www.my.domain.com/example">http://www.my.domain.com/example</a></i> need not be physically stored in that location. A specification of a mechanism for physically locating an ontology from its ontology URI is not in scope of this specification.
+</p>
+<a name="Axioms"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=5" title="Edit section: Axioms">edit</a>]</span> <span class="mw-headline">2.3  Axioms </span></h3>
+<p>The main component of an OWL 1.1 ontology is the set of axioms that it contains. Note that this definition does not allow repetitions of structurally equivalent axioms in an ontology. OWL 1.1 ontology files are, however, not expected to enforce this and can simply eliminate duplicates.
+</p>
+<a name="Ontology_Annotations"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=6" title="Edit section: Ontology Annotations">edit</a>]</span> <span class="mw-headline">2.4  Ontology Annotations </span></h3>
+<p>Apart from a set of axioms, an OWL 1.1 ontology contains a set of annotations. These can be used to associate information with an ontology, such as the name of the ontology creator or the version of the ontology. For the purpose of annotations, and ontology can be thought as a kind of axiom 
+</p>
+<a name="Imports"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=7" title="Edit section: Imports">edit</a>]</span> <span class="mw-headline">2.5  Imports </span></h3>
+<p>In OWL 1.0, <i>owl:imports</i> was a special annotation URI, which denotes that an ontology imports another ontology. In OWL 1.1, imports are not ontology annotations, but are a separate primitive, as discussed next; the <i>owl:imports</i> annotation property has no built-in meaning.
+</p><p>Each ontology contains a possibly empty set of <i>import declarations</i>. An ontology <span class="name">O</span> <i>directly imports</i> an ontology <span class="name">O'</span> if <span class="name">O</span> contains an import declaration whose value is the ontology URI of <span class="name">O'</span>. The relation <i>imports</i> is defined as a transitive closure of the relation <i>directly imports</i>. The <span id="axiom_closure"><i>axiom closure</i></span> of an ontology <span class="name">O</span> is the smallest set containing all the axioms of <span class="name">O</span> and of all ontologies that <span class="name">O</span> imports. Intuitively, an import declaration specification states that, when reasoning with an ontology <span class="name">O</span>, one should consider not only the axioms of <span class="name">O</span>, but the entire axiom closure of <span class="name">O</span>.
+</p>
+<a name="Example"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=8" title="Edit section: Example">edit</a>]</span> <span class="mw-headline">2.6  Example </span></h3>
+<pre>Ontology(<a href="http://example.org/ontology1" class="external free" title="http://example.org/ontology1">http://example.org/ontology1</a> 
+        Import(<a href="http://example.org/ontology2" class="external free" title="http://example.org/ontology2">http://example.org/ontology2</a>)
+        Label("The example")
+        SubClassOf(Human Animal)
+        )
+</pre>
+<p><br />
+</p>
+<a name="Entities"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=9" title="Edit section: Entities">edit</a>]</span> <span class="mw-headline">3  Entities </span></h2>
+<p>Entities are the fundamental building blocks of OWL 1.1 ontologies. The description of entities (e.g., classes, properties, and individuals) and their relations is the canonical purpose of OWL 1.1 ontologies. 
+</p>
+<pre>NOTE: For readers with a logic background, entities are the elements of the <i>signature</i> of an OWL ontology.
+</pre>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_entities.gif" class="image" title="The Hierarchy of Entities in OWL 1.1"><img alt="The Hierarchy of Entities in OWL 1.1" longdesc="/2007/OWL/wiki/Image:C_entities.gif" src="/2007/OWL/wiki/images/7/7e/C_entities.gif" width="594" height="328" /></a><br />
+<span class="caption">Figure 2.</span> The Hierarchy of Entities in OWL 1.1
+</p>
+</div>
+<a name="Syntax_2"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=10" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">3.1  Syntax </span></h3>
+<div class="grammar">
+<p><span class="nonterminal">datatypeURI</span>&nbsp;:=<span class="nonterminal"> URI</span><br />
+<span class="nonterminal">owlClassURI</span>&nbsp;:= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">objectPropertyURI</span>&nbsp;:= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">dataPropertyURI</span>&nbsp;:= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">individualURI</span>&nbsp;:= <span class="nonterminal">URI</span>
+<span class="nonterminal">entity</span>&nbsp;:= <span class="nonterminal">datatype</span> | <span class="nonterminal">owlClass</span> | <span class="nonterminal">objectProperty</span> | <span class="nonterminal">dataProperty</span> | <span class="nonterminal">individual</span><br />
+<span class="nonterminal">datatype</span>&nbsp;:= 'Datatype' '(' <span class="nonterminal">datatypeURI</span> ')'<br />
+<span class="nonterminal">owlClass</span>&nbsp;:= 'OWLClass' '(' <span class="nonterminal">owlClassURI</span> ')'<br />
+<span class="nonterminal">objectProperty</span>&nbsp;:= 'ObjectProperty' '(' <span class="nonterminal">objectPropertyURI</span> ')'<br />
+<span class="nonterminal">dataProperty</span>&nbsp;:= 'DataProperty' '(' <span class="nonterminal">dataPropertyURI</span> ')'<br />
+<span class="nonterminal">individual</span>&nbsp;:= 'Individual' '(' <span class="nonterminal">individualURI</span> ')'
+</p>
+</div>
+<a name="Predefined_Entities"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=11" title="Edit section: Predefined Entities">edit</a>]</span> <span class="mw-headline">3.2  Predefined Entities </span></h3>
+<p>OWL 1.1 defines several well-known entities that have the predefined semantics. These entities are identified by the following predefined URIs:
+</p>
+<ul><li> The class with URI <span class="name">owl:Thing</span> is the set of all objects. (In DL literature this is often called the top concept.)
+</li><li> The class with URI <span class="name">owl:Nothing</span> is the empty set of objects. (In DL literature this is often called the bottom concept.)
+</li><li> The unary datatype with URI <span class="name">rdfs:Literal</span> is the set of all concrete objects.
+</li><li> The datatypes with URIs as mentioned in [<cite><a href="#ref-owl-1.1-semantics" title="">OWL 1.1 Semantics</a></cite>].
+</li></ul>
+<p>OWL 1.1 uses constants to describe atomic values, such as strings or integers. These are encoded as in the Turtle specification[<cite><a href="#ref-turtle" title="">TURTLE</a></cite>]. 
+</p>
+<div class="grammar">
+<p><span class="nonterminal">constant</span>&nbsp;:= the same as the <span class="nonterminal">literal</span> production in the Turtle specification [<cite><a href="#ref-turtle" title="">TURTLE</a></cite>]
+</p>
+</div>
+<a name="Declarations"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=12" title="Edit section: Declarations">edit</a>]</span> <span class="mw-headline">3.3  Declarations </span></h3>
+<a name="Annotations"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=13" title="Edit section: Annotations">edit</a>]</span> <span class="mw-headline">3.4  Annotations </span></h3>
+<a name="Expressions"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=14" title="Edit section: Expressions">edit</a>]</span> <span class="mw-headline">4  Expressions </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> {{{2}}}</p>
+<a name="Class_Expressions"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=15" title="Edit section: Class Expressions">edit</a>]</span> <span class="mw-headline">5  Class Expressions </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/65" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/65">Issue-65</a> (excess vocab).</p>
+<p>OWL 1.1 provides an expressive language for forming descriptions. For clarity, these are presented in three separate diagrams. Readers familiar with model theory may which to consult the <a href="http://www.w3.org/2007/OWL/wiki/Semantics_Experiment#Class_Expressions" class="external text" title="http://www.w3.org/2007/OWL/wiki/Semantics_Experiment#Class_Expressions">Semantics Document</a>.
+</p><p><br />
+</p>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> Would like to have more class expression specific stuff, similar to what's in the first sentence of the next section. BJP</p>
+<a name="Propositional_Connectives"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=16" title="Edit section: Propositional Connectives">edit</a>]</span> <span class="mw-headline">5.1  Propositional Connectives </span></h3>
+<p>Class expressions can be thought of as descriptions of sets of individuals, or as descriptions which are <i>true</i> (or false) of particular individuals. These descriptions can be combined in ways that produce set theoretical combination of their underlying sets (or that change the set of conditions which must be true of an instance of the combined expression). OWL 1.1 contains the standard boolean connectives, and (intersectionOf), not (complementOf), and or (unionOf).
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_propositional.gif" class="image" title="Propositional Connectives for the Formation of Descriptions"><img alt="Propositional Connectives for the Formation of Descriptions" longdesc="/2007/OWL/wiki/Image:C_propositional.gif" src="/2007/OWL/wiki/images/c/c8/C_propositional.gif" width="609" height="395" /></a><br />
+<span class="caption">Figure 7.</span> Propositional Connectives for the Formation of Descriptions
+</p>
+</div>
+<p>The description construct <span class="nonterminal">objectUnionOf</span> forms a disjunction of a set of descriptions, <span class="nonterminal">objectIntersectionOf</span> is a conjunction of a set of descriptions, <span class="nonterminal">objectComplementOf</span> is a negation of a description, and <span class="nonterminal">objectOneOf</span> is a descrption that contains exactly the objects denoted by the set of specified individuals.
+</p>
+<pre>Note: The OWL 1.1 propositional connectives allow for the encoding of
+propositional logic/boolean formulae (either as class expressions or
+as collections of facts). Thus, reasoners which can test for class or ontology
+consistency can, by means of simple translation, also test for propositional
+satisfiability.
+
+The owl:oneOf constructor is, of course, not part of propositional logic, but
+is grouped here for convenience.
+
+</pre>
+<a name="Syntax_3"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=17" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">5.1.1  Syntax </span></h4>
+<div class="grammar">
+<p><span class="nonterminal">objectUnionOf</span>&nbsp;:= 'ObjectUnionOf' '(' <span class="nonterminal">description</span> <span class="nonterminal">description</span> { <span class="nonterminal">description</span> } ')'<br />
+<span class="nonterminal">objectIntersectionOf</span>&nbsp;:= 'ObjectIntersectionOf' '(' <span class="nonterminal">description</span> <span class="nonterminal">description</span> { <span class="nonterminal">description</span> } ')'<br />
+<span class="nonterminal">objectComplementOf</span>&nbsp;:= 'ObjectComplementOf' '(' <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">objectOneOf</span>&nbsp;:= 'ObjectOneOf' '(' <span class="nonterminal">individualURI</span> { <span class="nonterminal">individualURI</span> }')'<br />
+</p>
+</div>
+<a name="Examples"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=18" title="Edit section: Examples">edit</a>]</span> <span class="mw-headline">5.1.2  Examples </span></h4>
+<table border="1">
+<tr>
+<td>ObjectUnionOf(Male Female Intersexual) </td><td> Anything which is Male, Female, or Intersexed (it is possible to be more than one)
+</td></tr>
+<tr>
+<td>ObjectIntersectionOf(Human, ObjectUnionOf(Male Female Intersexual)) </td><td> Anything which is both Human and at least one of the sexes
+</td></tr></table>
+<p><br />
+</p>
+<a name="Object_Value_Restrictions"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=19" title="Edit section: Object Value Restrictions">edit</a>]</span> <span class="mw-headline">5.2  Object Value Restrictions </span></h3>
+<p>OWL 1.1 also allows descriptions to be defined by means of restrictions on object properties, as shown in Figure 8. 
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_objectmodal.gif" class="image" title="OWL 1.1 Descriptions Defined by Restriction on Object Properties"><img alt="OWL 1.1 Descriptions Defined by Restriction on Object Properties" longdesc="/2007/OWL/wiki/Image:C_objectmodal.gif" src="/2007/OWL/wiki/images/3/39/C_objectmodal.gif" width="645" height="385" /></a><br />
+<span class="caption">Figure 8.</span> OWL 1.1 Classes Defined by Restriction on Object Properties
+</p>
+</div>
+<p>The construct <span class="nonterminal">objectAllValuesFrom</span> denotes the set of objects that are connected via the given object property only to instances of the given description, <span class="nonterminal">objectSomeValuesFrom</span> denotes the set of objects that are connected via the given object property to at least one instance of the given description, <span class="nonterminal">objectExistsSelf</span> denotes the set of objects that are connected to themselves via the given object property, and <span class="nonterminal">objectHasValue</span> denotes the set of objects that are connected via the given object property to the object denoted by the given individual. The grammar for the restrictions is as follows:
+</p>
+<a name="Syntax_4"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=20" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">5.2.1  Syntax </span></h4>
+<div class="grammar">
+<p><span class="nonterminal">objectAllValuesFrom</span>&nbsp;:= 'ObjectAllValuesFrom' '(' <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">objectSomeValuesFrom</span>&nbsp;:= 'ObjectSomeValuesFrom' '(' <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">objectExistsSelf</span>&nbsp;:= 'ObjectExistsSelf' '(' <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">objectHasValue</span>&nbsp;:= 'ObjectHasValue' '(' <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">individualURI</span> ')'
+</p>
+</div>
+<a name="Examples_2"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=21" title="Edit section: Examples">edit</a>]</span> <span class="mw-headline">5.2.2  Examples </span></h4>
+<a name="Object_Cardinality_Restrictions"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=22" title="Edit section: Object Cardinality Restrictions">edit</a>]</span> <span class="mw-headline">5.3  Object Cardinality Restrictions </span></h3>
+<p>OWL 1.1 descriptions can be defined by restricting the cardinality of associations between objects, as shown in Figure 9. 
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_objectcardinality.gif" class="image" title="OWL 1.1 Descriptions Defined by Restricting Object Property Cardinalities"><img alt="OWL 1.1 Descriptions Defined by Restricting Object Property Cardinalities" longdesc="/2007/OWL/wiki/Image:C_objectcardinality.gif" src="/2007/OWL/wiki/images/2/2d/C_objectcardinality.gif" width="513" height="407" /></a><br />
+<span class="caption">Figure 9.</span> OWL 1.1 Descrptions Defined by Restricting Object Property Cardinalities
+</p>
+</div>
+<p>Cardinality restrictions can be qualified or unqualified, depending on whether there is a restriction on the description of the connected individual; an unqualified cardinality restriction is equivalent to a qualified one where the restricting description is <span class="name">owl:Thing</span>. The construct <span class="nonterminal">objectMinCardinality</span> denotes the set of objects that are connected via the given object property to at least the given number of instances of the given description, the construct <span class="nonterminal">objectMaxCardinality</span> denotes the set of objects that are connected via the given object property to at most the given number of instances of the given description, and the description <span class="nonterminal">objectExactCardinality</span> denotes the set of objects that are connected via the given object property to exactly the given number of instances of the given description. The grammar for these restrictions is defined as follows:
+</p>
+<a name="Syntax_5"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=23" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">5.3.1  Syntax </span></h4>
+<div class="grammar">
+<p><span class="nonterminal">cardinality</span>&nbsp;:= <span class="nonterminal">nonNegativeInteger</span><br />
+<span class="nonterminal">objectMinCardinality</span>&nbsp;:= 'ObjectMinCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">objectPropertyExpression</span> [ <span class="nonterminal">description</span> ] ')'<br />
+<span class="nonterminal">objectMaxCardinality</span>&nbsp;:= 'ObjectMaxCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">objectPropertyExpression</span> [ <span class="nonterminal">description</span> ] ')'<br />
+<span class="nonterminal">objectExactCardinality</span>&nbsp;:= 'ObjectExactCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">objectPropertyExpression</span> [ <span class="nonterminal">description</span> ] ')'
+</p>
+</div>
+<a name="Examples_3"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=24" title="Edit section: Examples">edit</a>]</span> <span class="mw-headline">5.3.2  Examples </span></h4>
+<a name="Data_Value_Restrictions"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=25" title="Edit section: Data Value Restrictions">edit</a>]</span> <span class="mw-headline">5.4  Data Value Restrictions </span></h3>
+<p>OWL 1.1 also allows for the definition of descriptions by stating restrictions on data properties, as shown in Figure 10. 
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_datamodal.gif" class="image" title="OWL 1.1 Descriptions Defined by Restriction on Data Properties"><img alt="OWL 1.1 Descriptions Defined by Restriction on Data Properties" longdesc="/2007/OWL/wiki/Image:C_datamodal.gif" src="/2007/OWL/wiki/images/c/c7/C_datamodal.gif" width="649" height="417" /></a><br />
+<span class="caption">Figure 10.</span> OWL 1.1 Descriptions Defined by Restriction on Data Properties
+</p>
+</div>
+<p>The notable distinction with respect to object property restrictions is that <span class="nonterminal">dataAllValuesFrom</span> and <span class="nonterminal">dataSomeValuesFrom</span> restrictions take a list of data property expressions, and not just a single property expression. This is in order to support descriptions such as "objects whose width is greater than their height", where the values of width and height are specified using two data properties. In such definitions, the arity of the given data range must be equal to the number of the given data properties.
+</p>
+<a name="Syntax_6"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=26" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">5.4.1  Syntax </span></h4>
+<div class="grammar">
+<p><span class="nonterminal">dataAllValuesFrom</span>&nbsp;:= 'DataAllValuesFrom' '(' <span class="nonterminal">dataPropertyExpression</span> { <span class="nonterminal">dataPropertyExpression</span> } <span class="nonterminal">dataRange</span> ')'<br />
+<span class="nonterminal">dataSomeValuesFrom</span>&nbsp;:= 'DataSomeValuesFrom' '(' <span class="nonterminal">dataPropertyExpression</span> { <span class="nonterminal">dataPropertyExpression</span> } <span class="nonterminal">dataRange</span> ')'<br />
+<span class="nonterminal">dataHasValue</span>&nbsp;:= 'DataHasValue' '(' <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">constant</span> ')'<br />
+</p>
+</div>
+<a name="Examples_4"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=27" title="Edit section: Examples">edit</a>]</span> <span class="mw-headline">5.4.2  Examples </span></h4>
+<a name="Data_Cardinallity_Restrictions"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=28" title="Edit section: Data Cardinallity Restrictions">edit</a>]</span> <span class="mw-headline">5.5  Data Cardinallity Restrictions </span></h3>
+<p>Figure 11 shows the restrictions that can be built by stating cardinality restrictions on data properties. If the data range is supplied, its arity must be one.
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_datacardinality.gif" class="image" title="OWL 1.1 Descriptions Defined by Restriction on Data Properties"><img alt="OWL 1.1 Descriptions Defined by Restriction on Data Properties" longdesc="/2007/OWL/wiki/Image:C_datacardinality.gif" src="/2007/OWL/wiki/images/9/9e/C_datacardinality.gif" width="608" height="504" /></a><br />
+<span class="caption">Figure 11.</span> OWL 1.1 Descriptions Defined by Restriction on Data Properties
+</p>
+</div>
+<a name="Syntax_7"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=29" title="Edit section: Syntax">edit</a>]</span> <span class="mw-headline">5.5.1  Syntax </span></h4>
+<div class="grammar">
+<p><span class="nonterminal">dataMinCardinality</span>&nbsp;:= 'DataMinCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">dataPropertyExpression</span> [ <span class="nonterminal">dataRange</span> ] ')'<br />
+<span class="nonterminal">dataMaxCardinality</span>&nbsp;:= 'DataMaxCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">dataPropertyExpression</span> [ <span class="nonterminal">dataRange</span> ] ')'<br />
+<span class="nonterminal">dataExactCardinality</span>&nbsp;:= 'DataExactCardinality' '(' <span class="nonterminal">cardinality</span> <span class="nonterminal">dataPropertyExpression</span> [ <span class="nonterminal">dataRange</span> ] ')'
+</p>
+</div>
+<a name="Examples_5"></a><h4><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=30" title="Edit section: Examples">edit</a>]</span> <span class="mw-headline">5.5.2  Examples </span></h4>
+<a name="Summary_of_syntax"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=31" title="Edit section: Summary of syntax">edit</a>]</span> <span class="mw-headline">5.6  Summary of syntax  </span></h3>
+<p>The following grammar production integrates all types of descriptions in OWL 1.1:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">description</span>&nbsp;:= <span class="nonterminal">owlClassURI</span> | <span class="nonterminal">objectUnionOf</span> | <span class="nonterminal">objectIntersectionOf</span> | <span class="nonterminal">objectComplementOf</span> | <span class="nonterminal">objectOneOf</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">objectAllValuesFrom</span> | <span class="nonterminal">objectSomeValuesFrom</span> | <span class="nonterminal">objectExistsSelf</span> | <span class="nonterminal">objectHasValue</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">objectMinCardinality</span> | <span class="nonterminal">objectMaxCardinality</span> | <span class="nonterminal">objectExactCardinality</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">dataAllValuesFrom</span> | <span class="nonterminal">dataSomeValuesFrom</span> | <span class="nonterminal">dataHasValue</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">dataMinCardinality</span> | <span class="nonterminal">dataMaxCardinality</span> | <span class="nonterminal">dataExactCardinality</span>
+</p>
+</div>
+<a name="Object_and_Data_Property_Expressions"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=32" title="Edit section: Object and Data Property Expressions">edit</a>]</span> <span class="mw-headline">6  Object and Data Property Expressions </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> Order of this is open. It could come before Class Expressions under the "define before you use" principle. BJP.</p>
+<p>Object properties can be combined into more complex expressions, as show in Figure 3. In OWL 1.1, only inverse property expressions are allowed. The grammar for object property expressions is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">inverseObjectProperty</span>&nbsp;:= 'InverseObjectProperty' '(' <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">objectPropertyExpression</span>&nbsp;:= <span class="nonterminal">objectPropertyURI</span> | <span class="nonterminal">inverseObjectProperty</span>
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_objectproperty.gif" class="image" title="Object Property Expressions"><img alt="Object Property Expressions" longdesc="/2007/OWL/wiki/Image:C_objectproperty.gif" src="/2007/OWL/wiki/images/9/98/C_objectproperty.gif" width="429" height="212" /></a><br />
+<span class="caption">Figure 3.</span> Object Property Expressions
+</p>
+</div>
+<p>For symmetry, OWL 1.1 also allows for data property expressions, as shown in Figure 4; the only type of data property expressions are, however, data properties. The grammar for data property expressions is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">dataPropertyExpression</span>&nbsp;:= <span class="nonterminal">dataPropertyURI</span>
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_dataproperty.gif" class="image" title="Data Property Expressions"><img alt="Data Property Expressions" longdesc="/2007/OWL/wiki/Image:C_dataproperty.gif" src="/2007/OWL/wiki/images/7/7b/C_dataproperty.gif" width="274" height="219" /></a><br />
+<span class="caption">Figure 4.</span> Data Property Expressions
+</p>
+</div>
+<p><br />
+</p>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/22" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/22">Issue-22</a> (role-rule-sugar) and <a href="http://www.w3.org/2007/OWL/tracker/issues/83" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/83">Issue-83</a> (Property Chain Axioms).</p>
+<a name="Data_Range_Expressions"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=33" title="Edit section: Data Range Expressions">edit</a>]</span> <span class="mw-headline">7  Data Range Expressions </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> Order of this is open. It could come before Class Expressions under the "define before you use" principle. BJP.</p>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/5" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/5">Issue-5</a> (n-ary datatypes), <a href="http://www.w3.org/2007/OWL/tracker/issues/25" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/25">Issue-25</a> (values-class), <a href="http://www.w3.org/2007/OWL/tracker/issues/29" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/29">Issue-29</a> (owl:DataRange), <a href="http://www.w3.org/2007/OWL/tracker/issues/31" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/31">Issue-31</a> (XSD defined datatypes),
+<a href="http://www.w3.org/2007/OWL/tracker/issues/53" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/53">Issue-53</a> (Linear inequality between two data types), <a href="http://www.w3.org/2007/OWL/tracker/issues/70" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/70">Issue-71</a> (datarange language range) and <a href="http://www.w3.org/2007/OWL/tracker/issues/74" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/74">Issue-74</a> (XSD URIs for facets).</p>
+<p>OWL 1.1 provides several ways to define a range over data values, as shown in Figure 5. A <span class="nonterminal">datatype</span> is a fundamental type of data range that is defined by a URI. Each datatype URI is associated with a predefined arity (note that the same datatype URI cannot be used with different arities). The list of the datatypes supported in OWL 1.1 is given in [<cite><a href="#ref-owl-1.1-semantics" title="">OWL 1.1 Semantics</a></cite>]; furthermore, this list can be extended by implementations as needed. The meanining of OWL 1.1 ontologies containing a datatype URI not supported by an implementation is not defined by this specification; the implementations are allowed to signal an error in this case.
+</p><p>Complex data ranges can be constructed from the simpler ones using the <span class="nonterminal">dataComplementOf</span> constructor, which takes a data range and returns its complement (with the same arity), Furthermore, data ranges consisting exactly of the specified set of constants can be formed using the <span class="nonterminal">dataOneOf</span> constructor (and it has the arity one). Finally, the <span class="nonterminal">datatypeRestriction</span> constructor creates a data range by applying one or more facet restriction to a particular data range. A facet restriction consists of a constant restriction value and a facet type that is applied to the data range in question. The following facet types are supported in OWL 1.1: <i>length</i>, <i>minLength</i>, <i>maxLength</i>, <i>pattern</i>, <i>minInclusive</i>, <i>minExclusive</i>, <i>maxInclusive</i>, <i>maxExclusive</i>, <i>totalDigits</i>, and <i>fractionDigits</i>. The semantics of the facets is defined in the XML Schema Datatypes Specification [<cite><a href="#ref-xml-schema-datatypes" title="">XML Schema Datatypes</a></cite>].
+</p>
+<p class="note"><span class="note_author">Review comment from <a href="/2007/OWL/wiki/User:MikeSmith" title="User:MikeSmith">MikeSmith</a> 06:44, 26 November 2007 (EST)</span><br />Text addressing <a href="http://www.w3.org/2007/OWL/tracker/issues/31" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/31">ISSUE-31</a>: "Canonical URI for externally defined datatypes" is provided on the <a href="/2007/OWL/wiki/Talk:Syntax#Proposed_Datatype_Edit" title="Talk:Syntax"> discussion page</a> and proposed for inclusion here.</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:C_datarange.gif" class="image" title="Data Ranges of OWL 1.1"><img alt="Data Ranges of OWL 1.1" longdesc="/2007/OWL/wiki/Image:C_datarange.gif" src="/2007/OWL/wiki/images/d/df/C_datarange.gif" width="610" height="507" /></a><br />
+<span class="caption">Figure 5.</span> Data Ranges of OWL 1.1
+</p>
+</div>
+<p>The grammar for OWL 1.1 data ranges is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">dataComplementOf</span>&nbsp;:= 'DataComplementOf' '(' <span class="nonterminal">dataRange</span> ')'<br />
+<span class="nonterminal">dataOneOf</span>&nbsp;:= 'DataOneOf' '(' <span class="nonterminal">constant</span> { <span class="nonterminal">constant</span> } ')'<br />
+<span class="nonterminal">datatypeFacet</span>&nbsp;:=<br />
+&nbsp;&nbsp;&nbsp; 'length' | 'minLength' | 'maxLength' | 'pattern' |<br />
+&nbsp;&nbsp;&nbsp; 'minInclusive' | 'minExclusive' | 'maxInclusive' | 'maxExclusive' |<br />
+&nbsp;&nbsp;&nbsp; 'totalDigits' | 'fractionDigits'<br />
+<span class="nonterminal">restrictionValue</span>&nbsp;:= <span class="nonterminal">constant</span><br />
+<span class="nonterminal">datatypeRestriction</span>&nbsp;:= 'DatatypeRestriction' '(' <span class="nonterminal">dataRange</span> <span class="nonterminal">datatypeFacet</span> <span class="nonterminal">restrictionValue</span> { <span class="nonterminal">datatypeFacet</span> <span class="nonterminal">restrictionValue</span> } ')'<br /><span class="nonterminal">dataRange</span>&nbsp;:= <span class="nonterminal">datatypeURI</span> | <span class="nonterminal">dataComplementOf</span> | <span class="nonterminal">dataOneOf</span> | <span class="nonterminal">datatypeRestriction</span>
+</p>
+</div>
+<a name="Axioms_2"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=34" title="Edit section: Axioms">edit</a>]</span> <span class="mw-headline">8  Axioms </span></h2>
+<p>This section lists the types of axiom that can be stated in OWL 1.1. To make the presentation easier to follow, the axioms are grouped by type. As already mentioned, an axiom may contain an arbitrary number of annotations; furthermore, although annotations do not affect the semantics of an axiom, they are taken into account in the definition of structural equivalence.
+</p>
+<a name="Class_Axioms"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=35" title="Edit section: Class Axioms">edit</a>]</span> <span class="mw-headline">8.1  Class Axioms </span></h3>
+<p>The class or description axioms of OWL 1.1 are shown in Figure 12. The <span class="nonterminal">subClassOf</span> axiom states that one description is a subclass of another description. The <span class="nonterminal">equivalentClasses</span> axiom takes a set of descriptions and states that they are all equivalent. The <span class="nonterminal">disjointClasses</span> axiom takes a set of descriptions and states that all descriptions from the set are pair-wise disjoint. Finally, the <span class="nonterminal">disjointUnion</span> axiom defines a class as a union of descriptions, all of which are pair-wise disjoint. The grammar for the class or description axioms of OWL 1.1 is as follows.
+</p>
+<div class="grammar">
+<p><span class="nonterminal">subClass</span>&nbsp;:= <span class="nonterminal">description</span><br />
+<span class="nonterminal">superClass</span>&nbsp;:= <span class="nonterminal">description</span><br />
+<span class="nonterminal">subClassOf</span>&nbsp;:= 'SubClassOf' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">subClass</span> <span class="nonterminal">superClass</span> ')'<br />
+<span class="nonterminal">equivalentClasses</span>&nbsp;:= 'EquivalentClasses' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">description</span> <span class="nonterminal">description</span> { <span class="nonterminal">description</span> } ')'<br />
+<span class="nonterminal">disjointClasses</span>&nbsp;:= 'DisjointClasses' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">description</span> <span class="nonterminal">description</span> { <span class="nonterminal">description</span> } ')'<br />
+<span class="nonterminal">disjointUnion</span>&nbsp;:= 'DisjointUnion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">owlClassURI</span> <span class="nonterminal">description</span> <span class="nonterminal">description</span> { <span class="nonterminal">description</span> } ')'<br />
+<span class="nonterminal">classAxiom</span>&nbsp;:= <span class="nonterminal">subClassOf</span> | <span class="nonterminal">equivalentClasses</span> | <span class="nonterminal">disjointClasses</span> | <span class="nonterminal">disjointUnion</span>
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_classes.gif" class="image" title="The Class Axioms of OWL 1.1"><img alt="The Class Axioms of OWL 1.1" longdesc="/2007/OWL/wiki/Image:A_classes.gif" src="/2007/OWL/wiki/images/e/e5/A_classes.gif" width="618" height="393" /></a><br />
+<span class="caption">Figure 12.</span> The Class Axioms of OWL 1.1
+</p>
+</div>
+<a name="Object_Property_Axioms"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=36" title="Edit section: Object Property Axioms">edit</a>]</span> <span class="mw-headline">8.2  Object Property Axioms </span></h3>
+<p>OWL 1.1 provides for several different kinds of object property axioms. For clarity these are presented in two separate diagrams, the first of which is Figure 13. The <span class="nonterminal">equivalentObjectProperties</span> axiom takes a set of object properties and states that they are all equivalent, and the <span class="nonterminal">disjointObjectProperties</span> axiom takes a set of object properties and states that all properties from the set are pair-wise disjoint. Furthermore, <span class="nonterminal">objectPropertyDomain</span> and <span class="nonterminal">objectPropertyRange</span> specify the domain and the range description, respectively, of an object property. Finally, <span class="nonterminal">inverseObjectProperties</span> axiomatizes two properties to be inverse of each other. These axioms are described using the following grammar:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">subObjectPropertyExpression</span>&nbsp;:= <span class="nonterminal">objectPropertyExpression</span> | 'SubObjectPropertyChain' '(' <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">objectPropertyExpression</span> { <span class="nonterminal">objectPropertyExpression</span> } ')'<br />
+<span class="nonterminal">subObjectPropertyOf</span>&nbsp;:= 'SubObjectPropertyOf' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">subObjectPropertyExpression</span> <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">equivalentObjectProperties</span>&nbsp;:= 'EquivalentObjectProperties' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">objectPropertyExpression</span> { <span class="nonterminal">objectPropertyExpression</span> } ')'<br />
+<span class="nonterminal">disjointObjectProperties</span>&nbsp;:= 'DisjointObjectProperties' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">objectPropertyExpression</span> { <span class="nonterminal">objectPropertyExpression</span> } ')'<br />
+<span class="nonterminal">objectPropertyDomain</span>&nbsp;:= 'ObjectPropertyDomain' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">objectPropertyRange</span>&nbsp;:= 'ObjectPropertyRange' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">inverseObjectProperties</span>&nbsp;:= 'InverseObjectProperties' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">objectPropertyExpression</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_objectproperty1.gif" class="image" title="Object Property Axioms, Part I"><img alt="Object Property Axioms, Part I" longdesc="/2007/OWL/wiki/Image:A_objectproperty1.gif" src="/2007/OWL/wiki/images/4/4c/A_objectproperty1.gif" width="895" height="581" /></a><br />
+<span class="caption">Figure 13.</span> Object Property Axioms, Part I
+</p>
+</div>
+<p>In addition, OWL 1.1 provides for axioms that allow the assertion of various characteristics of an object property, as specified in Figure 14. Each of these axioms takes an object property and asserts that the property has a certain characteristic, such as being functional or transitive. These axioms are described by the following grammar:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">functionalObjectProperty</span>&nbsp;:= 'FunctionalObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">inverseFunctionalObjectProperty</span>&nbsp;:= 'InverseFunctionalObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">reflexiveObjectProperty</span>&nbsp;:= 'ReflexiveObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">irreflexiveObjectProperty</span>&nbsp;:= 'IrreflexiveObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">symetricObjectProperty</span>&nbsp;:= 'SymmetricObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">asymetricObjectProperty</span>&nbsp;:= 'AsymmetricObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'<br />
+<span class="nonterminal">transitiveObjectProperty</span>&nbsp;:= 'TransitiveObjectProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_objectproperty2.gif" class="image" title="Axioms Defining Characteristics of Object Properties, Part II"><img alt="Axioms Defining Characteristics of Object Properties, Part II" longdesc="/2007/OWL/wiki/Image:A_objectproperty2.gif" src="/2007/OWL/wiki/images/f/f8/A_objectproperty2.gif" width="853" height="542" /></a><br />
+<span class="caption">Figure 14.</span> Axioms Defining Characteristics of Object Properties, Part II
+</p>
+</div>
+<p>The following grammar production merges all productions for object property axioms:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">objectPropertyAxiom</span>&nbsp;:=<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">subObjectPropertyOf</span> | <span class="nonterminal">equivalentObjectProperties</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">disjointObjectProperties</span> | <span class="nonterminal">inverseObjectProperties</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">objectPropertyDomain</span> | <span class="nonterminal">objectPropertyRange</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">functionalObjectProperty</span> | <span class="nonterminal">inverseFunctionalObjectProperty</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">reflexiveObjectProperty</span> | <span class="nonterminal">irreflexiveObjectProperty</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">symetricObjectProperty</span> | <span class="nonterminal">asymetricObjectProperty</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">transitiveObjectProperty</span>
+</p>
+</div>
+<a name="Data_Property_Axioms"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=37" title="Edit section: Data Property Axioms">edit</a>]</span> <span class="mw-headline">8.3  Data Property Axioms </span></h3>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/8" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/8">Issue-8</a> (dataproperty chains).</p>
+<p>Data property axioms are similar to object property axioms, and are shown in Figure 15. Note that the arity of the data range used in a <span class="nonterminal">dataPropertyRange</span> axiom must be one. The axioms are described by the following grammar:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">subDataPropertyOf</span>&nbsp;:= 'SubDataPropertyOf' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">dataPropertyExpression</span> ')'<br />
+<span class="nonterminal">equivalentDataProperties</span>&nbsp;:= 'EquivalentDataProperties' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">dataPropertyExpression</span> { <span class="nonterminal">dataPropertyExpression</span> } ')'<br />
+<span class="nonterminal">disjointDataProperties</span>&nbsp;:= 'DisjointDataProperties' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">dataPropertyExpression</span> { <span class="nonterminal">dataPropertyExpression</span> } ')'<br />
+<span class="nonterminal">dataPropertyDomain</span>&nbsp;:= 'DataPropertyDomain' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">dataPropertyRange</span>&nbsp;:= 'DataPropertyRange' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">dataRange</span> ')'<br />
+<span class="nonterminal">functionalDataProperty</span>&nbsp;:= 'FunctionalDataProperty' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_dataproperty.gif" class="image" title="Data Property Axioms of OWL 1.1"><img alt="Data Property Axioms of OWL 1.1" longdesc="/2007/OWL/wiki/Image:A_dataproperty.gif" src="/2007/OWL/wiki/images/3/32/A_dataproperty.gif" width="834" height="541" /></a><br />
+<span class="caption">Figure 15.</span> Data Property Axioms of OWL 1.1
+</p>
+</div>
+<p>The following grammar production merges all productions for data property axioms:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">dataPropertyAxiom</span>&nbsp;:=<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">subDataPropertyOf</span> | <span class="nonterminal">equivalentDataProperties</span> | <span class="nonterminal">disjointDataProperties</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">dataPropertyDomain</span> | <span class="nonterminal">dataPropertyRange</span> | <span class="nonterminal">functionalDataProperty</span>
+</p>
+</div>
+<a name="Facts"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=38" title="Edit section: Facts">edit</a>]</span> <span class="mw-headline">8.4  Facts </span></h3>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/3" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/3">Issue-3</a> (anonymous individuals) and <a href="http://www.w3.org/2007/OWL/tracker/issues/23" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/23">Issue-23</a> (scoped-names).</p>
+<p>OWL 1.1 supports a rich set of axioms for stating facts. Figure 16 shows the facts that can be stated about individuals and descriptions. The <span class="nonterminal">sameIndividual</span> axiom states that each of the individuals from a given set denotes the same object, whereas the <span class="nonterminal">differentIndividuals</span> axiom states that each of the individuals from a given set denotes a different object. The <span class="nonterminal">classAssertion</span> axiom states that the object denoted by the given individual is an instance of the given description. The grammar for these axioms is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">sameIndividual</span>&nbsp;:= 'SameIndividual' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">individualURI</span> <span class="nonterminal">individualURI</span> { <span class="nonterminal">individualURI</span> } ')'<br />
+<span class="nonterminal">differentIndividuals</span>&nbsp;:= 'DifferentIndividuals' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">individualURI</span> <span class="nonterminal">individualURI</span> { <span class="nonterminal">individualURI</span> } ')'<br />
+<span class="nonterminal">classAssertion</span>&nbsp;:= 'ClassAssertion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">individualURI</span> <span class="nonterminal">description</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_abox1.gif" class="image" title="Facts"><img alt="Facts" longdesc="/2007/OWL/wiki/Image:A_abox1.gif" src="/2007/OWL/wiki/images/e/e3/A_abox1.gif" width="574" height="369" /></a><br />
+<span class="caption">Figure 16.</span> Facts
+</p>
+</div>
+<p>The facts about object properties are shown in Figure 17. The <span class="nonterminal">objectPropertyAssertion</span> states that the objects denoted by the given individuals are connected by the given property, whereas the <span class="nonterminal">negativeObjectPropertyAssertion</span> states that the objects denoted by the given individuals are not connected by the given property. The grammar for these axioms is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">sourceIndividualURI</span>&nbsp;:= <span class="nonterminal">individualURI</span><br />
+<span class="nonterminal">targetIndividualURI</span>&nbsp;:= <span class="nonterminal">individualURI</span><br />
+<span class="nonterminal">objectPropertyAssertion</span>&nbsp;:= 'ObjectPropertyAssertion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">sourceIndividualURI</span> <span class="nonterminal">targetIndividualURI</span> ')'<br />
+<span class="nonterminal">negativeObjectPropertyAssertion</span>&nbsp;:= 'NegativeObjectPropertyAssertion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">objectPropertyExpression</span> <span class="nonterminal">sourceIndividualURI</span> <span class="nonterminal">targetIndividualURI</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_abox3.gif" class="image" title="Object Property Assertions"><img alt="Object Property Assertions" longdesc="/2007/OWL/wiki/Image:A_abox3.gif" src="/2007/OWL/wiki/images/8/89/A_abox3.gif" width="593" height="466" /></a><br />
+<span class="caption">Figure 17.</span> Object Property Assertions
+</p>
+</div>
+<p>The structure of axioms asserting facts about data properties is similar and is shown in Figure 18. The <span class="nonterminal">dataPropertyAssertion</span> states that the value of a data property for an object denoted by the given individual is the given constant, whereas the <span class="nonterminal">negativeDataPropertyAssertion</span> states the opposite. The grammar is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">targetValue</span>&nbsp;:= <span class="nonterminal">constant</span><br />
+<span class="nonterminal">dataPropertyAssertion</span>&nbsp;:= 'DataPropertyAssertion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">sourceIndividualURI</span> <span class="nonterminal">targetValue</span> ')'<br />
+<span class="nonterminal">negativeDataPropertyAssertion</span>&nbsp;:= 'NegativeDataPropertyAssertion' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">dataPropertyExpression</span> <span class="nonterminal">sourceIndividualURI</span> <span class="nonterminal">targetValue</span> ')'
+</p>
+</div>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_abox2.gif" class="image" title="Data Property Assertions"><img alt="Data Property Assertions" longdesc="/2007/OWL/wiki/Image:A_abox2.gif" src="/2007/OWL/wiki/images/6/6a/A_abox2.gif" width="610" height="512" /></a><br />
+<span class="caption">Figure 18.</span> Data Property Assertions
+</p>
+</div>
+<p>The following production integrates all types of facts:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">fact</span>&nbsp;:= <span class="nonterminal">sameIndividual</span> | <span class="nonterminal">differentIndividuals</span> | <span class="nonterminal">classAssertion</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">objectPropertyAssertion</span> | <span class="nonterminal">negativeObjectPropertyAssertion</span> |<br />
+&nbsp;&nbsp;&nbsp; <span class="nonterminal">dataPropertyAssertion</span> | <span class="nonterminal">negativeDataPropertyAssertion</span>
+</p>
+</div>
+<a name="Annotations_2"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=39" title="Edit section: Annotations">edit</a>]</span> <span class="mw-headline">9  Annotations </span></h2>
+<p>An annotation consists of an annotation URI that specifies the type of annotation and a value for the annotation. OWL 1.1 allows for two kinds of annotation values:
+</p>
+<ul><li> Annotation values can be constants. Note that these need not be just strings; rather, any OWL 1.1 constant can be used. For example, one can create an annotation whose value is a URI formatted according to the XML Schema <i>xsd:anyURI</i> type specification.
+</li><li> Annotation values can be ontology entities. Such annotations make it clearer that the value is not just some constant, but an entity from this or some other ontology.
+</li></ul>
+<a name="Entity_Annotations"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=40" title="Edit section: Entity Annotations">edit</a>]</span> <span class="mw-headline">9.1  Entity Annotations </span></h3>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/16" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/16">Issue-16</a> (entity annotations).</p>
+<p>Often, it is desirable to annotate entities in an ontology; such an annotation might, for example, specify a "human-friendly" label or comment. OWL 1.1 provides entity annotations for this purpose; their structure is shown in Figure 6.
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_entityannotation.gif" class="image" title="Entity Annotations in OWL 1.1"><img alt="Entity Annotations in OWL 1.1" longdesc="/2007/OWL/wiki/Image:A_entityannotation.gif" src="/2007/OWL/wiki/images/2/2d/A_entityannotation.gif" width="427" height="319" /></a><br />
+<span class="caption">Figure 6.</span> Entity Annotations in OWL 1.1
+</p>
+</div>
+<p>Note that an entity annotation axiom provides for two types of annotation -- one for the axiom itself and one for the entity. It is important to distinguish these two types of annotation: the first one refers to the axiom (e.g., says who has asserted it), whereas the second one refers to the entity itself (e.g., provides a human-friendly label). The grammar for entity annotations is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">annotationsForAxiom</span>&nbsp;:= <span class="nonterminal">annotation</span><br />
+<span class="nonterminal">annotationsForEntity</span>&nbsp;:= <span class="nonterminal">annotation</span><br />
+<span class="nonterminal">entityAnnotation</span>&nbsp;:= 'EntityAnnotation' '(' { <span class="nonterminal">annotationsForAxiom</span> } <span class="nonterminal">entity</span> { <span class="nonterminal">annotationsForEntity</span> } ')'
+</p>
+</div>
+<p>Note that the production for the <span class="nonterminal">entityAnnotation</span> nonterminal requires an <span class="nonterminal">entity</span> and not a URI. Thus, an OWL class should be annotated as follows:
+</p>
+<div class="gexample">
+<p>EntityAnnotation(OWLClass(Person) Comment("The set of all humans."))
+</p>
+</div>
+<p>This is so that the type of the entity being annotated can easily be determined from the syntactic form of the entity annotation axiom.
+</p>
+<a name="Nonstructural_Restrictions_on_Axioms"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=41" title="Edit section: Nonstructural Restrictions on Axioms">edit</a>]</span> <span class="mw-headline">10  Nonstructural Restrictions on Axioms </span></h2>
+<p>As explained in [<cite><a href="#ref-sroiq" title="">SROIQ</a></cite>], to obtain a decidable language, the <a href="#axiom_closure" title="">axiom closure</a> <span class="name">Ax</span> of each OWL 1.1 ontology must obey certain <i>nonstructural restrictions</i>, as defined next. In this section, we assume that all object property expressions in <span class="name">Ax</span> are either object properties or inverses of an object property. This can be ensured by replacing all expressions <span class="name">InverseObjectProperty( InverseObjectProperty(PE) )</span> with <span class="name">PE</span>.
+</p><p>For an object property expression <span class="name">PE</span>, the <i>inverse property expression</i> <span class="name">INV(PE)</span> is defined as follows:
+</p>
+<ul><li> if <span class="name">PE</span> is an object property <span class="name">OP</span>, then <span class="name">INV(PE) = InverseObjectProperty(OP)</span>;
+</li><li> if <span class="name">PE</span> is of the form <span class="name">InverseObjectProperty(OP)</span> for <span class="name">OP</span> an object property, then <span class="name">INV(PE) = OP</span>.
+</li></ul>
+<p>An object property expression <span class="name">PE</span> is <i>composite</i> in <span class="name">Ax</span> if <span class="name">Ax</span> contains an axiom of the form
+</p>
+<ul><li> <span class="name">SubObjectPropertyOf(SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub>) PE)</span> with n &gt; 1, or
+</li><li> <span class="name">SubObjectPropertyOf(SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub>) INV(PE))</span> with n &gt; 1, or
+</li><li> <span class="name">TransitiveObjectProperty(PE)</span>, or
+</li><li> <span class="name">TransitiveObjectProperty(INV(PE))</span>.
+</li></ul>
+<p>The <i>object property hierarchy relation</i> → is the smallest relation on object property expressions for which the following conditions hold (<span class="name">A</span> → <span class="name">B</span> means that → holds for <span class="name">A</span> and <span class="name">B</span>):
+</p>
+<ul><li> if <span class="name">Ax</span> contains an axiom <span class="name">SubObjectPropertyOf(PE<sub>1</sub> PE<sub>2</sub>)</span>, then <span class="name">PE<sub>1</sub></span> → <span class="name">PE<sub>2</sub></span> holds; and
+</li><li> if <span class="name">Ax</span> contains an axiom <span class="name">EquivalentObjectProperties(PE<sub>1</sub> PE<sub>2</sub>)</span>, then <span class="name">PE<sub>1</sub></span> → <span class="name">PE<sub>2</sub></span> and <span class="name">PE<sub>2</sub></span> → <span class="name">PE<sub>1</sub></span> hold; and
+</li><li> if <span class="name">Ax</span> contains an axiom <span class="name">InverseObjectProperties(PE<sub>1</sub> PE<sub>2</sub>)</span>, then <span class="name">PE<sub>1</sub></span> → <span class="name">INV(PE<sub>2</sub>)</span> and <span class="name">INV(PE<sub>2</sub>)</span> → <span class="name">PE<sub>1</sub></span> hold; and
+</li><li> if <span class="name">Ax</span> contains an axiom <span class="name">SymmetricObjectProperty(PE)</span>, then <span class="name">PE</span> → <span class="name">INV(PE)</span> holds; and
+</li><li> if <span class="name">PE<sub>1</sub></span> → <span class="name">PE<sub>2</sub></span> holds, then <span class="name">INV(PE<sub>1</sub>)</span> → <span class="name">INV(PE<sub>2</sub>)</span> holds as well.
+</li></ul>
+<p>The relation →<sup>*</sup> is the reflexive-transitive closure of →. An object property expression <span class="name">PE</span> is <i>simple</i> in <span class="name">Ax</span> if, for each object property expression <span class="name">PE'</span> such that <span class="name">PE'</span> →<sup>*</sup> <span class="name">PE</span> holds, <span class="name">PE'</span> is not composite.
+</p><p>The axioms <span class="name">Ax</span> satisfy the <i>nonstructural restrictions</i> of OWL 1.1 if the following three conditions hold:
+</p>
+<ul><li> Each class in <span class="name">Ax</span> of the following form contains only simple object properties:
+<ul><li> <span class="name">ObjectMinCardinality</span>, <span class="name">ObjectMaxCardinality</span>, <span class="name">ObjectExactCardinality</span>, and <span class="name">ObjectExistsSelf</span>.
+</li></ul>
+</li><li> Each axiom in <span class="name">Ax</span> of the following form contains only simple object properties:
+<ul><li> <span class="name">FunctionalObjectProperty</span>, <span class="name">InverseFunctionalObjectProperty</span>, <span class="name">IrreflexiveObjectProperty</span>, <span class="name">AsymmetricObjectProperty</span>, and <span class="name">DisjointObjectProperties</span>.
+</li></ul>
+</li><li> A strict partial order <span class="name">&lt;</span> on the object property expressions must exist that fulfills the following conditions:
+<ul><li> If <span class="name">x &lt; y</span> holds, then <span class="name">y →<sup>*</sup> x</span> does not hold;
+</li><li> Each axiom in <span class="name">Ax</span> of the form <span class="name">SubObjectPropertyOf(SUB PE)</span> where <span class="name">SUB</span> is of the form <span class="name">SubObjectPropertyChain(PE<sub>1</sub> ... PE<sub>n</sub>)</span> with <span class="name">n ≥ 2</span> fulfils the following conditions:
+<ul><li> <span class="name">n = 2</span> and <span class="name">PE<sub>1</sub> = PE<sub>2</sub> = PE</span>, or
+</li><li> <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 ≤ i ≤ n, or
+</li><li> <span class="name">PE<sub>1</sub> = PE</span> and <span class="name">PE<sub>i</sub> &lt; PE</span> for each 2 ≤ i ≤ n, or
+</li><li> <span class="name">PE<sub>n</sub> = PE</span> and <span class="name">PE<sub>i</sub> &lt; PE</span> for each 1 ≤ i ≤ n-1.
+</li></ul>
+</li></ul>
+</li></ul>
+<a name="Declarations_and_Structural_Consistency"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=42" title="Edit section: Declarations and Structural Consistency">edit</a>]</span> <span class="mw-headline">11  Declarations and Structural Consistency </span></h2>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/19" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/19">Issue-19</a> (declarations-p) and <a href="http://www.w3.org/2007/OWL/tracker/issues/20" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/20">Issue-20</a> (annotate-declarations?).</p>
+<p>In addition to axioms, OWL 1.1 also provides <i>declarations</i>, which can be used to check the <i>structural consistency</i> of an ontology.
+In OWL 1.1, it is possible to use a URI for an entity without explicitly stating that an entity with such a name exists. For example, the following is a correct OWL 1.1 ontology:
+</p>
+<div class="gexample">
+<p>Ontology(&lt;<a href="http://www.my.domain.com/example" class="external free" title="http://www.my.domain.com/example">http://www.my.domain.com/example</a>&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp; SubClassOf( Human Animal )<br />
+)
+</p>
+</div>
+<p>In this example, the classes <span class="name">Human</span> and <span class="name">Animal</span> are used without explicitly stating that they exist. This is desirable in many situations, since it allows "anyone to say anything about anything," which is consistent with the vision of the Semantic Web. This approach can, however, make it difficult to detect structural errors in ontologies; a typographical error in a class name, for example, simply introduces a new class with a different name.
+This issue can be addressed by using declarations to check the structural integrity of an ontology. We say that an entity is declared in an ontology <span class="name">O</span> if either <span class="name">O</span> or some ontology <span class="name">O'</span> imported by <span class="name">O</span> contains a declaration axiom for the entity. Note that an ontology may contain multiple declarations for the same entity, and that imported ontologies may do so as well. An ontology <span class="name">O</span> is <i>structurally consistent</i> if each entity occurring in an axiom from the axiom closure of <span class="name">O</span> is declared in <span class="name">O</span>. Note that, by this definition, the check applies also the entities used in annotations; that is, these entities must be properly declared as well for an ontology to be structurally consistent.
+Note that, although structurally consistency can be a very useful feature in some applications, OWL 1.1 <i>does not require</i> ontologies to be structurally consistent. Thus, an ontology can be used even if it does not contain any declarations.
+As shown in Figure 19, a declaration is a kind of axiom; this is in order to allow an ontology to be treated as simply a set axioms. A declaration, however, imposes no constraints on the model-theoretic interpretation of an ontology (in the sense of [<cite><a href="#ref-owl-1.1-semantics" title="">OWL 1.1 Semantics</a></cite>]).
+</p>
+<div class="image">
+<p><a href="/2007/OWL/wiki/Image:A_declaration.gif" class="image" title="Entity Declarations in OWL 1.1"><img alt="Entity Declarations in OWL 1.1" longdesc="/2007/OWL/wiki/Image:A_declaration.gif" src="/2007/OWL/wiki/images/6/61/A_declaration.gif" width="135" height="344" /></a><br />
+<span class="caption">Figure 19.</span> Entity Declarations in OWL 1.1
+</p>
+</div>
+<p>The grammar for declarations is as follows:
+</p>
+<div class="grammar">
+<p><span class="nonterminal">declaration</span>&nbsp;:= 'Declaration' '(' { <span class="nonterminal">annotation</span> } <span class="nonterminal">entity</span> ')'
+</p>
+</div>
+<p>Note that the production for the <span class="nonterminal">declaration</span> nonterminal requires an <span class="nonterminal">entity</span> and not a URI. Thus, an OWL class should be declared as follows:
+</p>
+<div class="gexample">
+<p>Declaration(OWLClass(Person))
+</p>
+</div>
+<p>This is so that the type of the entity being declared can easily be determined from the syntactic form of the declaration.
+</p>
+<a name="Appendix:_Differences_from_OWL_1.0_Abstract_Syntax"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=43" title="Edit section: Appendix: Differences from OWL 1.0 Abstract Syntax">edit</a>]</span> <span class="mw-headline">12  Appendix: Differences from OWL 1.0 Abstract Syntax </span></h2>
+<p>OWL 1.1 departs in its conceptual design and in syntax from OWL 1.0 Abstract Syntax. In this section we summarize the differences and explain the rationale behind the changes.
+</p>
+<a name="Dropping_the_Frame-Like_Syntax"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=44" title="Edit section: Dropping the Frame-Like Syntax">edit</a>]</span> <span class="mw-headline">12.1  Dropping the Frame-Like Syntax </span></h3>
+<p>OWL 1.0 provides a frame-like syntax that allows several aspects of a class, property or individual to be defined in a single axiom. For example, one can write the following axiom in OWL 1.0:
+</p>
+<div class="gexample">
+<p>ObjectProperty(partOf inverseOf(containedIn) inverseFunctional transitive<br />
+&nbsp;&nbsp;&nbsp;&nbsp; Label("Specifies that an object is a part of another object.")<br />
+)
+</p>
+</div>
+<p>This type of axiom may cause problems in practice. In the first place, it bundles many different features of the given object into a single axiom. While this may be convenient when ontologies are being manipulated by hand, it is not convenient for manipulating them programmatically. In fact, most implementations of OWL 1.0 break such axioms apart into several "atomic" axioms, each dealing with only a single feature of the object. However, this may cause problems with round-tripping, as the structure of the ontology may be destroyed in the process.
+In the second place, this type of axiom is often misinterpreted as a declaration and unique "definition" of the given object. In OWL 1.0, however, objects may be used without being the subject of any such axiom, and there may be many such axioms relating to the same object.
+Finally, OWL 1.0 does not provide means to annotate axioms, which has proved to be quite useful in practice.
+These problems are addressed in OWL 1.1 in several ways. First, the frame-like notation has been dropped in favor of a more fine-grained structure of axioms, where each axiom describes just one feature of the given object. Second, OWL 1.1 provides explicit declarations, and an explicit definition of the notion of structural consistency. Finally, all axioms in OWL 1.1 can be annotated, and entity annotation axioms provide means for that.
+For example, the above mentioned OWL 1.0 axiom can be represented in OWL 1.1 as follows:
+</p>
+<div class="gexample">
+<p>Declaration(ObjectProperty(partOf))<br />
+EntityAnnotation(ObjectProperty(partOf)<br />
+&nbsp;&nbsp;&nbsp;&nbsp; Label("Specifies that an object is a part of another object.")<br />
+)<br />
+EquivalentObjectProperties(partOf InverseObjectProperty(containedIn))<br />
+InverseFunctionalObjectProperty(partOf)<br />
+TransitiveObjectProperty(Comment("The partOf property is transitive.") partOf)
+</p>
+</div>
+<p>Although OWL 1.1 is more verbose, this should not be a problem given that most OWL ontologies are created using ontology engineering tools. Moreover, such tools are free to present the information to the user in a more intuitive (possibly frame-like) way.
+</p>
+<a name="Inverse_Property_Expressions"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=45" title="Edit section: Inverse Property Expressions">edit</a>]</span> <span class="mw-headline">12.2  Inverse Property Expressions </span></h3>
+<p>In OWL 1.0, all properties are atomic, but it is possible to assert that one object property is the inverse of another. For example, one can assert the following axiom in OWL 1.0:
+</p>
+<div class="gexample">
+<p>ObjectProperty(hasPart inverse isPartOf)
+</p>
+</div>
+<p>In OWL 1.1, property expressions such as <span class="name">InverseObjectProperty(hasPart)</span> can be used in class expressions, which avoids the need to give a name to every inverse property. If desired, however, names can still be given to inverse properties. For example, the following OWL 1.1 axiom asserts that <span class="name">isPartOf</span> is the inverse of <span class="name">hasPart</span>, and is thus equivalent to the mentioned OWL 1.0 axiom:
+</p>
+<div class="gexample">
+<p>EquivalentObjectProperties(InverseObjectProperty(hasPart) isPartOf)
+</p>
+</div>
+<a name="Separating_the_Vocabulary_for_Names"></a><h3><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=46" title="Edit section: Separating the Vocabulary for Names">edit</a>]</span> <span class="mw-headline">12.3  Separating the Vocabulary for Names </span></h3>
+<p class="ednote"><span class="ednotehead">Editor's Note:</span> See <a href="http://www.w3.org/2007/OWL/tracker/issues/17" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/17">Issue-17</a> (role punning), <a href="http://www.w3.org/2007/OWL/tracker/issues/18" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/18">Issue-18</a> (property typing), <a href="http://www.w3.org/2007/OWL/tracker/issues/65" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/65">Issue-65</a> (excess vocab) and <a href="http://www.w3.org/2007/OWL/tracker/issues/69" class="external text" title="http://www.w3.org/2007/OWL/tracker/issues/69">Issue-69</a> (punning).</p>
+<p>OWL 1.0 relies on the separation of names between concepts, individuals, and object and data properties, but the type of a given name may not be obvious from the context in which it is used. Consider, for example, the following OWL 1.0 axiom:
+</p>
+<div class="gexample">
+<p>SubClassOf(Lion restriction(eats someValuesFrom(Animal)))
+</p>
+</div>
+<p>From this axiom alone, it is not clear how to interpret the class <span class="name">restriction(eats someValuesFrom Animal)</span>: one possibility is to treat <span class="name">eats</span> as an object property and <span class="name">Animal</span> as a class, and the other one is to treat <span class="name">eats</span> as a data property and <span class="name">Animal</span> as a datatype. Examining other axioms in the ontology (or in an imported ontology) may make it possible to disambiguate this one, but this is not required in OWL 1.0: an ontology containing only the mentioned axiom is a correct OWL 1.0 ontology in which the intended usage of <span class="name">eats</span> and <span class="name">Animal</span> cannot be disambiguated. Hence, parsing an OWL 1.0 ontology requires not only two passes through the ontology being parsed, but also possibly parsing imported ontologies as well; this makes parser implementation complex and error prone.
+This problem is addressed in OWL 1.1 by explicitly typing each usage of a name. For example, the above mentioned axiom can be represented in OWL 1.1 as follows:
+</p>
+<div class="gexample">
+<p>SubClassOf(Lion ObjectSomeValuesFrom(eats Animal))
+</p>
+</div>
+<p>This makes it completely clear that <span class="name">eats</span> is intended to be interpreted as an object property and <span class="name">Animal</span> as a class.
+</p>
+<hr />
+<a name="References"></a><h2><span class="editsection">[<a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit&amp;section=47" title="Edit section: References">edit</a>]</span> <span class="mw-headline">13  References </span></h2>
+<dl><dt> <span id="ref-owl-1.1-semantics">[OWL 1.1 Semantics]</span>
+</dt><dd> <cite><a href="/2007/OWL/wiki/Semantics" title="Semantics">OWL 1.1 Web Ontology Language: Model-Theoretic Semantics</a></cite>. Bernardo Cuenca Grau and Boris Motik, eds., 2006.
+</dd><dt> <span id="ref-sroiq">[SROIQ]</span>
+</dt><dd> <cite><a href="http://www.cs.man.ac.uk/%7Esattler/publications/sroiq-tr.pdf" class="external text" title="http://www.cs.man.ac.uk/%7Esattler/publications/sroiq-tr.pdf">The Even More Irresistible SROIQ</a></cite>. Ian Horrocks, Oliver Kutz, and Uli Sattler. In Proc. of the 10th Int. Conf. on Principles of Knowledge Representation and Reasoning (KR 2006). AAAI Press, 2006.
+</dd><dt> <span id="ref-xml-namespaces">[XML Namespaces]</span>
+</dt><dd> <cite><a href="http://www.w3.org/TR/REC-xml-names/" class="external text" title="http://www.w3.org/TR/REC-xml-names/">Namespaces in XML 1.0 (Second Edition)</a></cite>. Tim Bray, Dave Hollander, Andrew Layman, and Richard Tobin, eds. W3C Recommendation 16 August 2006.
+</dd><dt> <span id="ref-xml-schema-datatypes">[XML Schema Datatypes]</span>
+</dt><dd> <cite><a href="http://www.w3.org/TR/xmlschema-2/" class="external text" title="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></cite>. Paul V. Biron and Ashok Malhotra, eds. W3C Recommendation 28 October 2004.
+</dd><dt> <span id="ref-rdf-syntax">[RDF Syntax]</span>
+</dt><dd> <cite><a href="http://www.w3.org/TR/rdf-syntax-grammar/" class="external text" title="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML Syntax Specification (Revised)</a></cite>. Dave Beckett, Editor, W3C Recommendation, 10 February 2004, <a href="http://www.w3.org/TR/rdf-syntax-grammar/" class="external free" title="http://www.w3.org/TR/rdf-syntax-grammar/">http://www.w3.org/TR/rdf-syntax-grammar/</a>.
+</dd><dt> <span id="ref-rfc-3066">[RFC-3066]</span>
+</dt><dd> <cite><a href="http://www.ietf.org/rfc/rfc3066.txt" class="external text" title="http://www.ietf.org/rfc/rfc3066.txt">RFC 3066 - Tags for the Identification of Languages</a></cite>. H. Alvestrand. IETF, January 2004, <a href="http://www.ietf.org/rfc/rfc3066.txt" class="external free" title="http://www.ietf.org/rfc/rfc3066.txt">http://www.ietf.org/rfc/rfc3066.txt</a>.
+</dd><dt> <span id="ref-rfc-3987">[RFC-3987]</span>
+</dt><dd> <cite><a href="http://www.ietf.org/rfc/rfc3987.txt" class="external text" title="http://www.ietf.org/rfc/rfc3987.txt">RFC 3987 - Internationalized Resource Identifiers (IRIs)</a></cite>. M. Duerst, M. Suignard. IETF, January 2005, <a href="http://www.ietf.org/rfc/rfc3987.txt" class="external free" title="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a>.
+</dd><dt> <span id="ref-owl-S.26AS">[OWL Semantics and Abstract Syntax]</span>
+</dt><dd> <cite><a href="http://www.w3.org/TR/owl-semantics/" class="external text" title="http://www.w3.org/TR/owl-semantics/">OWL Web Ontology Language: Semantics and Abstract Syntax</a></cite> Peter F. Patel-Schneider, Patrick Hayes, and Ian Horrocks, eds. W3C Recommendation, 10 February 2004, <a href="http://www.w3.org/TR/2004/REC-owl-semantics-20040210/" class="external free" title="http://www.w3.org/TR/2004/REC-owl-semantics-20040210/">http://www.w3.org/TR/2004/REC-owl-semantics-20040210/</a>.  Latest version available at <a href="http://www.w3.org/TR/owl-semantics/" class="external free" title="http://www.w3.org/TR/owl-semantics/">http://www.w3.org/TR/owl-semantics/</a>.
+</dd><dt> <span id="ref-curie">[CURIE]</span>
+</dt><dd> <cite><a href="http://www.w3.org/TR/2007/WD-curie-20071126/" class="external text" title="http://www.w3.org/TR/2007/WD-curie-20071126/">CURIE Syntax 1.0: A syntax for expressing Compact URIs</a></cite>. M. Birbeck, S. McCarron, Editors, W3C Working Draft, 26 November 2007, <a href="http://www.w3.org/TR/2007/WD-curie-20071126/" class="external free" title="http://www.w3.org/TR/2007/WD-curie-20071126/">http://www.w3.org/TR/2007/WD-curie-20071126/</a>.
+</dd><dt> <span id="ref-turtle">[TURTLE]</span>
+</dt><dd> <cite><a href="http://www.dajobe.org/2004/01/turtle/" class="external text" title="http://www.dajobe.org/2004/01/turtle/">Turtle - Terse RDF Triple Language</a></cite>. D. Beckett, 20 November 2007, <a href="http://www.dajobe.org/2004/01/turtle/" class="external free" title="http://www.dajobe.org/2004/01/turtle/">http://www.dajobe.org/2004/01/turtle/</a>.
+</dd></dl>
+</div>
+<!-- 
+Pre-expand include size: 1359 bytes
+Post-expand include size: 3960 bytes
+Template argument size: 2727 bytes
+Maximum: 2097152 bytes
+-->
+<div class="printfooter">
+Retrieved from "<a href="http://www.w3.org/2007/OWL/wiki/Structural_Reference_Experiment">http://www.w3.org/2007/OWL/wiki/Structural_Reference_Experiment</a>"</div>
+						<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+					 <li id="ca-nstab-main" class="selected"><a href="/2007/OWL/wiki/Structural_Reference_Experiment" title="View the content page [c]" accesskey="c">Article</a></li>
+					 <li id="ca-talk" class="new"><a href="/2007/OWL/wiki/index.php?title=Talk:Structural_Reference_Experiment&amp;action=edit" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+					 <li id="ca-edit"><a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=edit" title="You can edit this page. Please use the preview button before saving. [e]" accesskey="e">Edit</a></li>
+					 <li id="ca-history"><a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=history" title="Past versions of this page. [h]" accesskey="h">History</a></li>
+					 <li id="ca-move"><a href="/2007/OWL/wiki/Special:Movepage/Structural_Reference_Experiment" title="Move this page [m]" accesskey="m">Move</a></li>
+					 <li id="ca-unwatch"><a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;action=unwatch" title="Remove this page from your watchlist [w]" accesskey="w">Unwatch</a></li>
+				</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-userpage"><a href="/2007/OWL/wiki/User:BijanParsia" title="My user page [.]" accesskey="." class="new">BijanParsia</a></li>
+				<li id="pt-mytalk"><a href="/2007/OWL/wiki/User_talk:BijanParsia" title="My talk page [n]" accesskey="n" class="new">My talk</a></li>
+				<li id="pt-preferences"><a href="/2007/OWL/wiki/Special:Preferences" title="My preferences">My preferences</a></li>
+				<li id="pt-watchlist"><a href="/2007/OWL/wiki/Special:Watchlist" title="The list of pages you're monitoring for changes [l]" accesskey="l">My watchlist</a></li>
+				<li id="pt-mycontris"><a href="/2007/OWL/wiki/Special:Contributions/BijanParsia" title="List of my contributions [y]" accesskey="y">My contributions</a></li>
+				<li id="pt-logout"><a href="/2007/OWL/wiki/index.php?title=Special:Userlogout&amp;returnto=Structural_Reference_Experiment" title="Log out">Log out</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(farm/owl-local/w3c-owl.png);" href="/2007/OWL/wiki/OWL_Working_Group" title="Visit the Main Page [z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+		<div class='portlet' id='p-OWL_Working_Group'>
+		<h5>OWL Working Group</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-Home"><a href="/2007/OWL/wiki/OWL_Working_Group">Home</a></li>
+				<li id="n-Meetings"><a href="/2007/OWL/wiki/Meetings">Meetings</a></li>
+				<li id="n-Calendar"><a href="/2007/OWL/wiki/Current_events">Calendar</a></li>
+				<li id="n-Participants"><a href="/2007/OWL/wiki/Participants">Participants</a></li>
+				<li id="n-Tracker"><a href="http://www.w3.org/2007/OWL/tracker/">Tracker</a></li>
+				<li id="n-Open-issues"><a href="http://www.w3.org/2007/OWL/tracker/issues/open">Open issues</a></li>
+				<li id="n-Open-tasks"><a href="http://www.w3.org/2007/OWL/tracker/actions/open">Open tasks</a></li>
+				<li id="n-E-Mail-Archive"><a href="http://lists.w3.org/Archives/Public/public-owl-wg/latest">E-Mail Archive</a></li>
+				<li id="n-Liaisons"><a href="/2007/OWL/wiki/Liaisons">Liaisons</a></li>
+				<li id="n-recentchanges"><a href="/2007/OWL/wiki/Special:Recentchanges" title="The list of recent changes in the wiki. [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-help"><a href="/2007/OWL/wiki/HelpCentral" title="The place to find out.">Help</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-Inputs'>
+		<h5>Inputs</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-Charter"><a href="http://www.w3.org/2007/06/OWLCharter.html">Charter</a></li>
+				<li id="n-OWL-1.0"><a href="http://www.w3.org/2004/OWL">OWL 1.0</a></li>
+				<li id="n-OWL-1.1"><a href="http://www.webont.org/owl/1.1/">OWL 1.1</a></li>
+				<li id="n-OWLED-space"><a href="http://code.google.com/p/owl1-1/">OWLED space</a></li>
+				<li id="n-Issues"><a href="/2007/OWL/wiki/Issues">Issues</a></li>
+			</ul>
+		</div>
+	</div>
+		<div class='portlet' id='p-Drafts'>
+		<h5>Drafts</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-Syntax"><a href="/2007/OWL/wiki/Syntax">Syntax</a></li>
+				<li id="n-Metamodel"><a href="/2007/OWL/wiki/MOF-Based_Metamodel">Metamodel</a></li>
+				<li id="n-Semantics"><a href="/2007/OWL/wiki/Semantics">Semantics</a></li>
+				<li id="n-XML-Ser."><a href="/2007/OWL/wiki/XML_Serialization">XML Ser.</a></li>
+				<li id="n-Mapping-to-RDF"><a href="/2007/OWL/wiki/Mapping_to_RDF_Graphs">Mapping-to-RDF</a></li>
+				<li id="n-Fragments"><a href="/2007/OWL/wiki/Tractable_Fragments">Fragments</a></li>
+				<li id="n-Work-In-Progress"><a href="/2007/OWL/wiki/Work_In_Progress">Work In Progress</a></li>
+			</ul>
+		</div>
+	</div>
+		<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/2007/OWL/wiki/Special:Search" id="searchform"><div>
+				<input id="searchInput" name="search" type="text" title="Search OWL [f]" accesskey="f" value="" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" />
+			</div></form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/2007/OWL/wiki/Special:Whatlinkshere/Structural_Reference_Experiment" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="/2007/OWL/wiki/Special:Recentchangeslinked/Structural_Reference_Experiment" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="/2007/OWL/wiki/Special:Upload" title="Upload images or media files [u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="/2007/OWL/wiki/Special:Specialpages" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;printable=yes&amp;printable=yes">Printable version</a></li>				<li id="t-permalink"><a href="/2007/OWL/wiki/index.php?title=Structural_Reference_Experiment&amp;oldid=2702">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="/2007/OWL/wiki/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" /></a></div>
+			<ul id="f-list">
+				<li id="lastmod"> This page was last modified 11:19, 12 January 2008.</li>
+				<li id="viewcount">This page has been accessed 29 times.</li>
+				<li id="privacy"><a href="/2007/OWL/wiki/OWL:Privacy_policy" title="OWL:Privacy policy">Privacy policy</a></li>
+				<li id="about"><a href="/2007/OWL/wiki/OWL:About" title="OWL:About">About OWL</a></li>
+				<li id="disclaimer"><a href="/2007/OWL/wiki/OWL:General_disclaimer" title="OWL:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+		
+	
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+</div>
+<!-- Served by jubjub in 0.924 secs. --></body></html>
