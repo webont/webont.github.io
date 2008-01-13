@@ -1,0 +1,1551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+
+<title>OWL 1.1 Primer alt print CSS</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="shortcut icon" href="http://webont.org/owl/1.1/images/owl-icon.png" />
+<link rel="stylesheet" type="text/css" href="dl-tabbed-all-print.css" />
+<script type="text/javascript" src="dl-tabbed-all-print.js" />
+
+</head>
+
+<body>
+
+<div class="head">
+
+<h1 class="mainTitle">
+<img style="float: right; height: 200px" alt="owl" src="http://webont.org/owl/1.1/images/owl.png" />
+OWL 1.1 Web Ontology Language<br />
+Primer</h1>
+
+<h2>
+<a id="editordraft" name="editordraft">
+</a>Editors'
+Draft of 10 January 2008</h2>
+<dl>
+<dt>Latest version: </dt>
+<dd>TODAY</dd>
+<dt>This version: </dt>
+<dd>TODAY</dd>
+<dt>Editors:</dt>
+<dd>Bijan Parsia, Peter F. Patel-Schneider</dd>
+</dl>
+<p class="copyright">
+Copyright &copy; 2008 by the Editors. 
+</p>
+</div>
+<hr />
+<div class="abstract">
+<h2 class="notoc"><a id="abstract" name="abstract">Abstract</a></h2>
+<p>The W3C OWL 1.1 Web Ontology Language is designed to represent
+ontological information about individuals, classes, and properties in a
+Semantic Web setting.
+OWL provides a rich language for structuring and classifying with both
+complete and incomplete information.
+This short primer provides an approachable introduction to OWL 1.1,
+including orientation for those coming from other disciplines, an
+example showing how OWL 1.1 can be used to represent first simple
+information and then more complex information, how OWL 1.1 manages
+ontologies, and finally the distinctions between the various
+sublanguages of OWL 1.1.
+</p>
+</div>
+<div class="status">
+<h2 class="notoc"><a id="status" name="status">Status
+of this Document</a></h2>
+<p><strong>This is an editors' draft.</strong></p>
+<p>
+This document is being prepared for consideration by the <a href="http://www.w3.org/2007/OWL/wiki/OWL_Working_Group">W3C
+OWL WG</a>.
+Comments are welcome.
+Please send feedback to <a href="mailto:public-owl-dev@w3.org">public-owl-dev@w3.org</a>,
+which has a
+<a href="http://lists.w3.org/Archives/Public/public-owl-dev/">public
+archive</a>.</p>
+</div>
+<hr />
+
+<div class="toc">
+<h2 class="notoc"><a id="toc" name="toc">Table of Contents</a></h2>
+<ul class="toc">
+<li class="tocline1"><a href="#1">1 Introduction</a></li>
+<li class="tocline1"><a href="#2">2 Orientation</a>
+<ul>
+<li class="tocline1">Technology Perspectives
+<ul>
+<li class="tocline1">OWL from an XML perspective</li>
+<li class="tocline1">OWL from a RDF perspective</li>
+<li class="tocline1">OWL from a database perspective</li>
+<li class="tocline1">OOP programmer perspective</li>
+</ul>
+</li>
+<li class="tocline1">Application perspectives
+<ul>
+<li class="tocline1">HCLS/Scientific</li>
+<li class="tocline1">Information Integration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="tocline1"><a href="#basic">3 Basic Notions</a></li>
+<li class="tocline1"><a href="#advanced">4 Advanced Notions</a></li>
+<li class="tocline1"><a href="#ontologies">5 Ontology Management</a></li>
+<li class="tocline1"><a href="#remaining">6 Remaining Constructs</a></li>
+<li class="tocline1"><a href="#species">7 OWL Species</a></li>
+<li class="tocline1"><a href="#next">8 What to Read Next</a></li>
+<li class="tocline1"><a href="#example">9 The Complete Example</a></li>
+<li class="tocline1"><a href="#references">References</a></li>
+</ul>
+</div>
+<hr />
+<h2><a name="1"></a>1 Introduction</h2>
+<p>
+The W3C OWL 1.1 Web Ontology Language (OWL) is a Semantic Web language
+designed to represent ontologies - information about how individuals are
+grouped and fit together in a particular domain. OWL can represent rich
+and complex information about classes of individuals and their
+properties. OWL is a logical language, where every construct has a
+well-defined formal meaning that fit together to support exact and
+useful representation of many different kinds of information. OWL groups
+information into formal ontologies, which can be stored and transmitted
+in the World Wide Web in the same way that data and other kinds of
+information are.
+</p>
+<p>
+This short primer contains, first, orientations to OWL for various
+communities, including XML, RDF, databases, and object-oriented
+programming. The bulk of the primer consists of an example that
+illustrates the different kinds of information that can be represented
+in OWL. The primer then describes how OWL packages information into
+ontologies and how extra non-logical information is associated with
+parts of an ontology. Finally, the primer describes the various
+sublanguages of OWL, and what is gained and lost by using them.
+</p>
+<hr />
+<h2><a name="2"></a>2 Orientation</h2>
+<p>OWL
+is superficially similar to many other technologies, which is not too
+surprising given the prevalence of XML as a concrete syntax and of the
+class-object paradigm. People familiar with other technologies are
+sometimes misled by the similarities and thus very surprised by the
+differences. In section 2.1, we provide a brief orientation to OWL from
+a number of prominent technological perspectives. At various points in
+the tutorial sections of this Primer, we shall highlight aspects of OWL
+that might be surprising to people coming from these perspectives.</p>
+<p>In section 2.2, we briefly discuss some major ways of using
+OWL in
+applications.</p>
+<h3>2.1 Technologies</h3>
+
+<p><b>Resource Description Framework (RDF) and Schema</b>: Of
+the technologies discussed in this section, RDF(S) is the closest to
+OWL. They both have roots in logic based knowledge representation; in
+many ways, RDF(S) can be seen as a subset of OWL; and, perhaps most
+prominently, the primary exchange syntax for OWL has been RDF/XML.
+However, there are differences of style, emphasis, and common practice
+that can make relying on RDF(S) intuitions misleading when working with
+OWL. For example, while OWL statements and expressions can be encoded
+as RDF facts (triples), the triple view is not typically a fruitful way of
+writing or understanding complex expressions. Similarly, it is fairly
+common and effective to work with RDF as a graph data structure or
+database where the primary focus is on the explicit statements in the
+graph. Even when we consider parts of RDFS which support
+implicit
+knowledge, such as subclass inheritance, the relation between the
+explicit and implicit statements is very direct. Thus, it is easy to
+conceptualize inference in terms of graph structure manipulation.</p>
+<p>In
+contrast, OWL allows for -- and encourages -- operations that are not
+rooted so directly in the evident structure of an ontology.</p>
+
+<p><b>XML:</b> OWL
+and the XML family of technologies share some common parts: OWL can be
+expressed in XML languages (such as RDF/XML or the XML syntax for OWL
+[?]) and thus be 
+manipulated by XML tools. OWL reuses datatypes and datatype derivation
+facets from XML Schema (and can use certain forms of XML Schema type
+definitions). Finally, both OWL and XML have an object
+oriented approach and, to a certain extent, similar missions. Both can
+be used for <i>conceptual modeling</i> 
+as well as data definition, though they ways they go about it are
+fairly distinct.</p>
+<p>OWL is oriented toward <i>more abstract</i>,
+higher level conceptual modeling than is XML. OWL is designed to support the
+discovery of relationships between descriptions through automated
+reasoning. It also builds in far fewer presumptions about the entities
+it is describing both generally and in terms of their physical
+realization in computational systems.</p>
+<p>Both OWL and XML Schema support strong abstraction
+facilities. However XML Schema, is oriented
+toward a more concrete level of conceptual
+modeling. This is inherent
+in its core mission of validating XML documents.</p>
+
+<p><b>Databases:</b>
+Both OWL and databases (either relational or object-oriented) can be
+used to store and organize data.  However, databases are much more
+oriented towards this mission, and in an environment where complete
+information is available (at least as far as applications are
+concerned).  OWL is more oriented towards flexible and expressive
+description of data (or information), i.e., ontologies, and performs in
+an environment where information is considered to be incomplete unless
+information to the contrary is known.</p>
+<p>
+It is this difference in completeness that most distinguishes OWL from
+databases, driving the different capabilities of OWL and databases.
+Users who treat OWL information as complete where completeness cannot be
+assured are very often surprised and confused.  (Similarly those who use
+database technology in situations where information <i>is</i> incomplete
+can be similarly surprised and confused.)   Applications that incorrectly
+make assumption about completeness can come up with patently incorrect
+results.
+</p>
+<p>
+Ontologies in OWL are much more powerful and flexible than database
+schemas.  Database schemas generally only shape the kinds of information
+that is associated with objects (or tuples) that belong to a class (or
+table).  Classes in OWL ontologies can do this, but also can provide
+recognition conditions so that explicit typing is not required in OWL.
+Of course this flexibility means that determining typing in OWL can
+require complex inferences.
+</p>
+<p>
+A final major difference between databases and OWL is that the information
+stored in a database is derived from the database schema - if the schema
+doesn't sanction the storage of certain kinds of information, then that
+information cannot be stored.  OWL, on the other hand, allows arbitrary
+information to be associated with just about any object - if there is
+nothing in the ontology forbidding the associated then it is allowable.
+OWL is thus much more flexible in its information storage.
+</p>
+
+<p><b>Object-oriented Programming:</b>
+Object-oriented programming (OOP) also has object-centered modeling
+characteristics, and thus has much in common with OWL.
+However, OOP generally is performed in complete-information contexts,
+and where the information that can possibly be known about an object is
+circumscribed by the information in the type of the object.  As with databases,
+the differing stances on completeness and object information is a major
+difference between OWL and OOP.   Similarly OOP classes are much less
+expressive than OWL classes.
+</p>
+<p>
+Futher, OWL is a strictly declarative and logical language.
+OWL therefore has none of the operational aspects of OOP, like methods,
+and similarly reasoning in OWL is strictly logical, with nothing
+comparing to <i>inheritance</i>, particularly inheritance with
+exceptions or overriding.
+</p>
+
+<h3>2.2 Applications</h3>
+<p>
+Terminlogy development and managament. Conceptual Modeling.
+</p>
+
+<hr />
+<h2><a name="basic"></a>3 Basic Notions</h2>
+<p>
+OWL allows us to express <i>information</i> about the
+world then to
+draw certain <i>consequences</i> based on this
+information. There are
+OWL tools - reasoners - that can automatically compute these
+consequences.
+In OWL, we
+presume that the world is primarily made up of individual
+entities (typically known as <i>individuals</i> or <i>objects</i>).
+Individuals are related to each other and to <i>data values</i>
+via <i>properties</i>.
+Using OWL, we can group individuals that share
+certain characteristics into <em>classes</em>. </p>
+<p>
+OWL is part of the Semantic Web, so names in OWL are international
+resource identifiers (IRIs).
+As IRIs are long, we will use a compact way of writing them in OWL,
+consisting of a prefix and a reference separated by a colon.
+When OWL information is transferred around in the Web, it is written in an
+XML dialect.  
+The Manchester syntax is an OWL syntax that is designed to be easier for
+non-logicians to read.
+The Functional-Style syntax is a formal OWL syntax that is designed to
+be easier for reasoning tools to use.
+There are tools that can translate
+between the different syntaxs for OWL.
+</p>
+<h3>3.1 Simple Information about Individuals</h3>
+<p>
+Suppose we want to represent information about a particular family.
+We first need to determine what individuals there are in a family, and
+how they are related to each other and what data values are associated
+with them. We can then proceed by writing down all this information in
+OWL.
+</p>
+<p>
+So if we have a family with parents <span class="name">John</span> and
+<span class="name">Mary</span> and children <span class="name">Susan</span>
+and <span class="name">Bill</span>
+we could write all this down, along with <span class="name">age</span>s
+as
+follows.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+f:John f:hasWife f:Mary <br />
+f:John f:hasSon f:Bill <br />
+f:Mary f:hasSon f:Bill <br />
+f:John f:hasDaughter f:Susan <br />
+f:Mary f:hasDaughter f:Susan <br />
+f:John f:hasAge "33"^^xsd:integer <br />
+f:Mary f:hasAge "31"^^xsd:integer <br />
+f:Bill f:hasAge "13"^^xsd:integer <br />
+f:Susan f:hasAge "8"^^xsd:integer
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+ObjectPropertyAssertion(f:John f:hasWife f:Mary) <br />
+ObjectPropertyAssertion(f:John f:hasSon f:Bill) <br />
+ObjectPropertyAssertion(f:Mary f:hasSon f:Bill) <br />
+ObjectPropertyAssertion(f:John f:hasDaughter f:Susan) <br />
+ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
+DataPropertyAssertion(f:John f:hasAge "33"^^xsd:integer) <br />
+DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
+DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
+DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
+</dd>
+<dt>RDF/XML Syntax</dt>
+<dd>
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
+&nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">33&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
+&lt;/rdf:Description>
+</dd>
+</dl>
+
+<p>We could also write down information about the sex of people
+by
+providing them with a <span class="name">gender</span>, which is
+either <span class="name">male</span> or <span class="name">female</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+f:John f:hasGender f:male <br />
+f:Mary f:hasGender f:female <br />
+f:Bill f:hasGender f:male <br />
+f:Susan f:hasGender f:female
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+ObjectPropertyAssertion(f:John f:hasGender f:male) <br />
+ObjectPropertyAssertion(f:Mary f:hasGender f:female) <br />
+ObjectPropertyAssertion(f:Bill f:hasGender f:male) <br />
+ObjectPropertyAssertion(f:Susan f:hasGender f:female)
+</dd>
+<dt>RDF/XML Syntax</dt>
+<dd>
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#male" /><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#male" /><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
+&lt;/rdf:Description>
+</dd>
+</dl>
+<p>However, all we have done so far is written down the basic
+facts about a
+particular family. Although OWL can be used for this purpose, it is not
+OWL's fort&eacute;. OWL's main strength here, instead, involves how
+families work in general.
+</p>
+<h3>3.2 Information about Properties</h3>
+<p>
+So let's switch gears and think how families work in general.
+(This is the process of knowledge representation. Like all processes
+representing information about the world, certain simplifying
+assumptions must be made, and since this is a primer we are going to be
+simplifying a lot.) Well, the individuals in families are all people,
+so we should have a
+class of people, with name <span class="name">Person</span>.
+We have already written down information about several properties.
+<span class="name">wife</span> is a relationship between <span class="name">Person</span>s,
+i.e., both the domain and range of <span class="name">wife</span> is <span class="name">Person</span>,
+as are both <span class="name">son</span> and <span class="name">daughter</span>.
+<span class="name">age</span> is a relationship from a <span class="name">Person</span>
+to an
+integer.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:Person <br />
+ObjectProperty: f:hasWife domain: f:Person range: f:Person <br />
+ObjectProperty: f:hasSon domain: f:Person range: f:Person <br />
+ObjectProperty: f:hasDaughter domain: f:Person range: f:Person <br />
+DataProperty: f:hasAge domain: f:Person range: xsd:integer
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+SubClassOf(f:Person owl:Thing)<br />
+ObjectPropertyDomain(f:hasWife f:Person)<br />
+ObjectPropertyRange(f:hasWife f:Person)<br />
+ObjectPropertyDomain(f:hasSon f:Person)<br />
+ObjectPropertyRange(f:hasSon f:Person)<br />
+ObjectPropertyDomain(f:hasDaughter f:Person)<br />
+ObjectPropertyRange(f:hasDaughter f:Person)<br />
+DataPropertyDomain(f:hasAge f:Person)<br />
+DataPropertyRange(f:hasAge xsd:integer)
+</dd>
+<dt>RDF/XML Syntax</dt>
+<dd>
+&lt;owl:Class rdf:about="http://ex.com/owl/families#Person" /><br />
+&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasWife"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;/owl:ObjectProperty><br />
+&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasSon"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;/owl:ObjectProperty><br />
+&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasDaughter"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;/owl:ObjectProperty><br />
+&lt;owl:DataProperty rdf:about="http://ex.com/owl/families#hasAge"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" /><br />
+&lt;/owl:ObjectProperty>
+</dd>
+</dl>
+
+<p>From this information we can conclude that <span class="name">John</span>
+belongs to
+<span class="name">Person</span>, because, for example, the domain of
+<span class="name">wife</span> is <span class="name">Person</span> and <span class="name">John</span>
+has a
+<span class="name">wife</span>.
+We can also directly state that an individual belongs to a class.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Individual: f:John f:Person
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+ClassAssertion(f:John f:Person)
+</dd>
+<dt>RDF/XML Syntax</dt>
+<dd>
+&lt;f:Person rdf:about="http://ex.com/owl/families#John" /><br />
+</dd>
+</dl>
+<p>There is more that can be said even about just this little
+part of
+familial relationships.
+For example, the inverse of the <span class="name">wife</span> property
+is
+<span class="name">husband</span>.
+As well, <span class="name">son</span> and <span class="name">daughter</span>
+are specializations
+of the <span class="name">child</span> relationship.
+Further, no individual can be both a <span class="name">son</span> and
+a
+<span class="name">daughter</span>, so these properties are disjoint.
+Individuals have at most one <span class="name">age</span>, so
+<span class="name">age</span> is a functional data property.
+Individuals participate in at most one <span class="name">wife</span>
+relationship
+and no individual is its own <span class="name">wife</span>,
+so <span class="name">wife</span> is functional, and inverse
+functional, and irreflexive.
+(It is also possible to specify that a property is reflexive, but this
+is not commonly done because the property is then reflexive for
+<em>all</em> individuals.)
+As well, <span class="name">wife</span> is asymmetric.
+Note that we have added more information about several properties. It
+is perfectly acceptable in OWL to have information about a property
+(or class, or individual) occur in several places.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+ObjectProperty: f:hasHusband inverseOf: f:hasWife <br />
+ObjectProperty: f:hasChild domain: f:Person range f:Person <br />
+ObjectProperty: f:hasSon SubPropertyOf: f:hasChild <br />
+ObjectProperty: f:hasDaughter  SubPropertyOf: f:hasChild <br />
+DisjointObjectProperties: f:hasSon f:hasDaughter <br />
+FunctionalDataProperty: f:hasAge <br />
+FunctionalDataProperty: f:hasWife <br />
+InverseFunctionalDataProperty: f:hasWife <br />
+IrreflexiveFunctionalDataProperty: f:hasWife <br />
+AsymmetricFunctionalDataProperty: f:hasWife
+</dd>
+</dl>
+
+<p>What we have said about families and about our particular
+family has a
+number of consequences. For example, because <span class="name">husband</span>
+is the inverse of
+<span class="name">wife</span>, <span class="name">Mary</span>'s <span class="name">husband</span>
+is
+<span class="name">John</span>.
+Complete OWL reasoning tools can efficiently determine whether a
+particular consequence follows from the information available.
+</p>
+<h3>3.3 Information About Classes</h3>
+<p>
+So far we have written down quite a bit of information about familial
+properties, but all we have about the familial classes is that there
+are
+people.
+OWL has a rich language for defining classes.
+So we might have classes for men, women, and parents, each of which is
+a specialization of <span class="name">Person</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:Man SubClassOf: f:Person <br />
+Class: f:Woman SubClassOf: f:Person <br />
+Class: f:Parent SubClassOf: f:Person
+</dd>
+</dl>
+<p>We can do much more in OWL with classes than just provide
+generalizations for them. OWL can provide partial or complete
+information about
+what is required to belong to a class.
+(The constructs used to provide information about classes are called
+<em>descriptions</em> in OWL.)
+For example, saying that people have exactly one <span class="name">age</span>
+and
+exactly one <span class="name">gender</span> that is either <span class="name">male</span>
+or <span class="name">female</span>
+provides (partial) information about people.
+Not only saying that every individual that belongs
+to <span class="name">Man</span> also belongs to <span class="name">Person</span>,
+but also saying
+that every <span class="name">Person</span> that has <span class="name">gender</span>
+<span class="name">male</span> belongs to <span class="name">man</span>,
+and similarly for
+<span class="name">Woman</span>, provides complete information about
+what it takes to
+belong to these two classes.
+We can also say that every <span class="name">Person</span> that has at
+least one <span class="name">child</span> that
+is a <span class="name">Person</span> belongs to <span class="name">Parent</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:Person SubClassOf: f:hasAge EXACTLY 1 AND
+                              f:hasGender EXACTLY 1 AND
+			      f:hasGender ALL { f:male f:female } <br />
+Class: f:Man EquivalentTo: f:Person AND f:hasGender VALUE f:male <br />
+Class: f:Woman EquivalentTo: f:Person AND f:hasGender VALUE f:female <br />
+Class: f:Parent EquivalentTo: f:Person AND f:hasChild MIN 1 f:Parent
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+SubClassOf(f:Person 
+    ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
+                         ObjectExactCardinality(1 f:hasGender) 
+			 ObjectAllValuesFrom(f:hasGender ObjectOneOf(f:male f:female)))) <br />
+EquivalentClasses(f:Man 
+    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:male))) <br />
+EquivalentClasses(f:Woman
+    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:female))) <br />
+EquivalentClasses(f:Parent
+    ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild)))
+</dd>
+</dl>
+<p>Complete definitions enable many consequences in OWL. For
+example, from the above <span class="name">John</span> belongs to
+<span class="name">Man</span> and <span class="name">Parent</span>. Some
+of the consequences can
+surprise users, so some OWL tools provide (rudimentary) facilities for
+showing how a consequence was determined.
+</p>
+<p>
+In OWL, descriptions can be used just about anywhere a class name can
+be
+used.
+So, for example, we could provide more information about the
+<span class="name">wife</span>,
+<span class="name">son</span>, and <span class="name">daughter</span>
+properties by given them more
+specific domains and ranges.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+ObjectProperty: f:hasWife domain: f:Man range: f:Woman <br />
+ObjectProperty: f:hasSon domain: f:Parent range: Person AND
+f:hasGender f:male <br />
+ObjectProperty: f:hasDaughter domain: f:Parent range: Person AND
+f:hasGender f:female <br />
+</dd>
+</dl>
+<p>In this case, we could just as well have used <span class="name">Man</span>
+and
+<span class="name">Woman</span> for the ranges of <span class="name">son</span>
+and
+<span class="name">daughter</span>. This would provide exactly the same
+information
+to OWL, and OWL reasoners can determine this.
+</p>
+<p>
+It may seem that there is a circularity in defining <span class="name">Parent</span>
+as people with at least one <span class="name">child</span> and also
+making it be the
+domain of <span class="name">child</span>. In OWL, however, there is no
+problem.
+The two bits of information are simply different ways of saying the
+same
+thing.
+</p>
+<h3>3.4 Data Ranges</h3>
+<p>
+OWL can also represent information about certain groupings of data
+values, called <em>data ranges</em>.
+For example, we might have <span class="name">Teenager</span> as those
+people whose
+<span class="name">age</span> is at least <span class="name">13</span>
+but less than
+<span class="name">20</span>, <span class="name">Adult</span> as those
+people whose
+<span class="name">age</span> is at least <span class="name">21</span>,
+and <span class="name">Child</span> as
+those people whose <span class="name">age</span> is in the complement
+of adult ages.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: Teenager SubClassOf: Person AND hasAge SOME xsd:integer
+&ge; "13"^^xsd:integer &lt; "20"^^xsd:integer <br />
+Class: Adult SubClassOf: Person AND hasAge SOME xsd:integer
+&ge; "21"^^xsd:integer <br />
+Class: Child SubClassOf: Person AND NOT ( hasAge SOME xsd:integer
+&ge; "21"^^xsd:integer )
+</dd>
+</dl>
+<p>From this, <span class="name">Bill</span> belongs to <span class="name">Teenager</span>,
+but not
+<span class="name">Adult</span>.
+Both <span class="name">John</span> and <span class="name">Mary</span>
+belong to
+<span class="name">Adult</span>, but not to <span class="name">Teenage</span>.
+<span class="name">Mary</span> belongs to neither <span class="name">Adult</span>
+nor to
+<span class="name">Teenage</span>. </p>
+<p>
+OWL uses primitive datatypes taken from XML Schema datatypes
+[<a href="#ref-xml-schema-datatypes">XML Schema Datatypes</a>], e.g.,
+<span class="name">xsd:integer</span>, to construct data ranges.
+Other useful datatypes include 
+<span class="name">xsd:string</span> and
+<span class="name">xsd:decimal</span>.
+</p>
+<hr />
+
+<h2><a name="advanced"></a>4 Advanced Notions</h2>
+<p>
+So far we have seen OWL used as little more than a data structuring
+language.  OWL is considerably more expressive than data structuring
+languages, in several useful ways.  Some of this added expressive power
+illustrates the differences between OWL and other formalisms and why we
+have to be understand how OWL is different.
+</p>
+<h3>4.1 Incomplete Information about Data Values</h3>
+<p>
+In the example so far, we knew quite a bit of information.
+We knew, for example, that <span class="name">John</span>'s (only) <span class="name">age</span>
+was 47.
+OWL is designed to deal with incomplete information, so it is quite
+common in OWL not to know, for example, the <span class="name">age</span>s
+of all
+individuals belonging to <span class="name">Person</span>, as just
+below.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+f:Jeff f:hasWife f:Emily <br />
+f:Jeff f:hasChild f:Jack <br />
+f:Jeff f:hasChild f:Ellen <br />
+f:Jeff f:hasAge "77"^^xsd:integer <br />
+</dd>
+</dl>
+<p>It is a consequence of the above that <span class="name">Jeff</span>
+belongs to
+<span class="name">Adult</span> and not to <span class="name">Teenager</span>.
+However, it cannot be determined whether <span class="name">Emily</span>
+or
+<span class="name">Jack</span> belong to <span class="name">Adult</span>
+or <span class="name">Teenager</span>,
+even though they both must have an <span class="name">age</span>.
+</p>
+<p>
+It is also possible to provide partial information about values, as in
+saying that <span class="name">Ellen</span>'s <span class="name">age</span>
+is between 15 and 21, inclusive, 
+that <span class="name">Emily</span>'s <span class="name">age</span> is
+either 39 or 49, or even that
+<span class="name">Jeff<span class="name">'s age is not 53.
+</span></span></p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Individual: f:Ellen f:hasAge SOME ( xsd:integer &ge; "15"^^xsd:integer &le; "21"^^xsd:integer ) <br />
+Individual: f:Emily f:hasAge VALUE { "39"^^xsd:integer "49"^^xsd:integer } <br />
+f:Jeff NOT f:hasAge "53"^^xsd:integer
+</dd>
+</dl>
+<p>From this it is possible to determine that <span class="name">Emily</span>
+belongs to Adult<span class="name">, even though we don't
+know her exact age, but we cannot determine that <span class="name">Ellen</span>
+belongs to either </span>Adult<span class="name"> or
+</span>Teenager<span class="name">.
+On the other hand, we could have a class <span class="name">YoungChild</span>
+that was neither
+</span>Adult<span class="name"> nor </span>Teenager<span class="name">.
+<span class="name">Ellen</span> would then <em>not</em>
+belong to this class.
+</span></p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:YoungChild EquivalentTo: NOT ( f:Teenager OR f:Adult )
+</dd>
+</dl>
+<h3>4.2 Other Incomplete Information</h3>
+<p>
+There are many sources of incompleteness in OWL, some of which may be
+surprising to those not having a logical background.
+For example, although it may seem to be the case that <span class="name">Jeff</span>
+has exactly two children, this is <em>not</em> the case,
+nor is it the case that <span class="name">Jeff</span> has only one
+<span class="name">child</span> that belongs to <span class="name">Man</span>.
+Formally, the following is not a consequence of the above information.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax (non-consequence)</dt>
+<dd>
+Individual: f:Jeff f:Person AND f:hasChild EXACTLY 2 <br />
+Individual: f:Jeff f:Person AND f:hasChild MAX 1 f:Man
+</dd>
+<dt>Functional-Style Syntax (non-consequence)</dt>
+<dd></dd>
+<dt>RDF/XML Syntax (non-consequence)</dt>
+<dd></dd>
+</dl>
+<p>These do not follow because there is nothing saying that <span class="name">Jack</span>
+and <span class="name">Ellen</span> are the only children of
+<span class="name">Jeff</span>, and OWL does not make any assumptions
+that something
+that has not been said is not true.
+It is possible to state that <span class="name">Jeff</span> has no
+other children,
+and this can be done in a number of ways.
+One way that is often used for this purpose is to directly say that
+<span class="name">Jeff</span> has exactly 2 children, which should
+certainly be
+adequate to infer that <span class="name">Jeff</span> has exactly 2
+children
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Individual: f:Jeff f:hasChild EXACTLY 2
+</dd>
+</dl>
+<h3>4.3 Same and Different Individuals</h3>
+<p>
+However, even this is not adequate to infer that <span class="name">Jeff</span>
+has only one
+<span class="name">child</span> that belongs to <span class="name">Man</span>.
+We have not stated that <span class="name">Jack</span> and <span class="name">Ellen</span>
+are different people, and
+there is nothing said so far that implies that they are not the same.
+Again OWL does <em>not</em> make the assumption that
+different names are
+names for different individuals.
+(This "unique names assumption" is particularly dangerous in the
+Semantic Web, where names may be coined by different organizations at
+different times unknowingly referring to the same individual.)
+If <span class="name">Jack</span> and <span class="name">Ellen</span> <em>are</em>
+the same, then
+there could be another <span class="name">child</span> of <span class="name">John</span>,
+and this
+child could belong to <span class="name">Man</span>.
+</p>
+<p>
+One might think that <span class="name">Jack</span> and <span class="name">Ellen</span>
+are
+different because they have different <span class="name">gender</span>s,
+and people have exactly one <span class="name">gender</span>.
+Unfortunately, we have
+not stated that <span class="name">male</span> and <span class="name">female</span>
+are different.
+We could just state that <span class="name">male</span> and <span class="name">female</span>
+are
+different, and have this imply that <span class="name">Jack</span> and
+<span class="name">Ellen</span> are different, but let's add in a
+reasonable
+collection of information about which names are different.
+Note that we don't really have to do this for <span class="name">John</span>'s
+family as
+their different ages imply that they are all different.
+Similarly the wifes and their husbands were already known to be
+different, because we already stated that <span class="name">wife</span>
+is irreflexive.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+DifferentIndividuals: f:John f:Mary f:Bill f:Bill f:Susan <br />
+DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
+DifferentIndividuals: f:male f:female
+</dd>
+</dl>
+<p>It is also possible to state that two names refer to (denote)
+the same
+individual. For example, we can say that <span class="name">John</span>
+and <span class="name">Jack</span> are the same individual.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+SameIndividual: f:John f:Jack
+</dd>
+</dl>
+<h3>4.4 Disjointness of Classes</h3>
+<p>
+From the above we can conclude that <span class="name">Man</span> and <span class="name">Woman</span>
+are disjoint,
+i.e., that they can never have individuals belonging to both of them,
+because every <span class="name">Person</span> has exactly one <span class="name">gender</span>
+and individuals that belong to <span class="name">Man</span> have a
+different <span class="name">gender</span> (<span class="name">male</span>)
+from those that belong to <span class="name">Woman</span> (<span class="name">female</span>).
+Hoever, we can also use OWL to state that classes are disjoint.
+This is most often done for classes that lack complete conditions for
+belonging to the class. (These classes are called <em>primitive</em>
+classes.)
+So, for example, for <span class="name">ReligiousMarriage</span> and
+<span class="name">CivilMarriage</span>, we have to directly state their
+disjointness, and here we also say that <span class="name">Marriage</span> is the
+union of the two.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
+Class: f:Marriage EquivalentTo: f:ReligiousMarriage OR f:CivilMarriage
+</dd>
+</dl>
+
+<p>
+As it is common to have this situation of a class that is the union of a
+number of disjoint classes, 
+OWL provides a shorthand method for saying this all at once.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage
+</dd>
+</dl>
+
+<h3>4.5 More Information About Properties</h3>
+<p>
+In OWL we can have transitive properties, i.e., properties like
+<span class="name">ancestor</span>, which also is a generalization of
+the inverse of
+the <span class="name">child</span> property, and is also irreflexive.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+TransitiveObjectProperty: f:hasAncestor <br />
+IrreflexiveObjectProperty: f:hasAncestor <br />
+ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
+</dd>
+</dl>
+<p>From the above information,
+we can now conclude that <span class="name">Bill</span> has <span class="name">Jeff</span>
+as an
+<span class="name">ancestor</span>, and that <span class="name">Bill</span>
+is not his own <span class="name">ancestor</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax (consequence)</dt>
+<dd>
+f:Bill f:hasAncestor f:Jeff <br />
+f:Bill NOT f:hasAncestor f:Bill
+</dd>
+<dt>Functional-Style Syntax (consequence)</dt>
+<dd> </dd>
+<dt>RDF/XML Syntax (consequence)</dt>
+<dd> </dd>
+</dl>
+<p>There are yet other kinds of information that we say provide
+for
+properties.
+We can have a <span class="name">spouse</span> property as a symmetric
+and
+irreflexive generalization of <span class="name">wife</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+SymmetricObjectProperty: f:hasSpouse <br />
+IrreflexiveObjectProperty: f:hasSpouse <br />
+ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse
+</dd>
+</dl>
+<p>Although we haven't directly so stated, we can conclude that
+<span class="name">spouse</span> is also a generalization of <span class="name">husband</span>,
+because <span class="name">spouse</span> is a symmetric generalization
+of the inverse
+of <span class="name">husband</span>.
+</p>
+<p>
+We could enrich our example to include a <span class="name">loves</span>
+property as a
+generalization of the <span class="name">wife</span> property. (Thus
+turning our
+simplied view of familial relationships into an idealistic one as
+well.)
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+ObjectProperty: f:loves domain: f:Person <br />
+ObjectProperty: f:hasWife SubPropertyOf: f:loves
+</dd>
+</dl>
+<p>Because <span class="name">loves</span> is not symmetric, we
+cannot conclude that <span class="name">loves</span> is a
+generalization of <span class="name">husband</span>.
+We have also not specified whether <span class="name">loves</span> is
+reflexive or
+not, so some people may love themselves.
+We could have <span class="name">Narcissist</span>, those people who
+love themselves,
+and add some more information about <span class="name">loves</span>
+relationships&gt;
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Class: f:Narcissist EquivalentTo: f:Person AND f:loves SELF <br />
+f:Jeff f:loves f:Jeff <br />
+Individual: f:Bill NOT f:Narcissist
+</dd>
+</dl>
+<p>From this we can conclude that <span class="name">Jeff</span>
+belongs to
+<span class="name">Narcissist</span> and that, of course, <span class="name">Bill</span>
+does not.
+</p>
+
+<p>
+In OWL we can also say some things about how properties combine, using
+chains of object properties.
+For example, we can say that <span class="name">son</span>s and
+<span class="name">daughter</span>s are the same for both spouses, 
+i.e., the <span class="name">son</span>s and <span class="name">daughter</span>s of an individual
+include those of their <span class="name">spouse</span>.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon <br />
+SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon
+</dd>
+</dl>
+
+<p>
+We can now conclude that <span class="name">Emily</span> has the same 
+<span class="name">son</span>s and <span class="name">daughter</span>s as <span class="name">Jeff</span>:
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax (consequence)</dt>
+<dd>
+f:Emily f:hasChild f:Jack <br />
+f:Emily f:hasChild f:Ellen
+</dd>
+<dt>Functional-Style Syntax (consequence)</dt>
+<dd> </dd>
+<dt>RDF/XML Syntax (consequence)</dt>
+<dd> </dd>
+</dl>
+
+<h3>4.6 Conflicting Information</h3>
+<p>
+It is also possible to provide conflicting information to OWL.
+For example, we could say that <span class="name">John</span> has no
+<span class="name">child</span>ren who belong to <span class="name">Woman</span>,
+which conflicts with <span class="name">John</span> having <span class="name">Susan</span>
+as a <span class="name">daughter</span>.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax (conflict)</dt>
+<dd>
+Individual: f:John f:hasChild MAX 0 f:Woman
+</dd>
+<dt>Functional-Style Syntax (conflict)</dt>
+<dd> </dd>
+<dt>RDF/XML Syntax (conflict)</dt>
+<dd> </dd>
+</dl>
+<p>In the presence of conflicting information, determining
+consequences in
+OWL breaks down, so
+it is generally not a good idea to have conflicting information.
+There is no notion that OWL tools <em>have</em> to reject
+conflicting
+information.
+However, most OWL tools will at least provide some mechanisms to
+identify conflicting
+information and allow users to resolve the conflict. </p>
+<hr />
+
+<h2><a name="ontologies"></a>5 Ontology Management</h2>
+
+<h3>5.1 OWL Ontologies, Documents, and Namespaces</h3>
+
+<p>
+The information we have stated so far falls into two categories.  We
+have stated general information about classes and properties related to
+familial relationships and particular information about two linked
+families.  In OWL general information about a topic is almost
+always gathered into an ontology that is then used by various
+applications.  We can also provide a name for OWL ontologies, which is
+generally the place where the ontology document is placed in the web.
+Particular information about a topic can also be placed in an ontology,
+if it is used by different applications.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Ontology: http://ex.com/owl/families
+</dd>
+</dl>
+
+<p>
+We place OWL ontologies into OWL documents, which are then placed into local
+filesystems or on the World Wide Web.  Aside from containing an OWL
+ontology, OWL documents also contain information about transforming the
+short names used in OWL ontologies (e.g., f:Person) into IRIs, 
+by providing the expansion for prefixes.
+The IRI is then the concatention of the prefix expansion and the
+reference.
+</p>
+
+<p>
+In our example ontology we have used two prefixes, <span class="name">f</span> and
+<span class="name">xsd</span>.   
+The latter prefix has been used in compact names for
+XML Schema datatypes, whose IRIs are fixed by the XML Schema
+recommendation.
+We thus must the standard expansion for <span class="name">xsd</span>, which is 
+<span class="name">http://www.w3.org/2001/XMLSchema#</span>.
+The expansion we pick for our the other prefix will affect the names of
+the classes, properties, and individuals in our ontology, as well as the
+name of the ontology itself.
+If we are going to put the ontology on the web, we should pick an
+expansion that is in some part of the web that we control, both so that
+we are not using someone else's names by accident.
+(Here we use a made-up name that no one controls.)
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Namespace: xsd = http://www.w3.org/2001/XMLSchema# <br />
+Namespace: dc = ?? <br />
+Namespace: f = http://ex.com/owl/families# <br />
+Namespace: g = http://ex2.com/owl/family#
+</dd>
+</dl>
+
+<h3>5.2 Imports</h3>
+
+<p>
+It is also common in OWL to reuse general information in other
+ontologies.
+Instead of requiring the copying of this information, OWL allows the
+importation of the contents of entire ontologies in other ontologies,
+using imports statements, as follows:
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Import: http://ex2.com/owl/family
+</dd>
+</dl>
+
+<p>
+As the Semantic Web and ontology construction is distributed it is
+common for ontologies to use 
+different names for the same concept, property, or individual.
+Several constructs in OWL can be used to state that different names
+refer to the same concept, property, or individual, so, for example, we
+could tie the names used in our ontology to the names used in an
+imported ontology as follows:
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+SameIndividual: f:male g:masculine <br />
+SameIndividual: f:female g:feminine <br />
+EquivalentClasses: f:Adult g:Grownup <br />
+EquivalentObjectProperties: f:hasChild g:child <br />
+EquivalentDataProperties: f:age g:age
+</dd>
+</dl>
+
+<h3>5.3 Annotations</h3>
+
+<p>
+In many cases we want to associate information with parts of our OWL
+ontology.
+OWL uses annotations for this purpose.  An OWL annotation simply
+associates property-value pairs with parts of an ontology.  This
+information is not really part of the logical meaning of an ontology.
+</p>
+
+<p>
+So, for example, we could add author information to one of the facts in
+our ontology and to one of the classes.  Two special annotations, labels
+and comments, have special synax in OWL.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Annotation: dc:author Individual(f:peter) <br />
+Annotation: dc:creationDate "2008-01-10"^^xsd:date <br />
+Comment: "A simple fact about John" <br />
+f:John f:hasWife f:Mary <br />
+Annotation: dc:author Individual(f:peter) <br />
+Annotation: dc:creationDate "2008-01-10"^^xsd:date <br />
+Label: "Person":en <br />
+Label: "Persona":it <br />
+Comment: "The class of people" <br />
+Class: f:Person
+</dd>
+</dl>
+
+<hr />
+
+<h2><a name="remaining">6 Remaining Constructs</a></h2>
+
+<p>
+There are a few other kinds of things that can be said in OWL, but that
+do not fit into this example, including the following:
+</p>
+<ul>
+<li>
+Some other datatype facets from XML Schema datatypes, including 
+<span class="name">xsd:length</span>, <span class="name">xsd:minLength</span>, <span class="name">xsd:maxLength</span>,
+<span class="name">xsd:totalDigits</span>, and <span class="name">xsd:fractionDigits</span>.
+</li>
+<li>
+Data properties in some, all, cardinality (at least, at most, exactly), and value
+constructs.
+</li>
+<li>
+Data properties as subproperties of,
+or equivalent to, or disjoint from other data properties.
+</li>
+</ul>
+
+<p>
+Details on these constructs can be found in the OWL 1.1 Structural
+Specification and Functional Syntax document 
+[<a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a>].
+</p>
+
+<hr />
+
+<h2><a name="species">7 OWL Species</a></h2>
+
+<p>
+As we have seen, reasoning in OWL can be complicated.
+The full story of reasoning in OWL is beyond the scope of this primer,
+but there are some implications of reasoning that deserve treatement
+here.
+</p>
+
+<h3>7.1 OWL Full</h3>
+
+<p>
+If we did not place further restrictions on what we can say in OWL, 
+e.g., classes, properties, and even bits of syntax can be used as
+individuals as in the Semantic Web language RDF, reasoning becomes
+formally undecidable. 
+Nevertheless, there is some utility in being able to do this, so there
+is a mode of using OWL, called OWL Full that allows all this.
+The price, of course, is that reasoning tools are hard to write and are
+necessarily incomplete.
+</p>
+
+<h3>7.2 OWL DL</h3>
+
+<p>
+There are a set of reasonable restrictions, however, that make reasoning
+in OWL decidable, and for which, moreover, there exist effective
+reasoning tools.
+This mode of using OWL is called OWL DL.
+</p>
+
+<p>
+To allow effective reasoning tools, OWL DL limits the kinds of things
+that can be said about certain properties.
+Properties are said to be <em>composite</em> if they or their inverses
+are transitive or have a property chain as a subproperty.
+Properties that are composite or have a composite property as a
+specialization of themselves or their inverses are not allowed to be 
+functional, inverse functional, irreflexive, asymmetric, or disjoint
+with any other property;
+nor are they allowed to participated in cardinality or self conditions.
+As well, there is a complex condition on how object property chains are
+constructed to prevent loops related to object property chains.
+OWL DL tools should recognize whether these conditions are violated in
+an ontology.
+</p>
+
+<p>
+OWL DL allows the same name to be used for any or all of a class, a
+property, and an individual.
+However, the different aspects of this name are not tied to one another,
+so that if, for example, we said, perhaps by accident that
+<span class="name">Person</span> and <span class="name">Man</span> were the same individual, they
+would not also be equivalent classes.
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+SameIndividual: f:Person f:Man
+</dd>
+</dl>
+
+<p>
+The above would not allow the conclusion of:
+</p>
+
+<dl class="tabbed">
+<dt>Manchester Syntax (non-consequence in DL)</dt>
+<dd>
+EquivalentClasses: f:Person f:Man
+</dd>
+<dt>Functional-Style Syntax (non-consequence in DL)</dt>
+<dd></dd>
+<dt>RDF/XML Syntax (non-consequence in DL)</dt>
+<dd></dd>
+</dl>
+
+<p>
+OWL Full is formally stronger than OWL DL in this area (and in a few
+other areas) so in OWL Full this conclusion could be drawn.
+</p>
+
+<h3>7.3 OWL Fragments</h3>
+
+<p>
+Reasoning in OWL DL is still difficult, and can take a very long time in
+the worst case.
+Certain fragments of OWL DL have been identified that guarantee better
+worst-case performance for reasoning.
+The document on OWL Fragments
+[<a href="#ref-owl-1.1-fragments">OWL 1.1 Fragments</a>]
+identifies and chacterizes several of
+these fragments that have been shown to be useful in practice.
+Staying within one of these fragments limits what we can say, but this
+tradeoff can often be desirable when writing large ontologies,
+particularly for important applications.
+</p>
+
+<hr /> 
+
+<h2><a name="next">8 What to Do Next</a></h2>
+
+<p>
+This short primer can only scratch the surface of OWL.
+There are many longer and more involved tutorials on OWL and how to use
+OWL tools that can be found by searching on the Web.
+Reading one of these primers and using a tool to build an OWL ontology
+is probably the best way to learn more about OWL.
+</p>
+
+<p>
+This short primer is also not a normative definition of OWL.
+The normative definition of the OWL syntax as well as informative
+definitions of each OWL construct can be found in the
+OWL 1.1 Structural
+Specification and Functional Syntax document 
+[<a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a>].
+</p>
+
+<p>
+For those interested in more formal documents,
+the formal meaning of OWL can be found in the OWL 1.1 Semantics document 
+[<a href="#ref-owl-1.1-semantics">OWL 1.1 Specification</a>],
+and the mapping between OWL syntax and RDF triples can be found in 
+the OWL 1.1 Mapping to RDF Graphs document 
+[<a href="#ref-owl-1.1-rdf-mapping">OWL 1.1 RDF Mapping</a>].
+</p>
+
+<hr />
+
+<h2><a name="example">9 The Complete Example</a></h2>
+
+<p>
+Here we include the complete example OWL ontology.
+The ontology here is ordered in a commonly-used ordering, with ontology
+information first, followed by information aabout properties, then
+classes, then individuals.
+Extra annotations have been added (NOT YET) to help explain the ontology.
+</p>
+<dl class="tabbed">
+<dt>Manchester Syntax</dt>
+<dd>
+Namespace: xsd = http://www.w3.org/2001/XMLSchema# <br />
+Namespace: f = http://ex.com/owl/families/# <br />
+Namespace: g = http://ex2.com/owl/family.owl# <br />
+
+Ontology: http://ex.com/owl/families/ <br />
+
+Import: http://ex2.com/owl/family.owl <br />
+
+ObjectProperty: f:hasWife domain: f:Person range: f:Person <br />
+ObjectProperty: f:hasWife domain: f:Man range: f:Woman <br />
+FunctionalDataProperty: f:hasWife <br />
+InverseFunctionalDataProperty: f:hasWife <br />
+IrreflexiveFunctionalDataProperty: f:hasWife <br />
+AsymmetricFunctionalDataProperty: f:hasWife <br />
+
+ObjectProperty: f:hasHusband inverseOf: f:hasWife <br />
+
+ObjectProperty: f:hasChild domain: f:Person range f:Person <br />
+ObjectProperty: f:hasSon SubPropertyOf: f:hasChild <br />
+ObjectProperty: f:hasSon domain: f:Person range: f:Person <br />
+ObjectProperty: f:hasSon domain: f:Parent range: Person AND f:hasGender f:male <br />
+ObjectProperty: f:hasDaughter  SubPropertyOf: f:hasChild <br />
+ObjectProperty: f:hasDaughter domain: f:Person range: f:Person <br />
+ObjectProperty: f:hasDaughter domain: f:Parent range: Person AND f:hasGender f:female <br />
+DisjointObjectProperties: f:hasSon f:hasDaughter <br />
+
+SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon <br />
+SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon
+
+TransitiveObjectProperty: f:hasAncestor <br />
+IrreflexiveObjectProperty: f:hasAncestor <br />
+ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
+
+SymmetricObjectProperty: f:hasSpouse <br />
+IrreflexiveObjectProperty: f:hasSpouse <br />
+ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse <br />
+
+ObjectProperty: f:loves domain: f:Person <br />
+ObjectProperty: f:hasWife SubPropertyOf: f:loves <br />
+
+DataProperty: f:hasAge domain: f:Person range: xsd:integer <br />
+FunctionalDataProperty: f:hasAge <br />
+
+Class: f:Person <br />
+Class: f:Person SubClassOf: f:hasAge EXACTLY 1 AND
+                              f:hasGender EXACTLY 1 AND
+			      f:hasGender ALL { f:male f:female } <br />
+Class: f:Man SubClassOf: f:Person <br />
+Class: f:Man EquivalentTo: f:Person AND f:hasGender VALUE f:male <br />
+Class: f:Woman SubClassOf: f:Person <br />
+Class: f:Woman EquivalentTo: f:Person AND f:hasGender VALUE f:female <br />
+Class: f:Parent SubClassOf: f:Person <br />
+Class: f:Parent EquivalentTo: f:Person AND f:hasChild MIN 1 f:Parent <br />
+
+Class: Teenager SubClassOf: Person AND hasAge SOME xsd:integer &ge; "13"^^xsd:integer &lt; "20"^^xsd:integer <br />
+Class: Adult SubClassOf: Person AND hasAge SOME xsd:integer &ge; "21"^^xsd:integer <br />
+Class: Child SubClassOf: Person AND NOT ( hasAge SOME xsd:integer &ge; "21"^^xsd:integer ) <br />
+Class: f:YoungChild EquivalentTo: NOT ( f:Teenager OR f:Adult ) <br />
+
+Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
+Class: f:Marriage EquivalentTo: f:ReligiousMarriage OR f:CivilMarriage <br />
+DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage <br />
+
+Class: f:Narcissist EquivalentTo: f:Person AND f:loves SELF <br />
+
+f:John f:hasWife f:Mary <br />
+f:John f:hasSon f:Bill <br />
+f:Mary f:hasSon f:Bill <br />
+f:John f:hasDaughter f:Susan <br />
+f:Mary f:hasDaughter f:Susan <br />
+f:John f:hasAge "33"^^xsd:integer <br />
+f:Mary f:hasAge "31"^^xsd:integer <br />
+f:Bill f:hasAge "13"^^xsd:integer <br />
+f:Susan f:hasAge "8"^^xsd:integer
+f:John f:hasGender f:male <br />
+f:Mary f:hasGender f:female <br />
+f:Bill f:hasGender f:male <br />
+f:Susan f:hasGender f:female
+
+f:Jeff f:hasWife f:Emily <br />
+f:Jeff f:hasChild f:Jack <br />
+f:Jeff f:hasChild f:Ellen <br />
+f:Jeff f:hasAge "77"^^xsd:integer <br />
+Individual: f:Ellen f:hasAge SOME xsd:integer &ge;
+"15"^^xsd:integer &le; "21"^^xsd:integer <br />
+Individual: f:Emily f:hasAge VALUE { "39"^^xsd:integer &le;
+"49"^^xsd:integer } <br />
+f:Jeff NOT f:hasAge "53"^^xsd:integer
+Individual: f:Jeff f:hasChild EXACTLY 2
+
+DifferentIndividuals: f:John f:Mary f:Bill f:Bill f:Susan <br />
+DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
+DifferentIndividuals: f:male f:female
+
+f:Jeff f:loves f:Jeff <br />
+Individual: f:Bill NOT f:Narcissist
+
+SameIndividual: f:John f:Jack <br />
+
+SameIndividual: f:male g:masculine <br />
+SameIndividual: f:female g:feminine <br />
+EquivalentClasses: f:Adult g:Grownup <br />
+EquivalentObjectProperties: f:hasChild g:child <br />
+EquivalentDataProperties: f:age g:age <br />
+
+</dd>
+<dt>Functional-Style Syntax</dt>
+<dd>
+ObjectPropertyDomain(f:hasWife f:Person)<br />
+ObjectPropertyRange(f:hasWife f:Person)<br />
+ObjectPropertyDomain(f:hasSon f:Person)<br />
+ObjectPropertyRange(f:hasSon f:Person)<br />
+ObjectPropertyDomain(f:hasDaughter f:Person)<br />
+ObjectPropertyRange(f:hasDaughter f:Person)<br />
+DataPropertyDomain(f:hasAge f:Person)<br />
+DataPropertyRange(f:hasAge xsd:integer)
+SubClassOf(f:Person 
+    ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
+                         ObjectExactCardinality(1 f:hasGender) 
+			 ObjectAllValuesFrom(f:hasGender ObjectOneOf(f:male f:female)))) <br />
+EquivalentClasses(f:Man 
+    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:male))) <br />
+EquivalentClasses(f:Woman
+    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:female))) <br />
+EquivalentClasses(f:Parent
+    ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild)))
+
+ObjectPropertyAssertion(f:John f:hasWife f:Mary) <br />
+ObjectPropertyAssertion(f:John f:hasSon f:Bill) <br />
+ObjectPropertyAssertion(f:Mary f:hasSon f:Bill) <br />
+ObjectPropertyAssertion(f:John f:hasDaughter f:Susan) <br />
+ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
+DataPropertyAssertion(f:John f:hasAge "33"^^xsd:integer) <br />
+DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
+DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
+DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
+</dd>
+<dt>RDF/XML Syntax</dt>
+<dd>
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
+&nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">33&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13&lt;/f:hasage><br />
+&lt;/rdf:Description><br />
+&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
+&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
+&lt;/rdf:Description>
+</dd>
+</dl>
+
+<hr />
+
+
+<h2><a name="references"></a>References</h2>
+
+<dl>
+<dt><a id="ref-owl-1.1-fragments">[OWL 1.1 Fragments]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/2007/OWL/wiki/Tractable_Fragments">OWL
+1.1 Web Ontology Language: Tractable Fragments</a></cite>.
+Bernardo Cuenca Grau, 2007.
+</dd>
+
+<dt><a id="ref-owl-1.1-rdf-mapping">[OWL 1.1 RDF Mapping]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/2007/OWL/wiki/Mapping_to_RDF_Graphs">OWL
+1.1 Web Ontology Language: Mapping to RDF Graphs</a></cite>.
+Bernardo Cuenca Grau and Boris Motik, 2007.
+</dd>
+
+<dt><a id="ref-owl-1.1-semantics">[OWL 1.1 Semantics]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/2007/OWL/wiki/Semantics">OWL
+1.1 Web Ontology Language: Model-Theoretic Semantics</a></cite>.
+Bernardo Cuenca Grau and Boris Motik, 2007.
+</dd>
+
+<dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/2007/OWL/wiki/Syntax">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
+Peter F. Patel-Schneider, Ian Horrocks, and Boris Motik, 2007.
+</dd>
+
+<dt><a id="ref-xml-schema-datatypes">[XML Schema Datatypes]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/TR/xmlschema-2/">XML Schema Part 2: Datatypes Second Edition</a></cite>.
+Paul V. Biron and Ashok Malhotra, eds.
+W3C Recommendation 28 October 2004.
+</dd>
+</dl>
+<hr />
+
+</body>
+</html>

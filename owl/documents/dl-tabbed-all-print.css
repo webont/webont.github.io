@@ -1,0 +1,64 @@
+dl.tabbed{
+ position: relative;
+/* width: 600px; */
+ }
+ dl.tabbed dt.dltab-active, dl.tabbed dt a, dl.tabbed div{
+ color: #000;
+ background: #EEF;
+ border: 1px solid #999;  
+ }
+dl.tabbed div{
+ position: relative;
+ top: -2px;
+/* height: 270px; */
+ overflow: auto;
+/* padding: 10px; */
+ padding: 3px;
+ margin: 0;
+ }
+dl.tabbed dt{
+ display: inline;
+ white-space: nowrap;
+ padding:  0;
+ margin: 0 3px 0 0;
+ font-weight: bold;
+ }
+
+@media screen{ 
+dl.tabbed dt.dltab-active{
+ position: relative;
+ z-index: 5;
+ color: #F33;
+ background: #EEF;
+ padding: 0 .6em;
+ border-bottom: 1px solid #EEF;
+ }
+dl.tabbed dt a{
+ color: #333;
+ background: #CCC;
+ text-decoration: none;
+ white-space: nowrap;
+ margin: 0;
+ padding: 0 .6em;
+ }
+}
+@media print{ 
+dl.tabbed div{display: none;}
+}
+/*dl.tabbed dt.dltab-active{
+ display: inline;
+ white-space: nowrap;
+ padding:  0;
+ margin: 0 3px 0 0;
+ font-weight: bold;
+ }
+dl.tabbed dt a{
+  display: none;*/
+  }
+}
+dl.tabbed dt a:hover{
+/* hover over a non-displayed dt tab */
+ color: #933;
+ background: #FFF;
+ text-decoration: none;
+ }
