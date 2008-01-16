@@ -7,9 +7,64 @@
 <title>OWL 1.1 Primer</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+
 <link rel="shortcut icon" href="http://webont.org/owl/1.1/images/owl-icon.png" />
-<link rel="stylesheet" type="text/css" href="dl-tabbed.css" />
-<script type="text/javascript" src="dl-tabbed.js" />
+
+<script type="text/javascript">
+
+/*
+	Written by Jonathan Snook, http://www.snook.ca/jonathan
+	Add-ons by Robert Nyman, http://www.robertnyman.com
+	Author says "The credit comment is all it takes, no license. Go crazy with it!:-)"
+	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
+*/
+function getElementsByClassName(oElm, strTagName, oClassNames){
+	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	var arrRegExpClassNames = new Array();
+	if(typeof oClassNames == "object"){
+		for(var i=0; i<oClassNames.length; i++){ /*>*/
+			arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)"));
+		}
+	}
+	else{
+		arrRegExpClassNames.push(new RegExp("(^|\\s)" + oClassNames.replace(/\-/g, "\\-") + "(\\s|$)"));
+	}
+	var oElement;
+	var bMatchesAll;
+	for(var j=0; j<arrElements.length; j++){ /*>*/
+		oElement = arrElements[j];
+		bMatchesAll = true;
+		for(var k=0; k<arrRegExpClassNames.length; k++){ /*>*/
+			if(!arrRegExpClassNames[k].test(oElement.className)){
+				bMatchesAll = false;
+				break;
+			}
+		}
+		if(bMatchesAll){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+function set_display_by_class(el, cls, newValue) {
+   var e = getElementsByClassName(document, el, cls);
+   if (e != null) {
+      for (var i=0; i<e.length; i++) {
+        e[i].style.display = newValue;
+      }
+   }
+}
+
+function set_display_by_id(id, newValue) {
+   var e = document.getElementById(id);
+   if (e != null) {
+     e.style.display = newValue;
+   }
+}
+
+</script>
 
 </head>
 
@@ -24,8 +79,8 @@ Primer</h1>
 
 <h2>
 <a id="editordraft" name="editordraft">
-</a>Editors'
-Draft of 10 January 2008</h2>
+</a>Experimental
+Draft of 14 January 2008</h2>
 <dl>
 <dt>Latest version: </dt>
 <dd>TODAY</dd>
@@ -34,6 +89,7 @@ Draft of 10 January 2008</h2>
 <dt>Editors:</dt>
 <dd>Bijan Parsia, Peter F. Patel-Schneider</dd>
 </dl>
+
 <p class="copyright">
 Copyright &copy; 2008 by the Editors. 
 </p>
@@ -125,6 +181,7 @@ ontologies and how extra non-logical information is associated with
 parts of an ontology. Finally, the primer describes the various
 sublanguages of OWL, and what is gained and lost by using them.
 </p>
+
 <hr />
 <h2><a name="2"></a>2 Orientation</h2>
 <p>OWL
@@ -276,6 +333,39 @@ be easier for reasoning tools to use.
 There are tools that can translate
 between the different syntaxs for OWL.
 </p>
+<p>
+This primer uses three different syntaxes,
+by default the Manchester syntax is the only one shown; the buttons
+below can be used to show or hide all three syntaxes.
+(Currently some examples only have the Manchester syntax.)
+</p>
+<form>
+<input id="hide-ms" type="button" value="Hide Manchester Syntax" 
+  onclick="set_display_by_id('hide-ms', 'none'); 
+     set_display_by_id('show-ms', '');
+     set_display_by_class('p','manchester', 'none');" />
+<input id="show-ms" type="button" value="Show Manchester Syntax" style="display:none"
+  onclick="set_display_by_id('hide-ms', ''); 
+     set_display_by_id('show-ms', 'none');
+     set_display_by_class('p','manchester', '');" />
+<input id="hide-fs" type="button" value="Hide Functional Syntax" style="display:none"
+  onclick="set_display_by_class('p','functional', 'none');
+     set_display_by_id('hide-fs', 'none'); 
+     set_display_by_id('show-fs', '');" />
+<input id="show-fs" type="button" value="Show Functional Syntax" 
+  onclick="set_display_by_class('p','functional', 'block');
+     set_display_by_id('hide-fs', ''); 
+     set_display_by_id('show-fs', 'none');" />
+<input id="hide-rs" type="button" value="Hide RDF/XML Syntax" style="display:none"
+  onclick="set_display_by_class('p','rdfxml', 'none');
+     set_display_by_id('hide-rs', 'none'); 
+     set_display_by_id('show-rs', '');" />
+<input id="show-rs" type="button" value="Show RDF/XML Syntax"
+  onclick="set_display_by_class('p','rdfxml', 'block');
+     set_display_by_id('hide-rs', ''); 
+     set_display_by_id('show-rs', 'none');" />
+</form>
+
 <h3>3.1 Simple Information about Individuals</h3>
 <p>
 Suppose we want to represent information about a particular family.
@@ -293,33 +383,41 @@ as
 follows.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-f:John f:hasWife f:Mary <br />
-f:John f:hasSon f:Bill <br />
-f:Mary f:hasSon f:Bill <br />
-f:John f:hasDaughter f:Susan <br />
-f:Mary f:hasDaughter f:Susan <br />
-f:John f:hasAge "33"^^xsd:integer <br />
-f:Mary f:hasAge "31"^^xsd:integer <br />
-f:Bill f:hasAge "13"^^xsd:integer <br />
-f:Susan f:hasAge "8"^^xsd:integer
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:John<br />
+  Facts: f:hasWife f:Mary,<br />
+	 f:hasSon f:Bill,<br />
+	 f:hasDaughter f:Susan,<br />
+	 f:hasAge 33<br />
+Individual: f:Mary<br />
+  Facts: f:hasSon  f:Bill,<br />
+	 f:hasDaughter f:Susan,<br />
+	 f:hasAge  31<br />
+Individual: f:Bill<br />
+  Facts: f:hasAge  13<br />
+Individual: f:Susan<br />
+  Facts: f:hasAge  8
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 ObjectPropertyAssertion(f:John f:hasWife f:Mary) <br />
 ObjectPropertyAssertion(f:John f:hasSon f:Bill) <br />
-ObjectPropertyAssertion(f:Mary f:hasSon f:Bill) <br />
 ObjectPropertyAssertion(f:John f:hasDaughter f:Susan) <br />
-ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
 DataPropertyAssertion(f:John f:hasAge "33"^^xsd:integer) <br />
+ObjectPropertyAssertion(f:Mary f:hasSon f:Bill) <br />
+ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
 DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
 DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
 DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
-</dd>
-<dt>RDF/XML Syntax</dt>
-<dd>
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
 &nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
 &nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
@@ -337,31 +435,35 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
 &lt;/rdf:Description>
-</dd>
-</dl>
+</code>
+</p>
 
 <p>We could also write down information about the sex of people
 by
 providing them with a <span class="name">gender</span>, which is
 either <span class="name">male</span> or <span class="name">female</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-f:John f:hasGender f:male <br />
-f:Mary f:hasGender f:female <br />
-f:Bill f:hasGender f:male <br />
-f:Susan f:hasGender f:female
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:John Facts: f:hasGender f:male <br />
+Individual: f:Mary Facts: f:hasGender f:female <br />
+Individual: f:John Facts: f:hasGender f:male <br />
+Individual: f:Suan Facts: f:hasGender f:female
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 ObjectPropertyAssertion(f:John f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Mary f:hasGender f:female) <br />
 ObjectPropertyAssertion(f:Bill f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Susan f:hasGender f:female)
-</dd>
-<dt>RDF/XML Syntax</dt>
-<dd>
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
 &nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#male" /><br />
 &lt;/rdf:Description><br />
@@ -374,8 +476,9 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
 &nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
 &lt;/rdf:Description>
-</dd>
-</dl>
+</code>
+</p>
+
 <p>However, all we have done so far is written down the basic
 facts about a
 particular family. Although OWL can be used for this purpose, it is not
@@ -399,17 +502,19 @@ as are both <span class="name">son</span> and <span class="name">daughter</span>
 to an
 integer.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Class: f:Person <br />
-ObjectProperty: f:hasWife domain: f:Person range: f:Person <br />
-ObjectProperty: f:hasSon domain: f:Person range: f:Person <br />
-ObjectProperty: f:hasDaughter domain: f:Person range: f:Person <br />
-DataProperty: f:hasAge domain: f:Person range: xsd:integer
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+ObjectProperty: f:hasWife Domain: f:Person Range: f:Person <br />
+ObjectProperty: f:hasSon Domain: f:Person Range: f:Person <br />
+ObjectProperty: f:hasDaughter Domain: f:Person Range: f:Person <br />
+DataProperty: f:hasAge Domain: f:Person Range: integer
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 SubClassOf(f:Person owl:Thing)<br />
 ObjectPropertyDomain(f:hasWife f:Person)<br />
 ObjectPropertyRange(f:hasWife f:Person)<br />
@@ -419,9 +524,11 @@ ObjectPropertyDomain(f:hasDaughter f:Person)<br />
 ObjectPropertyRange(f:hasDaughter f:Person)<br />
 DataPropertyDomain(f:hasAge f:Person)<br />
 DataPropertyRange(f:hasAge xsd:integer)
-</dd>
-<dt>RDF/XML Syntax</dt>
-<dd>
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 &lt;owl:Class rdf:about="http://ex.com/owl/families#Person" /><br />
 &lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasWife"><br />
 &nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
@@ -439,8 +546,8 @@ DataPropertyRange(f:hasAge xsd:integer)
 &nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
 &nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" /><br />
 &lt;/owl:ObjectProperty>
-</dd>
-</dl>
+</code>
+</p>
 
 <p>From this information we can conclude that <span class="name">John</span>
 belongs to
@@ -450,20 +557,24 @@ has a
 <span class="name">wife</span>.
 We can also directly state that an individual belongs to a class.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Individual: f:John f:Person
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:John Types: f:Person
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 ClassAssertion(f:John f:Person)
-</dd>
-<dt>RDF/XML Syntax</dt>
-<dd>
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 &lt;f:Person rdf:about="http://ex.com/owl/families#John" /><br />
-</dd>
-</dl>
+</code>
+</p>
 <p>There is more that can be said even about just this little
 part of
 familial relationships.
@@ -491,21 +602,19 @@ Note that we have added more information about several properties. It
 is perfectly acceptable in OWL to have information about a property
 (or class, or individual) occur in several places.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-ObjectProperty: f:hasHusband inverseOf: f:hasWife <br />
-ObjectProperty: f:hasChild domain: f:Person range f:Person <br />
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:hasHusband Inverses: f:hasWife <br />
+ObjectProperty: f:hasChild Domain: f:Person range f:Person <br />
 ObjectProperty: f:hasSon SubPropertyOf: f:hasChild <br />
-ObjectProperty: f:hasDaughter  SubPropertyOf: f:hasChild <br />
+ObjectProperty: f:hasDaughter SubPropertyOf: f:hasChild <br />
 DisjointObjectProperties: f:hasSon f:hasDaughter <br />
-FunctionalDataProperty: f:hasAge <br />
-FunctionalDataProperty: f:hasWife <br />
-InverseFunctionalDataProperty: f:hasWife <br />
-IrreflexiveFunctionalDataProperty: f:hasWife <br />
-AsymmetricFunctionalDataProperty: f:hasWife
-</dd>
-</dl>
+DataProperty: f:hasAge Characteristics: Functional <br />
+ObjectProperty: f:hasWife Characteristics: Functional, Inverse Functional, Irreflexive, AntiSymmetric
+</code>
+</p>
 
 <p>What we have said about families and about our particular
 family has a
@@ -527,14 +636,16 @@ OWL has a rich language for defining classes.
 So we might have classes for men, women, and parents, each of which is
 a specialization of <span class="name">Person</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Class: f:Man SubClassOf: f:Person <br />
 Class: f:Woman SubClassOf: f:Person <br />
 Class: f:Parent SubClassOf: f:Person
-</dd>
-</dl>
+</code>
+</p>
+
 <p>We can do much more in OWL with classes than just provide
 generalizations for them. OWL can provide partial or complete
 information about
@@ -559,18 +670,22 @@ We can also say that every <span class="name">Person</span> that has at
 least one <span class="name">child</span> that
 is a <span class="name">Person</span> belongs to <span class="name">Parent</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Class: f:Person SubClassOf: f:hasAge EXACTLY 1 AND
-                              f:hasGender EXACTLY 1 AND
-			      f:hasGender ALL { f:male f:female } <br />
-Class: f:Man EquivalentTo: f:Person AND f:hasGender VALUE f:male <br />
-Class: f:Woman EquivalentTo: f:Person AND f:hasGender VALUE f:female <br />
-Class: f:Parent EquivalentTo: f:Person AND f:hasChild MIN 1 f:Parent
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:hasGender <br />
+Class: f:Person SubClassOf: f:hasAge exactly 1 integer and 
+  f:hasGender exactly 1 owl:Thing and
+  f:hasGender only ({f:female , f:male}) <br />
+Class: f:Man EquivalentTo: f:Person and f:hasGender value f:male <br />
+Class: f:Woman EquivalentTo: f:Person and f:hasGender value f:female <br />
+Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 SubClassOf(f:Person 
     ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
                          ObjectExactCardinality(1 f:hasGender) 
@@ -581,8 +696,9 @@ EquivalentClasses(f:Woman
     ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:female))) <br />
 EquivalentClasses(f:Parent
     ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild)))
-</dd>
-</dl>
+</code>
+</p>
+
 <p>Complete definitions enable many consequences in OWL. For
 example, from the above <span class="name">John</span> belongs to
 <span class="name">Man</span> and <span class="name">Parent</span>. Some
@@ -600,16 +716,17 @@ So, for example, we could provide more information about the
 properties by given them more
 specific domains and ranges.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-ObjectProperty: f:hasWife domain: f:Man range: f:Woman <br />
-ObjectProperty: f:hasSon domain: f:Parent range: Person AND
-f:hasGender f:male <br />
-ObjectProperty: f:hasDaughter domain: f:Parent range: Person AND
-f:hasGender f:female <br />
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:hasWife Domain: f:Man Range: f:Woman <br />
+ObjectProperty: f:hasSon Domain: f:Parent
+	Range: Person and f:hasGender f:male <br />
+ObjectProperty: f:hasDaughter Domain: f:Parent
+	Range: Person and f:hasGender f:female <br />
+</code>
+</p>
 <p>In this case, we could just as well have used <span class="name">Man</span>
 and
 <span class="name">Woman</span> for the ranges of <span class="name">son</span>
@@ -643,17 +760,15 @@ and <span class="name">Child</span> as
 those people whose <span class="name">age</span> is in the complement
 of adult ages.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Class: Teenager SubClassOf: Person AND hasAge SOME xsd:integer
-&ge; "13"^^xsd:integer &lt; "20"^^xsd:integer <br />
-Class: Adult SubClassOf: Person AND hasAge SOME xsd:integer
-&ge; "21"^^xsd:integer <br />
-Class: Child SubClassOf: Person AND NOT ( hasAge SOME xsd:integer
-&ge; "21"^^xsd:integer )
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Class: Teenager EquivalentClass: Person and hasAge some integer[&gt;= 13 , &lt; 20] <br />
+Class: Adult EquivalentClass: Person and hasAge some integer[&gt;= 21] <br />
+Class: Child EquivalentClass: Person and not ( hasAge some integer[&gt;= 21] ) <br />
+</code>
+</p>
 <p>From this, <span class="name">Bill</span> belongs to <span class="name">Teenager</span>,
 but not
 <span class="name">Adult</span>.
@@ -692,15 +807,17 @@ of all
 individuals belonging to <span class="name">Person</span>, as just
 below.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-f:Jeff f:hasWife f:Emily <br />
-f:Jeff f:hasChild f:Jack <br />
-f:Jeff f:hasChild f:Ellen <br />
-f:Jeff f:hasAge "77"^^xsd:integer <br />
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:Jeff <br />
+Facts: f:hasWife f:Emily, <br />
+       f:hasChild f:Ellen, <br />
+       f:hasChild f:Jack, <br />
+       f:hasAge  77
+</code>
+</p>
 <p>It is a consequence of the above that <span class="name">Jeff</span>
 belongs to
 <span class="name">Adult</span> and not to <span class="name">Teenager</span>.
@@ -716,16 +833,17 @@ saying that <span class="name">Ellen</span>'s <span class="name">age</span>
 is between 15 and 21, inclusive, 
 that <span class="name">Emily</span>'s <span class="name">age</span> is
 either 39 or 49, or even that
-<span class="name">Jeff<span class="name">'s age is not 53.
+<span class="name">Jack<span class="name">'s age is not 53.
 </span></span></p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Individual: f:Ellen f:hasAge SOME ( xsd:integer &ge; "15"^^xsd:integer &le; "21"^^xsd:integer ) <br />
-Individual: f:Emily f:hasAge VALUE { "39"^^xsd:integer "49"^^xsd:integer } <br />
-f:Jeff NOT f:hasAge "53"^^xsd:integer
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:Emily Types: f:hasAge some {39 , 49}  <br />
+Individual: f:Ellen Types: f:hasAge some integer[ &ge; 15, &le; 21 ] <br />
+Individual: f:Jack Facts: not f:hasAge "53"^^integer
+</code>
+</p>
 <p>From this it is possible to determine that <span class="name">Emily</span>
 belongs to Adult<span class="name">, even though we don't
 know her exact age, but we cannot determine that <span class="name">Ellen</span>
@@ -737,12 +855,13 @@ that was neither
 <span class="name">Ellen</span> would then <em>not</em>
 belong to this class.
 </span></p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Class: f:YoungChild EquivalentTo: NOT ( f:Teenager OR f:Adult )
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Class: f:YoungChild EquivalentTo: f:Person and not ( f:Teenager or f:Adult )
+</code>
+</p>
 <h3>4.2 Other Incomplete Information</h3>
 <p>
 There are many sources of incompleteness in OWL, some of which may be
@@ -753,16 +872,21 @@ nor is it the case that <span class="name">Jeff</span> has only one
 <span class="name">child</span> that belongs to <span class="name">Man</span>.
 Formally, the following is not a consequence of the above information.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax (non-consequence)</dt>
-<dd>
-Individual: f:Jeff f:Person AND f:hasChild EXACTLY 2 <br />
-Individual: f:Jeff f:Person AND f:hasChild MAX 1 f:Man
-</dd>
-<dt>Functional-Style Syntax (non-consequence)</dt>
-<dd></dd>
-<dt>RDF/XML Syntax (non-consequence)</dt>
-<dd></dd>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:Jeff f:Person and f:hasChild exactly 2 <br />
+Individual: f:Jeff f:Person and f:hasChild MAX 1 f:Man
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 </dl>
 <p>These do not follow because there is nothing saying that <span class="name">Jack</span>
 and <span class="name">Ellen</span> are the only children of
@@ -778,12 +902,13 @@ certainly be
 adequate to infer that <span class="name">Jeff</span> has exactly 2
 children
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Individual: f:Jeff f:hasChild EXACTLY 2
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:Jeff Types: f:hasChild exactly 2
+</code>
+</p>
 <h3>4.3 Same and Different Individuals</h3>
 <p>
 However, even this is not adequate to infer that <span class="name">Jeff</span>
@@ -825,25 +950,27 @@ Similarly the wifes and their husbands were already known to be
 different, because we already stated that <span class="name">wife</span>
 is irreflexive.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-DifferentIndividuals: f:John f:Mary f:Bill f:Bill f:Susan <br />
-DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
-DifferentIndividuals: f:male f:female
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:John DifferentFrom: f:Mary f:Bill f:Susan <br />
+Individual: f:Jeff DifferentFrom: f:Emily f:Jack f:Ellen f:Susan <br />
+Individual: f:male DifferentFrom: f: female
+</code>
+</p>
 <p>It is also possible to state that two names refer to (denote)
 the same
 individual. For example, we can say that <span class="name">John</span>
 and <span class="name">Jack</span> are the same individual.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-SameIndividual: f:John f:Jack
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Individual: f:John SameAs: f: Jack
+</code>
+</p>
 <h3>4.4 Disjointness of Classes</h3>
 <p>
 From the above we can conclude that <span class="name">Man</span> and <span class="name">Woman</span>
@@ -863,13 +990,13 @@ disjointness, and here we also say that <span class="name">Marriage</span> is th
 union of the two.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
-Class: f:Marriage EquivalentTo: f:ReligiousMarriage OR f:CivilMarriage
-</dd>
-</dl>
+Class: f:Marriage EquivalentTo: f:ReligiousMarriage or f:CivilMarriage
+</code>
+</p>
 
 <p>
 As it is common to have this situation of a class that is the union of a
@@ -877,12 +1004,12 @@ number of disjoint classes,
 OWL provides a shorthand method for saying this all at once.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage
-</dd>
-</dl>
+</code>
+</p>
 
 <h3>4.5 More Information About Properties</h3>
 <p>
@@ -891,30 +1018,35 @@ In OWL we can have transitive properties, i.e., properties like
 the inverse of
 the <span class="name">child</span> property, and is also irreflexive.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-TransitiveObjectProperty: f:hasAncestor <br />
-IrreflexiveObjectProperty: f:hasAncestor <br />
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:hasAncestor Characteristics: Transitive, Irreflexive <br />
 ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
-</dd>
-</dl>
+</code>
+</p>
 <p>From the above information,
 we can now conclude that <span class="name">Bill</span> has <span class="name">Jeff</span>
 as an
 <span class="name">ancestor</span>, and that <span class="name">Bill</span>
 is not his own <span class="name">ancestor</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax (consequence)</dt>
-<dd>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 f:Bill f:hasAncestor f:Jeff <br />
-f:Bill NOT f:hasAncestor f:Bill
-</dd>
-<dt>Functional-Style Syntax (consequence)</dt>
-<dd> </dd>
-<dt>RDF/XML Syntax (consequence)</dt>
-<dd> </dd>
+f:Bill not f:hasAncestor f:Bill
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 </dl>
 <p>There are yet other kinds of information that we say provide
 for
@@ -923,14 +1055,14 @@ We can have a <span class="name">spouse</span> property as a symmetric
 and
 irreflexive generalization of <span class="name">wife</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-SymmetricObjectProperty: f:hasSpouse <br />
-IrreflexiveObjectProperty: f:hasSpouse <br />
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:hasSpouse  Characteristics: Symmetric, Irreflexive <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse
-</dd>
-</dl>
+</code>
+</p>
 <p>Although we haven't directly so stated, we can conclude that
 <span class="name">spouse</span> is also a generalization of <span class="name">husband</span>,
 because <span class="name">spouse</span> is a symmetric generalization
@@ -945,13 +1077,14 @@ turning our
 simplied view of familial relationships into an idealistic one as
 well.)
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-ObjectProperty: f:loves domain: f:Person <br />
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+ObjectProperty: f:loves Domain: f:Person <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:loves
-</dd>
-</dl>
+</code>
+</p>
 <p>Because <span class="name">loves</span> is not symmetric, we
 cannot conclude that <span class="name">loves</span> is a
 generalization of <span class="name">husband</span>.
@@ -963,14 +1096,15 @@ love themselves,
 and add some more information about <span class="name">loves</span>
 relationships&gt;
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Class: f:Narcissist EquivalentTo: f:Person AND f:loves SELF <br />
-f:Jeff f:loves f:Jeff <br />
-Individual: f:Bill NOT f:Narcissist
-</dd>
-</dl>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Class: f:Narcissist EquivalentTo: f:Person and f:loves some Self <br />
+Individual: f:Jeff Facts: f:loves f:Jeff <br />
+Individual: f:Bill Types: not f:Narcissist
+</code>
+</p>
 <p>From this we can conclude that <span class="name">Jeff</span>
 belongs to
 <span class="name">Narcissist</span> and that, of course, <span class="name">Bill</span>
@@ -986,29 +1120,33 @@ i.e., the <span class="name">son</span>s and <span class="name">daughter</span>s
 include those of their <span class="name">spouse</span>.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon <br />
-SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon
-</dd>
-</dl>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon <br />
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
+</code>
+</p>
 
 <p>
 We can now conclude that <span class="name">Emily</span> has the same 
 <span class="name">son</span>s and <span class="name">daughter</span>s as <span class="name">Jeff</span>:
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax (consequence)</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 f:Emily f:hasChild f:Jack <br />
 f:Emily f:hasChild f:Ellen
-</dd>
-<dt>Functional-Style Syntax (consequence)</dt>
-<dd> </dd>
-<dt>RDF/XML Syntax (consequence)</dt>
-<dd> </dd>
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 </dl>
 
 <h3>4.6 Conflicting Information</h3>
@@ -1019,15 +1157,20 @@ For example, we could say that <span class="name">John</span> has no
 which conflicts with <span class="name">John</span> having <span class="name">Susan</span>
 as a <span class="name">daughter</span>.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax (conflict)</dt>
-<dd>
+
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Individual: f:John f:hasChild MAX 0 f:Woman
-</dd>
-<dt>Functional-Style Syntax (conflict)</dt>
-<dd> </dd>
-<dt>RDF/XML Syntax (conflict)</dt>
-<dd> </dd>
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 </dl>
 <p>In the presence of conflicting information, determining
 consequences in
@@ -1057,12 +1200,12 @@ Particular information about a topic can also be placed in an ontology,
 if it is used by different applications.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Ontology: http://ex.com/owl/families
-</dd>
-</dl>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Ontology: <http://ex.com/owl/families>
+</code>
+</p>
 
 <p>
 We place OWL ontologies into OWL documents, which are then placed into local
@@ -1091,15 +1234,17 @@ we are not using someone else's names by accident.
 (Here we use a made-up name that no one controls.)
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Namespace: xsd = http://www.w3.org/2001/XMLSchema# <br />
-Namespace: dc = ?? <br />
-Namespace: f = http://ex.com/owl/families# <br />
-Namespace: g = http://ex2.com/owl/family#
-</dd>
-</dl>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
+Namespace: f = <http://ex.com/owl/families#> <br />
+Namespace: g = <http://ex2.com/owl/family#> <br />
+Namespace: rdf = <http://www.w3.org/1999/02/22-rdf-syntax-ns#> <br />
+Namespace: rdfs = <http://www.w3.org/2000/01/rdf-schema#> <br />
+Namespace: xsd = <http://www.w3.org/2001/XMLSchema#> <br />
+Namespace: dc = ??
+</code>
+</p>
 
 <h3>5.2 Imports</h3>
 
@@ -1111,12 +1256,12 @@ importation of the contents of entire ontologies in other ontologies,
 using imports statements, as follows:
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Import: http://ex2.com/owl/family
-</dd>
-</dl>
+</code>
+</p>
 
 <p>
 As the Semantic Web and ontology construction is distributed it is
@@ -1128,16 +1273,16 @@ could tie the names used in our ontology to the names used in an
 imported ontology as follows:
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 SameIndividual: f:male g:masculine <br />
 SameIndividual: f:female g:feminine <br />
 EquivalentClasses: f:Adult g:Grownup <br />
 EquivalentObjectProperties: f:hasChild g:child <br />
 EquivalentDataProperties: f:age g:age
-</dd>
-</dl>
+</code>
+</p>
 
 <h3>5.3 Annotations</h3>
 
@@ -1155,9 +1300,9 @@ our ontology and to one of the classes.  Two special annotations, labels
 and comments, have special synax in OWL.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 Annotation: dc:author Individual(f:peter) <br />
 Annotation: dc:creationDate "2008-01-10"^^xsd:date <br />
 Comment: "A simple fact about John" <br />
@@ -1168,8 +1313,8 @@ Label: "Person":en <br />
 Label: "Persona":it <br />
 Comment: "The class of people" <br />
 Class: f:Person
-</dd>
-</dl>
+</code>
+</p>
 
 <hr />
 
@@ -1259,26 +1404,30 @@ so that if, for example, we said, perhaps by accident that
 would not also be equivalent classes.
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 SameIndividual: f:Person f:Man
-</dd>
-</dl>
+</code>
+</p>
 
 <p>
 The above would not allow the conclusion of:
 </p>
 
-<dl class="tabbed">
-<dt>Manchester Syntax (non-consequence in DL)</dt>
-<dd>
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code>
 EquivalentClasses: f:Person f:Man
-</dd>
-<dt>Functional-Style Syntax (non-consequence in DL)</dt>
-<dd></dd>
-<dt>RDF/XML Syntax (non-consequence in DL)</dt>
-<dd></dd>
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 </dl>
 
 <p>
@@ -1341,119 +1490,165 @@ Here we include the complete example OWL ontology.
 The ontology here is ordered in a commonly-used ordering, with ontology
 information first, followed by information aabout properties, then
 classes, then individuals.
-Extra annotations have been added (NOT YET) to help explain the ontology.
+Extra annotations have been added (not YET) to help explain the ontology.
 </p>
-<dl class="tabbed">
-<dt>Manchester Syntax</dt>
-<dd>
-Namespace: xsd = http://www.w3.org/2001/XMLSchema# <br />
-Namespace: f = http://ex.com/owl/families/# <br />
-Namespace: g = http://ex2.com/owl/family.owl# <br />
+<p class="manchester">
+<b>Manchester Syntax:</b> <br />
+<code><pre>
 
-Ontology: http://ex.com/owl/families/ <br />
+Namespace: f = &lt;http://ex.com/owl/families#&gt;
+Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
+Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 
-Import: http://ex2.com/owl/family.owl <br />
+Ontology: &lt;http://ex.com/owl/families&gt;
 
-ObjectProperty: f:hasWife domain: f:Person range: f:Person <br />
-ObjectProperty: f:hasWife domain: f:Man range: f:Woman <br />
-FunctionalDataProperty: f:hasWife <br />
-InverseFunctionalDataProperty: f:hasWife <br />
-IrreflexiveFunctionalDataProperty: f:hasWife <br />
-AsymmetricFunctionalDataProperty: f:hasWife <br />
+Import: &lt;http://ex2.com/owl/family.owl&gt;
 
-ObjectProperty: f:hasHusband inverseOf: f:hasWife <br />
+ObjectProperty: f:hasWife
+  Domain: f:Person, f:Man
+  Range: f:Person, f:Woman
+  Characteristics: Functional, Inverse Functional, Irreflexive, AntiSymmetric
+  SubPropertyOf: f:hasSpouse, f:loves
 
-ObjectProperty: f:hasChild domain: f:Person range f:Person <br />
-ObjectProperty: f:hasSon SubPropertyOf: f:hasChild <br />
-ObjectProperty: f:hasSon domain: f:Person range: f:Person <br />
-ObjectProperty: f:hasSon domain: f:Parent range: Person AND f:hasGender f:male <br />
-ObjectProperty: f:hasDaughter  SubPropertyOf: f:hasChild <br />
-ObjectProperty: f:hasDaughter domain: f:Person range: f:Person <br />
-ObjectProperty: f:hasDaughter domain: f:Parent range: Person AND f:hasGender f:female <br />
-DisjointObjectProperties: f:hasSon f:hasDaughter <br />
+ObjectProperty: f:hasHusband
+  Inverses: f:hasWife
 
-SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon <br />
-SubObjectProperty: (f:hasSpouse f:hasSon) f:hasSon
+ObjectProperty: f:hasSon
+  Domain: f:Parent
+  Range: f:Person, f:Person that f:hasGender value f:male
+  SubPropertyOf: f:hasChild
+  DisjointWith: f:hasDaughter
 
-TransitiveObjectProperty: f:hasAncestor <br />
-IrreflexiveObjectProperty: f:hasAncestor <br />
-ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
+ObjectProperty: f:hasDaughter
+  Domain: f:Parent
+  Range: f:Person, f:Person that f:hasGender value f:female
+  SubPropertyOf: f:hasChild
 
-SymmetricObjectProperty: f:hasSpouse <br />
-IrreflexiveObjectProperty: f:hasSpouse <br />
-ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse <br />
+ObjectProperty: f:hasGender
 
-ObjectProperty: f:loves domain: f:Person <br />
-ObjectProperty: f:hasWife SubPropertyOf: f:loves <br />
+ObjectProperty: f:hasChild
+  Domain: f:Person Range: f:Person
+  SubPropertyOf: inverseOf f:hasAncestor
 
-DataProperty: f:hasAge domain: f:Person range: xsd:integer <br />
-FunctionalDataProperty: f:hasAge <br />
+ObjectProperty: f:hasAncestor
+  Characteristics: Transitive, Irreflexive
 
-Class: f:Person <br />
-Class: f:Person SubClassOf: f:hasAge EXACTLY 1 AND
-                              f:hasGender EXACTLY 1 AND
-			      f:hasGender ALL { f:male f:female } <br />
-Class: f:Man SubClassOf: f:Person <br />
-Class: f:Man EquivalentTo: f:Person AND f:hasGender VALUE f:male <br />
-Class: f:Woman SubClassOf: f:Person <br />
-Class: f:Woman EquivalentTo: f:Person AND f:hasGender VALUE f:female <br />
-Class: f:Parent SubClassOf: f:Person <br />
-Class: f:Parent EquivalentTo: f:Person AND f:hasChild MIN 1 f:Parent <br />
+ObjectProperty: f:hasSpouse
+  Characteristics: Symmetric, Irreflexive
 
-Class: Teenager SubClassOf: Person AND hasAge SOME xsd:integer &ge; "13"^^xsd:integer &lt; "20"^^xsd:integer <br />
-Class: Adult SubClassOf: Person AND hasAge SOME xsd:integer &ge; "21"^^xsd:integer <br />
-Class: Child SubClassOf: Person AND NOT ( hasAge SOME xsd:integer &ge; "21"^^xsd:integer ) <br />
-Class: f:YoungChild EquivalentTo: NOT ( f:Teenager OR f:Adult ) <br />
+ObjectProperty: f:loves
+  Domain: f:Person
 
-Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
-Class: f:Marriage EquivalentTo: f:ReligiousMarriage OR f:CivilMarriage <br />
-DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage <br />
+DataProperty: f:hasAge
+  Domain: f:Person Range: integer
+  Characteristics: Functional
 
-Class: f:Narcissist EquivalentTo: f:Person AND f:loves SELF <br />
 
-f:John f:hasWife f:Mary <br />
-f:John f:hasSon f:Bill <br />
-f:Mary f:hasSon f:Bill <br />
-f:John f:hasDaughter f:Susan <br />
-f:Mary f:hasDaughter f:Susan <br />
-f:John f:hasAge "33"^^xsd:integer <br />
-f:Mary f:hasAge "31"^^xsd:integer <br />
-f:Bill f:hasAge "13"^^xsd:integer <br />
-f:Susan f:hasAge "8"^^xsd:integer
-f:John f:hasGender f:male <br />
-f:Mary f:hasGender f:female <br />
-f:Bill f:hasGender f:male <br />
-f:Susan f:hasGender f:female
+Class: f:Person
+  SubClassOf: f:hasGender only ({f:female , f:male})
+	      and f:hasGender exactly 1 f:Person
+	      and f:hasAge exactly 1 integer
 
-f:Jeff f:hasWife f:Emily <br />
-f:Jeff f:hasChild f:Jack <br />
-f:Jeff f:hasChild f:Ellen <br />
-f:Jeff f:hasAge "77"^^xsd:integer <br />
-Individual: f:Ellen f:hasAge SOME xsd:integer &ge;
-"15"^^xsd:integer &le; "21"^^xsd:integer <br />
-Individual: f:Emily f:hasAge VALUE { "39"^^xsd:integer &le;
-"49"^^xsd:integer } <br />
-f:Jeff NOT f:hasAge "53"^^xsd:integer
-Individual: f:Jeff f:hasChild EXACTLY 2
+Class: f:Man
+  SubClassOf: f:Person
+  EquivalentTo: f:Person that f:hasGender value f:male
 
-DifferentIndividuals: f:John f:Mary f:Bill f:Bill f:Susan <br />
-DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
-DifferentIndividuals: f:male f:female
+Class: f:Woman
+  SubClassOf: f:Person
+  EquivalentTo: f:Person that f:hasGender value f:female
 
-f:Jeff f:loves f:Jeff <br />
-Individual: f:Bill NOT f:Narcissist
+Class: f:Parent
+  SubClassOf: f:Person
+  EquivalentTo: f:Person that f:hasChild min 1 f:Person
+  
+Class: f:Teenager
+  EquivalentTo: f:Person that f:hasAge some integer[&gt;= 13 , &lt; 20]
 
-SameIndividual: f:John f:Jack <br />
+Class: f:Adult
+  EquivalentTo: f:Person that f:hasAge some integer[&gt;= 21]
 
-SameIndividual: f:male g:masculine <br />
-SameIndividual: f:female g:feminine <br />
-EquivalentClasses: f:Adult g:Grownup <br />
-EquivalentObjectProperties: f:hasChild g:child <br />
-EquivalentDataProperties: f:age g:age <br />
+Class: f:Child
+  EquivalentTo: f:Person and not (f:hasAge some integer[&gt;= 21])
 
-</dd>
-<dt>Functional-Style Syntax</dt>
-<dd>
+Class: f:YoungChild
+  EquivalentTo: f:Person and not (f:Teenager or f:Adult)
+
+Class: f:Marriage
+  EquivalentTo: f:CivilMarriage or f:ReligiousMarriage
+
+Class: f:ReligiousMarriage
+  DisjointWith: f:CivilMarriage
+
+Class: f:CivilMarriage
+
+Class: f:Narcissist
+  EquivalentTo: f:Person that f:loves some Self
+
+
+Individual: f:male
+  DifferentFrom: f:female
+
+Individual: f:female
+
+Individual: f:John
+  Types: f:Person
+  Facts: f:hasWife f:Mary,
+	 f:hasSon f:Bill,
+	 f:hasDaughter f:Susan,
+	 f:hasAge  33,
+	 f:hasGender f:male
+  SameAs: f:Jack
+  DifferentFrom: f:Mary, f:Susan, f:Bill
+
+Individual: f:Mary
+  Facts: f:hasAge  31,
+	 f:hasDaughter f:Susan,
+	 f:hasSon f:Bill,
+	 f:hasGender f:female
+
+Individual: f:Bill
+  Types: not (f:Narcissist)
+  Facts: f:hasAge  13,
+	 f:hasGender f:male
+
+Individual: f:Susan
+  Facts: f:hasAge 8,
+	 f:hasGender f:female
+
+Individual: f:Jeff
+  Types: f:hasChild exactly 2 owl:Thing
+  Facts: f:loves f:Jeff,
+	 f:hasWife f:Emily,
+	 f:hasChild f:Ellen,
+	 f:hasChild f:Jack,
+	 f:hasAge  77
+  DifferentFrom: f:Ellen, f:Jack, f:Susan, f:Emily
+
+Individual: f:Emily
+  Types: f:hasAge some {39 , 49}
+
+Individual: f:Ellen
+  Types: f:hasAge some integer[&gt;= 15 , &lt;= 21]
+
+Individual: f:Jack
+  Facts: not f:hasAge "53"^^integer
+
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon
+
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
+
+SameIndividual: f:male g:masculine
+SameIndividual: f:female g:feminine
+EquivalentClasses: f:Adult g:Grownup
+EquivalentObjectProperties: f:hasChild g:child
+EquivalentDataProperties: f:age g:age
+
+</pre></code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code>
 ObjectPropertyDomain(f:hasWife f:Person)<br />
 ObjectPropertyRange(f:hasWife f:Person)<br />
 ObjectPropertyDomain(f:hasSon f:Person)<br />
@@ -1482,9 +1677,11 @@ DataPropertyAssertion(f:John f:hasAge "33"^^xsd:integer) <br />
 DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
 DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
 DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
-</dd>
-<dt>RDF/XML Syntax</dt>
-<dd>
+</code>
+</p>
+<p class="rdfxml" style="display:none">
+<b>RDF/XML Syntax:</b> <br />
+<code>
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
 &nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
 &nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
@@ -1502,11 +1699,10 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 &lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
 &lt;/rdf:Description>
-</dd>
-</dl>
+</code>
+</p>
 
 <hr />
-
 
 <h2><a name="references"></a>References</h2>
 
