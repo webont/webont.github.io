@@ -10,8 +10,7 @@
 
 <link rel="shortcut icon" href="http://webont.org/owl/1.1/images/owl-icon.png" />
 
-<script type="text/javascript">
-
+<script type="text/javascript">/*<![CDATA[*/
 /*
 	Written by Jonathan Snook, http://www.snook.ca/jonathan
 	Add-ons by Robert Nyman, http://www.robertnyman.com
@@ -63,7 +62,7 @@ function set_display_by_id(id, newValue) {
      e.style.display = newValue;
    }
 }
-
+/*]]>*/
 </script>
 
 </head>
@@ -339,7 +338,7 @@ by default the Manchester syntax is the only one shown; the buttons
 below can be used to show or hide all three syntaxes.
 (Currently some examples only have the Manchester syntax.)
 </p>
-<form>
+<form action="">
 <input id="hide-ms" type="button" value="Hide Manchester Syntax" 
   onclick="set_display_by_id('hide-ms', 'none'); 
      set_display_by_id('show-ms', '');
@@ -385,7 +384,7 @@ follows.
 
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
-<code>
+<code style="white-space: pre;">
 Individual: f:John<br />
   Facts: f:hasWife f:Mary,<br />
 	 f:hasSon f:Bill,<br />
@@ -685,7 +684,7 @@ Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-<code>
+<code style="white-space: pre;">
 SubClassOf(f:Person 
     ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
                          ObjectExactCardinality(1 f:hasGender) 
@@ -810,7 +809,7 @@ below.
 
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
-<code>
+<code style="white-space: pre;">
 Individual: f:Jeff <br />
 Facts: f:hasWife f:Emily, <br />
        f:hasChild f:Ellen, <br />
@@ -881,13 +880,15 @@ Individual: f:Jeff f:Person and f:hasChild MAX 1 f:Man
 </code>
 </p>
 <p class="functional" style="display:none">
+<code>
 <b>Functional-Style Syntax:</b> <br />
 </code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-</dl>
+</code>
+</p>
 <p>These do not follow because there is nothing saying that <span class="name">Jack</span>
 and <span class="name">Ellen</span> are the only children of
 <span class="name">Jeff</span>, and OWL does not make any assumptions
@@ -1042,12 +1043,12 @@ f:Bill not f:hasAncestor f:Bill
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-</dl>
+</code>
+</p>
 <p>There are yet other kinds of information that we say provide
 for
 properties.
@@ -1142,12 +1143,12 @@ f:Emily f:hasChild f:Ellen
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-</dl>
+</code>
+</p>
 
 <h3>4.6 Conflicting Information</h3>
 <p>
@@ -1166,12 +1167,12 @@ Individual: f:John f:hasChild MAX 0 f:Woman
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-</dl>
+</code>
+</p>
 <p>In the presence of conflicting information, determining
 consequences in
 OWL breaks down, so
@@ -1203,7 +1204,7 @@ if it is used by different applications.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Ontology: <http://ex.com/owl/families>
+Ontology: &lt;http://ex.com/owl/families&gt;
 </code>
 </p>
 
@@ -1237,11 +1238,11 @@ we are not using someone else's names by accident.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Namespace: f = <http://ex.com/owl/families#> <br />
-Namespace: g = <http://ex2.com/owl/family#> <br />
-Namespace: rdf = <http://www.w3.org/1999/02/22-rdf-syntax-ns#> <br />
-Namespace: rdfs = <http://www.w3.org/2000/01/rdf-schema#> <br />
-Namespace: xsd = <http://www.w3.org/2001/XMLSchema#> <br />
+Namespace: f = &gt;http://ex.com/owl/families#&lt; <br />
+Namespace: g = &gt;http://ex2.com/owl/family#&lt; <br />
+Namespace: rdf = &gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&lt; <br />
+Namespace: rdfs = &gt;http://www.w3.org/2000/01/rdf-schema#&lt; <br />
+Namespace: xsd = &gt;http://www.w3.org/2001/XMLSchema#&lt; <br />
 Namespace: dc = ??
 </code>
 </p>
@@ -1423,12 +1424,12 @@ EquivalentClasses: f:Person f:Man
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-</dl>
+</code>
+</p>
 
 <p>
 OWL Full is formally stronger than OWL DL in this area (and in a few
@@ -1494,8 +1495,7 @@ Extra annotations have been added (not YET) to help explain the ontology.
 </p>
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
-<code><pre>
-
+<code style="white-space: pre;">
 Namespace: f = &lt;http://ex.com/owl/families#&gt;
 Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
@@ -1643,8 +1643,7 @@ SameIndividual: f:female g:feminine
 EquivalentClasses: f:Adult g:Grownup
 EquivalentObjectProperties: f:hasChild g:child
 EquivalentDataProperties: f:age g:age
-
-</pre></code>
+</code>
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
