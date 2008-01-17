@@ -333,10 +333,15 @@ There are tools that can translate
 between the different syntaxs for OWL.
 </p>
 <p>
-This primer uses three different syntaxes,
-by default the Manchester syntax is the only one shown; the buttons
-below can be used to show or hide all three syntaxes.
-(Currently some examples only have the Manchester syntax.)
+This primer uses three different syntaxes, by default the Manchester
+syntax is the only one shown; the buttons below can be used to show or
+hide all three syntaxes.  (Currently some examples only have the
+Manchester syntax.  Currently the Manchester syntax examples are
+correct, except when flagged with **, due to limitations in Protege 4.
+Currently the Functional syntax entire KB is correct (according to
+Protege 4, but it has one syntax bug), but the pieces have not
+been fully checked.  Currently the RDF/XML syntax has not been checked.)
+
 </p>
 <form action="">
 <input id="hide-ms" type="button" value="Hide Manchester Syntax" 
@@ -672,10 +677,10 @@ is a <span class="name">Person</span> belongs to <span class="name">Parent</span
 
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
-<code>
+<code style="white-space: pre;">
 ObjectProperty: f:hasGender <br />
-Class: f:Person SubClassOf: f:hasAge exactly 1 integer and 
-  f:hasGender exactly 1 owl:Thing and
+Class: f:Person SubClassOf: f:hasAge exactly 1 and 
+  f:hasGender exactly 1 and
   f:hasGender only ({f:female , f:male}) <br />
 Class: f:Man EquivalentTo: f:Person and f:hasGender value f:male <br />
 Class: f:Woman EquivalentTo: f:Person and f:hasGender value f:female <br />
@@ -1024,7 +1029,7 @@ the <span class="name">child</span> property, and is also irreflexive.
 <b>Manchester Syntax:</b> <br />
 <code>
 ObjectProperty: f:hasAncestor Characteristics: Transitive, Irreflexive <br />
-ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
+ObjectProperty: f:hasChild SubPropertyOf: **INVERSEOF** f:hasAncestor
 </code>
 </p>
 <p>From the above information,
@@ -1124,8 +1129,8 @@ include those of their <span class="name">spouse</span>.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon <br />
-SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon ** <br />
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter **
 </code>
 </p>
 
@@ -1281,7 +1286,7 @@ SameIndividual: f:male g:masculine <br />
 SameIndividual: f:female g:feminine <br />
 EquivalentClasses: f:Adult g:Grownup <br />
 EquivalentObjectProperties: f:hasChild g:child <br />
-EquivalentDataProperties: f:age g:age
+EquivalentDataProperties: f:hasAge g:age
 </code>
 </p>
 
@@ -1496,208 +1501,375 @@ Extra annotations have been added (not YET) to help explain the ontology.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code style="white-space: pre;">
-Namespace: f = &lt;http://ex.com/owl/families#&gt;
+Namespace: =&lt;http://ex.com/owl/families#&gt;
 Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
+Namespace: families = &lt;http://ex.com/owl/families#&gt;
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 
 Ontology: &lt;http://ex.com/owl/families&gt;
 
-Import: &lt;http://ex2.com/owl/family.owl&gt;
+Import: http://ex2.com/owl/family.owl 
 
-ObjectProperty: f:hasWife
-  Domain: f:Person, f:Man
-  Range: f:Person, f:Woman
+ObjectProperty: hasWife
+  Domain: Person, Man
+  Range: Person, Woman
   Characteristics: Functional, Inverse Functional, Irreflexive, AntiSymmetric
-  SubPropertyOf: f:hasSpouse, f:loves
+  SubPropertyOf: hasSpouse, loves
 
-ObjectProperty: f:hasHusband
-  Inverses: f:hasWife
+ObjectProperty: hasHusband
+  Inverses: hasWife
 
-ObjectProperty: f:hasSon
-  Domain: f:Parent
-  Range: f:Person, f:Person that f:hasGender value f:male
-  SubPropertyOf: f:hasChild
-  DisjointWith: f:hasDaughter
+ObjectProperty: hasSon
+  Domain: Person, Parent
+  Range: Person, Person that hasGender value male
+  SubPropertyOf: hasChild
+  DisjointWith: hasDaughter
 
-ObjectProperty: f:hasDaughter
-  Domain: f:Parent
-  Range: f:Person, f:Person that f:hasGender value f:female
-  SubPropertyOf: f:hasChild
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon **
 
-ObjectProperty: f:hasGender
+ObjectProperty: hasDaughter
+  Domain: Person, Parent
+  Range: Person, Person that hasGender value female
+  SubPropertyOf: hasChild
 
-ObjectProperty: f:hasChild
-  Domain: f:Person Range: f:Person
-  SubPropertyOf: inverseOf f:hasAncestor
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter **
 
-ObjectProperty: f:hasAncestor
+ObjectProperty: hasGender
+
+ObjectProperty: hasChild
+  Domain: Person Range: Person
+  SubPropertyOf: **INVERSEOF** hasAncestor  
+
+ObjectProperty: hasAncestor
   Characteristics: Transitive, Irreflexive
 
-ObjectProperty: f:hasSpouse
+ObjectProperty: hasSpouse
   Characteristics: Symmetric, Irreflexive
 
-ObjectProperty: f:loves
-  Domain: f:Person
+ObjectProperty: loves
+  Domain: Person
 
-DataProperty: f:hasAge
-  Domain: f:Person Range: integer
+DataProperty: hasAge
+  Domain: Person Range: integer
   Characteristics: Functional
 
 
-Class: f:Person
-  SubClassOf: f:hasGender only ({f:female , f:male})
-	      and f:hasGender exactly 1 f:Person
-	      and f:hasAge exactly 1 integer
+Class: Person
+  SubClassOf: hasAge exactly 1
+	      and hasGender exactly 1 
+	      and hasGender only ({female , male})
 
-Class: f:Man
-  SubClassOf: f:Person
-  EquivalentTo: f:Person that f:hasGender value f:male
+Class: Man
+  EquivalentTo: Person that hasGender value male
 
-Class: f:Woman
-  SubClassOf: f:Person
-  EquivalentTo: f:Person that f:hasGender value f:female
+Class: Woman
+  EquivalentTo: Person that hasGender value female
 
-Class: f:Parent
-  SubClassOf: f:Person
-  EquivalentTo: f:Person that f:hasChild min 1 f:Person
+Class: Parent
+  EquivalentTo: Person that hasChild min 1
   
-Class: f:Teenager
-  EquivalentTo: f:Person that f:hasAge some integer[&gt;= 13 , &lt; 20]
+Class: Teenager
+  EquivalentTo: Person that hasAge some integer[&gt;= 13 , &lt; 20]
 
-Class: f:Adult
-  EquivalentTo: f:Person that f:hasAge some integer[&gt;= 21]
+Class: Adult
+  EquivalentTo: Person that hasAge some integer[&gt;= 21]
 
-Class: f:Child
-  EquivalentTo: f:Person and not (f:hasAge some integer[&gt;= 21])
+Class: Child
+  EquivalentTo: Person and not (hasAge some integer[&gt;= 21])
 
-Class: f:YoungChild
-  EquivalentTo: f:Person and not (f:Teenager or f:Adult)
+Class: YoungChild
+  EquivalentTo: Person and not (Teenager or Adult)
 
-Class: f:Marriage
-  EquivalentTo: f:CivilMarriage or f:ReligiousMarriage
+Class: Marriage
+  EquivalentTo: CivilMarriage or ReligiousMarriage
 
-Class: f:ReligiousMarriage
-  DisjointWith: f:CivilMarriage
+Class: ReligiousMarriage
+  DisjointWith: CivilMarriage
 
-Class: f:CivilMarriage
+Class: CivilMarriage
 
-Class: f:Narcissist
-  EquivalentTo: f:Person that f:loves some Self
+Class: Narcissist
+  EquivalentTo: Person that loves some Self
 
 
-Individual: f:male
-  DifferentFrom: f:female
+Individual: male
+  DifferentFrom: female
 
-Individual: f:female
+Individual: female
 
-Individual: f:John
-  Types: f:Person
-  Facts: f:hasWife f:Mary,
-	 f:hasSon f:Bill,
-	 f:hasDaughter f:Susan,
-	 f:hasAge  33,
-	 f:hasGender f:male
-  SameAs: f:Jack
-  DifferentFrom: f:Mary, f:Susan, f:Bill
+Individual: John
+  Types: Person
+  Facts: hasWife Mary,
+	 hasSon Bill,
+	 hasDaughter Susan,
+	 hasAge  33,
+	 hasGender male
+  SameAs: Jack
+  DifferentFrom: Mary, Susan, Bill
 
-Individual: f:Mary
-  Facts: f:hasAge  31,
-	 f:hasDaughter f:Susan,
-	 f:hasSon f:Bill,
-	 f:hasGender f:female
+Individual: Mary
+  Facts: hasSon Bill,
+	 hasDaughter Susan,
+	 hasAge  31,
+	 hasGender female
 
-Individual: f:Bill
-  Types: not (f:Narcissist)
-  Facts: f:hasAge  13,
-	 f:hasGender f:male
+Individual: Bill
+  Types: not (Narcissist)
+  Facts: hasAge  13,
+	 hasGender  male
 
-Individual: f:Susan
-  Facts: f:hasAge 8,
-	 f:hasGender f:female
+Individual: Susan
+  Facts: hasAge 8,
+	 hasGender female
 
-Individual: f:Jeff
-  Types: f:hasChild exactly 2 owl:Thing
-  Facts: f:loves f:Jeff,
-	 f:hasWife f:Emily,
-	 f:hasChild f:Ellen,
-	 f:hasChild f:Jack,
-	 f:hasAge  77
-  DifferentFrom: f:Ellen, f:Jack, f:Susan, f:Emily
+Individual: Jeff
+  Types: hasChild exactly 2
+  Facts: hasWife Emily,
+	 hasChild Ellen,
+	 hasChild Jack,
+	 hasAge  77,
+	 loves Jeff
+  DifferentFrom: Ellen, Jack, Susan, Emily
 
-Individual: f:Emily
-  Types: f:hasAge some {39 , 49}
+Individual: Emily
+  Types: hasAge some {39 , 49}
 
-Individual: f:Ellen
-  Types: f:hasAge some integer[&gt;= 15 , &lt;= 21]
+Individual: Ellen
+  Types: hasAge some integer[&gt;= 15 , &lt;= 21]
 
-Individual: f:Jack
-  Facts: not f:hasAge "53"^^integer
-
-SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon
-
-SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
+Individual: Jack
+  Facts: not hasAge "53"^^integer
 
 SameIndividual: f:male g:masculine
 SameIndividual: f:female g:feminine
 EquivalentClasses: f:Adult g:Grownup
 EquivalentObjectProperties: f:hasChild g:child
-EquivalentDataProperties: f:age g:age
+EquivalentDataProperties: f:hasAge g:age
 </code>
 </p>
-<p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
-<code>
-ObjectPropertyDomain(f:hasWife f:Person)<br />
-ObjectPropertyRange(f:hasWife f:Person)<br />
-ObjectPropertyDomain(f:hasSon f:Person)<br />
-ObjectPropertyRange(f:hasSon f:Person)<br />
-ObjectPropertyDomain(f:hasDaughter f:Person)<br />
-ObjectPropertyRange(f:hasDaughter f:Person)<br />
-DataPropertyDomain(f:hasAge f:Person)<br />
-DataPropertyRange(f:hasAge xsd:integer)
-SubClassOf(f:Person 
-    ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
-                         ObjectExactCardinality(1 f:hasGender) 
-			 ObjectAllValuesFrom(f:hasGender ObjectOneOf(f:male f:female)))) <br />
-EquivalentClasses(f:Man 
-    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:male))) <br />
-EquivalentClasses(f:Woman
-    ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:female))) <br />
-EquivalentClasses(f:Parent
-    ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild)))
 
-ObjectPropertyAssertion(f:John f:hasWife f:Mary) <br />
-ObjectPropertyAssertion(f:John f:hasSon f:Bill) <br />
-ObjectPropertyAssertion(f:Mary f:hasSon f:Bill) <br />
-ObjectPropertyAssertion(f:John f:hasDaughter f:Susan) <br />
-ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
-DataPropertyAssertion(f:John f:hasAge "33"^^xsd:integer) <br />
-DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
-DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
-DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
-</code>
-</p>
-<p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
-<code>
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
-&nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
-&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
-&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
-&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">33&lt;/f:hasage><br />
-&lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
-&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
-&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
-&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31&lt;/f:hasage><br />
-&lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
-&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13&lt;/f:hasage><br />
-&lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
-&nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
-&lt;/rdf:Description>
+<p class="functional">
+<b>Functional Syntax:</b> <br />
+<code style="white-space: pre;">
+Namespace(=&lt;http://ex.com/owl/families#&gt;)
+Namespace(g=&lt;http://ex.com/owl2/families#&gt;)
+
+Namespace(owl=&lt;http://www.w3.org/2002/07/owl#&gt;)
+Namespace(rdf=&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;)
+Namespace(rdfs=&lt;http://www.w3.org/2000/01/rdf-schema#&gt;)
+Namespace(xsd=&lt;http://www.w3.org/2001/XMLSchema#&gt;)
+
+Ontology(&lt;http://ex.com/owl/families&gt;
+
+// Object property: http://ex.com/owl/families#hasWife
+Declaration(ObjectProperty(hasWife))
+ObjectPropertyDomain(hasWife Person)
+ObjectPropertyDomain(hasWife Man)
+ObjectPropertyRange(hasWife Person)
+ObjectPropertyRange(hasWife Woman)
+FunctionalObjectProperty(hasWife)
+InverseFunctionalObjectProperty(hasWife)
+IrreflexiveObjectProperty(hasWife)
+// should be AsymmetricObjectProperty
+AntiSymmetricObjectProperty(hasWife)
+
+SubObjectPropertyOf(hasWife hasSpouse)
+SubObjectPropertyOf(hasWife loves)
+
+// Object property: http://ex.com/owl/families#hasHusband
+Declaration(ObjectProperty(hasHusband))
+InverseObjectProperties(hasHusband hasWife)
+
+// Object property: http://ex.com/owl/families#hasSon
+Declaration(ObjectProperty(hasSon))
+ObjectPropertyDomain(hasSon Person)
+ObjectPropertyDomain(hasSon Parent)
+ObjectPropertyRange(hasSon Person)
+ObjectPropertyRange(hasSon 
+  ObjectIntersectionOf(Person ObjectHasValue(hasGender male)))
+SubObjectPropertyOf(hasSon hasChild)
+DisjointObjectProperties(hasDaughter hasSon)
+SubObjectPropertyOf(SubObjectPropertyChain(hasSpouse hasSon) hasSon)
+
+// Object property: http://ex.com/owl/families#hasDaughter
+Declaration(ObjectProperty(hasDaughter))
+ObjectPropertyDomain(hasDaughter Person)
+ObjectPropertyDomain(hasDaughter Parent)
+ObjectPropertyRange(hasDaughter Person)
+ObjectPropertyRange(hasDaughter 
+  ObjectIntersectionOf(Person ObjectHasValue(hasGender female)))
+SubObjectPropertyOf(hasDaughter hasChild)
+SubObjectPropertyOf(SubObjectPropertyChain(hasSpouse hasDaughter) hasDaughter)
+
+// Object property: http://ex.com/owl/families#hasGender
+Declaration(ObjectProperty(hasGender))
+
+// Object property: http://ex.com/owl/families#hasChild
+Declaration(ObjectProperty(hasChild))
+ObjectPropertyDomain(hasChild Person)
+ObjectPropertyRange(hasChild Person)
+SubObjectPropertyOf(hasChild InverseObjectProperty(hasAncestor))
+
+// Object property: http://ex.com/owl/families#hasAncestor
+Declaration(ObjectProperty(hasAncestor))
+TransitiveObjectProperty(hasAncestor)
+IrreflexiveObjectProperty(hasAncestor)
+
+// Object property: http://ex.com/owl/families#hasSpouse
+Declaration(ObjectProperty(hasSpouse))
+SymmetricObjectProperty(hasSpouse)
+IrreflexiveObjectProperty(hasSpouse)
+
+// Object property: http://ex.com/owl/families#loves
+ObjectPropertyDomain(loves Person)
+Declaration(ObjectProperty(loves))
+
+
+// Data property: http://ex.com/owl/families#hasAge
+Declaration(DataProperty(hasAge))
+DataPropertyDomain(hasAge Person)
+DataPropertyRange(hasAge xsd:integer)
+FunctionalDataProperty(hasAge)
+
+
+// Class: http://ex.com/owl/families#Person
+Declaration(OWLClass(Person))
+SubClassOf(Person 
+  ObjectIntersectionOf(DataExactCardinality(1 hasAge)
+                       ObjectExactCardinality(1 hasGender)
+		       ObjectAllValuesFrom(hasGender ObjectOneOf(female male))))
+
+// Class: http://ex.com/owl/families#Man
+Declaration(OWLClass(Man))
+EquivalentClasses(Man
+  ObjectIntersectionOf(Person ObjectHasValue(hasGender male)))
+
+// Class: http://ex.com/owl/families#Woman
+Declaration(OWLClass(Woman))
+EquivalentClasses(Woman
+  ObjectIntersectionOf(Person ObjectHasValue(hasGender female)))
+
+// Class: http://ex.com/owl/families#Parent
+Declaration(OWLClass(Parent))
+EquivalentClasses(Parent
+  ObjectIntersectionOf(Person ObjectMinCardinality(1 hasChild Person)))
+
+// Class: http://ex.com/owl/families#Teenager
+Declaration(OWLClass(Teenager))
+EquivalentClasses(Teenager
+  ObjectIntersectionOf(Person
+    DataSomeValuesFrom(hasAge 
+      DatatypeRestriction(xsd:integer minInclusive "13"^^xsd:int
+                                      maxExclusive "20"^^xsd:int))))
+
+// Class: http://ex.com/owl/families#Adult
+Declaration(OWLClass(Adult))
+EquivalentClasses(Adult
+  ObjectIntersectionOf(Person
+    DataSomeValuesFrom(hasAge 
+      DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int))))
+
+// Class: http://ex.com/owl/families#Child
+Declaration(OWLClass(Child))
+EquivalentClasses(Child
+  ObjectIntersectionOf(Person
+    ObjectComplementOf(
+      DataSomeValuesFrom(hasAge 
+        DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int)))))
+
+// Class: http://ex.com/owl/families#YoungChild
+Declaration(OWLClass(YoungChild))
+EquivalentClasses(YoungChild
+  ObjectIntersectionOf(Person ObjectComplementOf(ObjectUnionOf(Teenager Adult))))
+
+// Class: http://ex.com/owl/families#Marriage
+Declaration(OWLClass(Marriage))
+EquivalentClasses(Marriage ObjectUnionOf(CivilMarriage ReligiousMarriage))
+
+// Class: http://ex.com/owl/families#ReligiousMarriage
+Declaration(OWLClass(ReligiousMarriage))
+DisjointClasses(CivilMarriage ReligiousMarriage)
+
+// Class: http://ex.com/owl/families#CivilMarriage
+Declaration(OWLClass(CivilMarriage))
+
+// Class: http://ex.com/owl/families#Narcissist
+Declaration(OWLClass(Narcissist))
+EquivalentClasses(Narcissist ObjectIntersectionOf(Person ObjectExistsSelf(loves)))
+
+
+// Individual: http://ex.com/owl/families#male
+Declaration(Individual(male))
+DifferentIndividuals(male female)
+
+// Individual: http://ex.com/owl/families#female
+Declaration(Individual(female))
+
+// Individual: http://ex.com/owl/families#John
+Declaration(Individual(John))
+ClassAssertion(Person John)
+ObjectPropertyAssertion(hasWife John Mary)
+ObjectPropertyAssertion(hasSon John Bill)
+ObjectPropertyAssertion(hasDaughter John Susan)
+DataPropertyAssertion(hasAge John "33"^^xsd:integer)
+ObjectPropertyAssertion(hasGender John male)
+SameIndividuals(John Jack)
+DifferentIndividuals(John Mary Susan Bill)
+
+// Individual: http://ex.com/owl/families#Mary
+Declaration(Individual(Mary))
+ObjectPropertyAssertion(hasSon Mary Bill)
+ObjectPropertyAssertion(hasDaughter Mary Susan)
+DataPropertyAssertion(hasAge Mary "31"^^xsd:integer)
+ObjectPropertyAssertion(hasGender Mary female)
+
+// Individual: http://ex.com/owl/families#Bill
+Declaration(Individual(Bill))
+ClassAssertion(ObjectComplementOf(Narcissist) Bill)
+DataPropertyAssertion(hasAge Bill "13"^^xsd:integer)
+ObjectPropertyAssertion(hasGender Bill male)
+
+// Individual: http://ex.com/owl/families#Susan
+Declaration(Individual(Susan))
+DataPropertyAssertion(hasAge Susan "8"^^xsd:integer)
+ObjectPropertyAssertion(hasGender Susan female)
+
+// Individual: http://ex.com/owl/families#Jeff
+Declaration(Individual(Jeff))
+ClassAssertion(ObjectExactCardinality(2 hasChild) Jeff)
+ObjectPropertyAssertion(hasWife Jeff Emily)
+ObjectPropertyAssertion(hasChild Jeff Ellen)
+ObjectPropertyAssertion(hasChild Jeff Jack)
+DataPropertyAssertion(hasAge Jeff "77"^^xsd:integer)
+ObjectPropertyAssertion(loves Jeff Jeff)
+DifferentIndividuals(Jeff Ellen Jack Susan Emily)
+
+// Individual: http://ex.com/owl/families#Emily
+Declaration(Individual(Emily))
+ClassAssertion(DataSomeValuesFrom(hasAge DataOneOf("39"^^xsd:integer
+                                                   "49"^^xsd:integer)) Emily)
+
+// Individual: http://ex.com/owl/families#Ellen
+Declaration(Individual(Ellen))
+ClassAssertion(
+  DataSomeValuesFrom(hasAge 
+    DatatypeRestriction(xsd:integer minInclusive "15"^^xsd:int
+				    maxInclusive "21"^^xsd:int)) Ellen)
+
+// Individual: http://ex.com/owl/families#Jack
+Declaration(Individual(Jack))
+NegativeDataPropertyAssertion(hasAge Jack "53"^^xsd:integer)
+
+
+SameIndividuals(male g:masculine)
+SameIndividuals(female g:feminine)
+
+EquivalentClasses(Adult g:Grownup)
+EquivalentObjectProperties(hasChild g:child)
+EquivalentDataProperties(hasAge g:age)
+
+)
 </code>
 </p>
 
