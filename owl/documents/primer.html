@@ -96,10 +96,11 @@ Copyright &copy; 2008 by the Editors.
 <div class="abstract">
 <h2 class="notoc"><a id="abstract" name="abstract">Abstract</a></h2>
 <p>The W3C OWL 1.1 Web Ontology Language is designed to represent
-ontological information about individuals, classes, and properties in a
+information about individuals, classes of individuals, and properties of
+individuals in a
 Semantic Web setting.
-OWL provides a rich language for structuring and classifying with both
-complete and incomplete information.
+OWL provides a rich language for structuring and categorizing
+individuals with both complete and incomplete information.
 This short primer provides an approachable introduction to OWL 1.1,
 including orientation for those coming from other disciplines, an
 example showing how OWL 1.1 can be used to represent first simple
@@ -163,11 +164,13 @@ designed to represent ontologies - information about how individuals are
 grouped and fit together in a particular domain. OWL can represent rich
 and complex information about classes of individuals and their
 properties. OWL is a logical language, where every construct has a
-well-defined formal meaning that fit together to support exact and
-useful representation of many different kinds of information. OWL groups
-information into formal ontologies, which can be stored and transmitted
+well-defined meaning that fit together to support exact and
+useful representation of many different kinds of information. 
+OWL groups information into ontologies in the form of documents that can
+be stored and transmitted 
 in the World Wide Web in the same way that data and other kinds of
-information are.
+information are and that can be completely and effectively processed by
+tools that extract the information implicit in an ontology.
 </p>
 <p>
 This short primer contains, first, orientations to OWL for various
@@ -175,12 +178,13 @@ communities, including XML, RDF, databases, and object-oriented
 programming. The bulk of the primer consists of an example that
 illustrates the different kinds of information that can be represented
 in OWL. The primer then describes how OWL packages information into
-ontologies and how extra non-logical information is associated with
+ontologies and how extra information is associated with
 parts of an ontology. Finally, the primer describes the various
 sublanguages of OWL, and what is gained and lost by using them.
 </p>
 
 <hr />
+
 <h2><a name="2"></a>2 Orientation</h2>
 <p>OWL
 is superficially similar to many other technologies, which is not too
@@ -192,8 +196,8 @@ a number of prominent technological perspectives. At various points in
 the tutorial sections of this Primer, we shall highlight aspects of OWL
 that might be surprising to people coming from these perspectives.</p>
 <p>In section 2.2, we briefly discuss some major ways of using
-OWL in
-applications.</p>
+OWL in applications.</p>
+
 <h3>2.1 Technologies</h3>
 
 <p><b>Resource Description Framework (RDF) and Schema</b>: Of
@@ -204,18 +208,24 @@ prominently, the primary exchange syntax for OWL has been RDF/XML.
 However, there are differences of style, emphasis, and common practice
 that can make relying on RDF(S) intuitions misleading when working with
 OWL. For example, while OWL statements and expressions can be encoded
-as RDF facts (triples), the triple view is not typically a fruitful way of
-writing or understanding complex expressions. Similarly, it is fairly
+as RDF facts (triples), viewing most OWL statements and expressions as
+collections is not typically a fruitful way of
+writing or understanding them . Similarly, it is fairly
 common and effective to work with RDF as a graph data structure or
 database where the primary focus is on the explicit statements in the
-graph. Even when we consider parts of RDFS which support
+graph. </p>
+
+<p>
+Even when we consider parts of RDFS which support
 implicit
-knowledge, such as subclass inheritance, the relation between the
+knowledge, such determining subclass relationships, the relation between the
 explicit and implicit statements is very direct. Thus, it is easy to
-conceptualize inference in terms of graph structure manipulation.</p>
-<p>In
-contrast, OWL allows for -- and encourages -- operations that are not
-rooted so directly in the evident structure of an ontology.</p>
+conceptualize inference in terms of graph structure manipulation.
+In contrast, determining implicit knowledge in OWL, including
+determining subclass relationships and typing and checking consistency
+of an ontology, 
+requires techniques that much more akin to theorem proving.
+</p>
 
 <p><b>XML:</b> OWL
 and the XML family of technologies share some common parts: OWL can be
@@ -223,34 +233,37 @@ expressed in XML languages (such as RDF/XML or the XML syntax for OWL
 [?]) and thus be 
 manipulated by XML tools. OWL reuses datatypes and datatype derivation
 facets from XML Schema (and can use certain forms of XML Schema type
-definitions). Finally, both OWL and XML have an object
-oriented approach and, to a certain extent, similar missions. Both can
+definitions). Finally, OWL and XML can both
 be used for <i>conceptual modeling</i> 
 as well as data definition, though they ways they go about it are
-fairly distinct.</p>
-<p>OWL is oriented toward <i>more abstract</i>,
-higher level conceptual modeling than is XML. OWL is designed to support the
-discovery of relationships between descriptions through automated
-reasoning. It also builds in far fewer presumptions about the entities
+fairly distinct
+and OWL is oriented toward <i>more abstract</i>,
+higher level conceptual modeling than is XML. 
+</p>
+
+<p>OWL is designed to support the
+discovery of relationships between classes through automated
+reasoning. OWL also builds in far fewer presumptions about the entities
 it is describing both generally and in terms of their physical
 realization in computational systems.</p>
 <p>Both OWL and XML Schema support strong abstraction
-facilities. However XML Schema, is oriented
-toward a more concrete level of conceptual
-modeling. This is inherent
-in its core mission of validating XML documents.</p>
+facilities. However XML Schema, is much more concerned with the data
+organization issues relating to its core mission of validating XML documents.
+</p>
 
 <p><b>Databases:</b>
-Both OWL and databases (either relational or object-oriented) can be
-used to store and organize data.  However, databases are much more
-oriented towards this mission, and in an environment where complete
-information is available (at least as far as applications are
-concerned).  OWL is more oriented towards flexible and expressive
-description of data (or information), i.e., ontologies, and performs in
-an environment where information is considered to be incomplete unless
-information to the contrary is known.</p>
+Databases (either relational or object-oriented) also store and organize
+information. 
+However, databases are oriented to environments where all information
+that an application needs is available, where considerations of data
+integrity in situations of simultaneous access and update are important,
+or where very large amounts of data needs to be worked with. 
+OWL is more oriented towards flexible and expressive
+description of data (or information), and only considers information to
+be complete if the completeness can be determined from other information.
+</p>
 <p>
-It is this difference in completeness that most distinguishes OWL from
+It is this embracing of incompleteness that most distinguishes OWL from
 databases, driving the different capabilities of OWL and databases.
 Users who treat OWL information as complete where completeness cannot be
 assured are very often surprised and confused.  (Similarly those who use
@@ -269,13 +282,16 @@ Of course this flexibility means that determining typing in OWL can
 require complex inferences.
 </p>
 <p>
-A final major difference between databases and OWL is that the information
-stored in a database is derived from the database schema - if the schema
-doesn't sanction the storage of certain kinds of information, then that
-information cannot be stored.  OWL, on the other hand, allows arbitrary
-information to be associated with just about any object - if there is
-nothing in the ontology forbidding the associated then it is allowable.
-OWL is thus much more flexible in its information storage.
+A final major difference between databases and OWL is that the
+information stored in a database is derived from the database schema and
+integrity constraints - if the schema doesn't sanction the storage of
+certain kinds of information, then that information cannot be stored,
+and, similarly, if the information violates an integrity constraint it
+also cannot be stored.
+OWL, on the other hand, allows arbitrary information to be associated
+with just about any object - if there is nothing in the ontology
+forbidding the associated then it is allowable.  OWL is thus much more
+flexible in its information storage.
 </p>
 
 <p><b>Object-oriented Programming:</b>
