@@ -66,6 +66,10 @@ function set_display_by_id(id, newValue) {
 /*]]>*/
 </script>
 
+<style type="text/css">
+  code { font-family: monospace; font-size: 90%; }
+</style>
+
 </head>
 
 <body>
@@ -79,7 +83,7 @@ Primer</h1>
 
 <h2>
 <a id="editordraft" name="editordraft">
-</a>Editors' Draft of 18 January 2008</h2>
+</a>Editors' Draft of 11 February 2008</h2>
 <dl>
 <dt>Latest version: </dt>
 <dd>TODAY</dd>
@@ -113,7 +117,6 @@ sublanguages of OWL 1.1.
 <div class="status">
 <h2 class="notoc"><a id="status" name="status">Status
 of this Document</a></h2>
-<p><strong>This is an editors' draft.</strong></p>
 <p>
 This document is being prepared for consideration by the <a href="http://www.w3.org/2007/OWL/wiki/OWL_Working_Group">W3C
 OWL WG</a>.
@@ -122,6 +125,17 @@ Please send feedback to <a href="mailto:public-owl-dev@w3.org">public-owl-dev@w3
 which has a
 <a href="http://lists.w3.org/Archives/Public/public-owl-dev/">public
 archive</a>.</p>
+<p><strong>This is an editors' draft.</strong>
+The text of this document is about 95% complete.
+Still missing are:
+</p>
+<ul>
+<li> section on applications; </li>
+<li> much of the example in the other syntaxes; </li>
+<li> pointers from the various constructs to a more authoritative
+  document; and </li>
+<li> annotations in the full example in the Appendix. </li>
+</ul>
 </div>
 <hr />
 
@@ -153,7 +167,7 @@ archive</a>.</p>
 <li class="tocline1"><a href="#remaining">6 Remaining Constructs</a></li>
 <li class="tocline1"><a href="#species">7 OWL Species</a></li>
 <li class="tocline1"><a href="#next">8 What to Read Next</a></li>
-<li class="tocline1"><a href="#example">9 The Complete Example</a></li>
+<li class="tocline1"><a href="#example">Appendix: The Complete Example</a></li>
 <li class="tocline1"><a href="#references">References</a></li>
 </ul>
 </div>
@@ -178,10 +192,14 @@ This short primer contains, first, orientations to OWL for various
 communities, including XML, RDF, databases, and object-oriented
 programming. The bulk of the primer consists of an example that
 illustrates the different kinds of information that can be represented
-in OWL. The primer then describes how OWL packages information into
+in OWL.  The primer then describes how OWL packages information into
 ontologies and how extra information is associated with
-parts of an ontology. Finally, the primer describes the various
-sublanguages of OWL, and what is gained and lost by using them.
+parts of an ontology.  There are links from the short descriptions of
+the OWL constructs here to other documents that provide more information
+on OWL.
+Finally, the primer
+describes the various sublanguages of OWL, and what is gained and lost
+by using them.
 </p>
 
 <hr />
@@ -315,7 +333,8 @@ exceptions or overriding.
 
 <h3>2.2 Applications</h3>
 <p>
-Terminlogy development and managament. Conceptual Modeling.
+Terminlogy development and managament. Conceptual Modeling.  ** TO BE
+FILLED IN **
 </p>
 
 <hr />
@@ -355,7 +374,7 @@ This primer uses four different syntaxes, by default the Manchester
 syntax is the only one shown; the buttons below can be used to show or
 hide all three syntaxes.  (Currently some examples only have the
 Manchester syntax.  Currently the Manchester syntax examples are
-correct, except when flagged with **, due to limitations in Protege 4.
+almost all correct.
 Currently the entire KB in the other syntaxes is correct (according to
 Protege 4, but it has one syntax bug), but the pieces have not
 been fully checked. )
@@ -379,7 +398,7 @@ been fully checked. )
      set_display_by_id('hide-fs', ''); 
      set_display_by_id('show-fs', 'none');" />
 <input id="hide-xs" type="button" value="Hide OWL XML Syntax" style="display:none"
-  onclick="set_display_by_class('p',owlxml', 'none');
+  onclick="set_display_by_class('p','owlxml', 'none');
      set_display_by_id('hide-xs', 'none'); 
      set_display_by_id('show-xs', '');" />
 <input id="show-xs" type="button" value="Show OWL XML Syntax"
@@ -642,7 +661,7 @@ ObjectProperty: f:hasSon SubPropertyOf: f:hasChild <br />
 ObjectProperty: f:hasDaughter SubPropertyOf: f:hasChild <br />
 DisjointObjectProperties: f:hasSon f:hasDaughter <br />
 DataProperty: f:hasAge Characteristics: Functional <br />
-ObjectProperty: f:hasWife Characteristics: Functional, Inverse Functional, Irreflexive, AntiSymmetric
+ObjectProperty: f:hasWife Characteristics: Functional, InverseFunctional, Irreflexive, Asymmetric
 </code>
 </p>
 
@@ -706,8 +725,8 @@ is a <span class="name">Person</span> belongs to <span class="name">Parent</span
 <code style="white-space: pre;">
 ObjectProperty: f:hasGender <br />
 Class: f:Person SubClassOf: f:hasAge exactly 1 and 
-  f:hasGender exactly 1 and
-  f:hasGender only ({f:female , f:male}) <br />
+                            f:hasGender exactly 1 and
+                            f:hasGender only {f:female , f:male} <br />
 Class: f:Man EquivalentTo: f:Person and f:hasGender value f:male <br />
 Class: f:Woman EquivalentTo: f:Person and f:hasGender value f:female <br />
 Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1
@@ -907,7 +926,7 @@ Formally, the following is not a consequence of the above information.
 <b>Manchester Syntax:</b> <br />
 <code>
 Individual: f:Jeff f:Person and f:hasChild exactly 2 <br />
-Individual: f:Jeff f:Person and f:hasChild MAX 1 f:Man
+Individual: f:Jeff f:Person and f:hasChild max 1 f:Man
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -986,8 +1005,8 @@ is irreflexive.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Individual: f:John DifferentFrom: f:Mary f:Bill f:Susan <br />
-Individual: f:Jeff DifferentFrom: f:Emily f:Jack f:Ellen f:Susan <br />
+DifferentIndividuals: f:John f:Mary f:Bill f:Susan <br />
+DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
 Individual: f:male DifferentFrom: f: female
 </code>
 </p>
@@ -1039,7 +1058,7 @@ OWL provides a shorthand method for saying this all at once.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-DisjointUnion: f:Marriage f:ReligiousMarriage f:CivilMarriage
+Class f:Marriage DisjointUnionOf: f:ReligiousMarriage f:CivilMarriage
 </code>
 </p>
 
@@ -1055,7 +1074,7 @@ the <span class="name">child</span> property, and is also irreflexive.
 <b>Manchester Syntax:</b> <br />
 <code>
 ObjectProperty: f:hasAncestor Characteristics: Transitive, Irreflexive <br />
-ObjectProperty: f:hasChild SubPropertyOf: **INVERSEOF** f:hasAncestor
+ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
 </code>
 </p>
 <p>From the above information,
@@ -1068,8 +1087,9 @@ is not his own <span class="name">ancestor</span>.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-f:Bill f:hasAncestor f:Jeff <br />
-f:Bill not f:hasAncestor f:Bill
+Individual: f:Bill 
+  Facts: f:hasAncestor f:Jeff <br />
+         not f:hasAncestor f:Bill
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -1132,7 +1152,7 @@ relationships&gt;
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Class: f:Narcissist EquivalentTo: f:Person and f:loves some Self <br />
+Class: f:Narcissist EquivalentTo: f:Person and f:loves Self <br />
 Individual: f:Jeff Facts: f:loves f:Jeff <br />
 Individual: f:Bill Types: not f:Narcissist
 </code>
@@ -1155,8 +1175,8 @@ include those of their <span class="name">spouse</span>.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon ** <br />
-SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter **
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon <br />
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
 </code>
 </p>
 
@@ -1193,7 +1213,7 @@ as a <span class="name">daughter</span>.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Individual: f:John f:hasChild MAX 0 f:Woman
+Individual: f:John f:hasChild max 0 f:Woman
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -1269,11 +1289,11 @@ we are not using someone else's names by accident.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Namespace: f = &gt;http://ex.com/owl/families#&lt; <br />
-Namespace: g = &gt;http://ex2.com/owl/family#&lt; <br />
-Namespace: rdf = &gt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&lt; <br />
-Namespace: rdfs = &gt;http://www.w3.org/2000/01/rdf-schema#&lt; <br />
-Namespace: xsd = &gt;http://www.w3.org/2001/XMLSchema#&lt; <br />
+Namespace: f = &lt;http://ex.com/owl/families#&gt; <br />
+Namespace: g = &lt;http://ex2.com/owl/family#&gt; <br />
+Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; <br />
+Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt; <br />
+Namespace: xsd = &lt;http://www.w3.org/2001/XMLSchema#&gt; <br />
 Namespace: dc = ??
 </code>
 </p>
@@ -1322,29 +1342,31 @@ EquivalentDataProperties: f:hasAge g:age
 In many cases we want to associate information with parts of our OWL
 ontology.
 OWL uses annotations for this purpose.  An OWL annotation simply
-associates property-value pairs with parts of an ontology.  This
-information is not really part of the logical meaning of an ontology.
+associates property-value pairs with parts of an ontology, or the entire
+ontology itself.  This information is not really part of the logical
+meaning of an ontology. 
 </p>
 
 <p>
 So, for example, we could add author information to one of the facts in
-our ontology and to one of the classes.  Two special annotations, labels
-and comments, have special synax in OWL.
+our ontology and to one of the classes.  
 </p>
 
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
-<code>
-Annotation: dc:author Individual(f:peter) <br />
-Annotation: dc:creationDate "2008-01-10"^^xsd:date <br />
-Comment: "A simple fact about John" <br />
-f:John f:hasWife f:Mary <br />
-Annotation: dc:author Individual(f:peter) <br />
-Annotation: dc:creationDate "2008-01-10"^^xsd:date <br />
-Label: "Person":en <br />
-Label: "Persona":it <br />
-Comment: "The class of people" <br />
+<code style="white-space: pre;">
+Individual f:John
+  Facts: Annotations: dc:author Individual(f:peter)
+                      dc:creationDate "2008-01-10"^^xsd:date
+                      rdfs:comment "A simple fact about John"
+         f:hasWife f:Mary <br /> <br />
+
 Class: f:Person
+  Annotations: dc:author Individual(f:peter)
+               dc:creationDate "2008-01-10"^^xsd:date
+               rdfs:label "Person":en
+               rdfs:label "Persona":it
+               rdfs:comment "The class of people"
 </code>
 </p>
 
@@ -1359,8 +1381,8 @@ do not fit into this example, including the following:
 <ul>
 <li>
 Some other datatype facets from XML Schema datatypes, including 
-<span class="name">xsd:length</span>, <span class="name">xsd:minLength</span>, <span class="name">xsd:maxLength</span>,
-<span class="name">xsd:totalDigits</span>, and <span class="name">xsd:fractionDigits</span>.
+<span class="name">length</span>, <span class="name">minLength</span>, <span class="name">maxLength</span>,
+<span class="name">totalDigits</span>, and <span class="name">fractionDigits</span>.
 </li>
 <li>
 Data properties in some, all, cardinality (at least, at most, exactly), and value
@@ -1369,6 +1391,9 @@ constructs.
 <li>
 Data properties as subproperties of,
 or equivalent to, or disjoint from other data properties.
+</li>
+<li>
+N-way disjoint classes and properties.
 </li>
 </ul>
 
@@ -1515,7 +1540,7 @@ the OWL 1.1 Mapping to RDF Graphs document
 
 <hr />
 
-<h2><a name="example">9 The Complete Example</a></h2>
+<h2><a name="example">Appendix: The Complete Example</a></h2>
 
 <p>
 Here we include the complete example OWL ontology.
@@ -1532,98 +1557,97 @@ Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
 Namespace: families = &lt;http://ex.com/owl/families#&gt;
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-
+<br />
 Ontology: &lt;http://ex.com/owl/families&gt;
-
+<br />
 Import: http://ex2.com/owl/family.owl 
-
+<br />
 ObjectProperty: hasWife
   Domain: Person, Man
   Range: Person, Woman
-  Characteristics: Functional, Inverse Functional, Irreflexive, AntiSymmetric
+  Characteristics: Functional, InverseFunctional, Irreflexive, Asymmetric
   SubPropertyOf: hasSpouse, loves
-
+<br />
 ObjectProperty: hasHusband
   Inverses: hasWife
-
+<br />
 ObjectProperty: hasSon
   Domain: Person, Parent
   Range: Person, Person that hasGender value male
   SubPropertyOf: hasChild
   DisjointWith: hasDaughter
-
-SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon **
-
+<br />
+SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon
+<br />
 ObjectProperty: hasDaughter
   Domain: Person, Parent
   Range: Person, Person that hasGender value female
   SubPropertyOf: hasChild
-
-SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter **
-
+<br />
+SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
+<br />
 ObjectProperty: hasGender
-
+<br />
 ObjectProperty: hasChild
   Domain: Person Range: Person
-  SubPropertyOf: **INVERSEOF** hasAncestor  
-
+  SubPropertyOf: inverseOf hasAncestor  
+<br />
 ObjectProperty: hasAncestor
   Characteristics: Transitive, Irreflexive
-
+<br />
 ObjectProperty: hasSpouse
   Characteristics: Symmetric, Irreflexive
-
+<br />
 ObjectProperty: loves
   Domain: Person
-
+<br />
 DataProperty: hasAge
   Domain: Person Range: integer
   Characteristics: Functional
-
-
+<br />
 Class: Person
   SubClassOf: hasAge exactly 1
 	      and hasGender exactly 1 
-	      and hasGender only ({female , male})
-
+	      and hasGender only {female , male}
+<br />
 Class: Man
   EquivalentTo: Person that hasGender value male
-
+<br />
 Class: Woman
   EquivalentTo: Person that hasGender value female
-
+<br />
 Class: Parent
   EquivalentTo: Person that hasChild min 1
   
 Class: Teenager
   EquivalentTo: Person that hasAge some integer[&gt;= 13 , &lt; 20]
-
+<br />
 Class: Adult
   EquivalentTo: Person that hasAge some integer[&gt;= 21]
-
+<br />
 Class: Child
   EquivalentTo: Person and not (hasAge some integer[&gt;= 21])
-
+<br />
 Class: YoungChild
   EquivalentTo: Person and not (Teenager or Adult)
-
+<br />
 Class: Marriage
   EquivalentTo: CivilMarriage or ReligiousMarriage
-
+<br />
 Class: ReligiousMarriage
   DisjointWith: CivilMarriage
-
+<br />
 Class: CivilMarriage
-
+<br />
 Class: Narcissist
-  EquivalentTo: Person that loves some Self
-
+  EquivalentTo: Person that loves Self
+<br />
 
 Individual: male
   DifferentFrom: female
-
+<br />
 Individual: female
-
+<br />
 Individual: John
   Types: Person
   Facts: hasWife Mary,
@@ -1632,23 +1656,22 @@ Individual: John
 	 hasAge  33,
 	 hasGender male
   SameAs: Jack
-  DifferentFrom: Mary, Susan, Bill
-
+<br />
 Individual: Mary
   Facts: hasSon Bill,
 	 hasDaughter Susan,
 	 hasAge  31,
 	 hasGender female
-
+<br />
 Individual: Bill
   Types: not (Narcissist)
   Facts: hasAge  13,
 	 hasGender  male
-
+<br />
 Individual: Susan
   Facts: hasAge 8,
 	 hasGender female
-
+<br />
 Individual: Jeff
   Types: hasChild exactly 2
   Facts: hasWife Emily,
@@ -1656,17 +1679,19 @@ Individual: Jeff
 	 hasChild Jack,
 	 hasAge  77,
 	 loves Jeff
-  DifferentFrom: Ellen, Jack, Susan, Emily
-
+<br />
 Individual: Emily
   Types: hasAge some {39 , 49}
-
+<br />
 Individual: Ellen
   Types: hasAge some integer[&gt;= 15 , &lt;= 21]
-
+<br />
 Individual: Jack
   Facts: not hasAge "53"^^integer
-
+<br />
+DifferentIndividuals: f:John f:Mary f:Bill f:Susan <br />
+DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
+<br />
 SameIndividual: f:male g:masculine
 SameIndividual: f:female g:feminine
 EquivalentClasses: f:Adult g:Grownup
@@ -1680,14 +1705,14 @@ EquivalentDataProperties: f:hasAge g:age
 <code style="white-space: pre;">
 Namespace(=&lt;http://ex.com/owl/families#&gt;)
 Namespace(g=&lt;http://ex.com/owl2/families#&gt;)
-
+<br />
 Namespace(owl=&lt;http://www.w3.org/2002/07/owl#&gt;)
 Namespace(rdf=&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;)
 Namespace(rdfs=&lt;http://www.w3.org/2000/01/rdf-schema#&gt;)
 Namespace(xsd=&lt;http://www.w3.org/2001/XMLSchema#&gt;)
-
+<br />
 Ontology(&lt;http://ex.com/owl/families&gt;
-
+<br />
 // Object property: http://ex.com/owl/families#hasWife
 Declaration(ObjectProperty(hasWife))
 ObjectPropertyDomain(hasWife Person)
@@ -1699,14 +1724,14 @@ InverseFunctionalObjectProperty(hasWife)
 IrreflexiveObjectProperty(hasWife)
 // should be AsymmetricObjectProperty
 AntiSymmetricObjectProperty(hasWife)
-
+<br />
 SubObjectPropertyOf(hasWife hasSpouse)
 SubObjectPropertyOf(hasWife loves)
-
+<br />
 // Object property: http://ex.com/owl/families#hasHusband
 Declaration(ObjectProperty(hasHusband))
 InverseObjectProperties(hasHusband hasWife)
-
+<br />
 // Object property: http://ex.com/owl/families#hasSon
 Declaration(ObjectProperty(hasSon))
 ObjectPropertyDomain(hasSon Person)
@@ -1717,7 +1742,7 @@ ObjectPropertyRange(hasSon
 SubObjectPropertyOf(hasSon hasChild)
 DisjointObjectProperties(hasDaughter hasSon)
 SubObjectPropertyOf(SubObjectPropertyChain(hasSpouse hasSon) hasSon)
-
+<br />
 // Object property: http://ex.com/owl/families#hasDaughter
 Declaration(ObjectProperty(hasDaughter))
 ObjectPropertyDomain(hasDaughter Person)
@@ -1727,37 +1752,37 @@ ObjectPropertyRange(hasDaughter
   ObjectIntersectionOf(Person ObjectHasValue(hasGender female)))
 SubObjectPropertyOf(hasDaughter hasChild)
 SubObjectPropertyOf(SubObjectPropertyChain(hasSpouse hasDaughter) hasDaughter)
-
+<br />
 // Object property: http://ex.com/owl/families#hasGender
 Declaration(ObjectProperty(hasGender))
-
+<br />
 // Object property: http://ex.com/owl/families#hasChild
 Declaration(ObjectProperty(hasChild))
 ObjectPropertyDomain(hasChild Person)
 ObjectPropertyRange(hasChild Person)
 SubObjectPropertyOf(hasChild InverseObjectProperty(hasAncestor))
-
+<br />
 // Object property: http://ex.com/owl/families#hasAncestor
 Declaration(ObjectProperty(hasAncestor))
 TransitiveObjectProperty(hasAncestor)
 IrreflexiveObjectProperty(hasAncestor)
-
+<br />
 // Object property: http://ex.com/owl/families#hasSpouse
 Declaration(ObjectProperty(hasSpouse))
 SymmetricObjectProperty(hasSpouse)
 IrreflexiveObjectProperty(hasSpouse)
-
+<br />
 // Object property: http://ex.com/owl/families#loves
 ObjectPropertyDomain(loves Person)
 Declaration(ObjectProperty(loves))
-
+<br />
 
 // Data property: http://ex.com/owl/families#hasAge
 Declaration(DataProperty(hasAge))
 DataPropertyDomain(hasAge Person)
 DataPropertyRange(hasAge xsd:integer)
 FunctionalDataProperty(hasAge)
-
+<br />
 
 // Class: http://ex.com/owl/families#Person
 Declaration(OWLClass(Person))
@@ -1765,22 +1790,22 @@ SubClassOf(Person
   ObjectIntersectionOf(DataExactCardinality(1 hasAge)
                        ObjectExactCardinality(1 hasGender)
 		       ObjectAllValuesFrom(hasGender ObjectOneOf(female male))))
-
+<br />
 // Class: http://ex.com/owl/families#Man
 Declaration(OWLClass(Man))
 EquivalentClasses(Man
   ObjectIntersectionOf(Person ObjectHasValue(hasGender male)))
-
+<br />
 // Class: http://ex.com/owl/families#Woman
 Declaration(OWLClass(Woman))
 EquivalentClasses(Woman
   ObjectIntersectionOf(Person ObjectHasValue(hasGender female)))
-
+<br />
 // Class: http://ex.com/owl/families#Parent
 Declaration(OWLClass(Parent))
 EquivalentClasses(Parent
   ObjectIntersectionOf(Person ObjectMinCardinality(1 hasChild Person)))
-
+<br />
 // Class: http://ex.com/owl/families#Teenager
 Declaration(OWLClass(Teenager))
 EquivalentClasses(Teenager
@@ -1788,14 +1813,14 @@ EquivalentClasses(Teenager
     DataSomeValuesFrom(hasAge 
       DatatypeRestriction(xsd:integer minInclusive "13"^^xsd:int
                                       maxExclusive "20"^^xsd:int))))
-
+<br />
 // Class: http://ex.com/owl/families#Adult
 Declaration(OWLClass(Adult))
 EquivalentClasses(Adult
   ObjectIntersectionOf(Person
     DataSomeValuesFrom(hasAge 
       DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int))))
-
+<br />
 // Class: http://ex.com/owl/families#Child
 Declaration(OWLClass(Child))
 EquivalentClasses(Child
@@ -1803,35 +1828,35 @@ EquivalentClasses(Child
     ObjectComplementOf(
       DataSomeValuesFrom(hasAge 
         DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int)))))
-
+<br />
 // Class: http://ex.com/owl/families#YoungChild
 Declaration(OWLClass(YoungChild))
 EquivalentClasses(YoungChild
   ObjectIntersectionOf(Person ObjectComplementOf(ObjectUnionOf(Teenager Adult))))
-
+<br />
 // Class: http://ex.com/owl/families#Marriage
 Declaration(OWLClass(Marriage))
 EquivalentClasses(Marriage ObjectUnionOf(CivilMarriage ReligiousMarriage))
-
+<br />
 // Class: http://ex.com/owl/families#ReligiousMarriage
 Declaration(OWLClass(ReligiousMarriage))
 DisjointClasses(CivilMarriage ReligiousMarriage)
-
+<br />
 // Class: http://ex.com/owl/families#CivilMarriage
 Declaration(OWLClass(CivilMarriage))
-
+<br />
 // Class: http://ex.com/owl/families#Narcissist
 Declaration(OWLClass(Narcissist))
 EquivalentClasses(Narcissist ObjectIntersectionOf(Person ObjectExistsSelf(loves)))
-
+<br />
 
 // Individual: http://ex.com/owl/families#male
 Declaration(Individual(male))
 DifferentIndividuals(male female)
-
+<br />
 // Individual: http://ex.com/owl/families#female
 Declaration(Individual(female))
-
+<br />
 // Individual: http://ex.com/owl/families#John
 Declaration(Individual(John))
 ClassAssertion(Person John)
@@ -1842,25 +1867,25 @@ DataPropertyAssertion(hasAge John "33"^^xsd:integer)
 ObjectPropertyAssertion(hasGender John male)
 SameIndividuals(John Jack)
 DifferentIndividuals(John Mary Susan Bill)
-
+<br />
 // Individual: http://ex.com/owl/families#Mary
 Declaration(Individual(Mary))
 ObjectPropertyAssertion(hasSon Mary Bill)
 ObjectPropertyAssertion(hasDaughter Mary Susan)
 DataPropertyAssertion(hasAge Mary "31"^^xsd:integer)
 ObjectPropertyAssertion(hasGender Mary female)
-
+<br />
 // Individual: http://ex.com/owl/families#Bill
 Declaration(Individual(Bill))
 ClassAssertion(ObjectComplementOf(Narcissist) Bill)
 DataPropertyAssertion(hasAge Bill "13"^^xsd:integer)
 ObjectPropertyAssertion(hasGender Bill male)
-
+<br />
 // Individual: http://ex.com/owl/families#Susan
 Declaration(Individual(Susan))
 DataPropertyAssertion(hasAge Susan "8"^^xsd:integer)
 ObjectPropertyAssertion(hasGender Susan female)
-
+<br />
 // Individual: http://ex.com/owl/families#Jeff
 Declaration(Individual(Jeff))
 ClassAssertion(ObjectExactCardinality(2 hasChild) Jeff)
@@ -1870,31 +1895,31 @@ ObjectPropertyAssertion(hasChild Jeff Jack)
 DataPropertyAssertion(hasAge Jeff "77"^^xsd:integer)
 ObjectPropertyAssertion(loves Jeff Jeff)
 DifferentIndividuals(Jeff Ellen Jack Susan Emily)
-
+<br />
 // Individual: http://ex.com/owl/families#Emily
 Declaration(Individual(Emily))
 ClassAssertion(DataSomeValuesFrom(hasAge DataOneOf("39"^^xsd:integer
                                                    "49"^^xsd:integer)) Emily)
-
+<br />
 // Individual: http://ex.com/owl/families#Ellen
 Declaration(Individual(Ellen))
 ClassAssertion(
   DataSomeValuesFrom(hasAge 
     DatatypeRestriction(xsd:integer minInclusive "15"^^xsd:int
 				    maxInclusive "21"^^xsd:int)) Ellen)
-
+<br />
 // Individual: http://ex.com/owl/families#Jack
 Declaration(Individual(Jack))
 NegativeDataPropertyAssertion(hasAge Jack "53"^^xsd:integer)
-
+<br />
 
 SameIndividuals(male g:masculine)
 SameIndividuals(female g:feminine)
-
+<br />
 EquivalentClasses(Adult g:Grownup)
 EquivalentObjectProperties(hasChild g:child)
 EquivalentDataProperties(hasAge g:age)
-
+<br />
 )
 </code>
 </p>
@@ -1903,7 +1928,7 @@ EquivalentDataProperties(hasAge g:age)
 <b>OWL XML Syntax:</b> (without any reordering) <br />
 <code style="white-space: pre;">
 &lt;?xml version="1.0"?&gt;
-
+<br />
 &lt;!DOCTYPE Ontology [
     &lt;!ENTITY families2 "http://ex.com/owl/families#" &gt;
     &lt;!ENTITY families "http://ex.com/owl2/families#" &gt;
@@ -1914,9 +1939,9 @@ EquivalentDataProperties(hasAge g:age)
     &lt;!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" &gt;
     &lt;!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" &gt;
 ]&gt;
-
+<br />
 &lt;!-- Axioms: 111 --&gt;
-
+<br />
 &lt;Ontology xmlns="http://www.w3.org/2006/12/owl11-xml#"
      xml:base="http://www.w3.org/2006/12/owl11-xml#"
      xmlns:families2="http://ex.com/owl/families#"
@@ -1928,7 +1953,7 @@ EquivalentDataProperties(hasAge g:age)
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      URI="http://ex.com/owl/families"&gt;
-
+<br />
     &lt;ObjectPropertyRange&gt;
         &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
         &lt;OWLClass URI="&amp;families2;Person"/&gt;
@@ -2489,7 +2514,7 @@ EquivalentDataProperties(hasAge g:age)
 <b>RDF/XML Syntax:</b> (without any reordering) <br />
 <code style="white-space: pre;">
 &lt;?xml version="1.0"?&gt;
-
+<br />
 &lt;!DOCTYPE rdf:RDF [
     &lt;!ENTITY families2 "http://ex.com/owl/families#" &gt;
     &lt;!ENTITY families "http://ex.com/owl2/families#" &gt;
@@ -2500,7 +2525,7 @@ EquivalentDataProperties(hasAge g:age)
     &lt;!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" &gt;
     &lt;!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" &gt;
 ]&gt;
-
+<br />
 &lt;rdf:RDF xmlns="http://ex.com/owl/families#"
      xml:base="http://ex.com/owl/families"
      xmlns:families2="http://ex.com/owl/families#"
@@ -2512,7 +2537,7 @@ EquivalentDataProperties(hasAge g:age)
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"&gt;
     &lt;owl:Ontology rdf:about=""/&gt;
-
+<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2520,25 +2545,25 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasAncestor --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasAncestor"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;TransitiveProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl11;IrreflexiveProperty"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
     &lt;!-- http://ex.com/owl/families#hasChild --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasChild"&gt;
         &lt;rdfs:subPropertyOf rdf:resource="#hasAncestor"/&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
         &lt;rdfs:range rdf:resource="#Person"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasDaughter --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasDaughter"&gt;
         &lt;rdfs:range&gt;
             &lt;owl:Class&gt;
@@ -2558,21 +2583,21 @@ EquivalentDataProperties(hasAge g:age)
         &lt;owl11:disjointObjectProperties rdf:resource="#hasSon"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasGender --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasGender"/&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasHusband --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasHusband"&gt;
         &lt;owl:inverseOf rdf:resource="#hasWife"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasSon --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasSon"&gt;
         &lt;rdfs:range&gt;
             &lt;owl:Class&gt;
@@ -2591,17 +2616,17 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdfs:domain rdf:resource="#Parent"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasSpouse --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasSpouse"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;SymmetricProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl11;IrreflexiveProperty"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasWife --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#hasWife"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;InverseFunctionalProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl;FunctionalProperty"/&gt;
@@ -2615,21 +2640,21 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdfs:domain rdf:resource="#Man"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#loves --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="#loves"&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl2/families#child --&gt;
-
+<br />
     &lt;owl:ObjectProperty rdf:about="&amp;families;child"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasChild"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-
+<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2637,25 +2662,25 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-
+<br />
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#hasAge --&gt;
-
+<br />
     &lt;owl:DatatypeProperty rdf:about="#hasAge"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;FunctionalProperty"/&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
         &lt;rdfs:range rdf:resource="&amp;xsd;integer"/&gt;
     &lt;/owl:DatatypeProperty&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl2/families#age --&gt;
-
+<br />
     &lt;owl:DatatypeProperty rdf:about="&amp;families;age"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasAge"/&gt;
     &lt;/owl:DatatypeProperty&gt;
     
-
+<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2663,11 +2688,11 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-
+<br />
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Adult --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Adult"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2688,9 +2713,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Child --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Child"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2715,16 +2740,16 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#CivilMarriage --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#CivilMarriage"&gt;
         &lt;owl:disjointWith rdf:resource="#ReligiousMarriage"/&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Man --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Man"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2739,9 +2764,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Marriage --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Marriage"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2753,9 +2778,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Narcissist --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Narcissist"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2770,9 +2795,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Parent --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Parent"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2788,9 +2813,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Person --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Person"&gt;
         &lt;rdfs:subClassOf&gt;
             &lt;owl:Class&gt;
@@ -2819,14 +2844,14 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdfs:subClassOf&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#ReligiousMarriage --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#ReligiousMarriage"/&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Teenager --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Teenager"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2848,9 +2873,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Woman --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#Woman"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2865,9 +2890,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#YoungChild --&gt;
-
+<br />
     &lt;owl:Class rdf:about="#YoungChild"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -2888,19 +2913,19 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl2/families#Grownup --&gt;
-
+<br />
     &lt;owl:Class rdf:about="&amp;families;Grownup"&gt;
         &lt;owl:equivalentClass rdf:resource="#Adult"/&gt;
     &lt;/owl:Class&gt;
     
-
+<br />
     &lt;!-- http://www.w3.org/2002/07/owl#Thing --&gt;
-
+<br />
     &lt;owl:Class rdf:about="&amp;owl;Thing"/&gt;
     
-
+<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2908,11 +2933,11 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-
+<br />
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Bill --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Bill"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Class&gt;
@@ -2923,9 +2948,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasGender rdf:resource="#male"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Ellen --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Ellen"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -2942,9 +2967,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdf:type&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Emily --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Emily"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -2971,9 +2996,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdf:type&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Jack --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Jack"&gt;
         &lt;owl:sameAs rdf:resource="#John"/&gt;
     &lt;/rdf:Description&gt;
@@ -2983,9 +3008,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdf:object rdf:datatype="&amp;xsd;integer"&gt;53&lt;/rdf:object&gt;
     &lt;/owl11:NegativeDataPropertyAssertion&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Jeff --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Jeff"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -3000,9 +3025,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasChild rdf:resource="#Jack"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#John --&gt;
-
+<br />
     &lt;Person rdf:about="#John"&gt;
         &lt;hasDaughter rdf:resource="#Susan"/&gt;
         &lt;hasGender rdf:resource="#male"/&gt;
@@ -3011,9 +3036,9 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;33&lt;/hasAge&gt;
     &lt;/Person&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Mary --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Mary"&gt;
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;31&lt;/hasAge&gt;
         &lt;hasGender rdf:resource="#female"/&gt;
@@ -3021,39 +3046,39 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasDaughter rdf:resource="#Susan"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#Susan --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#Susan"&gt;
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;8&lt;/hasAge&gt;
         &lt;hasGender rdf:resource="#female"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#female --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#female"&gt;
         &lt;owl:sameAs rdf:resource="&amp;families;feminine"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl/families#male --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="#male"/&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl2/families#feminine --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="&amp;families;feminine"/&gt;
     
-
+<br />
     &lt;!-- http://ex.com/owl2/families#masculine --&gt;
-
+<br />
     &lt;rdf:Description rdf:about="&amp;families;masculine"&gt;
         &lt;owl:sameAs rdf:resource="#male"/&gt;
     &lt;/rdf:Description&gt;
     
-
+<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -3061,7 +3086,7 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-
+<br />
     &lt;rdf:Description&gt;
         &lt;rdf:type rdf:resource="&amp;owl;AllDifferent"/&gt;
         &lt;owl:distinctMembers rdf:parseType="Collection"&gt;
@@ -3108,9 +3133,6 @@ EquivalentDataProperties(hasAge g:age)
 </code>
 </p>
 
-
-<hr />
-
 <h2><a name="references"></a>References</h2>
 
 <dl>
@@ -3134,7 +3156,6 @@ Bernardo Cuenca Grau and Boris Motik, 2007.
 1.1 Web Ontology Language: Model-Theoretic Semantics</a></cite>.
 Bernardo Cuenca Grau and Boris Motik, 2007.
 </dd>
-
 <dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
 <dd>
 <cite><a href="http://www.w3.org/2007/OWL/wiki/Syntax">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
