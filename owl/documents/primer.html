@@ -729,7 +729,7 @@ Class: f:Person SubClassOf: f:hasAge exactly 1 and
                             f:hasGender only {f:female , f:male} <br />
 Class: f:Man EquivalentTo: f:Person and f:hasGender value f:male <br />
 Class: f:Woman EquivalentTo: f:Person and f:hasGender value f:female <br />
-Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1
+Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1 f:Person
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -744,7 +744,7 @@ EquivalentClasses(f:Man
 EquivalentClasses(f:Woman
     ObjectIntersection(f:Person ObjectHasValue(f:hasGender f:female))) <br />
 EquivalentClasses(f:Parent
-    ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild)))
+    ObjectIntersection(f:Person ObjectMinCardinality(1 f:hasChild f:Person)))
 </code>
 </p>
 
@@ -2805,7 +2805,7 @@ EquivalentDataProperties(hasAge g:age)
                     &lt;owl:Restriction&gt;
                         &lt;owl:onProperty rdf:resource="#hasChild"/&gt;
                         &lt;owl11:onClass rdf:resource="#Person"/&gt;
-                        &lt;owl:minCardinality rdf:datatype="&amp;xsd;nonNegativeInteger"&gt;1&lt;/owl:minCardinality&gt;
+                        &lt;owl:minCardinalityQ rdf:datatype="&amp;xsd;nonNegativeInteger"&gt;1&lt;/owl:minCardinality&gt;
                     &lt;/owl:Restriction&gt;
                     &lt;rdf:Description rdf:about="#Person"/&gt;
                 &lt;/owl:intersectionOf&gt;
