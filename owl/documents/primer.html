@@ -83,7 +83,7 @@ Primer</h1>
 
 <h2>
 <a id="editordraft" name="editordraft">
-</a>Editors' Draft of 11 February 2008</h2>
+</a>Editors' Draft of 21 February 2008</h2>
 <dl>
 <dt>Latest version: </dt>
 <dd>TODAY</dd>
@@ -384,6 +384,7 @@ hide all four syntaxes.
 Currently many examples are missing the RDF/XML syntax.
 Currently the syntax examples are almost all correct (according to
 Protege 4, but it has one syntax bug).
+</em>
 </p>
 
 <form action="">
@@ -526,21 +527,21 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
-&nbsp;&nbsp;&lt;f:hasWife rdf:resource="http://ex.com/owl/families#Mary" /><br />
-&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
-&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&lt;rdf:Description rdf:about="&amp;f;John"><br />
+&nbsp;&nbsp;&lt;f:hasWife rdf:resource="&amp;f;Mary" /><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="&amp;f;Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="&amp;f;Susan" /><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">33&lt;/f:hasage><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
-&nbsp;&nbsp;&lt;f:hasSon rdf:resource="http://ex.com/owl/families#Bill" /><br />
-&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="http://ex.com/owl/families#Susan" /><br />
+&lt;rdf:Description rdf:about="&amp;f;Mary"><br />
+&nbsp;&nbsp;&lt;f:hasSon rdf:resource="&amp;f;Bill" /><br />
+&nbsp;&nbsp;&lt;f:hasDaughter rdf:resource="&amp;f;Susan" /><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31&lt;/f:hasage><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
+&lt;rdf:Description rdf:about="&amp;f;Bill"><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13&lt;/f:hasage><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
+&lt;rdf:Description rdf:about="&amp;f;Susan"><br />
 &nbsp;&nbsp;&lt;f:hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">8&lt;/f:hasage><br />
 &lt;/rdf:Description>
 </code>
@@ -597,17 +598,17 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#John"><br />
-&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#male" /><br />
+&lt;rdf:Description rdf:about="&amp;f;John"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="&amp;f;male" /><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Mary"><br />
-&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
+&lt;rdf:Description rdf:about="&amp;f;Mary"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="&amp;f;female" /><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Bill"><br />
-&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#male" /><br />
+&lt;rdf:Description rdf:about="&amp;f;Bill"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="&amp;f;male" /><br />
 &lt;/rdf:Description><br />
-&lt;rdf:Description rdf:about="http://ex.com/owl/families#Susan"><br />
-&nbsp;&nbsp;&lt;f:hasGender rdf:resource="http://ex.com/owl/families#female" /><br />
+&lt;rdf:Description rdf:about="&amp;f;Susan"><br />
+&nbsp;&nbsp;&lt;f:hasGender rdf:resource="&amp;f;female" /><br />
 &lt;/rdf:Description>
 </code>
 </p>
@@ -702,21 +703,21 @@ DataPropertyRange(f:hasAge xsd:integer)
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-&lt;owl:Class rdf:about="http://ex.com/owl/families#Person" /><br />
-&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasWife"><br />
-&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
-&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;owl:Class rdf:about="&amp;f;Person" /><br />
+&lt;owl:ObjectProperty rdf:about="&amp;f;hasWife"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="&amp;f;Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="&amp;f;Person" /><br />
 &lt;/owl:ObjectProperty><br />
-&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasSon"><br />
-&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
-&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;owl:ObjectProperty rdf:about="&amp;f;hasSon"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="&amp;f;Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="&amp;f;Person" /><br />
 &lt;/owl:ObjectProperty><br />
-&lt;owl:ObjectProperty rdf:about="http://ex.com/owl/families#hasDaughter"><br />
-&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
-&nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;owl:ObjectProperty rdf:about="&amp;f;hasDaughter"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="&amp;f;Person" /><br />
+&nbsp;&nbsp;&lt;rdfs:range rdf:resource="&amp;f;Person" /><br />
 &lt;/owl:ObjectProperty><br />
-&lt;owl:DataProperty rdf:about="http://ex.com/owl/families#hasAge"><br />
-&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="http://ex.com/owl/families#Person" /><br />
+&lt;owl:DataProperty rdf:about="&amp;f;hasAge"><br />
+&nbsp;&nbsp;&lt;rdfs:domain rdf:resource="&amp;f;Person" /><br />
 &nbsp;&nbsp;&lt;rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" /><br />
 &lt;/owl:ObjectProperty>
 </code>
@@ -754,7 +755,7 @@ ClassAssertion(f:Person f:John)
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
-&lt;f:Person rdf:about="http://ex.com/owl/families#John" /><br />
+&lt;f:Person rdf:about="&amp;f;John" /><br />
 </code>
 </p>
 <p>There is more that can be said even about just this little
@@ -2090,7 +2091,7 @@ we are not using someone else's names by accident.
 <b>Manchester Syntax:</b> <br />
 <code>
 Namespace: f = &lt;http://ex.com/owl/families#&gt; <br />
-Namespace: g = &lt;http://ex2.com/owl/family#&gt; <br />
+Namespace: g = &lt;http://ex2.com/owl2/families#&gt; <br />
 Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; <br />
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt; <br />
 Namespace: xsd = &lt;http://www.w3.org/2001/XMLSchema#&gt; <br />
@@ -2152,13 +2153,13 @@ using imports statements, as follows:
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Import: http://ex2.com/owl/family
+Import: http://ex2.com/owl2/families
 </code>
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
 <code style="white-space: pre;">
-Import(http://ex2.com/owl/family)
+Import(http://ex2.com/owl2/families)
 </code>
 </p>
 <p class="owlxml" style="display:none">
@@ -2500,13 +2501,13 @@ Extra annotations have been added (not YET) to help explain the ontology.
 <b>Manchester Syntax:</b> <br />
 <code style="white-space: pre;">
 Namespace: f =&lt;http://ex.com/owl/families#&gt;
-Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
+Namespace: g = &lt;http://ex2.com/owl/families.owl#&gt;
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 <br />
 Ontology: &lt;http://ex.com/owl/families&gt;
 <br />
-Import: http://ex2.com/owl/family.owl 
+Import: http://ex2.com/owl2/families.owl 
 <br />
 ObjectProperty: hasWife
   Domain: Person, Man
