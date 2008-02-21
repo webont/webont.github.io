@@ -360,24 +360,30 @@ As IRIs are long, we will use a compact way of writing them in OWL,
 consisting of a prefix and a reference separated by a colon.
 When OWL information is transferred around in the Web, it is written in an
 XML dialect.  
-The Manchester syntax is an OWL syntax that is designed to be easier for
+The Manchester syntax 
+[<a href="#ref-owl-manchester-syntax">OWL 1.1 Manchester Syntax</a>]
+is an OWL syntax that is designed to be easier for
 non-logicians to read.
-The Functional-Style syntax is a formal OWL syntax that is designed to
+The Functional-Style syntax
+[<a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a>]
+is a formal OWL syntax that is designed to
 be easier for reasoning tools to use.
-The OWL XML syntax is an XML syntax for OWL defined by an XML schema.
-The RDF/XML syntax for OWL is just RDF/XML.
+The OWL XML syntax is an XML syntax for OWL defined by an XML schema
+[<a href="#ref-owl-1.1-xml-syntax">OWL 1.1 Specification</a>].
+The RDF/XML syntax for OWL is just RDF/XML, with a particular
+translation for the OWL constructs
+[<a href="#ref-owl-1.1-rdf-mapping">OWL 1.1 RDF Mapping</a>]
 There are tools that can translate
 between the different syntaxes for OWL.
 </p>
 <p>
 This primer uses four different syntaxes, by default the Manchester
 syntax is the only one shown; the buttons below can be used to show or
-hide all three syntaxes.  (Currently some examples only have the
-Manchester syntax.  Currently the Manchester syntax examples are
-almost all correct.
-Currently the entire KB in the other syntaxes is correct (according to
-Protege 4, but it has one syntax bug), but the pieces have not
-been fully checked. )
+hide all four syntaxes.  
+<em>
+Currently many examples are missing the RDF/XML syntax.
+Currently the syntax examples are almost all correct (according to
+Protege 4, but it has one syntax bug).
 </p>
 
 <form action="">
@@ -441,11 +447,11 @@ Individual: f:John<br />
 	 f:hasDaughter f:Susan,<br />
 	 f:hasAge 33<br />
 Individual: f:Mary<br />
-  Facts: f:hasSon  f:Bill,<br />
+  Facts: f:hasSon f:Bill,<br />
 	 f:hasDaughter f:Susan,<br />
-	 f:hasAge  31<br />
+	 f:hasAge 31<br />
 Individual: f:Bill<br />
-  Facts: f:hasAge  13<br />
+  Facts: f:hasAge 13<br />
 Individual: f:Susan<br />
   Facts: f:hasAge  8
 </code>
@@ -462,6 +468,59 @@ ObjectPropertyAssertion(f:Mary f:hasDaughter f:Susan) <br />
 DataPropertyAssertion(f:Mary f:hasAge "31"^^xsd:integer) <br />
 DataPropertyAssertion(f:Bill f:hasAge "13"^^xsd:integer) <br />
 DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;DataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;33&lt;/Constant&gt;
+&lt;/DataPropertyAssertion&gt;
+
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;DataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;31&lt;/Constant&gt;
+&lt;/DataPropertyAssertion&gt;
+
+&lt;DataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;13&lt;/Constant&gt;
+&lt;/DataPropertyAssertion&gt;
+
+&lt;DataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;8&lt;/Constant&gt;
+&lt;/DataPropertyAssertion&gt;
 </code>
 </p>
 <p class="rdfxml" style="display:none">
@@ -497,8 +556,8 @@ either <span class="name">male</span> or <span class="name">female</span>.
 <code>
 Individual: f:John Facts: f:hasGender f:male <br />
 Individual: f:Mary Facts: f:hasGender f:female <br />
-Individual: f:John Facts: f:hasGender f:male <br />
-Individual: f:Suan Facts: f:hasGender f:female
+Individual: f:Bill Facts: f:hasGender f:male <br />
+Individual: f:Susan Facts: f:hasGender f:female
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -508,6 +567,31 @@ ObjectPropertyAssertion(f:John f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Mary f:hasGender f:female) <br />
 ObjectPropertyAssertion(f:Bill f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Susan f:hasGender f:female)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Individual URI="&amp;f;male"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+    &lt;Individual URI="&amp;f;female"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+    &lt;Individual URI="&amp;f;male"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+    &lt;Individual URI="&amp;f;female"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
 </code>
 </p>
 <p class="rdfxml" style="display:none">
@@ -575,6 +659,46 @@ DataPropertyDomain(f:hasAge f:Person)<br />
 DataPropertyRange(f:hasAge xsd:integer)
 </code>
 </p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;DataPropertyDomain&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/DataPropertyDomain&gt;
+&lt;DataPropertyRange&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Datatype URI="&amp;xsd;integer"/&gt;
+&lt;/DataPropertyRange&gt;
+</code>
+</p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
@@ -615,7 +739,16 @@ Individual: f:John Types: f:Person
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
 <code>
-ClassAssertion(f:John f:Person)
+ClassAssertion(f:Person f:John)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ClassAssertion&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+&lt;/ClassAssertion&gt;
 </code>
 </p>
 <p class="rdfxml" style="display:none">
@@ -664,6 +797,71 @@ DataProperty: f:hasAge Characteristics: Functional <br />
 ObjectProperty: f:hasWife Characteristics: Functional, InverseFunctional, Irreflexive, Asymmetric
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+InverseObjectProperties(f:hasHusband f:hasWife)
+ObjectPropertyDomain(f:hasChild f:Person)
+ObjectPropertyRange(f:hasChild f:Person)
+SubObjectPropertyOf(f:hasSon f:hasChild)
+SubObjectPropertyOf(f:hasDaughter f:hasChild)
+DisjointObjectProperties(f:hasDaughter f:hasSon)
+FunctionalDataProperty(f:hasAge)
+FunctionalObjectProperty(f:hasWife)
+InverseFunctionalObjectProperty(f:hasWife)
+IrreflexiveObjectProperty(f:hasWife)
+AsymmetricObjectProperty(f:hasWife)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;InverseObjectProperties&gt;
+    &lt;ObjectProperty URI="&amp;f;hasHusband"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/InverseObjectProperties&gt;
+
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;SubObjectPropertyOf&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+&lt;SubObjectPropertyOf&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+
+&lt;DisjointObjectProperties&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+&lt;/DisjointObjectProperties&gt;
+
+&lt;FunctionalDataProperty&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+&lt;/FunctionalDataProperty&gt;
+
+&lt;FunctionalObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/FunctionalObjectProperty&gt;
+&lt;InverseFunctionalObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/InverseFunctionalObjectProperty&gt;
+&lt;IrreflexiveObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/IrreflexiveObjectProperty&gt;
+&lt;AntisymmetricObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/AntisymmetricObjectProperty&gt;
+</code>
+</p>
 
 <p>What we have said about families and about our particular
 family has a
@@ -694,6 +892,32 @@ Class: f:Woman SubClassOf: f:Person <br />
 Class: f:Parent SubClassOf: f:Person
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax (not in dump!):</b> <br />
+<code style="white-space: pre;">
+SubClassOf(f:Man f:Person)
+SubClassOf(f:Woman f:Person)
+SubClassOf(f:Parent f:Person)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax (not in dump!):</b> <br />
+<code style="white-space: pre;">
+&lt;SubClassOf&gt;
+    &lt;OWLClass URI="&amp;f;Man"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/SubClassOf&gt;
+&lt;SubClassOf&gt;
+    &lt;OWLClass URI="&amp;f;Woman"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/SubClassOf&gt;
+&lt;SubClassOf&gt;
+    &lt;OWLClass URI="&amp;f;Parent"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/SubClassOf&gt;
+</code>
+</p>
+
 
 <p>We can do much more in OWL with classes than just provide
 generalizations for them. OWL can provide partial or complete
@@ -730,6 +954,74 @@ Class: f:Person SubClassOf: f:hasAge exactly 1 and
 Class: f:Man EquivalentTo: f:Person and f:hasGender value f:male <br />
 Class: f:Woman EquivalentTo: f:Person and f:hasGender value f:female <br />
 Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1 f:Person
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SubClassOf(f:Person 
+  ObjectIntersectionOf(DataExactCardinality(1 f:hasAge)
+                       ObjectExactCardinality(1 f:hasGender)
+		       ObjectAllValuesFrom(f:hasGender ObjectOneOf(f:female f:male))))
+EquivalentClasses(f:Man
+  ObjectIntersectionOf(f:Person ObjectHasValue(f:hasGender f:male)))
+EquivalentClasses(f:Woman
+  ObjectIntersectionOf(f:Person ObjectHasValue(f:hasGender f:female)))
+EquivalentClasses(f:Parent
+  ObjectIntersectionOf(f:Person ObjectMinCardinality(1 f:hasChild f:Person)))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;SubClassOf&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;DataExactCardinality cardinality="1"&gt;
+            &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;/DataExactCardinality&gt;
+        &lt;ObjectExactCardinality cardinality="1"&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+        &lt;/ObjectExactCardinality&gt;
+        &lt;ObjectAllValuesFrom&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+            &lt;ObjectOneOf&gt;
+                &lt;Individual URI="&amp;f;female"/&gt;
+                &lt;Individual URI="&amp;f;male"/&gt;
+            &lt;/ObjectOneOf&gt;
+        &lt;/ObjectAllValuesFrom&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/SubClassOf&gt;
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Man"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;ObjectHasValue&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+            &lt;Individual URI="&amp;f;male"/&gt;
+        &lt;/ObjectHasValue&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Woman"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+        &lt;ObjectHasValue&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+            &lt;Individual URI="&amp;f;female"/&gt;
+        &lt;/ObjectHasValue&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Parent"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;ObjectMinCardinality cardinality="1"&gt;
+            &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
+        &lt;/ObjectMinCardinality&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -776,6 +1068,63 @@ ObjectProperty: f:hasDaughter Domain: f:Parent
 	Range: Person and f:hasGender f:female <br />
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+ObjectPropertyDomain(f:hasWife f:Man)
+ObjectPropertyRange(f:hasWife f:Woman)
+ObjectPropertyDomain(f:hasSon f:Parent)
+ObjectPropertyRange(f:hasSon 
+  ObjectIntersectionOf(f:Person ObjectHasValue(f:hasGender f:male)))
+ObjectPropertyDomain(f:hasDaughter f:Parent)
+ObjectPropertyRange(f:hasDaughter 
+  ObjectIntersectionOf(f:Person ObjectHasValue(f:hasGender f:female)))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;OWLClass URI="&amp;f;Man"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;OWLClass URI="&amp;f;Woman"/&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;OWLClass URI="&amp;f;Parent"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;ObjectHasValue&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+            &lt;Individual URI="&amp;f;male"/&gt;
+        &lt;/ObjectHasValue&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/ObjectPropertyRange&gt;
+
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;OWLClass URI="&amp;f;Parent"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;ObjectPropertyRange&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+        &lt;ObjectHasValue&gt;
+            &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+            &lt;Individual URI="&amp;f;female"/&gt;
+        &lt;/ObjectHasValue&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/ObjectPropertyRange&gt;
+</code>
+</p>
+
 <p>In this case, we could just as well have used <span class="name">Man</span>
 and
 <span class="name">Woman</span> for the ranges of <span class="name">son</span>
@@ -817,6 +1166,83 @@ Class: Teenager EquivalentClass: Person and hasAge some integer[&gt;= 13 , &lt; 
 Class: Adult EquivalentClass: Person and hasAge some integer[&gt;= 21] <br />
 Class: Child EquivalentClass: Person and not ( hasAge some integer[&gt;= 21] ) <br />
 </code>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+EquivalentClasses(f:Teenager
+  ObjectIntersectionOf(f:Person
+    DataSomeValuesFrom(f:hasAge 
+      DatatypeRestriction(xsd:integer minInclusive "13"^^xsd:int
+                                      maxExclusive "20"^^xsd:int))))
+EquivalentClasses(f:Adult
+  ObjectIntersectionOf(f:Person
+    DataSomeValuesFrom(f:hasAge 
+      DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int))))
+EquivalentClasses(f:Child
+  ObjectIntersectionOf(f:Person
+    ObjectComplementOf(
+      DataSomeValuesFrom(f:hasAge 
+        DatatypeRestriction(xsd:integer minInclusive "21"^^xsd:int)))))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Teenager"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;DataSomeValuesFrom&gt;
+            &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+            &lt;DatatypeRestriction&gt;
+                &lt;Datatype URI="&amp;xsd;integer"/&gt;
+                &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
+                    &lt;Constant datatypeURI="&amp;xsd;int"&gt;13&lt;/Constant&gt;
+                &lt;/DatatypeFacetRestriction&gt;
+                &lt;DatatypeFacetRestriction facet="&amp;owl11;maxExclusive"&gt;
+                    &lt;Constant datatypeURI="&amp;xsd;int"&gt;20&lt;/Constant&gt;
+                &lt;/DatatypeFacetRestriction&gt;
+            &lt;/DatatypeRestriction&gt;
+        &lt;/DataSomeValuesFrom&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Adult"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;DataSomeValuesFrom&gt;
+            &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+            &lt;DatatypeRestriction&gt;
+                &lt;Datatype URI="&amp;xsd;integer"/&gt;
+                &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
+                    &lt;Constant datatypeURI="&amp;xsd;int"&gt;21&lt;/Constant&gt;
+                &lt;/DatatypeFacetRestriction&gt;
+            &lt;/DatatypeRestriction&gt;
+        &lt;/DataSomeValuesFrom&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Child"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;ObjectComplementOf&gt;
+            &lt;DataSomeValuesFrom&gt;
+                &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+                &lt;DatatypeRestriction&gt;
+                    &lt;Datatype URI="&amp;xsd;integer"/&gt;
+                    &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
+                        &lt;Constant datatypeURI="&amp;xsd;int"&gt;21&lt;/Constant&gt;
+                    &lt;/DatatypeFacetRestriction&gt;
+                &lt;/DatatypeRestriction&gt;
+            &lt;/DataSomeValuesFrom&gt;
+        &lt;/ObjectComplementOf&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+</code>
+</p>
+
 </p>
 <p>From this, <span class="name">Bill</span> belongs to <span class="name">Teenager</span>,
 but not
@@ -861,11 +1287,47 @@ below.
 <b>Manchester Syntax:</b> <br />
 <code style="white-space: pre;">
 Individual: f:Jeff <br />
-Facts: f:hasWife f:Emily, <br />
-       f:hasChild f:Ellen, <br />
-       f:hasChild f:Jack, <br />
-       f:hasAge  77
+  Facts: f:hasWife f:Emily, <br />
+         f:hasChild f:Ellen, <br />
+         f:hasChild f:Jack, <br />
+         f:hasAge 77
 </code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+ObjectPropertyAssertion(f:hasWife f:Jeff f:Emily)
+ObjectPropertyAssertion(f:hasChild f:Jeff f:Ellen)
+ObjectPropertyAssertion(f:hasChild f:Jeff f:Jack)
+DataPropertyAssertion(f:hasAge f:Jeff "77"^^xsd:integer)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Individual URI="&amp;f;Emily"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Individual URI="&amp;f;Jack"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Individual URI="&amp;f;Ellen"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+&lt;DataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;77&lt;/Constant&gt;
+&lt;/DataPropertyAssertion&gt;
+</code>
+</p>
+
 </p>
 <p>It is a consequence of the above that <span class="name">Jeff</span>
 belongs to
@@ -893,6 +1355,57 @@ Individual: f:Ellen Types: f:hasAge some integer[ &ge; 15, &le; 21 ] <br />
 Individual: f:Jack Facts: not f:hasAge "53"^^integer
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+ClassAssertion(DataSomeValuesFrom(f:hasAge DataOneOf("39"^^xsd:integer
+                                               "49"^^xsd:integer)) 
+               f:Emily)
+ClassAssertion(
+  DataSomeValuesFrom(f:hasAge 
+    DatatypeRestriction(xsd:integer minInclusive "15"^^xsd:int
+				    maxInclusive "21"^^xsd:int))
+  f:Ellen)
+NegativeDataPropertyAssertion(f:hasAge f:Jack "53"^^xsd:integer)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ClassAssertion&gt;
+    &lt;DataSomeValuesFrom&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;DataOneOf&gt;
+            &lt;Constant datatypeURI="&amp;xsd;integer"&gt;39&lt;/Constant&gt;
+            &lt;Constant datatypeURI="&amp;xsd;integer"&gt;49&lt;/Constant&gt;
+        &lt;/DataOneOf&gt;
+    &lt;/DataSomeValuesFrom&gt;
+    &lt;Individual URI="&amp;f;Emily"/&gt;
+&lt;/ClassAssertion&gt;
+
+&lt;ClassAssertion&gt;
+    &lt;DataSomeValuesFrom&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;DatatypeRestriction&gt;
+            &lt;Datatype URI="&amp;xsd;integer"/&gt;
+            &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
+                &lt;Constant datatypeURI="&amp;xsd;int"&gt;15&lt;/Constant&gt;
+            &lt;/DatatypeFacetRestriction&gt;
+            &lt;DatatypeFacetRestriction facet="&amp;owl11;maxInclusive"&gt;
+                &lt;Constant datatypeURI="&amp;xsd;int"&gt;21&lt;/Constant&gt;
+            &lt;/DatatypeFacetRestriction&gt;
+        &lt;/DatatypeRestriction&gt;
+    &lt;/DataSomeValuesFrom&gt;
+    &lt;Individual URI="&amp;f;Ellen"/&gt;
+&lt;/ClassAssertion&gt;
+
+&lt;NegativeDataPropertyAssertion&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+    &lt;Individual URI="&amp;f;Jack"/&gt;
+    &lt;Constant datatypeURI="&amp;xsd;integer"&gt;53&lt;/Constant&gt;
+&lt;/NegativeDataPropertyAssertion&gt;
+</code>
+</p>
 <p>From this it is possible to determine that <span class="name">Emily</span>
 belongs to Adult<span class="name">, even though we don't
 know her exact age, but we cannot determine that <span class="name">Ellen</span>
@@ -909,6 +1422,30 @@ belong to this class.
 <b>Manchester Syntax:</b> <br />
 <code>
 Class: f:YoungChild EquivalentTo: f:Person and not ( f:Teenager or f:Adult )
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+EquivalentClasses(f:YoungChild
+  ObjectIntersectionOf(f:Person ObjectComplementOf(ObjectUnionOf(f:Teenager f:Adult))))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;YoungChild"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;ObjectComplementOf&gt;
+            &lt;ObjectUnionOf&gt;
+                &lt;OWLClass URI="&amp;f;Teenager"/&gt;
+                &lt;OWLClass URI="&amp;f;Adult"/&gt;
+            &lt;/ObjectUnionOf&gt;
+        &lt;/ObjectComplementOf&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
 </code>
 </p>
 <h3>4.2 Other Incomplete Information</h3>
@@ -932,6 +1469,20 @@ Individual: f:Jeff f:Person and f:hasChild max 1 f:Man
 <p class="functional" style="display:none">
 <code>
 <b>Functional-Style Syntax:</b> <br />
+ClassAssertion(ObjectExactCardinality(2 f:hasChild) f:Jeff)
+MISSING SECOND!
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ClassAssertion&gt;
+    &lt;ObjectExactCardinality cardinality="2"&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;/ObjectExactCardinality&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+&lt;/ClassAssertion&gt;
+MISSING SECOND!
 </code>
 </p>
 <p class="rdfxml" style="display:none">
@@ -951,15 +1502,9 @@ One way that is often used for this purpose is to directly say that
 <span class="name">Jeff</span> has exactly 2 children, which should
 certainly be
 adequate to infer that <span class="name">Jeff</span> has exactly 2
-children
+children.
 </p>
 
-<p class="manchester">
-<b>Manchester Syntax:</b> <br />
-<code>
-Individual: f:Jeff Types: f:hasChild exactly 2
-</code>
-</p>
 <h3>4.3 Same and Different Individuals</h3>
 <p>
 However, even this is not adequate to infer that <span class="name">Jeff</span>
@@ -1010,6 +1555,37 @@ DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
 Individual: f:male DifferentFrom: f: female
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+DifferentIndividuals(f:John f:Mary f:Susan f:Bill)
+DifferentIndividuals(f:Jeff f:Emily f:Jack f:Ellen f:Susan)
+DifferentIndividuals(f:male f:female)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;DifferentIndividuals&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+    &lt;Individual URI="&amp;f;Mary"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+&lt;/DifferentIndividuals&gt;
+&lt;DifferentIndividuals&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Individual URI="&amp;f;Emily"/&gt;
+    &lt;Individual URI="&amp;f;Jack"/&gt;
+    &lt;Individual URI="&amp;f;Ellen"/&gt;
+    &lt;Individual URI="&amp;f;Susan"/&gt;
+&lt;/DifferentIndividuals&gt;
+&lt;DifferentIndividuals&gt;
+    &lt;Individual URI="&amp;f;female"/&gt;
+    &lt;Individual URI="&amp;f;male"/&gt;
+&lt;/DifferentIndividuals&gt;
+</code>
+</p>
+
 <p>It is also possible to state that two names refer to (denote)
 the same
 individual. For example, we can say that <span class="name">John</span>
@@ -1019,7 +1595,22 @@ and <span class="name">Jack</span> are the same individual.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code>
-Individual: f:John SameAs: f: Jack
+Individual: f:John SameAs: f:Jack
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SameIndividuals(f:John f:Jack)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;SameIndividuals&gt;
+    &lt;Individual URI="&amp;f;Jack"/&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+&lt;/SameIndividuals&gt;
 </code>
 </p>
 <h3>4.4 Disjointness of Classes</h3>
@@ -1046,6 +1637,29 @@ union of the two.
 <code>
 Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
 Class: f:Marriage EquivalentTo: f:ReligiousMarriage or f:CivilMarriage
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+DisjointClasses(f:ReligiousMarriage f:CivilMarriage)
+EquivalentClasses(f:Marriage ObjectUnionOf(f:CivilMarriage f:ReligiousMarriage))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;DisjointClasses&gt;
+    &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
+    &lt;OWLClass URI="&amp;f;ReligiousMarriage"/&gt;
+&lt;/DisjointClasses&gt;
+&lt;EquivalentClasses&gt;
+    &lt;ObjectUnionOf&gt;
+        &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
+        &lt;OWLClass URI="&amp;f;ReligiousMarriage"/&gt;
+    &lt;/ObjectUnionOf&gt;
+    &lt;OWLClass URI="&amp;f;Marriage"/&gt;
+&lt;/EquivalentClasses&gt;
 </code>
 </p>
 
@@ -1077,6 +1691,31 @@ ObjectProperty: f:hasAncestor Characteristics: Transitive, Irreflexive <br />
 ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+TransitiveObjectProperty(f:hasAncestor)
+IrreflexiveObjectProperty(f:hasAncestor)
+SubObjectPropertyOf(f:hasChild InverseObjectProperty(f:hasAncestor))
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;TransitiveObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
+&lt;/TransitiveObjectProperty&gt;
+&lt;IrreflexiveObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
+&lt;/IrreflexiveObjectProperty&gt;
+
+&lt;SubObjectPropertyOf&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+</code>
+</p>
+
 <p>From the above information,
 we can now conclude that <span class="name">Bill</span> has <span class="name">Jeff</span>
 as an
@@ -1094,10 +1733,20 @@ Individual: f:Bill
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
+<code>
+MISSING!
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+MISSING!
+</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
+MISSING
 </code>
 </p>
 <p>There are yet other kinds of information that we say provide
@@ -1115,6 +1764,31 @@ ObjectProperty: f:hasSpouse  Characteristics: Symmetric, Irreflexive <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SymmetricObjectProperty(fhasSpouse)
+IrreflexiveObjectProperty(f:hasSpouse)
+SubObjectPropertyOf(f:hasWife f:hasSpouse)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;SymmetricObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+&lt;/SymmetricObjectProperty&gt;
+&lt;IrreflexiveObjectProperty&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+&lt;/IrreflexiveObjectProperty&gt;
+
+&lt;SubObjectPropertyOf&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+</code>
+</p>
+
 <p>Although we haven't directly so stated, we can conclude that
 <span class="name">spouse</span> is also a generalization of <span class="name">husband</span>,
 because <span class="name">spouse</span> is a symmetric generalization
@@ -1137,6 +1811,27 @@ ObjectProperty: f:loves Domain: f:Person <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:loves
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+ObjectPropertyDomain(f:loves f:Person)
+SubObjectPropertyOf(f:hasWife f:loves)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;ObjectPropertyDomain&gt;
+    &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/ObjectPropertyDomain&gt;
+&lt;SubObjectPropertyOf&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+    &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+</code>
+</p>
+
 <p>Because <span class="name">loves</span> is not symmetric, we
 cannot conclude that <span class="name">loves</span> is a
 generalization of <span class="name">husband</span>.
@@ -1155,6 +1850,42 @@ relationships&gt;
 Class: f:Narcissist EquivalentTo: f:Person and f:loves Self <br />
 Individual: f:Jeff Facts: f:loves f:Jeff <br />
 Individual: f:Bill Types: not f:Narcissist
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+EquivalentClasses(f:Narcissist 
+  ObjectIntersectionOf(f:Person ObjectExistsSelf(f:loves)))
+ObjectPropertyAssertion(f:loves f:Jeff f:Jeff)
+ClassAssertion(ObjectComplementOf(f:Narcissist) f:Bill)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
+    &lt;ObjectIntersectionOf&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+        &lt;ObjectExistsSelf&gt;
+            &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+        &lt;/ObjectExistsSelf&gt;
+    &lt;/ObjectIntersectionOf&gt;
+&lt;/EquivalentClasses&gt;
+
+&lt;ObjectPropertyAssertion&gt;
+    &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+    &lt;Individual URI="&amp;f;Jeff"/&gt;
+&lt;/ObjectPropertyAssertion&gt;
+
+&lt;ClassAssertion&gt;
+    &lt;ObjectComplementOf&gt;
+        &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
+    &lt;/ObjectComplementOf&gt;
+    &lt;Individual URI="&amp;f;Bill"/&gt;
+&lt;/ClassAssertion&gt;
 </code>
 </p>
 <p>From this we can conclude that <span class="name">Jeff</span>
@@ -1179,6 +1910,34 @@ SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon <br />
 SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SubObjectPropertyOf(SubObjectPropertyChain(f:hasSpouse f:hasSon) f:hasSon)
+SubObjectPropertyOf(SubObjectPropertyChain(f:hasSpouse f:hasDaughter) f:hasDaughter)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;SubObjectPropertyOf&gt;
+    &lt;SubObjectPropertyChain&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+    &lt;/SubObjectPropertyChain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+
+&lt;SubObjectPropertyOf&gt;
+    &lt;SubObjectPropertyChain&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+    &lt;/SubObjectPropertyChain&gt;
+    &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+&lt;/SubObjectPropertyOf&gt;
+</code>
+</p>
+
 
 <p>
 We can now conclude that <span class="name">Emily</span> has the same 
@@ -1194,10 +1953,21 @@ f:Emily f:hasChild f:Ellen
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
+<code>
+ObjectPropertyAssertion(f:hasChild f:Emily f:Jack)
+ObjectPropertyAssertion(f:hasChild f:Emily f:Ellen)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+CONCLUSION
+</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
+CONCLUSION
 </code>
 </p>
 
@@ -1218,10 +1988,20 @@ Individual: f:John f:hasChild max 0 f:Woman
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
+<code>
+CONFLICT
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+CONFLICT
+</code>
 </p>
 <p class="rdfxml" style="display:none">
 <b>RDF/XML Syntax:</b> <br />
 <code>
+CONFLICT
 </code>
 </p>
 <p>In the presence of conflicting information, determining
@@ -1256,6 +2036,26 @@ if it is used by different applications.
 <b>Manchester Syntax:</b> <br />
 <code>
 Ontology: &lt;http://ex.com/owl/families&gt;
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+Ontology(&lt;http://ex.com/owl/families&gt;
+ ...
+)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;Ontology xmlns="http://www.w3.org/2006/12/owl11-xml#"
+     xml:base="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:f="http://ex.com/owl/families#"
+     ...
+     URI="http://ex.com/owl/families"&gt;
+ ...
+&lt;/Ontology&gt;
 </code>
 </p>
 
@@ -1297,6 +2097,47 @@ Namespace: xsd = &lt;http://www.w3.org/2001/XMLSchema#&gt; <br />
 Namespace: dc = ??
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+Namespace(f=&lt;http://ex.com/owl/families#&gt;)
+Namespace(g=&lt;http://ex.com/owl2/families#&gt;)
+Namespace(rdf=&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;)
+Namespace(rdfs=&lt;http://www.w3.org/2000/01/rdf-schema#&gt;)
+Namespace(xsd=&lt;http://www.w3.org/2001/XMLSchema#&gt;)
+Namespace(xsd=&lt;???#&gt;)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;!DOCTYPE Ontology [
+    &lt;!ENTITY f "http://ex.com/owl/families#" &gt;
+    &lt;!ENTITY g "http://ex.com/owl2/families#" &gt;
+    &lt;!ENTITY owl "http://www.w3.org/2002/07/owl#" &gt;
+    &lt;!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" &gt;
+    &lt;!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" &gt;
+    &lt;!ENTITY owl11xml "http://www.w3.org/2006/12/owl11-xml#" &gt;
+    &lt;!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" &gt;
+    &lt;!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" &gt;
+]&gt;
+&lt;Ontology xmlns="http://www.w3.org/2006/12/owl11-xml#"
+     xml:base="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:f="http://ex.com/owl/families#"
+     xmlns:owl11="http://www.w3.org/2006/12/owl11#"
+     xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:g="http://ex.com/owl2/families#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     URI="http://ex.com/owl/families"&gt;
+ ...
+&lt;/Ontology&gt;
+</code>
+</p>
+
+
 
 <h3>5.2 Imports</h3>
 
@@ -1312,6 +2153,18 @@ using imports statements, as follows:
 <b>Manchester Syntax:</b> <br />
 <code>
 Import: http://ex2.com/owl/family
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+Import(http://ex2.com/owl/family)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+MISSING!
 </code>
 </p>
 
@@ -1333,6 +2186,41 @@ SameIndividual: f:female g:feminine <br />
 EquivalentClasses: f:Adult g:Grownup <br />
 EquivalentObjectProperties: f:hasChild g:child <br />
 EquivalentDataProperties: f:hasAge g:age
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SameIndividuals(f:male g:masculine)
+SameIndividuals(f:female g:feminine)
+EquivalentClasses(f:Adult g:Grownup)
+EquivalentObjectProperties(f:hasChild g:child)
+EquivalentDataProperties(f:hasAge g:age)
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;SameIndividuals&gt;
+    &lt;Individual URI="&amp;g;masculine"/&gt;
+    &lt;Individual URI="&amp;f;male"/&gt;
+&lt;/SameIndividuals&gt;
+&lt;SameIndividuals&gt;
+    &lt;Individual URI="&amp;f;female"/&gt;
+    &lt;Individual URI="&amp;g;feminine"/&gt;
+&lt;/SameIndividuals&gt;
+&lt;EquivalentClasses&gt;
+    &lt;OWLClass URI="&amp;g;Grownup"/&gt;
+    &lt;OWLClass URI="&amp;f;Adult"/&gt;
+&lt;/EquivalentClasses&gt;
+&lt;EquivalentObjectProperties&gt;
+    &lt;ObjectProperty URI="&amp;g;child"/&gt;
+    &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+&lt;/EquivalentObjectProperties&gt;
+&lt;EquivalentDataProperties&gt;
+    &lt;DataProperty URI="&amp;g;age"/&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+&lt;/EquivalentDataProperties&gt;
 </code>
 </p>
 
@@ -1367,6 +2255,61 @@ Class: f:Person
                rdfs:label "Person":en
                rdfs:label "Persona":it
                rdfs:comment "The class of people"
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+MISSING.
+</code>
+</p>
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+MISSING.
+</code>
+</p>
+
+<h3>5.3 Declarations</h3>
+
+<p>
+To help with managing ontologies, OWL has the notion of declarations.
+The basic idea is that each class, property, or individual is supposed
+to be declared in an ontology, and then it can be used in that ontology
+and ontologies that import that ontology.
+</p>
+
+<p>
+In the Manchester syntax, declarations are implicit.  Constructs that
+provide information about a class, property, or individual implicitly
+declare that class, property, or individual if needed.  The other
+syntaxes have explicit declarations.
+</p>
+
+<p class="owlxml" style="display:none">
+<b>OWL XML Syntax:</b> <br />
+<code style="white-space: pre;">
+&lt;Declaration&gt;
+    &lt;Individual URI="&amp;f;John"/&gt;
+&lt;/Declaration&gt;
+&lt;Declaration&gt;
+    &lt;OWLClass URI="&amp;f;Person"/&gt;
+&lt;/Declaration&gt;
+&lt;Declaration&gt;
+    &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+&lt;/Declaration&gt;
+&lt;Declaration&gt;
+    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+&lt;/Declaration&gt;
+</code>
+</p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+Declaration(Individual(f:John))
+Declaration(OWLClass(f:Person))
+Declaration(ObjectProperty(f:hasWife))
+Declaration(DataProperty(f:hasAge))
 </code>
 </p>
 
@@ -1467,6 +2410,12 @@ would not also be equivalent classes.
 SameIndividual: f:Person f:Man
 </code>
 </p>
+<p class="functional" style="display:none">
+<b>Functional-Style Syntax:</b> <br />
+<code style="white-space: pre;">
+SameIndividuals(f:Person f:Man)
+</code>
+</p>
 
 <p>
 The above would not allow the conclusion of:
@@ -1480,10 +2429,8 @@ EquivalentClasses: f:Person f:Man
 </p>
 <p class="functional" style="display:none">
 <b>Functional-Style Syntax:</b> <br />
-</p>
-<p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
 <code>
+EquivalentClasses(f:Person f:Man)
 </code>
 </p>
 
@@ -1552,9 +2499,8 @@ Extra annotations have been added (not YET) to help explain the ontology.
 <p class="manchester">
 <b>Manchester Syntax:</b> <br />
 <code style="white-space: pre;">
-Namespace: =&lt;http://ex.com/owl/families#&gt;
+Namespace: f =&lt;http://ex.com/owl/families#&gt;
 Namespace: g = &lt;http://ex2.com/owl/family.owl#&gt;
-Namespace: families = &lt;http://ex.com/owl/families#&gt;
 Namespace: rdfs = &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
 Namespace: rdf = &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 <br />
@@ -1701,9 +2647,10 @@ EquivalentDataProperties: f:hasAge g:age
 </p>
 
 <p class="functional" style="display:none">
-<b>Functional Syntax:</b> <br />
+<b>Functional-Style Syntax:</b> <br />
 <code style="white-space: pre;">
 Namespace(=&lt;http://ex.com/owl/families#&gt;)
+Namespace(f=&lt;http://ex.com/owl/families#&gt;)
 Namespace(g=&lt;http://ex.com/owl2/families#&gt;)
 <br />
 Namespace(owl=&lt;http://www.w3.org/2002/07/owl#&gt;)
@@ -1930,8 +2877,8 @@ EquivalentDataProperties(hasAge g:age)
 &lt;?xml version="1.0"?&gt;
 <br />
 &lt;!DOCTYPE Ontology [
-    &lt;!ENTITY families2 "http://ex.com/owl/families#" &gt;
-    &lt;!ENTITY families "http://ex.com/owl2/families#" &gt;
+    &lt;!ENTITY f "http://ex.com/owl/families#" &gt;
+    &lt;!ENTITY g "http://ex.com/owl2/families#" &gt;
     &lt;!ENTITY owl "http://www.w3.org/2002/07/owl#" &gt;
     &lt;!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" &gt;
     &lt;!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" &gt;
@@ -1944,113 +2891,113 @@ EquivalentDataProperties(hasAge g:age)
 <br />
 &lt;Ontology xmlns="http://www.w3.org/2006/12/owl11-xml#"
      xml:base="http://www.w3.org/2006/12/owl11-xml#"
-     xmlns:families2="http://ex.com/owl/families#"
+     xmlns:f="http://ex.com/owl/families#"
      xmlns:owl11="http://www.w3.org/2006/12/owl11#"
      xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:families="http://ex.com/owl2/families#"
+     xmlns:g="http://ex.com/owl2/families#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      URI="http://ex.com/owl/families"&gt;
 <br />
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;ClassAssertion&gt;
         &lt;ObjectComplementOf&gt;
-            &lt;OWLClass URI="&amp;families2;Narcissist"/&gt;
+            &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
         &lt;/ObjectComplementOf&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
     &lt;/ClassAssertion&gt;
     &lt;SameIndividuals&gt;
-        &lt;Individual URI="&amp;families2;female"/&gt;
-        &lt;Individual URI="&amp;families;feminine"/&gt;
+        &lt;Individual URI="&amp;f;female"/&gt;
+        &lt;Individual URI="&amp;g;feminine"/&gt;
     &lt;/SameIndividuals&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Woman"/&gt;
+        &lt;OWLClass URI="&amp;f;Woman"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;male"/&gt;
+        &lt;Individual URI="&amp;f;male"/&gt;
     &lt;/Declaration&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectIntersectionOf&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
             &lt;ObjectHasValue&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-                &lt;Individual URI="&amp;families2;female"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+                &lt;Individual URI="&amp;f;female"/&gt;
             &lt;/ObjectHasValue&gt;
         &lt;/ObjectIntersectionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Woman"/&gt;
+        &lt;OWLClass URI="&amp;f;Woman"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;IrreflexiveObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/IrreflexiveObjectProperty&gt;
     &lt;EquivalentClasses&gt;
-        &lt;OWLClass URI="&amp;families;Grownup"/&gt;
-        &lt;OWLClass URI="&amp;families2;Adult"/&gt;
+        &lt;OWLClass URI="&amp;g;Grownup"/&gt;
+        &lt;OWLClass URI="&amp;f;Adult"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Ellen"/&gt;
+        &lt;Individual URI="&amp;f;Ellen"/&gt;
     &lt;/Declaration&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;ObjectMinCardinality cardinality="1"&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-                &lt;OWLClass URI="&amp;families2;Person"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+                &lt;OWLClass URI="&amp;f;Person"/&gt;
             &lt;/ObjectMinCardinality&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Parent"/&gt;
+        &lt;OWLClass URI="&amp;f;Parent"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;EquivalentDataProperties&gt;
-        &lt;DataProperty URI="&amp;families;age"/&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+        &lt;DataProperty URI="&amp;g;age"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
     &lt;/EquivalentDataProperties&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;loves"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
+        &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;InverseObjectProperties&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasHusband"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasHusband"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/InverseObjectProperties&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Narcissist"/&gt;
+        &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;OWLClass URI="&amp;families2;Woman"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;OWLClass URI="&amp;f;Woman"/&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;SubClassOf&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;DataExactCardinality cardinality="1"&gt;
-                &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+                &lt;DataProperty URI="&amp;f;hasAge"/&gt;
             &lt;/DataExactCardinality&gt;
             &lt;ObjectExactCardinality cardinality="1"&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
             &lt;/ObjectExactCardinality&gt;
             &lt;ObjectAllValuesFrom&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
                 &lt;ObjectOneOf&gt;
-                    &lt;Individual URI="&amp;families2;female"/&gt;
-                    &lt;Individual URI="&amp;families2;male"/&gt;
+                    &lt;Individual URI="&amp;f;female"/&gt;
+                    &lt;Individual URI="&amp;f;male"/&gt;
                 &lt;/ObjectOneOf&gt;
             &lt;/ObjectAllValuesFrom&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/SubClassOf&gt;
     &lt;EquivalentClasses&gt;
-        &lt;OWLClass URI="&amp;families2;Child"/&gt;
+        &lt;OWLClass URI="&amp;f;Child"/&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;ObjectComplementOf&gt;
                 &lt;DataSomeValuesFrom&gt;
-                    &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+                    &lt;DataProperty URI="&amp;f;hasAge"/&gt;
                     &lt;DatatypeRestriction&gt;
                         &lt;Datatype URI="&amp;xsd;integer"/&gt;
                         &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
@@ -2059,139 +3006,139 @@ EquivalentDataProperties(hasAge g:age)
                     &lt;/DatatypeRestriction&gt;
                 &lt;/DataSomeValuesFrom&gt;
             &lt;/ObjectComplementOf&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/EquivalentClasses&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
-        &lt;Individual URI="&amp;families2;Emily"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Emily"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
     &lt;/Declaration&gt;
     &lt;IrreflexiveObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
     &lt;/IrreflexiveObjectProperty&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
-        &lt;Individual URI="&amp;families2;female"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
+        &lt;Individual URI="&amp;f;female"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;SubObjectPropertyOf&gt;
         &lt;SubObjectPropertyChain&gt;
-            &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
-            &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
+            &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+            &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
         &lt;/SubObjectPropertyChain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;YoungChild"/&gt;
+        &lt;OWLClass URI="&amp;f;YoungChild"/&gt;
     &lt;/Declaration&gt;
     &lt;SameIndividuals&gt;
-        &lt;Individual URI="&amp;families;masculine"/&gt;
-        &lt;Individual URI="&amp;families2;male"/&gt;
+        &lt;Individual URI="&amp;g;masculine"/&gt;
+        &lt;Individual URI="&amp;f;male"/&gt;
     &lt;/SameIndividuals&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;OWLClass URI="&amp;families2;Parent"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;OWLClass URI="&amp;f;Parent"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
-        &lt;Individual URI="&amp;families2;male"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
+        &lt;Individual URI="&amp;f;male"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;DataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;31&lt;/Constant&gt;
     &lt;/DataPropertyAssertion&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
-        &lt;Individual URI="&amp;families2;male"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
+        &lt;Individual URI="&amp;f;male"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Emily"/&gt;
+        &lt;Individual URI="&amp;f;Emily"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;loves"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;loves"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;SubObjectPropertyOf&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;SubObjectPropertyOf&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;loves"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;loves"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;EquivalentObjectProperties&gt;
-        &lt;ObjectProperty URI="&amp;families;child"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
+        &lt;ObjectProperty URI="&amp;g;child"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
     &lt;/EquivalentObjectProperties&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;female"/&gt;
+        &lt;Individual URI="&amp;f;female"/&gt;
     &lt;/Declaration&gt;
     &lt;AntisymmetricObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/AntisymmetricObjectProperty&gt;
     &lt;TransitiveObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasAncestor"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
     &lt;/TransitiveObjectProperty&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Parent"/&gt;
+        &lt;OWLClass URI="&amp;f;Parent"/&gt;
     &lt;/Declaration&gt;
     &lt;DifferentIndividuals&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
-        &lt;Individual URI="&amp;families2;Ellen"/&gt;
-        &lt;Individual URI="&amp;families2;Jack"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
-        &lt;Individual URI="&amp;families2;Emily"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Ellen"/&gt;
+        &lt;Individual URI="&amp;f;Jack"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
+        &lt;Individual URI="&amp;f;Emily"/&gt;
     &lt;/DifferentIndividuals&gt;
     &lt;DataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;33&lt;/Constant&gt;
     &lt;/DataPropertyAssertion&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/Declaration&gt;
     &lt;DisjointClasses&gt;
-        &lt;OWLClass URI="&amp;families2;CivilMarriage"/&gt;
-        &lt;OWLClass URI="&amp;families2;ReligiousMarriage"/&gt;
+        &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
+        &lt;OWLClass URI="&amp;f;ReligiousMarriage"/&gt;
     &lt;/DisjointClasses&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/Declaration&gt;
     &lt;ClassAssertion&gt;
         &lt;DataSomeValuesFrom&gt;
-            &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+            &lt;DataProperty URI="&amp;f;hasAge"/&gt;
             &lt;DatatypeRestriction&gt;
                 &lt;Datatype URI="&amp;xsd;integer"/&gt;
                 &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
@@ -2202,32 +3149,32 @@ EquivalentDataProperties(hasAge g:age)
                 &lt;/DatatypeFacetRestriction&gt;
             &lt;/DatatypeRestriction&gt;
         &lt;/DataSomeValuesFrom&gt;
-        &lt;Individual URI="&amp;families2;Ellen"/&gt;
+        &lt;Individual URI="&amp;f;Ellen"/&gt;
     &lt;/ClassAssertion&gt;
     &lt;DataPropertyDomain&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/DataPropertyDomain&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;NegativeDataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;Jack"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;Jack"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;53&lt;/Constant&gt;
     &lt;/NegativeDataPropertyAssertion&gt;
     &lt;SubObjectPropertyOf&gt;
         &lt;SubObjectPropertyChain&gt;
-            &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
-            &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
+            &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
+            &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
         &lt;/SubObjectPropertyChain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;DataSomeValuesFrom&gt;
-                &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+                &lt;DataProperty URI="&amp;f;hasAge"/&gt;
                 &lt;DatatypeRestriction&gt;
                     &lt;Datatype URI="&amp;xsd;integer"/&gt;
                     &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
@@ -2235,245 +3182,245 @@ EquivalentDataProperties(hasAge g:age)
                     &lt;/DatatypeFacetRestriction&gt;
                 &lt;/DatatypeRestriction&gt;
             &lt;/DataSomeValuesFrom&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Adult"/&gt;
+        &lt;OWLClass URI="&amp;f;Adult"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
         &lt;ObjectIntersectionOf&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
             &lt;ObjectHasValue&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-                &lt;Individual URI="&amp;families2;female"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+                &lt;Individual URI="&amp;f;female"/&gt;
             &lt;/ObjectHasValue&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;FunctionalObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/FunctionalObjectProperty&gt;
     &lt;DataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;8&lt;/Constant&gt;
     &lt;/DataPropertyAssertion&gt;
     &lt;ClassAssertion&gt;
         &lt;DataSomeValuesFrom&gt;
-            &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+            &lt;DataProperty URI="&amp;f;hasAge"/&gt;
             &lt;DataOneOf&gt;
                 &lt;Constant datatypeURI="&amp;xsd;integer"&gt;39&lt;/Constant&gt;
                 &lt;Constant datatypeURI="&amp;xsd;integer"&gt;49&lt;/Constant&gt;
             &lt;/DataOneOf&gt;
         &lt;/DataSomeValuesFrom&gt;
-        &lt;Individual URI="&amp;families2;Emily"/&gt;
+        &lt;Individual URI="&amp;f;Emily"/&gt;
     &lt;/ClassAssertion&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;ObjectHasValue&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-                &lt;Individual URI="&amp;families2;male"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+                &lt;Individual URI="&amp;f;male"/&gt;
             &lt;/ObjectHasValue&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;DataPropertyRange&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
         &lt;Datatype URI="&amp;xsd;integer"/&gt;
     &lt;/DataPropertyRange&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;OWLClass URI="&amp;families2;Man"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;OWLClass URI="&amp;f;Man"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Teenager"/&gt;
+        &lt;OWLClass URI="&amp;f;Teenager"/&gt;
     &lt;/Declaration&gt;
     &lt;DifferentIndividuals&gt;
-        &lt;Individual URI="&amp;families2;female"/&gt;
-        &lt;Individual URI="&amp;families2;male"/&gt;
+        &lt;Individual URI="&amp;f;female"/&gt;
+        &lt;Individual URI="&amp;f;male"/&gt;
     &lt;/DifferentIndividuals&gt;
     &lt;DataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;13&lt;/Constant&gt;
     &lt;/DataPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Adult"/&gt;
+        &lt;OWLClass URI="&amp;f;Adult"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Man"/&gt;
+        &lt;OWLClass URI="&amp;f;Man"/&gt;
     &lt;/Declaration&gt;
     &lt;InverseFunctionalObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
     &lt;/InverseFunctionalObjectProperty&gt;
     &lt;DisjointObjectProperties&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
     &lt;/DisjointObjectProperties&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;ReligiousMarriage"/&gt;
+        &lt;OWLClass URI="&amp;f;ReligiousMarriage"/&gt;
     &lt;/Declaration&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectIntersectionOf&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
             &lt;ObjectExistsSelf&gt;
-                &lt;ObjectProperty URI="&amp;families2;loves"/&gt;
+                &lt;ObjectProperty URI="&amp;f;loves"/&gt;
             &lt;/ObjectExistsSelf&gt;
         &lt;/ObjectIntersectionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Narcissist"/&gt;
+        &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;FunctionalDataProperty&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
     &lt;/FunctionalDataProperty&gt;
     &lt;SubObjectPropertyOf&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
-        &lt;Individual URI="&amp;families2;female"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
+        &lt;Individual URI="&amp;f;female"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Child"/&gt;
+        &lt;OWLClass URI="&amp;f;Child"/&gt;
     &lt;/Declaration&gt;
     &lt;DifferentIndividuals&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
-        &lt;Individual URI="&amp;families2;Bill"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
+        &lt;Individual URI="&amp;f;Bill"/&gt;
     &lt;/DifferentIndividuals&gt;
     &lt;Declaration&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasAncestor"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;OWLClass URI="&amp;families2;Parent"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;OWLClass URI="&amp;f;Parent"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;Individual URI="&amp;families2;Mary"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;Individual URI="&amp;f;Mary"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSon"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSon"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Jack"/&gt;
+        &lt;Individual URI="&amp;f;Jack"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyRange&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyRange&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;loves"/&gt;
+        &lt;ObjectProperty URI="&amp;f;loves"/&gt;
     &lt;/Declaration&gt;
     &lt;IrreflexiveObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasAncestor"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
     &lt;/IrreflexiveObjectProperty&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;ObjectHasValue&gt;
-                &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
-                &lt;Individual URI="&amp;families2;male"/&gt;
+                &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
+                &lt;Individual URI="&amp;f;male"/&gt;
             &lt;/ObjectHasValue&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Man"/&gt;
+        &lt;OWLClass URI="&amp;f;Man"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;DataPropertyAssertion&gt;
-        &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
+        &lt;DataProperty URI="&amp;f;hasAge"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
         &lt;Constant datatypeURI="&amp;xsd;integer"&gt;77&lt;/Constant&gt;
     &lt;/DataPropertyAssertion&gt;
     &lt;SubObjectPropertyOf&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasAncestor"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;EquivalentClasses&gt;
         &lt;ObjectUnionOf&gt;
-            &lt;OWLClass URI="&amp;families2;CivilMarriage"/&gt;
-            &lt;OWLClass URI="&amp;families2;ReligiousMarriage"/&gt;
+            &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
+            &lt;OWLClass URI="&amp;f;ReligiousMarriage"/&gt;
         &lt;/ObjectUnionOf&gt;
-        &lt;OWLClass URI="&amp;families2;Marriage"/&gt;
+        &lt;OWLClass URI="&amp;f;Marriage"/&gt;
     &lt;/EquivalentClasses&gt;
     &lt;ClassAssertion&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
     &lt;/ClassAssertion&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasHusband"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasHusband"/&gt;
     &lt;/Declaration&gt;
     &lt;EquivalentClasses&gt;
-        &lt;OWLClass URI="&amp;families2;YoungChild"/&gt;
+        &lt;OWLClass URI="&amp;f;YoungChild"/&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;ObjectComplementOf&gt;
                 &lt;ObjectUnionOf&gt;
-                    &lt;OWLClass URI="&amp;families2;Teenager"/&gt;
-                    &lt;OWLClass URI="&amp;families2;Adult"/&gt;
+                    &lt;OWLClass URI="&amp;f;Teenager"/&gt;
+                    &lt;OWLClass URI="&amp;f;Adult"/&gt;
                 &lt;/ObjectUnionOf&gt;
             &lt;/ObjectComplementOf&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/EquivalentClasses&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
     &lt;/Declaration&gt;
     &lt;SubObjectPropertyOf&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
     &lt;/SubObjectPropertyOf&gt;
     &lt;ClassAssertion&gt;
         &lt;ObjectExactCardinality cardinality="2"&gt;
-            &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
+            &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
         &lt;/ObjectExactCardinality&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
     &lt;/ClassAssertion&gt;
     &lt;SameIndividuals&gt;
-        &lt;Individual URI="&amp;families2;Jack"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
+        &lt;Individual URI="&amp;f;Jack"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
     &lt;/SameIndividuals&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
-        &lt;Individual URI="&amp;families2;Jack"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Jack"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;Marriage"/&gt;
+        &lt;OWLClass URI="&amp;f;Marriage"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;OWLClass URI="&amp;families2;CivilMarriage"/&gt;
+        &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
     &lt;/Declaration&gt;
     &lt;ObjectPropertyDomain&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasWife"/&gt;
-        &lt;OWLClass URI="&amp;families2;Person"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
+        &lt;OWLClass URI="&amp;f;Person"/&gt;
     &lt;/ObjectPropertyDomain&gt;
     &lt;EquivalentClasses&gt;
-        &lt;OWLClass URI="&amp;families2;Teenager"/&gt;
+        &lt;OWLClass URI="&amp;f;Teenager"/&gt;
         &lt;ObjectIntersectionOf&gt;
             &lt;DataSomeValuesFrom&gt;
-                &lt;DataProperty URI="&amp;families2;hasAge"/&gt;
+                &lt;DataProperty URI="&amp;f;hasAge"/&gt;
                 &lt;DatatypeRestriction&gt;
                     &lt;Datatype URI="&amp;xsd;integer"/&gt;
                     &lt;DatatypeFacetRestriction facet="&amp;owl11;minInclusive"&gt;
@@ -2484,27 +3431,27 @@ EquivalentDataProperties(hasAge g:age)
                     &lt;/DatatypeFacetRestriction&gt;
                 &lt;/DatatypeRestriction&gt;
             &lt;/DataSomeValuesFrom&gt;
-            &lt;OWLClass URI="&amp;families2;Person"/&gt;
+            &lt;OWLClass URI="&amp;f;Person"/&gt;
         &lt;/ObjectIntersectionOf&gt;
     &lt;/EquivalentClasses&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasDaughter"/&gt;
-        &lt;Individual URI="&amp;families2;John"/&gt;
-        &lt;Individual URI="&amp;families2;Susan"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasDaughter"/&gt;
+        &lt;Individual URI="&amp;f;John"/&gt;
+        &lt;Individual URI="&amp;f;Susan"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;SymmetricObjectProperty&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasSpouse"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
     &lt;/SymmetricObjectProperty&gt;
     &lt;ObjectPropertyAssertion&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasChild"/&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
-        &lt;Individual URI="&amp;families2;Ellen"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasChild"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Ellen"/&gt;
     &lt;/ObjectPropertyAssertion&gt;
     &lt;Declaration&gt;
-        &lt;Individual URI="&amp;families2;Jeff"/&gt;
+        &lt;Individual URI="&amp;f;Jeff"/&gt;
     &lt;/Declaration&gt;
     &lt;Declaration&gt;
-        &lt;ObjectProperty URI="&amp;families2;hasGender"/&gt;
+        &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
     &lt;/Declaration&gt;
 &lt;/Ontology&gt;
 </code>
@@ -2516,8 +3463,8 @@ EquivalentDataProperties(hasAge g:age)
 &lt;?xml version="1.0"?&gt;
 <br />
 &lt;!DOCTYPE rdf:RDF [
-    &lt;!ENTITY families2 "http://ex.com/owl/families#" &gt;
-    &lt;!ENTITY families "http://ex.com/owl2/families#" &gt;
+    &lt;!ENTITY f "http://ex.com/owl/families#" &gt;
+    &lt;!ENTITY g "http://ex.com/owl2/families#" &gt;
     &lt;!ENTITY owl "http://www.w3.org/2002/07/owl#" &gt;
     &lt;!ENTITY owl11 "http://www.w3.org/2006/12/owl11#" &gt;
     &lt;!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" &gt;
@@ -2528,11 +3475,11 @@ EquivalentDataProperties(hasAge g:age)
 <br />
 &lt;rdf:RDF xmlns="http://ex.com/owl/families#"
      xml:base="http://ex.com/owl/families"
-     xmlns:families2="http://ex.com/owl/families#"
+     xmlns:f="http://ex.com/owl/families#"
      xmlns:owl11="http://www.w3.org/2006/12/owl11#"
      xmlns:owl11xml="http://www.w3.org/2006/12/owl11-xml#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:families="http://ex.com/owl2/families#"
+     xmlns:g="http://ex.com/owl2/families#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"&gt;
@@ -2650,7 +3597,7 @@ EquivalentDataProperties(hasAge g:age)
 <br />
     &lt;!-- http://ex.com/owl2/families#child --&gt;
 <br />
-    &lt;owl:ObjectProperty rdf:about="&amp;families;child"&gt;
+    &lt;owl:ObjectProperty rdf:about="&amp;g;child"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasChild"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
@@ -2676,7 +3623,7 @@ EquivalentDataProperties(hasAge g:age)
 <br />
     &lt;!-- http://ex.com/owl2/families#age --&gt;
 <br />
-    &lt;owl:DatatypeProperty rdf:about="&amp;families;age"&gt;
+    &lt;owl:DatatypeProperty rdf:about="&amp;g;age"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasAge"/&gt;
     &lt;/owl:DatatypeProperty&gt;
     
@@ -2916,7 +3863,7 @@ EquivalentDataProperties(hasAge g:age)
 <br />
     &lt;!-- http://ex.com/owl2/families#Grownup --&gt;
 <br />
-    &lt;owl:Class rdf:about="&amp;families;Grownup"&gt;
+    &lt;owl:Class rdf:about="&amp;g;Grownup"&gt;
         &lt;owl:equivalentClass rdf:resource="#Adult"/&gt;
     &lt;/owl:Class&gt;
     
@@ -3058,7 +4005,7 @@ EquivalentDataProperties(hasAge g:age)
     &lt;!-- http://ex.com/owl/families#female --&gt;
 <br />
     &lt;rdf:Description rdf:about="#female"&gt;
-        &lt;owl:sameAs rdf:resource="&amp;families;feminine"/&gt;
+        &lt;owl:sameAs rdf:resource="&amp;g;feminine"/&gt;
     &lt;/rdf:Description&gt;
     
 <br />
@@ -3069,12 +4016,12 @@ EquivalentDataProperties(hasAge g:age)
 <br />
     &lt;!-- http://ex.com/owl2/families#feminine --&gt;
 <br />
-    &lt;rdf:Description rdf:about="&amp;families;feminine"/&gt;
+    &lt;rdf:Description rdf:about="&amp;g;feminine"/&gt;
     
 <br />
     &lt;!-- http://ex.com/owl2/families#masculine --&gt;
 <br />
-    &lt;rdf:Description rdf:about="&amp;families;masculine"&gt;
+    &lt;rdf:Description rdf:about="&amp;g;masculine"&gt;
         &lt;owl:sameAs rdf:resource="#male"/&gt;
     &lt;/rdf:Description&gt;
     
@@ -3133,33 +4080,66 @@ EquivalentDataProperties(hasAge g:age)
 </code>
 </p>
 
+<hr />
+
 <h2><a name="references"></a>References</h2>
 
 <dl>
+
 <dt><a id="ref-owl-1.1-fragments">[OWL 1.1 Fragments]</a></dt>
 <dd>
 <cite><a href="http://www.w3.org/2007/OWL/wiki/Tractable_Fragments">OWL
 1.1 Web Ontology Language: Tractable Fragments</a></cite>.
 Bernardo Cuenca Grau, 2007.
+<a href="http://www.w3.org/2007/OWL/wiki/Tractable_Fragments">http://www.w3.org/2007/OWL/wiki/Tractable_Fragments</a>
+</dd>
+
+<dt><a id="ref-owl-manchester-syntax">[OWL 1.1 Manchester Syntax]</a></dt>
+<dd>
+<cite><a href="http://www.webont.org/owl/documents/manchester.html">OWL
+1.1 Web Ontology Language: Manchester Syntax</a></cite>. 
+Matthew Horridge and Peter F. Patel-Schneider and others, 2008.
+<a href="http://www.webont.org/owl/documents/manchester.html">http://www.webont.org/owl/documents/manchester.html</a>
 </dd>
 
 <dt><a id="ref-owl-1.1-rdf-mapping">[OWL 1.1 RDF Mapping]</a></dt>
 <dd>
-<cite><a href="http://www.w3.org/2007/OWL/wiki/Mapping_to_RDF_Graphs">OWL
+<cite><a href="http://www.w3.org/TR/owl11-mapping-to-rdf/">OWL 
 1.1 Web Ontology Language: Mapping to RDF Graphs</a></cite>.
-Bernardo Cuenca Grau and Boris Motik, 2007.
+Bernardo Cuenca Grau and Boris Motik.
+W3C Working Draft 8 January 2008.
+<a href="http://www.w3.org/TR/2008/WD-owl11-mapping-to-rdf-20080108/">http://www.w3.org/TR/2008/WD-owl11-mapping-to-rdf-20080108/</a>,
+current version available at 
+<a href="http://www.w3.org/TR/owl11-mapping-to-rdf/">http://www.w3.org/TR/owl11-mapping-to-rdf/</a>.
 </dd>
 
 <dt><a id="ref-owl-1.1-semantics">[OWL 1.1 Semantics]</a></dt>
 <dd>
-<cite><a href="http://www.w3.org/2007/OWL/wiki/Semantics">OWL
+<cite><a href="http://www.w3.org/TR/owl11-semantics/">OWL
 1.1 Web Ontology Language: Model-Theoretic Semantics</a></cite>.
-Bernardo Cuenca Grau and Boris Motik, 2007.
+Bernardo Cuenca Grau and Boris Motik.
+W3C Working Draft 8 January 2008.
+<a href="http://www.w3.org/TR/2008/WD-owl11-semantics-20080108/">http://www.w3.org/TR/2008/WD-owl11-semantics-20080108/</a>,
+current version available at 
+<a href="http://www.w3.org/TR/owl11-semantics/">http://www.w3.org/TR/owl11-semantics/</a>.
 </dd>
+
 <dt><a id="ref-owl-1.1-specification">[OWL 1.1 Specification]</a></dt>
 <dd>
-<cite><a href="http://www.w3.org/2007/OWL/wiki/Syntax">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
-Peter F. Patel-Schneider, Ian Horrocks, and Boris Motik, 2007.
+<cite><a href="http://www.w3.org/TR/owl11-syntax/">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>.
+Boris Motik, Peter F. Patel-Schneider, and Ian Horrocks.
+W3C Working Draft 8 January 2008.
+<a href="http://www.w3.org/TR/2008/WD-owl11-syntax-20080108/">http://www.w3.org/TR/2008/WD-owl11-syntax-20080108/</a>,
+current version available at 
+<a href="http://www.w3.org/TR/owl11-syntax/">http://www.w3.org/TR/owl11-syntax/</a>.
+</dd>
+
+<dt><a id="ref-owl-1.1-xml-syntax">[OWL 1.1 XML Syntax]</a></dt>
+<dd>
+<cite><a href="http://www.w3.org/2007/OWL/wiki/XML_Serialization">OWL
+1.1 Web Ontology Language: XML Serialization</a></cite>.
+Bernardo Cuenca Grau, Boris Motik, and Peter F. Patel-Schneider, 2008.
+<a href="http://www.w3.org/2007/OWL/wiki/XML_Serialization">http://www.w3.org/2007/OWL/wiki/XML_Serialization</a>
 </dd>
 
 <dt><a id="ref-xml-schema-datatypes">[XML Schema Datatypes]</a></dt>
@@ -3169,6 +4149,7 @@ Paul V. Biron and Ashok Malhotra, eds.
 W3C Recommendation 28 October 2004.
 </dd>
 </dl>
+
 <hr />
 
 </body>
