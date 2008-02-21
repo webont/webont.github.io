@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>OWL 1.1 Web Ontology Language Manchester Syntax</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link href="owl-xml.css" rel="stylesheet" type="text/css" />
+<!--  <link href="http://www.w3.org/StyleSheets/TR/W3C-NOTE" rel="stylesheet" type="text/css" /> -->
+  <style type="text/css">
+span.nonterminal { font-weight: bold; }
+div.grammar {  }
+  </style>
+
+</head>
+
+<body>
+<div class="head">
+
+<h1>OWL 1.1 Web Ontology Language <br/> Manchester Syntax</h1>
+
+<h2>Editors Draft</h2> 
+
+<dl>
+<dt>This version:</dt> 
+<dd></dd>
+
+<dt>Latest version:</dt>
+<dd></dd>
+
+<!-- 
+<dt>Previous version:</dt>
+<dd></dd>
+--> 
+
+<dt>Authors:</dt> 
+<dd>Matthew Horridge, University of Manchester</dd>
+<dd><a href="mailto:pfps@research.bell-labs.com">Peter F. Patel-Schneider</a>, 
+    Bell Labs Research, Lucent Technologies
+</dd>
+<dd>Other authors?</dd>
+</dl>
+
+<hr />
+</div>
+
+<h2>Abstract</h2>
+<p>
+This document specifies the Manchester syntax for OWL 1.1.
+This syntax is used in Protege 4 and TopBraid composer and is designed
+to be user friendly. 
+</p> 
+
+
+<div class="status">
+<h2>Status of This Document</h2>
+
+<p>This is an initial draft.
+</p>
+
+<h2 id="toc">Table of Contents</h2>
+<ul class="toc">
+<li>1. <a href="#sec-intro">Introduction</a></li>
+<li>2. <a href="#sec-misc">Miscellaneous Concerns</a></li>
+<li>3. <a href="#sec-grammar">The Grammar</a></li>
+<li>Appendix A. <a href="#sec-refs">References</a></li>   
+</ul>
+
+<hr />
+
+<h2 id="sec-intro">1 Introduction</h2> 
+
+<p>
+The Manchester OWL syntax is used in Protege 4 (<a href="http://protege.stanford.edu/">http://protege.stanford.edu/</a>)
+and TopBraid composer (<a href="http://www.topquadrant.com/topbraid/composer/index.html">http://www.topquadrant.com/topbraid/composer/</a>).
+It was originally 
+[<cite><a href="#ref-manchester-owl-dl" title="">Manchester OWL DL Syntax</a></cite>]
+created for OWL DL 
+[<cite><a href="#ref-owl-S.26AS" title="">OWL Semantics and Abstract Syntax</a></cite>],
+but has been updated for OWL 1.1 
+[<cite><a href="#ref-owl-1.1-syntax" title="">OWL 1.1 Syntax</a></cite>],
+The syntax is used for entering and display descriptions associated with
+classes, but can also be used to store ontologies.
+</p>
+
+<p>
+The Manchester OWL syntax was desgined to be a human-friendly syntax,
+more readable particularly by non-logicians than 
+RDF/XML [<cite><a href="#ref-rdf-syntax" title="">RDF Syntax</a></cite>],
+the abstract syntax for OWL DL
+[<cite><a href="#ref-owl-S.26AS" title="">OWL Semantics and Abstract Syntax</a></cite>],
+the functional-style syntax for OWL 1.1,
+[<cite><a href="#ref-owl-1.1-syntax" title="">OWL 1.1 Syntax</a></cite>],
+or the XML syntaxes for OWL [?,?].
+</p>
+
+<p>
+The Manchester OWL syntax stores ontologies in an object-centered
+frame-like fashion similar.  It is thus closer to the abstract syntax
+for OWL DL than the functional-style syntax for OWL 1.1.  Nevertheless,
+parsing the Manchester OWL syntax into the OWL 1.1 structural
+specification is quite easy, as it is easy to identify the axioms inside
+each frame.
+</p>
+
+<p>
+An example ontology in the Manchester OWL syntax can be found in the OWL
+Primer 
+[<cite><a href="#ref-owl-1.1-primer" title="">OWL 1.1 Primer</a></cite>],
+
+<h2 id="sec-misc">2 Miscellaneous Concerns</h2>
+
+<p>
+Documents in the Manchester OWL syntax consist of sequences of unicode
+characters and are encoded in UTF-8.
+It is suggested that there eventually be a MIME type for this syntax.
+</p>
+
+<p>
+This grammar does not explicitly show white space.
+White space is allowed between any two terminals or non-terminals except inside
+<span class="nonterminal">nonNegativeInteger</span>, 
+<span class="nonterminal">prefix</span>,
+<span class="nonterminal">reference</span>,
+<span class="nonterminal">Full-IRI</span>,
+<span class="nonterminal">stringLiteral</span>,
+<span class="nonterminal">integerLiteral</span>,
+<span class="nonterminal">decimalLiteral</span>,
+<span class="nonterminal">floatingPointLiteral</span>,
+and
+<span class="nonterminal">languageTag</span>.
+White space is required between two terminals or non-terminals if its removal could cause ambiguity.
+Generally this means requiring white space except before and after
+punctuation (e.g., commas, parentheses, braces, and brackets).   
+</p>
+
+<p>
+Because comma-separated lists occur in very many places in the syntax,
+to save space the grammar here has two meta-productions, one for lists
+and one for lists with annotations in them. 
+<div class="grammar">
+<span class="nonterminal">&lt;NT&gt;List</span> ::= <span class="nonterminal">&lt;NT&gt;</span> { , <span class="nonterminal">&lt;NT&gt;</span> }<br />
+<span class="nonterminal">&lt;NT&gt;AnnotatedList</span> ::= [<span class="nonterminal">annotations</span>] <span class="nonterminal">&lt;NT&gt;</span> { , [<span class="nonterminal">annotations</span>] <span class="nonterminal">&lt;NT&gt;</span> }<br />
+</div>
+
+<h2 id="sec-grammar">3 The Grammar</h2>
+
+<h3>Low-level Productions:</h3>
+
+<div class="grammar">
+<span class="nonterminal">zero</span> ::= '0'<br />
+<span class="nonterminal">nonZero </span>:= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'<br />
+<span class="nonterminal">digit</span> ::= <span class="nonterminal">zero</span> | <span class="nonterminal">nonZero</span><br />
+<span class="nonterminal">digits</span> ::= <span class="nonterminal">digit</span> { <span class="nonterminal">digit</span> }<br />
+<span class="nonterminal">positiveInteger</span> ::= <span class="nonterminal">nonZero</span> { <span class="nonterminal">digit</span> }<br />
+<span class="nonterminal">nonNegativeInteger</span> ::= <span class="nonterminal">zero</span> | <span class="nonterminal">positiveInteger</span><br />
+<br />
+<span class="nonterminal">NCName</span> ::=          as defined in [XML Namespaces]<br />
+<span class="nonterminal">prefix</span> ::=          <span class="nonterminal">NCName</span><br />
+<span class="nonterminal">irelative-ref</span> ::=   as defined in [RFC-3987]<br />
+<span class="nonterminal">reference</span> ::=       <span class="nonterminal">irelative-ref</span><br />
+<span class="nonterminal">curie</span> ::=           [ [ <span class="nonterminal">prefix</span> ] ':' ] <span class="nonterminal">reference</span><br />
+<span class="nonterminal">Abbreviated-IRI</span> ::= <span class="nonterminal">curie</span><br />
+<span class="nonterminal">Full-IRI</span> ::=        '<' IRI as defined in [RFC-3987] '>'<br />
+<span class="nonterminal">URI</span> ::=		   <span class="nonterminal">Full-IRI</span> | <span class="nonterminal">Abbreviated-IRI</span><br />
+<br />
+<span class="nonterminal">datatypeURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">owlClassURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">objectPropertyURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">dataPropertyURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">individualURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">annotationURI</span> ::= <span class="nonterminal">URI</span><br />
+<span class="nonterminal">ontologyURI</span> ::= <span class="nonterminal">URI</span><br />
+<br />
+<span class="nonterminal">stringLiteral</span> ::= '"' string with backslashes and double-quotes \-escaped '"'<br />
+<span class="nonterminal">integerLiteral</span> ::= ['+' | '-'] <span class="nonterminal">digits</span><br />
+<span class="nonterminal">decimalLiteral</span> ::= ['+' | '-'] <span class="nonterminal">digits</span> '.' <span class="nonterminal">digits</span><br />
+<span class="nonterminal">exponent</span> ::= ('e' | 'E') ['+' | '-'] <span class="nonterminal">digits</span><br />
+<span class="nonterminal">floatingPointLiteral</span> ::= [ '+' | '-'] ( <span class="nonterminal">digits</span> ['.'<span class="nonterminal">digits</span>] [<span class="nonterminal">exponent</span>] | '.' <span class="nonterminal">digits</span>[<span class="nonterminal">exponent</span>]) ( 'f' | 'F' )<br />
+<span class="nonterminal">typedLiteral</span> ::= <span class="nonterminal">stringLiteral</span> '^^' <span class="nonterminal">datatypeURI</span><br />
+<span class="nonterminal">typedConstant</span> ::= <span class="nonterminal">stringLiteral</span> | <span class="nonterminal">integerLiteral</span> | <span class="nonterminal">decimalLiteral</span> | <span class="nonterminal">floatingPointLiteral</span> | <span class="nonterminal">typedLiteral</span><br />
+<span class="nonterminal">languageTag</span> ::= a language tag as specified in RFC-4646<br />
+<span class="nonterminal">untypedConstant</span> ::= <span class="nonterminal">stringLiteral</span> [ '@' <span class="nonterminal">languageTag</span> ]<br />
+<span class="nonterminal">constant</span> ::= <span class="nonterminal">typedConstant</span> | <span class="nonterminal">untypedConstant</span> <br />
+<br />
+<span class="nonterminal">entity</span> ::= 'Datatype' '(' <span class="nonterminal">datatypeURI</span> ')' | 'OWLCLass' '(' <span class="nonterminal">OWLClassURI</span> ')' <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'ObjectProperty' '(' <span class="nonterminal">objectPropertyURI</span> ')' | 'DataProperty' '(<span class="nonterminal">'dataPropertyURI</span> ')'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Individual' '(' <span class="nonterminal">individualURI</span> ')' | 'Ontology' '(' <span class="nonterminal">ontologyURI</span> ')'<br />
+</div>
+
+<h3>Ontologies and Annotations:</h3>
+
+<div class="grammar">
+<span class="nonterminal">annotation</span> ::= <span class="nonterminal">annotationURI</span> ( <span class="nonterminal">constant</span> | <span class="nonterminal">individualURI</span> | <span class="nonterminal">entity</span> )<br />
+<span class="nonterminal">annotations</span> ::= 'Annotations:' <span class="nonterminal">annotationAnnotatedList</span><br />
+<br />
+<span class="nonterminal">namespace</span> ::= 'Namespace' [ <span class="nonterminal">prefix</span> ] '=' <span class="nonterminal">Full-IRI  </span><br />
+<span class="nonterminal">ontologyDocument</span> ::=  { <span class="nonterminal">namespace</span> } <span class="nonterminal">ontology</span><br />
+<span class="nonterminal">ontology</span> ::= 'Ontology:' <span class="nonterminal">ontologyURI</span> { <span class="nonterminal">import</span> } { <span class="nonterminal">annotations</span> } { <span class="nonterminal">frame</span> }<br />
+<span class="nonterminal">import</span> ::= 'Import:' <span class="nonterminal">URI</span><br />
+<span class="nonterminal">frame</span> ::= <span class="nonterminal">classFrame</span> | <span class="nonterminal">objectPropertyFrame</span> | <span class="nonterminal">dataPropertyFrame</span> | <span class="nonterminal">individualFrame</span> | <span class="nonterminal">misc</span><br />
+</div>
+
+<h3>Property and Datatype Expressions:</h3>
+
+<div class="grammar">
+<span class="nonterminal">inverseObjectProperty</span> ::= 'inverseOf'
+<span class="nonterminal">objectPropertyExpression</span> <br />
+<span class="nonterminal">objectPropertyExpression</span> ::= <span class="nonterminal">objectPropertyURI</span> | <span class="nonterminal">inverseObjectProperty</span><br />
+<span class="nonterminal">dataPropertyExpression</span> ::= <span class="nonterminal">dataPropertyURI</span><br />
+<br />
+<span class="nonterminal">dataComplementOf</span> ::= 'not' <span class="nonterminal">dataRange</span><br />
+<span class="nonterminal">dataOneOf</span> ::= '{' <span class="nonterminal">constant</span> { ',' <span class="nonterminal">constant</span> } '}'<br />
+<span class="nonterminal">datatypeFacet</span> ::= 'length' | 'minLength' | 'maxLength' | 'pattern'
+               | '<=' | '<' | '>=' | '>'
+               | 'digits' | 'fraction'<br />
+<span class="nonterminal">restrictionValue</span> ::= <span class="nonterminal">constant</span><br />
+<span class="nonterminal">datatypeRestriction</span> ::= ( <span class="nonterminal">datatypeRestriction</span> | <span class="nonterminal">datatypeURI</span> )<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  '[' <span class="nonterminal">datatypeFacet</span> <span class="nonterminal">restrictionValue</span> { ',' <span class="nonterminal">datatypeFacet</span> <span class="nonterminal">restrictionValue</span> } ']'<br />
+<em>
+Note: If the datatypeURI is an XML Schema datatype then the
+      datatypeFacets and restrictionValues have to be valid for that datatype.<br />
+</em>
+<span class="nonterminal">dataRange</span> ::= <span class="nonterminal">datatypeURI</span> | <span class="nonterminal">dataComplementOf</span> | <span class="nonterminal">dataOneOf</span> | <span class="nonterminal">datatypeRestriction</span><br />
+</div>
+
+<h3>Descriptions:</h3>
+
+<div class="grammar">
+<span class="nonterminal">atomic</span> ::= <span class="nonterminal">OWLClassURI</span>
+         | '{' <span class="nonterminal">individualURI</span> { ',' <span class="nonterminal">individualURI</span> } '}'
+         | '(' <span class="nonterminal">description</span> ')'<br />
+<span class="nonterminal">restriction</span> ::= <span class="nonterminal">objectPropertyExpression</span> 'some' <span class="nonterminal">primary</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'only' <span class="nonterminal">primary</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'value' <span class="nonterminal">individualURI</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'min' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">primary</span> ]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'exactly' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">primary</span> ]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'max' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">primary</span> ]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">objectPropertyExpression</span> 'Self'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'some' <span class="nonterminal">dataRange</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'only' <span class="nonterminal">dataRange</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'value' <span class="nonterminal">constant</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'min' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">dataRange</span> ]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'exactly' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">dataRange</span> ]<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">dataPropertyExpression</span> 'max' <span class="nonterminal">nonNegativeInteger</span> [ <span class="nonterminal">dataRange</span> ]<br />
+<span class="nonterminal">primary</span> ::= [ 'not' ] ( <span class="nonterminal">restriction</span> | <span class="nonterminal">atomic</span> )<br />
+<span class="nonterminal">conjunction</span> ::= <span class="nonterminal">OWLClassURI</span> 'that' [ 'not' ] <span class="nonterminal">restriction</span> { 'and' [ 'not' ] <span class="nonterminal">restriction</span> }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <span class="nonterminal">primary</span> 'and' <span class="nonterminal">primary</span> { 'and' <span class="nonterminal">primary</span> }<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <span class="nonterminal">primary</span><br />
+<span class="nonterminal">description</span> ::= <span class="nonterminal">conjunction</span> 'or' <span class="nonterminal">conjunction</span> { 'or' <span class="nonterminal">conjunction</span> } <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="nonterminal">conjunction</span><br />
+
+<h3>Frames and Miscellaneous:</h3>
+
+<div class="grammar">
+<span class="nonterminal">classFrame</span> ::= 'Class:' <span class="nonterminal">OWLClassURI</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 'Annotations:'     <span class="nonterminal">annotationAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SubClassOf:'      <span class="nonterminal">descriptionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'EquivalentTo:'    <span class="nonterminal">descriptionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointWith:'    <span class="nonterminal">descriptionAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointUnionOf:' <span class="nonterminal">annotations</span> <span class="nonterminal">descriptionList</span> }<br />
+<br />
+<span class="nonterminal">objectPropertyFrame</span> ::= 'ObjectProperty:' <span class="nonterminal">objectPropertyURI</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 'Annotations:'     <span class="nonterminal">annotationAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Domain:'          <span class="nonterminal">descriptionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Range:'           <span class="nonterminal">descriptionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Characteristics:' <span class="nonterminal">objectPropertyCharacteristicAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SubPropertyOf:'   <span class="nonterminal">objectPropertyExpressionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'EquivalentTo:'    <span class="nonterminal">objectPropertyExpressionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointWith:'    <span class="nonterminal">objectPropertyExpressionAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Inverses:'        <span class="nonterminal">objectPropertyExpressionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SubPropertyChain:' <span class="nonterminal">annotations</span> <span class="nonterminal">objectPropertyExpression</span> 'o' <span class="nonterminal">objectPropertyExpression</span> { 'o' <span class="nonterminal">objectPropertyExpression</span> } } <br />
+<br />
+<span class="nonterminal">objectPropertyCharacteristic</span> ::= 'Functional' | 'InverseFunctional'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Reflexive' | 'Irreflexive' | 'Symmetric' | 'Asymmetric' | 'Transitive'<br />
+<br />
+<span class="nonterminal">dataPropertyFrame</span> ::= 'DataProperty:' <span class="nonterminal">dataPropertyURI</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 'Annotations:'     <span class="nonterminal">annotationAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Domain:'          <span class="nonterminal">descriptionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Range:'           <span class="nonterminal">dataRangeAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Characteristics:' <span class="nonterminal">annotations</span> 'Functional' <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SubPropertyOf:'   <span class="nonterminal">dataPropertyExpressionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'EquivalentTo:'    <span class="nonterminal">dataPropertyExpressionAnnotatedList</span> <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointWith:'    <span class="nonterminal">dataPropertyExpressionAnnotatedList</span> }<br />
+<br />
+<span class="nonterminal">objectPropertyFact</span> ::= <span class="nonterminal">objectPropertyURI</span> <span class="nonterminal">individualURI</span><br />
+<span class="nonterminal">dataPropertyFact</span> ::= <span class="nonterminal">dataPropertyURI</span> <span class="nonterminal">constant</span><br />
+<span class="nonterminal">fact</span> ::= [ 'not' ] (<span class="nonterminal">objectPropertyFact</span> | <span class="nonterminal">dataPropertyFact</span>)<br />
+<br />
+<span class="nonterminal">individualFrame</span> ::= 'Individual:' <span class="nonterminal">nameID</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { 'Annotations:'   <span class="nonterminal">annotationAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Types:'         <span class="nonterminal">descriptionAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'Facts:'         <span class="nonterminal">factAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SameAs:'        <span class="nonterminal">individualURIAnnotatedList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DifferentFrom:' <span class="nonterminal">individualURIAnnotatedList</span> }<br />
+<br />
+ <span class="nonterminal">misc</span> ::= 'EquivalentClasses:' <span class="nonterminal">annotations</span> <span class="nonterminal">descriptionList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointClasses:' <span class="nonterminal">annotations</span> <span class="nonterminal">descriptionList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'EquivalentObjectProperties:' <span class="nonterminal">annotations</span> <span class="nonterminal">objectPropertyList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointObjectProperties:' <span class="nonterminal">annotations</span> <span class="nonterminal">objectPropertyList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'EquivalentDataProperties:' <span class="nonterminal">annotations</span> <span class="nonterminal">dataPropertyList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DisjointDataProperties:' <span class="nonterminal">annotations</span> <span class="nonterminal">dataPropertyList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'SameIndividual:' <span class="nonterminal">annotations</span> <span class="nonterminal">individualURIList</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 'DifferentIndividuals:' <span class="nonterminal">annotations</span> <span class="nonterminal">individualURIList</span><br />
+</div>
+
+<h2 id='sec-refs">Appendix A. References</h2>
+
+<dl>
+<dt> <span id="ref-manchester-owl-dl">[Manchester OWL DL Syntax]</span></dt>
+<dd> <cite><a class="external text" href="http://www.webont.org/owled/2006/acceptedLong/submission_9.pdf" title="http://www.webont.org/owled/2006/acceptedLong/submission_9.pdf">The Manchester OWL Syntax</a></cite>. Matthew Horridge, Nick Drummond, John Goodwin, Alan Rector, Robert Stevens, Hai H. Wang.  OWL Experiences and Directions Workshop, 2006.</dd>
+<dt> <span id="ref-owl-1.1-syntax">[OWL 1.1 Syntax]</span>
+</dt><dd><span><cite><a class="external text" href="http://www.w3.org/TR/owl11-syntax/">OWL 1.1 Web Ontology Language: Structural Specification and Functional-Style Syntax</a></cite>. Boris Motik, Peter F. Patel-Schneider, and Ian Horrocks. W3C Working Draft, 8 January 2008, <a class="external free" href="http://www.w3.org/TR/2008/WD-owl11-syntax-20080108/">http://www.w3.org/TR/2008/WD-owl11-syntax-20080108/</a>.  Latest version available at <a class="external free" href="http://www.w3.org/TR/owl11-syntax/">http://www.w3.org/TR/owl11-syntax/</a>.</span></dd><dt> <dt> <span id="ref-owl-1.1-primer">[OWL 1.1 Primer]</span>
+</dt><dd> <cite><a class="external text" href="http://webont.org/owl/documents/primer.html">OWL 1.1 Web Ontology Language: Primer</a></cite>. Bijan Parsia and Peter F. Patel-Schneider, 11 February 2008, <a class="external free"
+href="http://webont.org/owl/documents/primer.html">http://webont.org/owl/documents/primer.html</a>.
+</dd>
+<dt> <span id="ref-owl-S.26AS">[OWL Semantics and Abstract Syntax]</span>
+</dt><dd> <cite><a class="external text" href="http://www.w3.org/TR/owl-semantics/" title="http://www.w3.org/TR/owl-semantics/">OWL Web Ontology Language: Semantics and Abstract Syntax</a></cite> Peter F. Patel-Schneider, Patrick Hayes, and Ian Horrocks, eds. W3C Recommendation, 10 February 2004, <a class="external free" href="http://www.w3.org/TR/2004/REC-owl-semantics-20040210/" title="http://www.w3.org/TR/2004/REC-owl-semantics-20040210/">http://www.w3.org/TR/2004/REC-owl-semantics-20040210/</a>.  Latest version available at <a class="external free" href="http://www.w3.org/TR/owl-semantics/" title="http://www.w3.org/TR/owl-semantics/">http://www.w3.org/TR/owl-semantics/</a>.
+</dd>
+<dt> <span id="ref-rdf-syntax">[RDF Syntax]</span>
+</dt><dd> <cite><a class="external text" href="http://www.w3.org/TR/rdf-syntax-grammar/" title="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML Syntax Specification (Revised)</a></cite>. Dave Beckett, Editor, W3C Recommendation, 10 February 2004, <a class="external free" href="http://www.w3.org/TR/rdf-syntax-grammar/" title="http://www.w3.org/TR/rdf-syntax-grammar/">http://www.w3.org/TR/rdf-syntax-grammar/</a>.
+</dd>
+</dl>
+
+</body>
+</html>
