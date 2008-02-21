@@ -2138,8 +2138,6 @@ Namespace(xsd=&lt;???#&gt;)
 </code>
 </p>
 
-
-
 <h3>5.2 Imports</h3>
 
 <p>
@@ -3495,23 +3493,19 @@ EquivalentDataProperties(hasAge g:age)
      --&gt;
 <br />
     &lt;!-- http://ex.com/owl/families#hasAncestor --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasAncestor"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;TransitiveProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl11;IrreflexiveProperty"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
     &lt;!-- http://ex.com/owl/families#hasChild --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasChild"&gt;
         &lt;rdfs:subPropertyOf rdf:resource="#hasAncestor"/&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
         &lt;rdfs:range rdf:resource="#Person"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasDaughter --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasDaughter"&gt;
         &lt;rdfs:range&gt;
             &lt;owl:Class&gt;
@@ -3531,21 +3525,15 @@ EquivalentDataProperties(hasAge g:age)
         &lt;owl11:disjointObjectProperties rdf:resource="#hasSon"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasGender --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasGender"/&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasHusband --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasHusband"&gt;
         &lt;owl:inverseOf rdf:resource="#hasWife"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasSon --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasSon"&gt;
         &lt;rdfs:range&gt;
             &lt;owl:Class&gt;
@@ -3564,17 +3552,13 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdfs:domain rdf:resource="#Parent"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasSpouse --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasSpouse"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;SymmetricProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl11;IrreflexiveProperty"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasWife --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#hasWife"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;InverseFunctionalProperty"/&gt;
         &lt;rdf:type rdf:resource="&amp;owl;FunctionalProperty"/&gt;
@@ -3588,21 +3572,16 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdfs:domain rdf:resource="#Man"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#loves --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="#loves"&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl2/families#child --&gt;
-<br />
     &lt;owl:ObjectProperty rdf:about="&amp;g;child"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasChild"/&gt;
     &lt;/owl:ObjectProperty&gt;
     
-<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -3610,25 +3589,19 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-<br />
     
-<br />
     &lt;!-- http://ex.com/owl/families#hasAge --&gt;
-<br />
     &lt;owl:DatatypeProperty rdf:about="#hasAge"&gt;
         &lt;rdf:type rdf:resource="&amp;owl;FunctionalProperty"/&gt;
         &lt;rdfs:domain rdf:resource="#Person"/&gt;
         &lt;rdfs:range rdf:resource="&amp;xsd;integer"/&gt;
     &lt;/owl:DatatypeProperty&gt;
     
-<br />
     &lt;!-- http://ex.com/owl2/families#age --&gt;
-<br />
     &lt;owl:DatatypeProperty rdf:about="&amp;g;age"&gt;
         &lt;owl:equivalentProperty rdf:resource="#hasAge"/&gt;
     &lt;/owl:DatatypeProperty&gt;
     
-<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -3636,11 +3609,8 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-<br />
     
-<br />
     &lt;!-- http://ex.com/owl/families#Adult --&gt;
-<br />
     &lt;owl:Class rdf:about="#Adult"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3661,9 +3631,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Child --&gt;
-<br />
     &lt;owl:Class rdf:about="#Child"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3688,16 +3656,12 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#CivilMarriage --&gt;
-<br />
     &lt;owl:Class rdf:about="#CivilMarriage"&gt;
         &lt;owl:disjointWith rdf:resource="#ReligiousMarriage"/&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Man --&gt;
-<br />
     &lt;owl:Class rdf:about="#Man"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3712,9 +3676,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Marriage --&gt;
-<br />
     &lt;owl:Class rdf:about="#Marriage"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3726,9 +3688,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Narcissist --&gt;
-<br />
     &lt;owl:Class rdf:about="#Narcissist"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3743,9 +3703,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Parent --&gt;
-<br />
     &lt;owl:Class rdf:about="#Parent"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3761,9 +3719,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Person --&gt;
-<br />
     &lt;owl:Class rdf:about="#Person"&gt;
         &lt;rdfs:subClassOf&gt;
             &lt;owl:Class&gt;
@@ -3792,14 +3748,10 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdfs:subClassOf&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#ReligiousMarriage --&gt;
-<br />
     &lt;owl:Class rdf:about="#ReligiousMarriage"/&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Teenager --&gt;
-<br />
     &lt;owl:Class rdf:about="#Teenager"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3821,9 +3773,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Woman --&gt;
-<br />
     &lt;owl:Class rdf:about="#Woman"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3838,9 +3788,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#YoungChild --&gt;
-<br />
     &lt;owl:Class rdf:about="#YoungChild"&gt;
         &lt;owl:equivalentClass&gt;
             &lt;owl:Class&gt;
@@ -3861,19 +3809,14 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/owl:equivalentClass&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://ex.com/owl2/families#Grownup --&gt;
-<br />
     &lt;owl:Class rdf:about="&amp;g;Grownup"&gt;
         &lt;owl:equivalentClass rdf:resource="#Adult"/&gt;
     &lt;/owl:Class&gt;
     
-<br />
     &lt;!-- http://www.w3.org/2002/07/owl#Thing --&gt;
-<br />
     &lt;owl:Class rdf:about="&amp;owl;Thing"/&gt;
     
-<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -3881,11 +3824,8 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-<br />
     
-<br />
     &lt;!-- http://ex.com/owl/families#Bill --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Bill"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Class&gt;
@@ -3896,9 +3836,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasGender rdf:resource="#male"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Ellen --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Ellen"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -3915,9 +3853,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdf:type&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Emily --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Emily"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -3944,9 +3880,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;/rdf:type&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Jack --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Jack"&gt;
         &lt;owl:sameAs rdf:resource="#John"/&gt;
     &lt;/rdf:Description&gt;
@@ -3956,9 +3890,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;rdf:object rdf:datatype="&amp;xsd;integer"&gt;53&lt;/rdf:object&gt;
     &lt;/owl11:NegativeDataPropertyAssertion&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Jeff --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Jeff"&gt;
         &lt;rdf:type&gt;
             &lt;owl:Restriction&gt;
@@ -3973,9 +3905,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasChild rdf:resource="#Jack"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#John --&gt;
-<br />
     &lt;Person rdf:about="#John"&gt;
         &lt;hasDaughter rdf:resource="#Susan"/&gt;
         &lt;hasGender rdf:resource="#male"/&gt;
@@ -3984,9 +3914,7 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;33&lt;/hasAge&gt;
     &lt;/Person&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Mary --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Mary"&gt;
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;31&lt;/hasAge&gt;
         &lt;hasGender rdf:resource="#female"/&gt;
@@ -3994,39 +3922,28 @@ EquivalentDataProperties(hasAge g:age)
         &lt;hasDaughter rdf:resource="#Susan"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#Susan --&gt;
-<br />
     &lt;rdf:Description rdf:about="#Susan"&gt;
         &lt;hasAge rdf:datatype="&amp;xsd;integer"&gt;8&lt;/hasAge&gt;
         &lt;hasGender rdf:resource="#female"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#female --&gt;
-<br />
     &lt;rdf:Description rdf:about="#female"&gt;
         &lt;owl:sameAs rdf:resource="&amp;g;feminine"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- http://ex.com/owl/families#male --&gt;
-<br />
     &lt;rdf:Description rdf:about="#male"/&gt;
     
-<br />
     &lt;!-- http://ex.com/owl2/families#feminine --&gt;
-<br />
     &lt;rdf:Description rdf:about="&amp;g;feminine"/&gt;
     
-<br />
     &lt;!-- http://ex.com/owl2/families#masculine --&gt;
-<br />
     &lt;rdf:Description rdf:about="&amp;g;masculine"&gt;
         &lt;owl:sameAs rdf:resource="#male"/&gt;
     &lt;/rdf:Description&gt;
     
-<br />
     &lt;!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -4034,7 +3951,6 @@ EquivalentDataProperties(hasAge g:age)
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      --&gt;
-<br />
     &lt;rdf:Description&gt;
         &lt;rdf:type rdf:resource="&amp;owl;AllDifferent"/&gt;
         &lt;owl:distinctMembers rdf:parseType="Collection"&gt;
