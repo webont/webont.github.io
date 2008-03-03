@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+	<?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -247,7 +247,7 @@ OWL in applications.</p>
 
 <h3>2.1 Technologies</h3>
 
-<p><b>Resource Description Framework (RDF) and Schema</b>: Of
+<p><b>Resource Description Framework (RDF) and Schema (RDFS)</b>: Of
 the technologies discussed in this section, RDF(S) is the closest to
 OWL. They both have roots in logic based knowledge representation; in
 many ways, RDF(S) can be seen as a subset of OWL; and, perhaps most
@@ -265,13 +265,13 @@ graph. </p>
 <p>
 Even when we consider parts of RDFS which support
 implicit
-knowledge, such determining subclass relationships, the relation between the
+knowledge, such as determining subclass relationships, the relation between the
 explicit and implicit statements is very direct. Thus, it is easy to
 conceptualize inference in terms of graph structure manipulation.
 In contrast, determining implicit knowledge in OWL, including
 determining subclass relationships and typing and checking consistency
 of an ontology, 
-requires techniques that much more akin to theorem proving.
+requires techniques that are much more akin to theorem proving.
 </p>
 
 <p><b>XML:</b> OWL
@@ -352,7 +352,7 @@ difference between OWL and OOP.   Similarly OOP classes are much less
 expressive than OWL classes.
 </p>
 <p>
-Futher, OWL is a strictly declarative and logical language.
+Furthermore, OWL is a strictly declarative and logical language.
 OWL therefore has none of the operational aspects of OOP, like methods,
 and similarly reasoning in OWL is strictly logical, with nothing
 comparing to <i>inheritance</i>, particularly inheritance with
@@ -360,8 +360,59 @@ exceptions or overriding.
 </p>
 
 <h3>2.2 Applications</h3>
-<p>
-Terminlogy development and managament. Conceptual Modeling.  ** TO BE
+<p>OWL is used in a number of different ways and for a number of different domains -- far too
+many to enumerate here. But it's worth examining a few examples to get a feel for the sorts
+of problem OWL has worked well for.</p>
+
+<p>Using all of the expressive power of OWL, effectively, requires a fair bit of skill.</p>
+
+<h4>Teminology development and management</h4>
+
+<p>Terminologies, controlled vocabularies, taxonomies and the like are used for a range of
+information retrieval (IR) tasks such as query broadening or supporting faceted access. Predefined 
+terminologies may also be used at data entry either to categlog the entry (for IR support) or 
+to guide the user in a variety of ways. For example, in clinical support systems certain forms or
+parts of forms may only be displayed when the clinician is to perform specific sorts of procedure,
+these procedures can be identified by a combinantion of terms from a controlled vocabulary.</p>
+
+<p>Developming and maintaining large terminology is time and skill intensive, even if the structure
+of the terminology is relatively simple. OWL can support the process in a number of ways:</p>
+<ul>
+	<li>developers can encode <em>models</em> of the domain, instead of just encoding relations
+	between terms -- the relations are then derived from the modeling; this provides an independent
+	check that the terminological relation is correct; the formal semantics of OWL also gives a 
+	precise meaning to any definitions; this meaning is available to other modelers or to tools</li>
+	<li>reasoners can confirm the consistency of models (and definitions); for example, a reasoner
+	can determine whether a class definition can consistent have an instance</li>
+	<li>reasoners can extract implicit information from the descriptions, whether intended
+	or unintended</li>
+	<li>recently, new analysis services have been developed that can determine much about the
+	structure of a terminology; for example, to determine whether a subset of the terminology
+	is logically interdependent; logically independent portions of the terminology may be removed
+	or enhanced</li>
+</ul>
+
+<p>OWL has been used to support very large terminologies consisting of hundred of thousands of terms
+in complex hierarchies. [[Galen? NCI? SNOMED?]] Much work has been done using OWL in the Health Care and Life
+Sciences (HCLS) domain where there is a wealth of experience in developing large scale terminologies.</p>
+
+<p>For terminology development, OWL reasoners are traditionally used at development time only, that
+is, off line from the application. In such cases, the reasoner acts like a "terminology complier"...assembling
+a complete taxonomy from definitions of terms. The taxonomy is then deployed in the application. For
+retrieval tasks of relatively stable collections, this has been an acceptable way to cope with the
+difficulty of reasoning with large ontologies. However, as computing power has increased and OWL 
+reasoners have grown more optimized, there is increasing <em>on line</em>, deployment time use of
+OWL reasoners in terminological applications. In particular, what is sometimes known as "post coordination"
+-- that is, the ability of a person at the data entry point to extend the terminology to better fit their
+situation -- has become more common. Such dynamic terminology extension in critical systems can benefit by the 
+methodological rigor supported by OWL reasoners. Instead of merely coining a term and plopping it somewhere
+in the taxonomy, end users are encouraged to refine existing terms by specializing their definitions. 
+To take a simple example, a doctor wish to record that a patient has an almond allergy is directed to
+enter that an almond is a kind of nut. The system then can recognize that the almond allergy is a form
+of nut allergy and the requisite advice or entry forms presented as usual.</p>
+
+<h4>Conceptual Modleing</h4>
+<p>Terminlogy development and managament. Conceptual Modeling.  ** TO BE
 FILLED IN **
 </p>
 
