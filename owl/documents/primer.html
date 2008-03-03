@@ -411,11 +411,35 @@ To take a simple example, a doctor wish to record that a patient has an almond a
 enter that an almond is a kind of nut. The system then can recognize that the almond allergy is a form
 of nut allergy and the requisite advice or entry forms presented as usual.</p>
 
-<h4>Conceptual Modleing</h4>
-<p>Terminlogy development and managament. Conceptual Modeling.  ** TO BE
-FILLED IN **
+<h4>Conceptual Modeling</h4>
+<p>As we saw with terminological management, a key benefit of OWL is the support it gives to modeling 
+subject domains, that is, to <em>conceptual modeling</em>. OWL is a capable language for conceptual modeling,
+for example, it can easily encode most entity-relationship diagrams and many UML diagrams. Once encoded,
+OWL reasoners can find implicit relations, conflicts, and missing pieces. Since OWL can describe
+and work with incomplete information it is well suited for high level conceptual work wherein you are
+not merely abstracting from the physical or logical layers of an information system, but you are still
+unsure about various aspects of the conceptual structure. OWL allows you to defer various modeling
+decisions while still making effective use of what you do know.
 </p>
 
+<p>OWL supports a variety of styles of modeling, e.g., top down or bottom up, iterative or upfront,
+or refinement oriented vs generalizing. When modeling, a reasoner (and other tools) can provide
+continual feedback to the model. Indeed, often the absence of any reaction from a reasoner gives
+valuable information to the modeler (i.e., their model is much less well described than they 
+had thought).</p>
+
+<p>OWL based conceptual models can be used for information integration as well. For example, supposed
+you are faced with the task of integration two database applications that have radically different 
+schema but, at least to a first glance, similar conceptual models. By first casting both models into
+OWL, then aligning parts of the model with each other, one can find hidden relations as well as 
+inconsistencies between the model (or in your understanding of their relations). By exploring things
+at the conceptual level, you are not distracted by the in principle irrelevant low level implementation
+details. Since the models have a clear semantics, they can be systematically checked. Instead of 
+tediously verifying correspondences by hand, you can spend your time tweaking the modeling or the alignment.</p>
+
+<p>OWL based conceptual models have been used directly to federate disparate information system. There
+are several techniques ranging from treating the conceptual models as high level schemas for an RDF based
+data store to exploiting the conceptual models to build distributed queries against the data's home schemas.</p>
 <hr />
 <h2><a name="basic"></a>3 Basic Notions</h2>
 <p>
