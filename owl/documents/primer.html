@@ -18,6 +18,31 @@
 	Author says "The credit comment is all it takes, no license. Go crazy with it!:-)"
 	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
 */
+
+var displayed = [];
+displayed["manchester"] = 1;
+displayed["functional"] = 0;
+displayed["xml"] = 0;
+displayed["rdf"] = 0;
+
+function display(syntax,status) {
+  var howmany = 0;
+  if (status=='none') {
+    displayed[syntax] = 0; 
+  } else { 
+    displayed[syntax] = 1;
+  }
+  for ( i in displayed ) {
+       howmany = howmany + displayed[i];
+  }
+  set_display_by_class('p',syntax,status);
+  if ( howmany == 1 ) {
+      set_display_by_class('b','syntax-head','none');
+  } else {
+      set_display_by_class('b','syntax-head','');
+  }
+}
+
 function getElementsByClassName(oElm, strTagName, oClassNames){
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
 	var arrReturnElements = new Array();
@@ -83,7 +108,7 @@ Primer</h1>
 
 <h2>
 <a id="editordraft" name="editordraft">
-</a>Editors' Draft of 21 February 2008</h2>
+</a>Editors' Draft of 3 March 2008</h2>
 <dl>
 <dt>Latest version: </dt>
 <dd>TODAY</dd>
@@ -392,35 +417,35 @@ Protege 4, but it has one syntax bug).
 
 <form action="">
 <input id="hide-ms" type="button" value="Hide Manchester Syntax" 
-  onclick="set_display_by_id('hide-ms', 'none'); 
-     set_display_by_id('show-ms', '');
-     set_display_by_class('p','manchester', 'none');" />
+  onclick="display('manchester', 'none');
+           set_display_by_id('hide-ms', 'none'); 
+           set_display_by_id('show-ms', '');" />
 <input id="show-ms" type="button" value="Show Manchester Syntax" style="display:none"
-  onclick="set_display_by_id('hide-ms', ''); 
-     set_display_by_id('show-ms', 'none');
-     set_display_by_class('p','manchester', '');" />
+  onclick="display('manchester','');
+     set_display_by_id('hide-ms', ''); 
+     set_display_by_id('show-ms', 'none');" />
 <input id="hide-fs" type="button" value="Hide Functional Syntax" style="display:none"
-  onclick="set_display_by_class('p','functional', 'none');
+  onclick="display('functional','none');
      set_display_by_id('hide-fs', 'none'); 
      set_display_by_id('show-fs', '');" />
 <input id="show-fs" type="button" value="Show Functional Syntax" 
-  onclick="set_display_by_class('p','functional', 'block');
+  onclick="display('functional','');
      set_display_by_id('hide-fs', ''); 
      set_display_by_id('show-fs', 'none');" />
 <input id="hide-xs" type="button" value="Hide OWL XML Syntax" style="display:none"
-  onclick="set_display_by_class('p','owlxml', 'none');
+  onclick="display('owlxml', 'none');
      set_display_by_id('hide-xs', 'none'); 
      set_display_by_id('show-xs', '');" />
 <input id="show-xs" type="button" value="Show OWL XML Syntax"
-  onclick="set_display_by_class('p','owlxml', 'block');
+  onclick="display('owlxml', '');
      set_display_by_id('hide-xs', ''); 
      set_display_by_id('show-xs', 'none');" />
 <input id="hide-rs" type="button" value="Hide RDF/XML Syntax" style="display:none"
-  onclick="set_display_by_class('p','rdfxml', 'none');
+  onclick="display('rdfxml', 'none');
      set_display_by_id('hide-rs', 'none'); 
      set_display_by_id('show-rs', '');" />
 <input id="show-rs" type="button" value="Show RDF/XML Syntax"
-  onclick="set_display_by_class('p','rdfxml', 'block');
+  onclick="display('rdfxml', '');
      set_display_by_id('hide-rs', ''); 
      set_display_by_id('show-rs', 'none');" />
 </form>
@@ -443,7 +468,7 @@ follows.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Individual: f:John<br />
   Facts: f:hasWife f:Mary,<br />
@@ -461,7 +486,7 @@ Individual: f:Susan<br />
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 ObjectPropertyAssertion(f:John f:hasWife f:Mary) <br />
 ObjectPropertyAssertion(f:John f:hasSon f:Bill) <br />
@@ -475,7 +500,7 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyAssertion&gt;
     &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
@@ -528,7 +553,7 @@ DataPropertyAssertion(f:Susan f:hasAge "8"^^xsd:integer)
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 &lt;rdf:Description rdf:about="&amp;f;John"><br />
 &nbsp;&nbsp;&lt;f:hasWife rdf:resource="&amp;f;Mary" /><br />
@@ -556,7 +581,7 @@ providing them with a <span class="name">gender</span>, which is
 either <span class="name">male</span> or <span class="name">female</span>.
 </p>
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b>
 <code>
 Individual: f:John Facts: f:hasGender f:male <br />
 Individual: f:Mary Facts: f:hasGender f:female <br />
@@ -565,7 +590,7 @@ Individual: f:Susan Facts: f:hasGender f:female
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b>
 <code>
 ObjectPropertyAssertion(f:John f:hasGender f:male) <br />
 ObjectPropertyAssertion(f:Mary f:hasGender f:female) <br />
@@ -574,7 +599,7 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyAssertion&gt;
     &lt;ObjectProperty URI="&amp;f;hasGender"/&gt;
@@ -599,7 +624,7 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b>RDF/XML Syntax:<br /> </b>
 <code>
 &lt;rdf:Description rdf:about="&amp;f;John"><br />
 &nbsp;&nbsp;&lt;f:hasGender rdf:resource="&amp;f;male" /><br />
@@ -640,7 +665,7 @@ to an
 integer.
 </p>
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: f:Person <br />
 ObjectProperty: f:hasWife Domain: f:Person Range: f:Person <br />
@@ -650,7 +675,7 @@ DataProperty: f:hasAge Domain: f:Person Range: integer
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 SubClassOf(f:Person owl:Thing)<br />
 ObjectPropertyDomain(f:hasWife f:Person)<br />
@@ -664,7 +689,7 @@ DataPropertyRange(f:hasAge xsd:integer)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyDomain&gt;
     &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
@@ -704,7 +729,7 @@ DataPropertyRange(f:hasAge xsd:integer)
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 &lt;owl:Class rdf:about="&amp;f;Person" /><br />
 &lt;owl:ObjectProperty rdf:about="&amp;f;hasWife"><br />
@@ -735,19 +760,19 @@ has a
 We can also directly state that an individual belongs to a class.
 </p>
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:John Types: f:Person
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 ClassAssertion(f:Person f:John)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ClassAssertion&gt;
     &lt;OWLClass URI="&amp;f;Person"/&gt;
@@ -756,7 +781,7 @@ ClassAssertion(f:Person f:John)
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 &lt;f:Person rdf:about="&amp;f;John" /><br />
 </code>
@@ -790,7 +815,7 @@ is perfectly acceptable in OWL to have information about a property
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 ObjectProperty: f:hasHusband Inverses: f:hasWife <br />
 ObjectProperty: f:hasChild Domain: f:Person range f:Person <br />
@@ -802,7 +827,7 @@ ObjectProperty: f:hasWife Characteristics: Functional, InverseFunctional, Irrefl
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 InverseObjectProperties(f:hasHusband f:hasWife)
 ObjectPropertyDomain(f:hasChild f:Person)
@@ -818,7 +843,7 @@ AsymmetricObjectProperty(f:hasWife)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;InverseObjectProperties&gt;
     &lt;ObjectProperty URI="&amp;f;hasHusband"/&gt;
@@ -889,7 +914,7 @@ a specialization of <span class="name">Person</span>.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: f:Man SubClassOf: f:Person <br />
 Class: f:Woman SubClassOf: f:Person <br />
@@ -897,7 +922,7 @@ Class: f:Parent SubClassOf: f:Person
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax (not in dump!):</b> <br />
+<b>Functional-Style Syntax (not in dump!):<br /> </b>
 <code style="white-space: pre;">
 SubClassOf(f:Man f:Person)
 SubClassOf(f:Woman f:Person)
@@ -905,7 +930,7 @@ SubClassOf(f:Parent f:Person)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax (not in dump!):</b> <br />
+<b class="syntax-head">OWL XML Syntax (not in dump!):<br /> </b>
 <code style="white-space: pre;">
 &lt;SubClassOf&gt;
     &lt;OWLClass URI="&amp;f;Man"/&gt;
@@ -949,7 +974,7 @@ is a <span class="name">Person</span> belongs to <span class="name">Parent</span
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code style="white-space: pre;">
 ObjectProperty: f:hasGender <br />
 Class: f:Person SubClassOf: f:hasAge exactly 1 and 
@@ -961,7 +986,7 @@ Class: f:Parent EquivalentTo: f:Person and f:hasChild min 1 f:Person
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SubClassOf(f:Person 
   ObjectIntersectionOf(DataExactCardinality(1 f:hasAge)
@@ -976,7 +1001,7 @@ EquivalentClasses(f:Parent
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;SubClassOf&gt;
     &lt;OWLClass URI="&amp;f;Person"/&gt;
@@ -1029,7 +1054,7 @@ EquivalentClasses(f:Parent
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SubClassOf(f:Person 
     ObjectIntersectionOf(DataExactCardinality(1 f:hasAge) 
@@ -1063,7 +1088,7 @@ specific domains and ranges.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 ObjectProperty: f:hasWife Domain: f:Man Range: f:Woman <br />
 ObjectProperty: f:hasSon Domain: f:Parent
@@ -1073,7 +1098,7 @@ ObjectProperty: f:hasDaughter Domain: f:Parent
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 ObjectPropertyDomain(f:hasWife f:Man)
 ObjectPropertyRange(f:hasWife f:Woman)
@@ -1086,7 +1111,7 @@ ObjectPropertyRange(f:hasDaughter
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyDomain&gt;
     &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
@@ -1164,14 +1189,14 @@ of adult ages.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: Teenager EquivalentClass: Person and hasAge some integer[&gt;= 13 , &lt; 20] <br />
 Class: Adult EquivalentClass: Person and hasAge some integer[&gt;= 21] <br />
 Class: Child EquivalentClass: Person and not ( hasAge some integer[&gt;= 21] ) <br />
 </code>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 EquivalentClasses(f:Teenager
   ObjectIntersectionOf(f:Person
@@ -1190,7 +1215,7 @@ EquivalentClasses(f:Child
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;EquivalentClasses&gt;
     &lt;OWLClass URI="&amp;f;Teenager"/&gt;
@@ -1288,7 +1313,7 @@ below.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Individual: f:Jeff <br />
   Facts: f:hasWife f:Emily, <br />
@@ -1298,7 +1323,7 @@ Individual: f:Jeff <br />
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 ObjectPropertyAssertion(f:hasWife f:Jeff f:Emily)
 ObjectPropertyAssertion(f:hasChild f:Jeff f:Ellen)
@@ -1307,7 +1332,7 @@ DataPropertyAssertion(f:hasAge f:Jeff "77"^^xsd:integer)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyAssertion&gt;
     &lt;ObjectProperty URI="&amp;f;hasWife"/&gt;
@@ -1352,7 +1377,7 @@ either 39 or 49, or even that
 </span></span></p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:Emily Types: f:hasAge some {39 , 49}  <br />
 Individual: f:Ellen Types: f:hasAge some integer[ &ge; 15, &le; 21 ] <br />
@@ -1360,7 +1385,7 @@ Individual: f:Jack Facts: not f:hasAge "53"^^integer
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 ClassAssertion(DataSomeValuesFrom(f:hasAge DataOneOf("39"^^xsd:integer
                                                "49"^^xsd:integer)) 
@@ -1374,7 +1399,7 @@ NegativeDataPropertyAssertion(f:hasAge f:Jack "53"^^xsd:integer)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ClassAssertion&gt;
     &lt;DataSomeValuesFrom&gt;
@@ -1423,20 +1448,20 @@ belong to this class.
 </span></p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: f:YoungChild EquivalentTo: f:Person and not ( f:Teenager or f:Adult )
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 EquivalentClasses(f:YoungChild
   ObjectIntersectionOf(f:Person ObjectComplementOf(ObjectUnionOf(f:Teenager f:Adult))))
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;EquivalentClasses&gt;
     &lt;OWLClass URI="&amp;f;YoungChild"/&gt;
@@ -1464,7 +1489,7 @@ Formally, the following is not a consequence of the above information.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:Jeff f:Person and f:hasChild exactly 2 <br />
 Individual: f:Jeff f:Person and f:hasChild max 1 f:Man
@@ -1472,13 +1497,13 @@ Individual: f:Jeff f:Person and f:hasChild max 1 f:Man
 </p>
 <p class="functional" style="display:none">
 <code>
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 ClassAssertion(ObjectExactCardinality(2 f:hasChild) f:Jeff)
 MISSING SECOND!
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ClassAssertion&gt;
     &lt;ObjectExactCardinality cardinality="2"&gt;
@@ -1490,7 +1515,7 @@ MISSING SECOND!
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 </code>
 </p>
@@ -1552,7 +1577,7 @@ is irreflexive.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 DifferentIndividuals: f:John f:Mary f:Bill f:Susan <br />
 DifferentIndividuals: f:Jeff f:Emily f:Jack f:Ellen f:Susan <br />
@@ -1560,7 +1585,7 @@ Individual: f:male DifferentFrom: f: female
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 DifferentIndividuals(f:John f:Mary f:Susan f:Bill)
 DifferentIndividuals(f:Jeff f:Emily f:Jack f:Ellen f:Susan)
@@ -1568,7 +1593,7 @@ DifferentIndividuals(f:male f:female)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;DifferentIndividuals&gt;
     &lt;Individual URI="&amp;f;John"/&gt;
@@ -1597,19 +1622,19 @@ and <span class="name">Jack</span> are the same individual.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:John SameAs: f:Jack
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SameIndividuals(f:John f:Jack)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;SameIndividuals&gt;
     &lt;Individual URI="&amp;f;Jack"/&gt;
@@ -1637,21 +1662,21 @@ union of the two.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: f:ReligiousMarriage DisjointWith: f:CivilMarriage <br />
 Class: f:Marriage EquivalentTo: f:ReligiousMarriage or f:CivilMarriage
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 DisjointClasses(f:ReligiousMarriage f:CivilMarriage)
 EquivalentClasses(f:Marriage ObjectUnionOf(f:CivilMarriage f:ReligiousMarriage))
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;DisjointClasses&gt;
     &lt;OWLClass URI="&amp;f;CivilMarriage"/&gt;
@@ -1674,7 +1699,7 @@ OWL provides a shorthand method for saying this all at once.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class f:Marriage DisjointUnionOf: f:ReligiousMarriage f:CivilMarriage
 </code>
@@ -1689,14 +1714,14 @@ the <span class="name">child</span> property, and is also irreflexive.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 ObjectProperty: f:hasAncestor Characteristics: Transitive, Irreflexive <br />
 ObjectProperty: f:hasChild SubPropertyOf: inverseOf f:hasAncestor
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 TransitiveObjectProperty(f:hasAncestor)
 IrreflexiveObjectProperty(f:hasAncestor)
@@ -1704,7 +1729,7 @@ SubObjectPropertyOf(f:hasChild InverseObjectProperty(f:hasAncestor))
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;TransitiveObjectProperty&gt;
     &lt;ObjectProperty URI="&amp;f;hasAncestor"/&gt;
@@ -1728,7 +1753,7 @@ is not his own <span class="name">ancestor</span>.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:Bill 
   Facts: f:hasAncestor f:Jeff <br />
@@ -1736,19 +1761,19 @@ Individual: f:Bill
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 MISSING!
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 MISSING!
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 MISSING
 </code>
@@ -1762,14 +1787,14 @@ irreflexive generalization of <span class="name">wife</span>.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 ObjectProperty: f:hasSpouse  Characteristics: Symmetric, Irreflexive <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:hasSpouse
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SymmetricObjectProperty(fhasSpouse)
 IrreflexiveObjectProperty(f:hasSpouse)
@@ -1777,7 +1802,7 @@ SubObjectPropertyOf(f:hasWife f:hasSpouse)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;SymmetricObjectProperty&gt;
     &lt;ObjectProperty URI="&amp;f;hasSpouse"/&gt;
@@ -1809,21 +1834,21 @@ well.)
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 ObjectProperty: f:loves Domain: f:Person <br />
 ObjectProperty: f:hasWife SubPropertyOf: f:loves
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 ObjectPropertyDomain(f:loves f:Person)
 SubObjectPropertyOf(f:hasWife f:loves)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;ObjectPropertyDomain&gt;
     &lt;ObjectProperty URI="&amp;f;loves"/&gt;
@@ -1849,7 +1874,7 @@ relationships&gt;
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Class: f:Narcissist EquivalentTo: f:Person and f:loves Self <br />
 Individual: f:Jeff Facts: f:loves f:Jeff <br />
@@ -1857,7 +1882,7 @@ Individual: f:Bill Types: not f:Narcissist
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 EquivalentClasses(f:Narcissist 
   ObjectIntersectionOf(f:Person ObjectExistsSelf(f:loves)))
@@ -1866,7 +1891,7 @@ ClassAssertion(ObjectComplementOf(f:Narcissist) f:Bill)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;EquivalentClasses&gt;
     &lt;OWLClass URI="&amp;f;Narcissist"/&gt;
@@ -1908,21 +1933,21 @@ include those of their <span class="name">spouse</span>.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 SubObjectProperty: f:hasSpouse o f:hasSon f:hasSon <br />
 SubObjectProperty: f:hasSpouse o f:hasDaughter f:hasDaughter
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SubObjectPropertyOf(SubObjectPropertyChain(f:hasSpouse f:hasSon) f:hasSon)
 SubObjectPropertyOf(SubObjectPropertyChain(f:hasSpouse f:hasDaughter) f:hasDaughter)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;SubObjectPropertyOf&gt;
     &lt;SubObjectPropertyChain&gt;
@@ -1949,27 +1974,27 @@ We can now conclude that <span class="name">Emily</span> has the same
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 f:Emily f:hasChild f:Jack <br />
 f:Emily f:hasChild f:Ellen
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 ObjectPropertyAssertion(f:hasChild f:Emily f:Jack)
 ObjectPropertyAssertion(f:hasChild f:Emily f:Ellen)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 CONCLUSION
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 CONCLUSION
 </code>
@@ -1985,25 +2010,25 @@ as a <span class="name">daughter</span>.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Individual: f:John f:hasChild max 0 f:Woman
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 CONFLICT
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 CONFLICT
 </code>
 </p>
 <p class="rdfxml" style="display:none">
-<b>RDF/XML Syntax:</b> <br />
+<b class="syntax-head">RDF/XML Syntax:<br /> </b>
 <code>
 CONFLICT
 </code>
@@ -2037,13 +2062,13 @@ if it is used by different applications.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Ontology: &lt;http://ex.com/owl/families&gt;
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Ontology(&lt;http://ex.com/owl/families&gt;
  ...
@@ -2051,7 +2076,7 @@ Ontology(&lt;http://ex.com/owl/families&gt;
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;Ontology xmlns="http://www.w3.org/2006/12/owl11-xml#"
      xml:base="http://www.w3.org/2006/12/owl11-xml#"
@@ -2091,7 +2116,7 @@ we are not using someone else's names by accident.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Namespace: f = &lt;http://ex.com/owl/families#&gt; <br />
 Namespace: g = &lt;http://ex2.com/owl2/families#&gt; <br />
@@ -2102,7 +2127,7 @@ Namespace: dc = ??
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Namespace(f=&lt;http://ex.com/owl/families#&gt;)
 Namespace(g=&lt;http://ex.com/owl2/families#&gt;)
@@ -2113,7 +2138,7 @@ Namespace(xsd=&lt;???#&gt;)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;!DOCTYPE Ontology [
     &lt;!ENTITY f "http://ex.com/owl/families#" &gt;
@@ -2152,19 +2177,19 @@ using imports statements, as follows:
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 Import: http://ex2.com/owl2/families
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Import(http://ex2.com/owl2/families)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 MISSING!
 </code>
@@ -2181,7 +2206,7 @@ imported ontology as follows:
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 SameIndividual: f:male g:masculine <br />
 SameIndividual: f:female g:feminine <br />
@@ -2191,7 +2216,7 @@ EquivalentDataProperties: f:hasAge g:age
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SameIndividuals(f:male g:masculine)
 SameIndividuals(f:female g:feminine)
@@ -2201,7 +2226,7 @@ EquivalentDataProperties(f:hasAge g:age)
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;SameIndividuals&gt;
     &lt;Individual URI="&amp;g;masculine"/&gt;
@@ -2243,7 +2268,7 @@ our ontology and to one of the classes.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Individual f:John
   Facts: Annotations: dc:author Individual(f:peter)
@@ -2260,13 +2285,13 @@ Class: f:Person
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 MISSING.
 </code>
 </p>
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 MISSING.
 </code>
@@ -2289,7 +2314,7 @@ syntaxes have explicit declarations.
 </p>
 
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> <br />
+<b class="syntax-head">OWL XML Syntax:<br /> </b>
 <code style="white-space: pre;">
 &lt;Declaration&gt;
     &lt;Individual URI="&amp;f;John"/&gt;
@@ -2306,7 +2331,7 @@ syntaxes have explicit declarations.
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Declaration(Individual(f:John))
 Declaration(OWLClass(f:Person))
@@ -2349,11 +2374,15 @@ Specification and Functional Syntax document
 </p>
 
 <hr />
-<hr><a href="#using">7 Using OWL</a></hr>
+
+<h2><a name="using">7 Using OWL</a></h2>
+
 <hr /> 
-<hr><a href="#using">8 OWL Tools</a></hr>
+
+<h2><a name="tools">8 OWL Tools</a></h2>
+
 <hr /> 
-<li class="tocline1"><a href="#tools">8 OWL Tools</a></li>
+
 <h2><a name="species">9 OWL Species</a></h2>
 
 <p>
@@ -2411,13 +2440,13 @@ would not also be equivalent classes.
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 SameIndividual: f:Person f:Man
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 SameIndividuals(f:Person f:Man)
 </code>
@@ -2428,13 +2457,13 @@ The above would not allow the conclusion of:
 </p>
 
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code>
 EquivalentClasses: f:Person f:Man
 </code>
 </p>
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code>
 EquivalentClasses(f:Person f:Man)
 </code>
@@ -2504,7 +2533,7 @@ classes, then individuals.
 Extra annotations have been added (not YET) to help explain the ontology.
 </p>
 <p class="manchester">
-<b>Manchester Syntax:</b> <br />
+<b class="syntax-head" style="display:none">Manchester Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Namespace: f =&lt;http://ex.com/owl/families#&gt;
 Namespace: g = &lt;http://ex2.com/owl/families.owl#&gt;
@@ -2654,7 +2683,7 @@ EquivalentDataProperties: f:hasAge g:age
 </p>
 
 <p class="functional" style="display:none">
-<b>Functional-Style Syntax:</b> <br />
+<b class="syntax-head">Functional-Style Syntax:<br /> </b> 
 <code style="white-space: pre;">
 Namespace(=&lt;http://ex.com/owl/families#&gt;)
 Namespace(f=&lt;http://ex.com/owl/families#&gt;)
@@ -2879,7 +2908,7 @@ EquivalentDataProperties(hasAge g:age)
 </p>
 
 <p class="owlxml" style="display:none">
-<b>OWL XML Syntax:</b> (without any reordering) <br />
+<b class="syntax-head">OWL XML Syntax:</b> (without any reordering) <br />
 <code style="white-space: pre;">
 &lt;?xml version="1.0"?&gt;
 <br />
