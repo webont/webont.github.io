@@ -437,14 +437,15 @@ at the conceptual level, you are not distracted by the in principle irrelevant l
 details. Since the models have a clear semantics, they can be systematically checked. Instead of 
 tediously verifying correspondences by hand, you can spend your time tweaking the modeling or the alignment.</p>
 
-<p>OWL based conceptual models have been used directly to federate disparate information system. There
+<p>OWL based conceptual models have been used directly to federate disparate information systems. There
 are several techniques ranging from treating the conceptual models as high level schemas for an RDF based
-data store to exploiting the conceptual models to build distributed queries against the data's home schemas.</p>
+data store to exploiting the conceptual models to build distributed queries against the data's home systems.</p>
+
 <hr />
 <h2><a name="basic"></a>3 Basic Notions</h2>
 <p>
 OWL allows us to express <i>information</i> about the
-world then to
+world, then to
 draw certain <i>consequences</i> based on this
 information. There are
 OWL tools - reasoners - that can automatically compute these
@@ -461,6 +462,7 @@ OWL is part of the Semantic Web, so names in OWL are international
 resource identifiers (IRIs).
 As IRIs are long, we will use a compact way of writing them in OWL,
 consisting of a prefix and a reference separated by a colon.
+There are various syntaxes for OWL available, which serve various purposes: 
 When OWL information is transferred around in the Web, it is written in an
 XML dialect.  
 The Manchester syntax 
@@ -469,8 +471,8 @@ is an OWL syntax that is designed to be easier for
 non-logicians to read.
 The Functional-Style syntax
 [<a href="#ref-owl-1.1-specification">OWL 1.1 Specification</a>]
-is a formal OWL syntax that is designed to
-be easier for reasoning tools to use.
+is  designed to
+be easier for specification purposes and for reasoning tools to use.
 The OWL XML syntax is an XML syntax for OWL defined by an XML schema
 [<a href="#ref-owl-1.1-xml-syntax">OWL 1.1 Specification</a>].
 The RDF/XML syntax for OWL is just RDF/XML, with a particular
@@ -527,11 +529,15 @@ Protege 4, but it has one syntax bug).
 
 <h3>3.1 Simple Information about Individuals</h3>
 <p>
-Suppose we want to represent information about a particular family.
+Suppose we want to represent information about a particular family. (We do not
+intend this example to be representative of the sorts of domains OWL should be used
+for, or as a canonical example of good modeling with OWL, or a correct representation
+of the rather complex, shifting, and politically explosive domain of families. Instead,
+we intend it to be a rather simple exhibition of various features of OWL.)
 We first need to determine what individuals there are in a family, and
 how they are related to each other and what data values are associated
 with them. We can then proceed by writing down all this information in
-OWL.
+OWL. [[@@Uli would like some note indicating that we'll gather up all this stuff into the appendix]]
 </p>
 <p>
 So if we have a family with parents <span class="name">John</span> and
@@ -717,10 +723,10 @@ ObjectPropertyAssertion(f:Susan f:hasGender f:female)
 </p>
 
 <p>However, all we have done so far is written down the basic
-facts about a
-particular family. Although OWL can be used for this purpose, it is not
-OWL's fort&eacute;. OWL's main strength here, instead, involves how
-families work in general.
+facts about a particular family. In a sense, we have used just the
+"RDF" portion of OWL that is tagging individuals as instances of named
+classes and relating them to other individuals by properties. While this
+is already quite useful, OWL also lets you describe how families work in general.
 </p>
 <h3>3.2 Information about Properties</h3>
 <p>
@@ -731,7 +737,7 @@ assumptions must be made, and since this is a primer we are going to be
 simplifying a lot.) Well, the individuals in families are all people,
 so we should have a
 class of people, with name <span class="name">Person</span>.
-We have already written down information about several properties.
+Below you will find information about several properties.
 <span class="name">wife</span> is a relationship between <span class="name">Person</span>s,
 i.e., both the domain and range of <span class="name">wife</span> is <span class="name">Person</span>,
 as are both <span class="name">son</span> and <span class="name">daughter</span>.
@@ -826,7 +832,7 @@ DataPropertyRange(f:hasAge xsd:integer)
 </code>
 </p>
 
-<p>From this information we can conclude that <span class="name">John</span>
+<p>From this information we (or a reasoner) can conclude that <span class="name">John</span>
 belongs to
 <span class="name">Person</span>, because, for example, the domain of
 <span class="name">wife</span> is <span class="name">Person</span> and <span class="name">John</span>
@@ -980,10 +986,9 @@ particular consequence follows from the information available.
 <h3>3.3 Information About Classes</h3>
 <p>
 So far we have written down quite a bit of information about familial
-properties, but all we have about the familial classes is that there
-are
-people.
-OWL has a rich language for defining classes.
+properties, but we have only used a single class name: <span class="name">Person</span>.
+OWL has a rich language for defining classes both in terms of other classes, but also
+in terms of the relations its instances may or must have to other individuals.
 So we might have classes for men, women, and parents, each of which is
 a specialization of <span class="name">Person</span>.
 </p>
@@ -1167,9 +1172,9 @@ specific domains and ranges.
 <code>
 ObjectProperty: f:hasWife Domain: f:Man Range: f:Woman <br />
 ObjectProperty: f:hasSon Domain: f:Parent
-	Range: Person and f:hasGender f:male <br />
+	Range: (Person and f:hasGender f:male) <br />
 ObjectProperty: f:hasDaughter Domain: f:Parent
-	Range: Person and f:hasGender f:female <br />
+	Range: (Person and f:hasGender f:female) <br />
 </code>
 </p>
 <p class="functional" style="display:none">
@@ -1373,7 +1378,7 @@ So far we have seen OWL used as little more than a data structuring
 language.  OWL is considerably more expressive than data structuring
 languages, in several useful ways.  Some of this added expressive power
 illustrates the differences between OWL and other formalisms and why we
-have to be understand how OWL is different.
+have to understand how OWL is different.
 </p>
 <h3>4.1 Incomplete Information about Data Values</h3>
 <p>
@@ -1555,7 +1560,7 @@ EquivalentClasses(f:YoungChild
 <h3>4.2 Other Incomplete Information</h3>
 <p>
 There are many sources of incompleteness in OWL, some of which may be
-surprising to those not having a logical background.
+surprising to some readers.
 For example, although it may seem to be the case that <span class="name">Jeff</span>
 has exactly two children, this is <em>not</em> the case,
 nor is it the case that <span class="name">Jeff</span> has only one
@@ -1620,7 +1625,7 @@ there is nothing said so far that implies that they are not the same.
 Again OWL does <em>not</em> make the assumption that
 different names are
 names for different individuals.
-(This "unique names assumption" is particularly dangerous in the
+(This "unique names assumption" would be particularly dangerous in the
 Semantic Web, where names may be coined by different organizations at
 different times unknowingly referring to the same individual.)
 If <span class="name">Jack</span> and <span class="name">Ellen</span> <em>are</em>
@@ -1726,7 +1731,7 @@ because every <span class="name">Person</span> has exactly one <span class="name
 and individuals that belong to <span class="name">Man</span> have a
 different <span class="name">gender</span> (<span class="name">male</span>)
 from those that belong to <span class="name">Woman</span> (<span class="name">female</span>).
-Hoever, we can also use OWL to state that classes are disjoint.
+However, we can also use OWL to state that classes are disjoint.
 This is most often done for classes that lack complete conditions for
 belonging to the class. (These classes are called <em>primitive</em>
 classes.)
@@ -1781,6 +1786,8 @@ Class f:Marriage DisjointUnionOf: f:ReligiousMarriage f:CivilMarriage
 </p>
 
 <h3>4.5 More Information About Properties</h3>
+<p>[[@@Uli comment: Section seems very advanced and she was surprised not to see stuff on
+universial/existential quantifiers]]</p>
 <p>
 In OWL we can have transitive properties, i.e., properties like
 <span class="name">ancestor</span>, which also is a generalization of
@@ -1853,8 +1860,8 @@ MISSING!
 MISSING
 </code>
 </p>
-<p>There are yet other kinds of information that we say provide
-for
+<p>There are yet other kinds of information that we can provide
+about
 properties.
 We can have a <span class="name">spouse</span> property as a symmetric
 and
