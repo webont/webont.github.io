@@ -1,0 +1,129 @@
+/* Global Styles */
+
+body {
+	margin:0px;
+	}
+.style15   a {
+	color: #92B1AD;
+	text-decoration: none;
+}
+.style15 a:hover {
+	color: #B5D2CD;
+	text-decoration: none;
+}
+	
+td {
+	color:#000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	}
+	
+a {
+	}
+	
+a:hover {
+	color: #98C4BF;
+	}
+
+/* ID Styles */
+
+#navigation td {
+	border-bottom: 2px solid #C0DFFD;
+	}
+	
+#navigation a {
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	color: #003366;
+	line-height:16px;
+	letter-spacing:.1em;
+	text-decoration: none;
+	display:block;
+	padding:8px 6px 10px 26px;
+	}
+	
+#navigation a:hover {
+}
+	
+#logo 	{
+	color: #FDF2DC;
+	letter-spacing:0.1em;
+	line-height:12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	}
+
+#tagline 	{
+	color: #E9745F;
+	letter-spacing:0em;
+	line-height:8px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	}
+
+#monthformat {
+	border-bottom: 2px solid #E6F3FF;
+		}
+		
+#dateformat {
+	color: #003366;
+	letter-spacing:0em;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	}
+	
+#dateformat a {
+	font:Verdana, Arial, Helvetica, sans-serif;
+	color: #003366;
+	font-weight:bold;
+	letter-spacing:0em;
+	text-decoration: none;
+	}
+	
+#dateformat a:hover {
+	letter-spacing:0em;
+	text-decoration: underline;
+	}
+	
+/* Class Styles */
+	
+.bodyText {
+	font:11px Verdana, Arial, Helvetica, sans-serif;
+	color:#003366;
+	line-height:20px;
+	margin-top:0px;
+	}
+.bodyText a {
+	color: #003366;
+}
+	
+.pageName{
+	font: 18px Verdana, Arial, Helvetica, sans-serif;
+	color: #3366CC;
+	line-height:24px;
+	letter-spacing:.2em;
+	}
+	
+.subHeader {
+	font:bold 10px Verdana, Arial, Helvetica, sans-serif;
+	color: #3366CC;
+	line-height:16px;
+	letter-spacing:.2em;
+	}
+
+.quote {
+	font: 20px Verdana, Arial, Helvetica, sans-serif;
+	color: #759DA1;
+	line-height:30px;
+	}
+	
+.smallText {
+	font: 10px Verdana, Arial, Helvetica, sans-serif;
+	color: #003366;
+	}
+	
+.navText {
+	font: 11px Verdana, Arial, Helvetica, sans-serif;
+	color: #003366;
+	line-height:16px;
+	letter-spacing:.1em;
+	text-decoration: none;
+	}
