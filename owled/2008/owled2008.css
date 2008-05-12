@@ -13,9 +13,9 @@ body {
 }
 	
 td {
-	color:#000000;
+	color:#31599F;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
+	font-size: 18px;
 	}
 	
 a {
@@ -86,20 +86,21 @@ a:hover {
 /* Class Styles */
 	
 .bodyText {
-	font:11px Verdana, Arial, Helvetica, sans-serif;
 	color:#003366;
-	line-height:20px;
+	line-height:30px;
 	margin-top:0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
 	}
 .bodyText a {
 	color: #003366;
 }
 	
 .pageName{
-	font: 18px Verdana, Arial, Helvetica, sans-serif;
+	font: 22px Verdana, Arial, Helvetica, sans-serif;
 	color: #3366CC;
 	line-height:24px;
-	letter-spacing:.2em;
+	letter-spacing:0.2em;
 	}
 	
 .subHeader {
@@ -127,3 +128,19 @@ a:hover {
 	letter-spacing:.1em;
 	text-decoration: none;
 	}
+.datetable {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: normal;
+	color: #C0DFFD;
+}
+.bodyText div {
+	line-height: 16px;
+}
+.bodyText h3 {
+	font-size: 14px;
+	list-style-image: none;
+}
+.bodyText li {
+	font-size: 14px;
+}
