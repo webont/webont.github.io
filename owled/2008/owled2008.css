@@ -22,7 +22,7 @@ a {
 	}
 	
 a:hover {
-	color: #98C4BF;
+	color: #000000;
 	}
 
 /* ID Styles */
@@ -40,6 +40,9 @@ a:hover {
 	display:block;
 	padding:8px 6px 10px 26px;
 	}
+#tagline .style3 a {
+	color: #E9745F;
+}
 	
 #navigation a:hover {
 }

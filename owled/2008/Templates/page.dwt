@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>OWLED 2008</title>
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="http://webont.org/owl/1.1/images/owl-icon.png" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="../owled2008.css" type="text/css" />
+</script>
+<style type="text/css">
+<!--
+.style1 {
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style3 {
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style5 {font-size: 28px}
+.style6 {
+	font-size: 36px;
+	font-weight: bold;
+	color: #9ADAD5;
+}
+.style7 {font-size: 20px; font-family: Arial, Helvetica, sans-serif; }
+.style14 {color: #92B1AD}
+.style15 {font-family: Arial, Helvetica, sans-serif; font-size: 11px;}
+.style16 {
+	font-size: 15px;
+	font-weight: bold;
+}
+-->
+</style>
+<!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+</head>
+<body bgcolor="#C0DFFD">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"> 
+  <tr bgcolor="#31599F">
+    <td colspan="2" rowspan="2" nowrap="nowrap"><a href="http://maps.google.com/maps/ms?f=q&amp;hl=en&amp;geocode=&amp;ie=UTF8&amp;t=h&amp;msa=0&amp;msid=111173854198655965545.00044b768dc41c8ae88da&amp;ll=48.999285,8.47158&amp;spn=0.000991,0.001617&amp;z=19&amp;iwloc=00044b76915d18db2b836"><img src="../BrunneninDurlach.jpg" alt="Header image" width="390" height="260" border="0" /></a></td>
+    <td width="616" height="63" align="center" valign="bottom" nowrap="nowrap" id="logo"><span class="style6">OWLED 2008</span></td>
+    <td width="10">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#31599F">
+    <td height="64" align="center" valign="top"  id="tagline"> <p class="style1 style5">OWL: Experiences and Directions</p>
+      <p class="style3">Fifth International Workshop</p>
+      <p class="style7">Karlsruhe, Germany</p>
+    <p class="style3">October 26-27, 2008</p>
+    <p class="style3">co-located with <a href="http://iswc2008.semanticweb.org/">ISWC 2008</a></p></td>
+	<td width="10"><p>&nbsp;</p>    </td>
+  </tr>
+ 
+ 
+
+  <tr bgcolor="#CCFF99">
+  	<td bgcolor="#DEC794">&nbsp;</td>
+  	<td height="30" colspan="3" bgcolor="#DEC794" id="dateformat"><b><span class="style16"><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="submissions.html">Submissions</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="dates.html">Dates</a>&nbsp;&nbsp;&nbsp;&nbsp;Registration&nbsp;&nbsp;&nbsp;&nbsp;Venue&nbsp;&nbsp;&nbsp;&nbsp;<a href="people.html">People</a>&nbsp;&nbsp;&nbsp;&nbsp;Program&nbsp;&nbsp;&nbsp;&nbsp;Accepted Papers&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.w3.org/2004/OWL">OWL</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></b>    </td>
+  </tr>
+
+ <tr>
+    <td width="41">&nbsp;</td>
+    <td colspan="2" valign="top">&nbsp;<br />
+   
+    <table width="500" border="0" cellpadding="2" cellspacing="0" bgcolor="#C0DFFD">
+        <tr>
+          <td class="pageName"><!-- TemplateBeginEditable name="Section Title" -->Section Title<!-- TemplateEndEditable --></td>
+        </tr>
+        <tr>
+          <td class="bodyText"><!-- TemplateBeginEditable name="Section Body" -->Section Body<!-- TemplateEndEditable --></td>
+		</tr>
+    </table>	  </td>
+	<td width="10">&nbsp;</td>
+  </tr>
+
+ <tr>
+    <td width="41">&nbsp;</td>
+    <td width="355">&nbsp;</td>
+    <td width="616">&nbsp;</td>
+	<td width="10">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>
