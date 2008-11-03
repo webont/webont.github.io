@@ -60,7 +60,17 @@
 
   <tr bgcolor="#CCFF99">
   	<td bgcolor="#DEC794">&nbsp;</td>
-  	<td height="30" colspan="3" bgcolor="#DEC794" id="dateformat"><b><span class="style16"><a href="../index.html">About</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="submissions.html">Submissions</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="dates.html">Dates</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../registration.html">Registration</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://iswc2008.semanticweb.org/general-info/conference-venue/">Venue</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="people.html">People</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../program.html">Program</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../accepted-papers.html">Accepted Papers</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.w3.org/2004/OWL">OWL</a>&nbsp;&nbsp;&nbsp;&nbsp;</span></b>    </td>
+  	<td height="30" colspan="3" bgcolor="#DEC794" id="dateformat"><b><span class="style16"><a href="../index.html">About</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../program.html">Program</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../accepted-papers.html">Accepted Papers</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://wiki.webont.org/page/OWLED_Wiki">Wiki</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.w3.org/2007/OWL">OWL 2</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="submissions.html">Submissions</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="dates.html">Dates</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="../registration.html">Registration</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://iswc2008.semanticweb.org/general-info/conference-venue/">Venue</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="people.html">People</a>
+</span></b>    </td>
   </tr>
 
  <tr>
@@ -74,9 +84,9 @@
         </tr>
         <tr>
           <td class="bodyText" valign="top"><!-- TemplateBeginEditable name="Section Body" -->Section Body<!-- TemplateEndEditable --></td>
-	      <td width="500" align="center" valign="top" class="pageName"><p><a href="http://clarkparsia.com/"><img src="../C&amp;P_nobar-4C_400x150.png" alt="Clark and Parsia" width="395" height="112" align="baseline"  /></a>
-	        <br/><a href="http://www.research.ibm.com/"><img src="../IBM_Research.png" alt="IBM" width="400" height="90" longdesc="http://research.ibm.com/" /></a><br/><a href="http://sciencecommons.org/"><img src="../sclogo.png" alt="Science Commons" width="355" height="103" longdesc="http://sciencecommons.org/" /></a>
-          <br/><span class="style17"><a href="http://openlinksw.com/"><img src="../openlinklogo_wstrap_2008.png" alt="Openlink Software" width="380" height="161" longdesc="http://openlinksw.com/" /></a></span></td>
+	      <td width="500" align="center" valign="top" class="pageName"><p><a href="http://clarkparsia.com/"><img src="../C&amp;P_nobar-4C_400x150.png" alt="Clark and Parsia" width="395" height="112" align="baseline" style="border-style:none" /></a>
+	        <br/><a href="http://www.research.ibm.com/"><img src="../IBM_Research.png"  style="border-style:none" alt="IBM" width="400" height="90" longdesc="http://research.ibm.com/" /></a><br/><a href="http://sciencecommons.org/"><img src="../sclogo.png" alt="Science Commons"  style="border-style:none" width="355" height="103" longdesc="http://sciencecommons.org/" /></a>
+          <br/><span class="style17"><a href="http://openlinksw.com/"><img src="../openlinklogo_wstrap_2008.png"  style="border-style:none" alt="Openlink Software" width="380" height="161" longdesc="http://openlinksw.com/" /></a></span></td>
         </tr>
     </table>	  </td>
 	<td width="10">&nbsp;</td>
