@@ -10,6 +10,22 @@
 a:visited { color: #688; text-decoration: none; background-color: transparent }
 a:hover { color: #900; text-decoration: underline; background-color: transparent }
 #regtable td { padding: 5px 5px 5px 5px }
+
+a:visited { color: #688; text-decoration: none; background-color: transparent }
+a:hover { color: #900; text-decoration: underline; background-color: transparent }
+
+td.title 
+{
+  font-weight: bold;
+  padding: 3px 3px 5px 3px;
+}
+
+td 
+{
+  padding: 3px 3px 5px 3px;
+  vertical-align: top;
+  align: left;
+}
 -->
 </style>
 </head>
@@ -53,7 +69,9 @@ Check the <a href="http://www.semantic-web-studies.net/">Bookseries "Studies on 
 <h2 id="day1"> June 5th 2011 </h2>
 <hr style="width: 100%; height: 2px;" />
 
-<h3>Keynote: OWL: Path to Massive Deployment</h3>
+<p><b>8:30 - 9:00  Registration</b></p>
+
+<h3>9:45 - 10:45 Keynote: OWL: Path to Massive Deployment</h3>
 By <b><a href="http://topquadrant.com/company/mgmt.html#dean">Dr. Dean Allemang</a></b>, TopQuadrant, Inc.
 <p>
 If we look at utilization of OWL outside of its own development and research committee, we see some high-profile success stories, among the most widespread being the adoption of the Good Relations ontology for commerce and SKOS for vocabulary management.  But examples like this are, so far, too few and far between for OWL to be considered a web-scale success.  Seen from an industrial point of view, what things about OWL &lsquo;click&rsquo;, and what things are barriers to adoption?
@@ -67,15 +85,12 @@ In this talk, I draw on experience training over a thousand practitioners from a
 <p style="font-size:100%">Dr. Allemang is the Chief Scientist at TopQuadrant, Inc, a US company specializing in Semantic Web software and services. He is an internationally recognized expert in the Semantic Web with a strong formal background in Mathematics (MSc, University of Cambridge) and Computer Science (PhD, Ohio State University). For the past seven years, he has lead TopQuadrant's successful TopMIND training series, from which he drew much of the inspiration for his recent book (co-authored with Prof. Jim Hendler), Semantic Web for the Working Ontologist (now available in four languages). Dr. Allemang brings years of experience applying knowledge-based technologies to real business problems.</p>
 </p>
 
-
-
-
-<hr style="width: 100%; height: 2px;" />
+<p><b>10.45:11:00 break </b></p>
 
 
 
 
-<h3>The Rough Guide to the OWL API: a tutorial</h3>
+<h3>11:00 - 12:30 The Rough Guide to the OWL API: a tutorial</h3>
 <p> By <b>Dr. Ignazio Palmisano</b>, Manchester University</p>
 
 <p>
@@ -87,11 +102,11 @@ Some third party extensions will be discussed.
 Ignazio Palmisano is a research software developer in the Computer Science Department at Manchester University, Manchester, UK. He is involved in the current development of the OWL API, in the context of the <a href="http://intranet.cs.man.ac.uk/bhig/">Bio-Health Informatics Group</a>. He is been working with OWL, and more in general Semantic Web, since his student days: he was awarded his PhD in Computer Science from University of Bari, Bari, Italy, defending a thesis on applying machine learning algorithms for OWL ontologies to the problem of alignment between ontologies, and has investigated the use of OWL ontologies in multiagent systems during his postdoc at University of Liverpool, Liverpool, UK; his most relevant publications are listed on his <a href="http://www.informatik.uni-trier.de/~ley/db/indices/a-tree/p/Palmisano:Ignazio.html">DBLP page</a>.
 </p>
 
-<hr style="width: 100%; height: 2px;" />
+<p><b>12.30 - 1.30 Lunch break</b></p>
 
 
 
-<h3>Tutorial: A little more semantics goes a lot further! Getting more out of Linked Data with OWL </h3>
+<h3>1.30 - 3.00 Tutorial: A little more semantics goes a lot further! Getting more out of Linked Data with OWL </h3>
 <p> By <b>Dr. Michel Dumontier</b>, Carleton University and <b>Dr. Robert Hoehndorf</b>, Cambridge University</p>
 
 <p>
@@ -125,11 +140,10 @@ ontologies and the use of knowledge representation and reasoning for data and kn
 integration.
 </p>
 
-<hr style="width: 100%; height: 2px;" />
+<p><b>3:00 - 3.15 break</b></p>
 
 
-
-<h3>Tutorial: <a href="http://www.semantic-web-book.org/page/OWLED2011_Tutorial">OWL and Rules</a></h3>
+<h3>3.15 - 4.45 Tutorial: <a href="http://www.semantic-web-book.org/page/OWLED2011_Tutorial">OWL and Rules</a></h3>
 
 
 <p> By <b>Dr. Pascal Hitzler</b>, Wright State University</p>
@@ -148,6 +162,8 @@ More information can be found at the <a href="http://www.semantic-web-book.org/p
 Pascal Hitzler is assistant professor, since 2009, at the Kno.e.sis Center for Knowledge-enabled Computing, which is an Ohio Center of Excellence at Wright State University in Dayton, Ohio, U.S.A. His research record lists over 160 publications in such diverse areas as semantic web, neural-symbolic integration, knowledge representation and reasoning, denotational semantics, and set-theoretic topology. He is Editor-in-chief of the IOS Press journal "Semantic Web - Interoperability, Usability, Applicability" and the IOS Press book series "Studies on the Semantic Web". He is co-author of the W3C Recommendation "OWL 2 Primer" and of the textbook "Foundations of Semantic Web Technologies" by CRC Press, 2009, one of only seven "Outstanding Academic Titles" in Computer Science as listed by the American Library Association's Choice Magazine. For more information, see <a href="http://www.pascal-hitzler.de">http://www.pascal-hitzler.de</a>.
 </p>
 
+<p><b>5.00: End day 1 - SemTech welcome reception</b></p>
+
 <hr style="width: 100%; height: 2px;" />
 
 <h2 id="day2"> June 6th 2011 </h2>
@@ -155,55 +171,125 @@ Pascal Hitzler is assistant professor, since 2009, at the Kno.e.sis Center for K
 
 <p>
 
-<b><u>Long Paper</u></b>
-<ul>
-<li>Ilianna Kollia, Birte Glimm and Ian Horrocks. Answering Queries over OWL Ontologies with SPARQL.</li>
-
-<li>Leonid L. Chepelev, Dana Klassen and Michel Dumontier. Chemical Hazard Estimation and Method Comparison with OWL-Encoded Toxicity Decision Trees.</li>
-
-<li>Janna Hastings, Ludger Jansen, Christoph Steinbeck and Stefan Schulz. Modelling threshold phenomena in OWL: Metabolite concentrations as evidence for disorders.</li>
-
-<li>Martin Boeker, Janna Hastings, Daniel Schober and Stefan Schulz. A T-Box Generator for testing scalability of OWL mereotopological patterns</li>
-
-<li>Barry Bishop and Spas Bojanov. Implementing OWL 2 RL and OWL 2 QL rule-sets for OWLIM.</li>
-
-<li>Alex Shkotin, Vladimir Ryakhovsky and Dmitry Kudryavtsev. Towards OWL-based Knowledge Representation in Petrology.</li>
-</ul>
 
 
-<b><u>Short Paper</u></b>
-<ul>
-<li>
-Cory Henson, Krishnaprasad Thirunarayan, Amit Sheth and Pascal Hitzler. Representation of Parsimonious Covering Theory in OWL-DL.</li>
-</ul>
+<table>
+	<tr>
+		<th> Time  </th>
+		<th> Title </th>
+		<th> Presentation </th>
+	</tr>
+	<tr>
+		<td> 8:30 - 9:00 </td>
+		<td	class="title"> Registration</td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td> 9:00 - 9:15 </td>
+		<td	class="title"> Introduction </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> 9:15 - 9:45 </td>
+		<td> <a href="papers/owled2011_submission_12.pdf">Chemical Hazard Estimation and Method Comparison with OWL-Encoded Toxicity Decision Trees.</a>
+		<br> <em>Leonid L. Chepelev, Dana Klassen and Michel Dumontier.</em> </td> 
+		<td> Long </td>
+	</tr>
+	<tr>
+		<td> 9:45 - 10:15 </td>
+		<td> <a href="papers/owled2011_submission_6.pdf">Modelling threshold phenomena in OWL: Metabolite concentrations as evidence for disorders.</a>
+		<br> <em>Janna Hastings, Ludger Jansen, Christoph Steinbeck and Stefan Schulz.</em> </td> 
+		<td> Long </td>
+	</tr>
+	<tr>
+		<td> 10:15 - 10:25 </td>
+		<td> <a href="papers/owled2011_submission_9.pdf">Choosing between Axioms, Rules and Queries: Experiments in Semantic Integration Techniques.</a>
+		<br> <em>Aidan Boran, Ivan Bedini, Christopher Matheus, Peter Patel-Schneider and John Keeney.</em> </td>
+		<td> Flash talk </td>
+	</tr>
+	<tr>
+		<td> 10:25 - 11:00 </td>
+		<td> Break </td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td> 11:00 - 11:30 </td>
+		<td> <a href="papers/owled2011_submission_16.pdf">A T-Box Generator for testing scalability of OWL mereotopological patterns. </a>
+		<br> <em>Martin Boeker, Janna Hastings, Daniel Schober and Stefan Schulz.</td>
+		<td> Long </td>
+	</tr>
+	<tr>
+		<td> 11:30 - 11:45 </td>
+		<td> <a href="papers/owled2011_submission_10.pdf">Protege Extensions for Scientist-Oriented Modeling of Observation and Measurement Semantics.</a>
+		<br> <em>Wesley Saunders, Shawn Bowers and Margaret O'Brien.</td>
+		<td> Application note </td>
+	</tr>
+	<tr>
+		<td> 11:45 - 12:00 </td>
+		<td> <a href="papers/owled2011_submission_7.pdf">Advanced ontology visualization with OWLGrEd.</a>
+		<br> <em>Janis Barzdins, Karlis Cerans, Renars Liepins and Arturs Sprogis. </td>
+		<td> Application note </td>
+	</tr>
+	<tr>
+		<td> 12:00 - 1:30 </td>
+		<td> Lunch break </td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td> 1:30 - 2:00</td>
+		<td> <a href="papers/owled2011_submission_3.pdf">Implementing OWL 2 RL and OWL 2 QL rule-sets for OWLIM.</a>
+		<br> <em>Barry Bishop and Spas Bojanov.</em> </td>
+		<td> Long </td>
+	</tr>
+	<tr>
+		<td> 2:00 - 2:15 </td>
+		<td> <a href="papers/owled2011_submission_8.pdf">Representation of Parsimonious Covering Theory in OWL-DL.</a>
+		<br> <em>Cory Henson, Krishnaprasad Thirunarayan, Amit Sheth and Pascal Hitzler.</em> </td>
+		<td> Short </td>
+	</tr>
+	<tr>
+		<td> 2:15 - 2:30 </td>
+		<td> <a href="papers/owled2011_submission_15.pdf">The Prolog OWL Shell.</a> 
+		<br> <em>Chris Mungall</em> </td>
+		<td> Application note </td>
+	</tr>
+	<tr>
+		<td> 2:30 - 3:00 </td>
+		<td> Break </td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td> 9:00 - 10:00 </td>
+		<td	class="title"> Identity </td>
+		<td>  </td>
+		<td> </td>
+	</tr>
+	<tr>
+		<td> 3:00 - 3:30 </td>
+		<td> <a href="papers/owled2011_submission_4.pdf"> Answering Queries over OWL Ontologies with SPARQL.</a>
+		<br> <em>Ilianna Kollia, Birte Glimm and Ian Horrocks.</em> </td>
+		<td> Long </td>
+	</tr>
+	<tr>
+		<td> 3:30 - 3:40 </td>
+		<td> <a href="papers/owled2011_submission_5.pdf">OWL2 based Data Cleansing Using Conditional Exclusion Dependencies.</a>
+		<br> <em>Olivier Curé, Chan Le Duc and Myriam Lamolle.</em>  </td>
+		<td> Flash </td>
+	</tr>
+	<tr>
+		<td> 3:45 - 4:30 </td>
+		<td	class="title"> Panel - Future Directions </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td> 4:30 - 5:00 </td>
+		<td	class="title"> Business Meeting (election to Steering Committee; next OWLED)</td>
+		<td>  </td>
+	</tr>
+	</table>
 
-<b><u>Application Note</u></b>
-<ul>
-<li>
-Janis Barzdins, Karlis Cerans, Renars Liepins and Arturs Sprogis.     Advanced ontology visualization with OWLGrEd.</li>
 
-<li>
-Chris Mungall.    POSH - The Prolog OWL Shell.
-</li>
-<li>
-Wesley Saunders, Shawn Bowers and Margaret O'Brien. Protege Extensions for Scientist-Oriented Modeling of Observation and Measurement Semantics
-</li>
-</ul>
 
-<b><u>Statement of Interest</u></b>
-<ul>
-<li>
-Olivier Curé, Chan Le Duc and Myriam Lamolle. OWL2 based Data Cleansing Using Conditional Exclusion Dependencies.
-</li>
-</ul>
-
-<b><u>Poster</u></b>
-<ul>
-<li>
-Aidan Boran, Ivan Bedini, Christopher Matheus, Peter Patel-Schneider and John Keeney. Choosing between Axioms, Rules and Queries: Experiments in Semantic Integration Techniques            
-</li>
-</ul>
-</p>
 
 
 <!--
