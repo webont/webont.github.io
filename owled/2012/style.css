@@ -38,10 +38,25 @@ a:hover {
 
 
 .subtitle {
-    font-weight: bold;
+    color: white;
+    font-weight: lighter;
     font-size: 20px;
     font-stretch: expanded;
     line-height: 150%
+}
+
+.subsubtitle {
+    color: white;
+    font-size: 20px;
+    font-stretch: expanded;
+    line-height: 150%
+}
+
+
+h1 {
+    color: white;
+    font-weight: lighter;
+    font-size: 44px;
 }
 
 h2 {
@@ -49,13 +64,20 @@ h2 {
     /*color: #648dbe;*/
 }
 
-.title {
-    color: white;
+.pc {
+    margin: 10px;
 }
 
-h1 {
-    font-size: 35px;
+li{
+
 }
+
+.pcmember {
+    margin: 2px;
+    list-style-type: circle;
+}
+
+
 
 
 /*#regtable td {*/
