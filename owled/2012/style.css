@@ -64,6 +64,10 @@ h2 {
     /*color: #648dbe;*/
 }
 
+h3 {
+    font-size: 12px;
+}
+
 .pc {
     margin: 10px;
 }
@@ -77,7 +81,14 @@ li{
     list-style-type: circle;
 }
 
-
+.horizontalline {
+    border-color: #c78066;
+    border-top: 1px;
+    border-style: solid;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+}
 
 
 /*#regtable td {*/
