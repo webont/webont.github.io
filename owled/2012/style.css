@@ -13,8 +13,8 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: silver;
-    margin: 20px;
-
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 a {
