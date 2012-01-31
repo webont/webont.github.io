@@ -1,14 +1,34 @@
 <!--
-/*body {*/
-    /*font-family: Arial, SANS-SERIF;*/
-    /*line-height: 110%*/
-/*}*/
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 150%;
+    font-size: 12px;
+    background-image: url("pics/crete.jpg");
+    background-repeat: no-repeat;
+}
+
+
+
+.image {
+    border-width: 1px;
+    border-style: solid;
+    border-color: silver;
+    margin: 20px;
+
+}
+
+a {
+    /*color: #c78066;*/
+    color: #4779be;
+}
+
 
 a:visited {
-    color: #688;
+    /*color: #c78066;*/
     text-decoration: none;
     background-color: transparent
 }
+
 
 a:hover {
     color: #900;
@@ -16,12 +36,27 @@ a:hover {
     background-color: transparent
 }
 
+
 .subtitle {
     font-weight: bold;
     font-size: 20px;
     font-stretch: expanded;
     line-height: 150%
 }
+
+h2 {
+    color: #c78066;
+    /*color: #648dbe;*/
+}
+
+.title {
+    color: white;
+}
+
+h1 {
+    font-size: 35px;
+}
+
 
 /*#regtable td {*/
     /*padding: 5px 5px 5px 5px*/
