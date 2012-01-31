@@ -1,0 +1,30 @@
+<!--
+/*body {*/
+    /*font-family: Arial, SANS-SERIF;*/
+    /*line-height: 110%*/
+/*}*/
+
+a:visited {
+    color: #688;
+    text-decoration: none;
+    background-color: transparent
+}
+
+a:hover {
+    color: #900;
+    text-decoration: underline;
+    background-color: transparent
+}
+
+.subtitle {
+    font-weight: bold;
+    font-size: 20px;
+    font-stretch: expanded;
+    line-height: 150%
+}
+
+/*#regtable td {*/
+    /*padding: 5px 5px 5px 5px*/
+/*}*/
+
+-->
