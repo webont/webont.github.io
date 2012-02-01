@@ -32,6 +32,37 @@
     ]
 </h3>
 
+<div style="float: right; margin-left: 15px; margin-bottom: 10px; margin-right: 10px;">
+    <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+        new TWTR.Widget({
+            version: 2,
+            type: 'profile',
+            rpp: 5,
+            interval: 30000,
+            width: 250,
+            height: 300,
+            theme: {
+                shell: {
+                    background: '#c78066',
+                    color: '#ffffff'
+                },
+                tweets: {
+                    background: '#ffffff',
+                    color: '#616161',
+                    links: '#4778be'
+                }
+            },
+            features: {
+                scrollbar: true,
+                loop: false,
+                live: false,
+                behavior: 'all'
+            }
+        }).render().setUser('OWLED2012Worksh').start();
+    </script>
+</div>
+
 <p>
     The aim of the OWL:Experiences and Directions Workshop (OWLED) is to establish an international forum for the OWL
     community, where practitioners in industry and academia, tool developers and others interested in OWL can describe
@@ -55,7 +86,6 @@
     <li><b>1 Feb, Twitter</b> <a href="https://twitter.com/#!/OWLED2012Worksh" target="blank">Follow us on Twitter</a> to stay informed</li>
     </ul>
 </p>
-
 <h2>Topics</h2>
 <p>
     Papers about all aspects of OWL and extensions, applications, theory, methods and tools, are welcome. Topics of
