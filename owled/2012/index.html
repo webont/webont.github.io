@@ -65,6 +65,40 @@
     </script>
 </div>
 
+<div style="float: right; margin-left: 15px; margin-bottom: 10px; margin-right: 10px;">
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: '#owled2012',
+  interval: 30000,
+  title: '',
+  subject: 'Tweets that mention OWLED2012',
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: true,
+    live: true,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+</div>
+
+
 <p>
     The aim of the OWL:Experiences and Directions Workshop (OWLED) is to establish an international forum for the OWL
     community, where practitioners in industry and academia, tool developers and others interested in OWL can describe
