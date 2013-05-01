@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://ogp.me/ns/fb#" 
+      xmlns:dcterms="http://purl.org/dc/terms/" 
+      xml:lang="en">
+<head prefix="dcterms:http://purl.org/dc/terms/ og:http://ogp.me/ns# fb:http://ogp.me/ns/fb# 
+                  website:http://ogp.me/ns/website#">
+    <title>OWL: Experiences and Directions - OWLED 2013</title>
+    <meta name="keywords" content="OWLED2011, OWLED 2012, OWLED 2013, OWL, OWL2"/>
+     <meta property="fb:app_id"               content="587215824"> 
+     <meta property="og:type"                 content="website"> 
+     <meta property="og:url"                  content="http://www.webont.org/owled/2013"> 
+     <meta property="og:image"                content="http://www.webont.org/owled/owl.png">
+     <meta property="dc:creator"                content="http://www.ebi.ac.uk/~jupp">
+     <meta property="og:image"                content="http://www.webont.org/owled/owl.png">
+     <meta property="og:title"                content="OWL: Experiences and Directions - OWLED 2013">
+     <meta property="og:description"          content="10th OWL: Experiences and Directions Workshop (OWLED 2013). Montpellier, France, 26th-27th May, 2012"> 
+    </head>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<a href="http://www.crcpress.com">
+<img style="width:240px;height:70px;" atl="CRC Press" src="images/CRC_CMYK.jpg">
+</a>
+<!--
+<div style="float: right; margin-left: 15px; margin-bottom: 10px; margin-right: 10px;">
+    <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+        new TWTR.Widget({
+            version:2,
+            type:'profile',
+            rpp:5,
+            interval:30000,
+            width:250,
+            height:300,
+            theme:{
+                shell:{
+                    background:'#c78066',
+                    color:'#ffffff'
+                },
+                tweets:{
+                    background:'#ffffff',
+                    color:'#616161',
+                    links:'#4778be'
+                }
+            },
+            features:{
+                scrollbar:true,
+                loop:false,
+                live:false,
+                behavior:'all'
+            }
+        }).render().setUser('OWLED2012Worksh').start();
+    </script>
+</div>
+
+<img alt="owl" src="images/banner/Slide1.jpg" style="height:350px; width:800px;" />
+-->
+<div class="content">
+
+
+<div class="title" style="height: 320px">
+<img src="http://www.webont.org/owled/owl.png" style="height:100px;padding-right:10px;float:right"></img>
+    <h1>OWL: Experiences and Directions 2013</h1> 
+    <div class="subtitle">10th OWL: Experiences and Directions Workshop (OWLED 2013)</div>
+    <div class="subsubtitle">Montpellier, France, 26th-27th May, 2012</div>
+<br/>
+    
+    <img class="banner" title="Place de la Comedie, Montpellier, Languedoc-Roussillon, France  by Fritz Geller-Grimm (Own work) [CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5\
+) or CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5)], via Wikimedia Commons" src="images/1.jpg"></img>
+    <img class="banner" title="By Vincent Schmitt (Own work) [GFDL (http://www.gnu.org/copyleft/fdl.html), CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/) or CC-BY-2.5 (http://creativecommons.org/licenses/by/2.5)], via Wikimedia Commons" src="images/2.jpg"></img>
+    <img class="banner"  title="Triumphal arch Peyrou, Montpellier, Languedoc-Roussillon, France by Fritz Geller-Grimm (Own work) [CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5) or CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5)], via Wikimedia Commons"  src="images/3.jpg"></img>
+    <img class="banner" title="Fountain in front of the Opera, Montpellier, Languedoc-Roussillon, France By Fritz Geller-Grimm (Own work) [CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5) or CC-BY-SA-2.5 (http://creativecommons.org/licenses/by-sa/2.5)], via Wikimedia Commons" src="images/4.jpg"></img>
+</div>
+<div>
+
+<table width="100%">
+<tr>
+<td>
+<h3 style="text-align: left;">
+    [
+    <a href="index.html">Home</a> |
+    <a href="#dates">Dates</a> |
+    <a href="#submissions">Submissions</a> |
+    <a href="#venue">Venue</a> |
+    <a href="#registration">Registration</a> |
+    <a href="./schedule.html">Program</a> |
+<!--    <a href="./tutorials.html">Tutorials</a> | -->
+    <a href="#organization">Organization</a>
+    ]
+</h3>
+</td>
+<td style="text-align:right;">
+<!-- social media buttons -->
+
+<ul class="media-buttons-list">
+
+<!-- google + -->
+<li>
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone"  data-size="medium" data-annotation="none" data-href="http://www.ebi.ac.uk/~jupp/owled2013"></div>
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'en-GB'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+</li>
+
+
+
+<!-- linked in -->
+<li>
+<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>
+<script type="IN/Share" data-url="http://www.ebi.ac.uk/~jupp/owled2013/" data-counter="right"></script>
+</li>
+
+
+<!-- facebook like -->
+<li>
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ebi.ac.uk%2F~jupp%2Fowled2013&amp;send=false&amp;layout=button_count&amp;width=&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; width:80px;overflow:hidden; height:21px;" allowTransparency="true"></iframe>
+</li>
+
+<!-- twitter -->
+<li>
+<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="owled2013">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</li>
+
+</ul>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+
+
+<!--<script>
+<div style="float: right; margin-left: 15px; margin-bottom: 10px; margin-right: 10px;">
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: '#owled2012',
+  interval: 30000,
+  title: '',
+  subject: 'Tweets that mention OWLED2012',
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: true,
+    live: true,
+    behavior: 'default'
+  }
+}).render().start();
+</script>
+</div>
+-->
+  <table id='tblMain'>
+    <tr>
+
+
+      <th colspan="5" class='s3'>Sunday 26th May</th>
+
+
+
+    </tr>
+
+    <tr >
+
+
+      <th  class='thead'>Time</th>
+
+      <th  class='thead'>Description</th>
+
+      <th  class='thead'>Paper</th>
+
+      <th  style="width:300px" class='thead'>Title</th>
+
+      <th  class='thead'>Authors</th>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:00:00</td>
+
+      <td  class='s4'>Introduction</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:15:00</td>
+
+      <td  class='s4'>Invited speaker</td>
+
+      <td></td>
+
+      <td>TBA</td>
+
+      <td>Michel Dumontier</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>10:15:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_1.pdf">1 (PDF)</a></td>
+
+      <td  class='s4'>Suite of Tools for Pattern-Based Transformation of OWL
+      Ontologies</td>
+
+      <td  class='s4'>Ondrej Zamazal, Marek Dudas, Jan Cerny and Vojt&#283;ch
+      Sv&aacute;tek</td>
+    </tr>
+
+    <tr class="break">
+
+
+      <td>10:30:00</td>
+
+      <td>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:00:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_2.pdf">2 (PDF)</a></td>
+
+      <td  class='s4'>Owl2vcs: Tools for Distributed Ontology Development</td>
+
+      <td  class='s4'>Ivan Zaikin and Anatoly Tuzovsky</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:25:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_3.pdf">3 (PDF)</a></td>
+
+      <td  class='s4'>Experiences from a TBox Reasoning Application: Deriving a
+      Relational Model by OWL Schema Analysis</td>
+
+      <td  class='s4'>Thomas Hornung and Wolfgang May</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:50:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_4.pdf">4 (PDF)</a></td>
+
+      <td  class='s4'>Improving Industrial Collaboration with Linked Data and
+      OWL</td>
+
+      <td  class='s4'>Jan Hladik, Conny Christl, Frank Haferkorn and Markus
+      Graube</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>12:15:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_5.pdf">5 (PDF)</a></td>
+
+      <td  class='s4'>Putting OWL into production at the European Bioinformatics
+      Institute</td>
+
+      <td  class='s4'>James Malone, Tony Burdett, Jon Ison, Simon Jupp, Drashtti
+      Vasant, Danielle Welter and Helen Parkinson</td>
+    </tr>
+
+    <tr class="break">
+
+
+      <td class='s5'>12:30:00</td>
+
+      <td  class='s4'>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s2'></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>14:00:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_6.pdf">6 (PDF)</a></td>
+
+      <td  class='s4'>Metamodeling-Based Coherence Checking of OWL Vocabulary
+      Background Models</td>
+
+      <td  class='s4'>Vojt&#283;ch Sv&aacute;tek, Martin Homola, Jan Kluka and
+      Miroslav Vacura</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>14:25:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_7.pdf">7 (PDF)</a></td>
+
+      <td  class='s4'>Tradeoffs in Measuring Entity Similarity for Pattern
+      Detection in OWL Ontologies</td>
+
+      <td  class='s4'>Eleni Mikroyannidi, Robert Stevens and Luigi Iannone</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>14:50:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_8.pdf">8 (PDF)</a></td>
+
+      <td  class='s4'><br />
+      Learning Formal Definitions for Biomedical Concepts</td>
+
+      <td  class='s4'>George Tsatsaronis, Alina Petrova, Maria Kissa, Yue Ma,
+      Felix Distel, Franz Baader and Michael Schroeder</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>15:15:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_9.pdf">9 (PDF)</a></td>
+
+      <td  class='s4'>Brain, a library for the OWL2 EL profile</td>
+
+      <td  class='s4'>Samuel Croset, John Overington and Dietrich
+      Rebholz-Schuhmann</td>
+    </tr>
+
+    <tr class="break">
+
+
+      <td class='s5'>15:30:00</td>
+
+      <td  class='s4'>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>16:00:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_10.pdf">10 (PDF)</a></td>
+
+      <td  class='s4'>Modeling issues and choices in the Data Mining
+      OPtimization Ontology</td>
+
+      <td  class='s4'>C. Maria Keet, Agnieszka Lawrynowicz, Claudia D'Amato and
+      Melanie Hilario</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>16:25:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_11.pdf">11 (PDF)</a></td>
+
+      <td  class='s4'>OWL 2 Reasoning To Detect Energy-Efficient Software
+      Variants From Context</td>
+
+      <td  class='s4'>Sebastian Goetz, Julian Mendez, Veronika Thost and
+      Anni-Yasmin Turhan</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>16:50:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_12.pdf">12 (PDF)</a></td>
+
+      <td  class='s4'>Binary OWL</td>
+
+      <td  class='s4'>Matthew Horridge, Timothy Redmond, Tania Tudorache and
+      Mark Musen</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>17:05:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_13.pdf">13 (PDF)</a></td>
+
+      <td  class='s4'>Instrumenting Atomic Decomposition: software APIs for
+      OWL</td>
+
+      <td  class='s4'>Dmitry Tsarkov, Chiara Del Vescovo and Ignazio
+      Palmisano</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>17:20:00</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s2'></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s2'></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s2'></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td  class='s3'>Monday 27th May</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s2'></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:00:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_14.pdf">14 (PDF)</a></td>
+
+      <td  class='s4'>Modeling in OWL 2 without Restrictions</td>
+
+      <td  class='s4'>Michael Schneider, Sebastian Rudolph and Geoff
+      Sutcliffe</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:25:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_15.pdf">15 (PDF)</a></td>
+
+      <td  class='s4'>Representing Kinship Relations on the Semantic Web</td>
+
+      <td  class='s4'>Cristiano Longo, Aldo Gangemi and Domenico Cantone</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:50:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_16.pdf">16 (PDF)</a></td>
+
+      <td  class='s4'>The Semantic Web takes Wing: Programming Ontologies with
+      Tawny-OWL</td>
+
+      <td  class='s4'>Phillip Lord</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>9:15:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_17.pdf">17 (PDF)</a></td>
+
+      <td  class='s4'>Mastro Studio: a system for Ontology-Based Data
+      Management</td>
+
+      <td  class='s4'>Domenico Lembo, Valerio Santarelli, Domenico Fabio Savo,
+      Cristina Civili, Marco Console, Lorenzo Lepore, Riccardo Mancini, Antonella Poggi
+      and Marco Ruzzi</td>
+    </tr>
+
+    <tr class="break">
+
+
+      <td class='s5'>10:30:00</td>
+
+      <td  class='s4'>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:00:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_18.pdf">18 (PDF)</a></td>
+
+      <td  class='s4'>ontop at work</td>
+
+      <td  class='s4'>Mariano Rodriguez-Muro, Roman Kontchakov and Michael
+      Zakharyaschev</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:25:00</td>
+
+      <td  class='s4'>Talk</td>
+
+      <td class='s6'><a href="papers/owled2013_19.pdf">19 (PDF)</a></td>
+
+      <td  class='s4'>Towards Query Formulation and Query-Driven Ontology
+      Extensions in OBDA Systems</td>
+
+      <td  class='s4'>Bernardo Cuenca Grau, Martin Giese, Ian Horrocks, Thomas
+      Hubauer, Ernesto Jimenez-Ruiz, Evgeny Kharlamov, Michael Schmidt, Ahmet Soylu and
+      Dmitriy Zheleznyakov</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>11:50:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_20.pdf">20 (PDF)</a></td>
+
+      <td  class='s4'>The Optique Project: Towards OBDA Systems for
+      Industry</td>
+
+      <td  class='s4'>Diego Calvanese, Martin Giese, Peter Haase, Ian Horrocks,
+      Thomas Hubauer, Yannis Ioannidis, Ernesto Jimenez-Ruiz, Evgeny Kharlamov, Herald
+      Kllapi, Manolis Koubarakis, Steffen Lampater, Ralf Moeller, Christian Neuenstadt,
+      Oezguer Oezcep, Mariano Rodriguez-Muro, Mikhail Roshchin, Marco Ruzzi, Domenico
+      Fabio Savo, Michael Schmidt, Ahmet Soylu, Arild Waaler and Dmitriy
+      Zheleznyakov</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>12:05:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_21.pdf">21 (PDF)</a></td>
+
+      <td  class='s4'>On Rewriting and Answering Queries in OBDA Systems for Big
+      Data</td>
+
+      <td  class='s4'>Diego Calvanese, Ian Horrocks, Ernesto Jimenez-Ruiz,
+      Evgeny Kharlamov, Michael Meier, Mariano Rodriguez-Muro and Dmitriy
+      Zheleznyakov</td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>12:20:00</td>
+
+      <td  class='s4'>Short talk</td>
+
+      <td class='s6'><a href="papers/owled2013_22.pdf">22 (PDF)</a></td>
+
+      <td  class='s4'>Distributed Query Processing on the Cloud: the Optique
+      Point of View</td>
+
+      <td  class='s4'>Herald Kllapi, Dimitris Bilidas, Ian Horrocks, Yannis
+      Ioannidis, Ernesto Jimenez-Ruiz, Evgeny Kharlamov, Manolis Koubarakis and Dmitriy
+      Zheleznyakov</td>
+    </tr>
+
+    <tr class="break">
+
+
+      <td class='s5'>12:35:00</td>
+
+      <td  class='s4'>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>14:00:00</td>
+
+      <td  class='s4'>Panel</td>
+
+      <td  class='s4'>Big data panel</td>
+
+      <td></td>
+
+      <td>Michel Dumontier, John Goodwin, Axel Polleres</td>
+    </tr>
+
+    <tr class="break">
+
+      <td class='s5'>15:30:00</td>
+
+      <td  class='s4'>Break</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>16:00:00</td>
+
+      <td  class='s4'>townhall</td>
+
+      <td  class='s4'>Steering commitee meeting</td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+    <tr >
+
+
+      <td class='s5'>16:30:00</td>
+
+      <td>OWLED close</td>
+
+      <td></td>
+
+      <td></td>
+
+      <td></td>
+    </tr>
+
+  </table>
+
+
+
+
+</div>
+
+</body>
+</html> 

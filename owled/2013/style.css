@@ -111,6 +111,23 @@ li{
 }
 
 
+#tblMain {
+background-color:white;
+border:1;
+}
+
+table#tblMain td {
+padding:5px;
+}
+
+.thead {
+border-bottom:thin solid black;
+}
+
+.break td {
+background-color:#FAFAD2;
+}
+
 /*#regtable td {*/
     /*padding: 5px 5px 5px 5px*/
 /*}*/
